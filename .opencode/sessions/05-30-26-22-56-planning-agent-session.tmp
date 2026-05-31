@@ -1,0 +1,9 @@
+DONE: Explored codebase structure (agents, skills, pipeline, plans, config). Created .opencode/agents/00-planning-agent.md with full Planning Analyst workflow, output templates, and invocation rules. Updated .opencode/docs-catalog.md, .opencode/INDEX.md, .opencode/project-structure.md, and AGENTS.md with references and pipeline modes mention.
+
+WRONG: First proposal added the agent as a mandatory pipeline step + skill, misaligned with user's intent for an optional on-demand agent. Spent extra round fixing the approach.
+
+IMPROV: Before proposing architecture for new agents, ask: should this be mandatory or on-demand? a skill or an agent definition? Check the existing pattern (agents vs skills) earlier in the exploration phase.
+
+LEARN: .opencode/agents/ = on-demand task types invoked via Task tool; .opencode/skills/ = orchestrated workflow steps. Pipeline has a precise contract: PM/mandatory steps are skills; standalone specialists are agents. The user values flexibility — agents should be skippable and composable, not hard-wired into pipelines.
+
+NEXT: Planning Analyst is ready for use. Invoke via Task(subagent_type: "Planning Analyst", ...) whenever feasibility, risk, or impact analysis is needed.

@@ -17,6 +17,7 @@ Catalog of all `.md` files in `.opencode/` with content description and when to 
 
 | File | Content | When to modify |
 |---|---|---|
+| `agents/00-planning-agent.md` | Planning Analyst — feasibility, risk, impact analysis, on-demand planning docs for PM | New analysis types; planning output format changes |
 | `agents/01-product-manager.md` | PM instructions — mandatory questions, folder-per-epic output, plan .md → epics, pipeline.yaml | PM flow changes; new artifact types |
 | `agents/02-tech-lead.md` | TL instructions — decomposition, folder-per-task output, one .md per task, pipeline.yaml | Task format changes; allocation changes |
 | `agents/03-senior-frontend.md` | Frontend agent instructions | Frontend conventions change |

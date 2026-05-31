@@ -123,6 +123,8 @@ The agent pipeline has two modes:
 - **Full Pipeline** (`/start`): PM → Tech Lead → Dev → QA, complete with ceremony
 - **Direct Task Mode** (specific tasks): direct routing to the implementation agent → QA → STOP, no PM/TL
 
+**Optional pre-phase**: Before any mode, invoke the [Planning Analyst](./agents/00-planning-agent.md) on-demand for feasibility, risk, and impact analysis. Its output can feed into the Product Manager or directly inform implementation choices.
+
 See [jobfindr-pipeline skill](./skills/jobfindr-pipeline/SKILL.md) for details.
 
 ---
@@ -132,6 +134,7 @@ See [jobfindr-pipeline skill](./skills/jobfindr-pipeline/SKILL.md) for details.
 - [Plan & tasks](./plan/) — task breakdown and epics
 - [Pipeline skill](./skills/jobfindr-pipeline/SKILL.md) — orchestrator
 - [Pipeline next skill](./skills/jobfindr-pipeline-next/SKILL.md) — continuation
+- [Planning Analyst agent](./agents/00-planning-agent.md) — on-demand feasibility, risk & impact analysis
 - [QA Reviewer agent](./agents/05-qa-reviewer.md) — code validation
 - [Learning Improvement skill](./skills/learning-improvement/SKILL.md) — session evaluation (skill 1/3 of STOP)
 - [Continuous Learning skill](./skills/continuous-learning/SKILL.md) — doc updates (skill 2/3 of STOP)

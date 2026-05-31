@@ -167,6 +167,7 @@ See `.opencode/skills/jobfindr-pipeline/SKILL.md` for full mode details.
 
 - **Full Pipeline** (`/start`): PM → Tech Lead → Frontend+Backend (parallel) → QA Frontend+QA Backend (parallel) → corrections loop → complete
 - **Direct Task Mode**: routes directly to implementation agent → QA → STOP, no PM/TL
+- **Planning Analyst** (optional, on-demand): invoke `Task(subagent_type: "Planning Analyst", ...)` before any mode for feasibility, risk, and impact analysis. Output can feed into Product Manager or directly inform implementation.
 - QA is mandatory for non-trivial tasks.
 
 ## All docs must be in English

@@ -49,7 +49,7 @@ jobfindr/
 │   ├── INDEX.md             # Full AI guide — links to all architecture docs
 │   ├── project-structure.md # This file — project structure
 │   ├── docs-catalog.md      # Doc catalog — what each .md file contains
-│   ├── agents/              # Agent definitions (PM, TL, Frontend, Backend, QA)
+│   ├── agents/              # Agent definitions (Planning Analyst, PM, TL, Frontend, Backend, QA)
 │   ├── architecture/        # 22 architecture files (01-system-overview to 22-testing-philosophy)
 │   ├── commands/            # Chat commands (pipeline, QA, validation)
 │   ├── hooks/               # PowerShell scripts (validation)
