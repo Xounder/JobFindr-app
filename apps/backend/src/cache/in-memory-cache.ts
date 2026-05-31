@@ -69,6 +69,21 @@ export class InMemoryCache<T = unknown> {
     return this.store.size
   }
 
+  /**
+   * Return all non-expired values stored in the cache.
+   * Useful for scanning cached data (e.g., extracting unique company names).
+   */
+  values(): T[] {
+    const now = Date.now()
+    const result: T[] = []
+    for (const [, entry] of this.store) {
+      if (now <= entry.expiresAt) {
+        result.push(entry.value)
+      }
+    }
+    return result
+  }
+
   getStats(): {
     size: number
     totalHits: number

@@ -1,0 +1,5 @@
+DONE: Analyzed the stale skill reference history. Confirmed pipeline SKILL.md no longer references non-existent skills (01-product-manager, 02-tech-lead, 05-qa-reviewer). All invocations use Task tool with subagent_type.
+WRONG: Originally the pipeline SKILL.md (Portuguese version) told the orchestrator to load skill files that had been migrated to agents/ and no longer exist on disk.
+IMPROV: The pipeline SKILL.md is already fixed — no stale references remain. docs-catalog.md properly marks migrated skills as struck-through.
+LEARN: When skill files move from skills/ to agents/, all cross-references in pipeline SKILL.md, docs-catalog, and INDEX.md must be updated atomically.
+NEXT: No doc changes needed. This session validated the fix is complete.

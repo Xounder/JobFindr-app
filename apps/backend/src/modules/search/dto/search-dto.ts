@@ -20,6 +20,7 @@ export type SearchRequestQuery = {
   includeHidden?: string
   sort?: string
   postedAfter?: string
+  countries?: string
 }
 
 export type SearchSuccessResponse = {

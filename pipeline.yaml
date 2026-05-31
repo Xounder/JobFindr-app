@@ -1,30 +1,30 @@
 pipeline:
   name: JobFindr Pipeline
-  started_at: "2026-05-30T17:00:00"
-  updated_at: "2026-05-30T17:00:00"
+  started_at: "2026-05-30T21:51:42"
+  updated_at: "2026-05-30T23:15:00"
   current_step: "completed"
   steps:
     product-manager:
       status: completed
-      notes: "13 épicos de aquisição de providers criados em .opencode/plan/provider-acquisition/ (EPIC-PA-01 a EPIC-PA-13). MVP phases 1-7 detalhados com deliverables, tasks e critérios de aceitação. EPIC 16 adicionado em epics.md como referência."
-      updated_at: "2026-05-30T17:00:00"
+      notes: "Created 3 epics (EPIC-17 Bug Fixes, EPIC-18 Advanced Filters, EPIC-19 Performance & UX) with 8 user stories. PM questions answered by user."
+      updated_at: "2026-05-30T22:00:00"
     tech-lead:
       status: completed
-      notes: "19 tasks técnicas criadas (TASK-112 a TASK-130) em .opencode/plan/tasks/index.md — EPIC 16. Tasks 112-124 são MVP, 125-130 são pós-MVP. Todas alocadas para Senior Backend."
-      updated_at: "2026-05-30T17:00:00"
+      notes: "Decomposed 8 user stories into 22 technical tasks across 3 epics. Created .opencode/plan/tasks.md with task breakdown, dependencies, complexity estimates, and test requirements. Frontend: 10 tasks, Backend: 12 tasks. Parallelization: Frontend and Backend agents run concurrently."
+      updated_at: "2026-05-30T22:30:00"
     senior-frontend:
-      status: pending
-      notes: null
-      updated_at: null
+      status: completed
+      notes: "Implemented 10 frontend tasks: TrustFilters slider fix, TrustFilters tests, RemoteModeFilter component, store/types/API mapping, FiltersPanel integration, CountryFilter component (multi-select with 15 countries), countries store/types/API, FiltersPanel integration, Zustand persist middleware, debounce all filters. Build: clean. Lint: clean. Tests: 22/22 passing."
+      updated_at: "2026-05-30T23:00:00"
     senior-backend:
       status: completed
-      notes: "EPIC 16 — Provider Acquisition implementado. TASK-112 a TASK-124 concluídas (exceto TASK-118 que já existia). 12 arquivos de infraestrutura, 5 providers reais, testes, remoção LinkedIn."
-      updated_at: "2026-05-30T17:30:00"
+      notes: "Implemented 12 backend tasks: remoteMode filter, seniority filter, postedAfter filter, countries validation/parsing, country filter, AggregatedCache class and integration, dynamic company suggestions (from cache), plus all tests (42 new tests). Build: clean. Types: clean. Tests: 200 passing."
+      updated_at: "2026-05-30T23:00:00"
     qa-frontend:
-      status: pending
-      notes: null
-      updated_at: null
+      status: completed
+      notes: "QA APPROVED. All 10 frontend tasks validated. Lint/build/tests clean. No issues found."
+      updated_at: "2026-05-30T23:15:00"
     qa-backend:
       status: completed
-      notes: "APROVADO após correções. EPIC 16 (TASK-112 a TASK-124) verificado: build/lint ok, 158 testes passando (29 suites). Providers: Greenhouse, Ashby, Lever, Workday, Gupy implementados com classes base, engine, normalização, health monitoring, company mapping, retry system. LinkedIn removido. Arquitetura: provider isolation, stateless, sem lógica de negócio no frontend."
-      updated_at: "2026-05-30T20:00:00"
+      notes: "QA APPROVED after correction loop. Issues fixed: exported getUniqueCompaniesFromCache, rewrote tests to use real implementation, added countries to SearchRequestQuery, removed useless first test. Build/tests clean."
+      updated_at: "2026-05-30T23:15:00"

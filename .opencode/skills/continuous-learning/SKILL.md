@@ -41,7 +41,7 @@ Use this skill after `learning-improvement` in the STOP hook. It is the **second
 5. **Wait for user response**:
    - If **yes**: apply all changes
    - If **adjustments**: user informs what to adjust, apply as requested
-6. After applying, pass control to the `session-save` skill
+6. **Chain to `session-save` IMMEDIATELY** — after applying changes (or determining no changes are needed), you MUST load the `session-save` skill without waiting for user input. Never stop after step 5.
 
 ## Rules
 

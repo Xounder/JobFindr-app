@@ -1,4 +1,5 @@
 import type { FastifyInstance } from 'fastify'
+import { aggregatedCache } from '../../cache/aggregated-cache.ts'
 
 const SUGGESTED_SKILLS = [
   'TypeScript', 'JavaScript', 'React', 'Node.js', 'Python',
@@ -13,21 +14,39 @@ const SUGGESTED_SKILLS = [
   'Figma', 'UX Research', 'Product Management', 'A/B Testing', 'Analytics',
 ]
 
-const SUGGESTED_COMPANIES = [
+const FALLBACK_COMPANIES = [
   'Google', 'Microsoft', 'Amazon', 'Meta', 'Apple',
-  'Netflix', 'Spotify', 'Stripe', 'Shopify', 'Twitter',
-  'Nubank', 'iFood', 'Mercado Libre', 'Stone', 'PagSeguro',
-  'QuintoAndar', 'VTEX', 'Loft', 'Creditas', 'Conductor',
-  'Airbnb', 'Uber', 'Square', 'Twilio', 'Slack',
-  'Dropbox', 'Pinterest', 'Coinbase', 'Robinhood', 'Palantir',
-  'JPMorgan Chase', 'Goldman Sachs', 'Morgan Stanley', 'Bank of America',
-  'Wells Fargo', 'Citigroup', 'Accenture', 'Deloitte', 'PwC', 'IBM',
+  'Netflix', 'Stripe', 'Shopify', 'Spotify', 'Airbnb',
 ]
+
+/**
+ * Extract unique company names from all cached aggregated results.
+ * Returns companies in alphabetical order with no duplicates.
+ */
+export function getUniqueCompaniesFromCache(): string[] {
+  const allCachedJobs = aggregatedCache.getAllJobs()
+  if (allCachedJobs.length === 0) {
+    return FALLBACK_COMPANIES
+  }
+
+  const companySet = new Set<string>()
+  for (const jobs of allCachedJobs) {
+    for (const job of jobs) {
+      companySet.add(job.company)
+    }
+  }
+
+  if (companySet.size === 0) {
+    return FALLBACK_COMPANIES
+  }
+
+  return [...companySet].sort((a, b) => a.localeCompare(b))
+}
 
 async function suggestionsHandler() {
   return {
     skills: SUGGESTED_SKILLS,
-    companies: SUGGESTED_COMPANIES,
+    companies: getUniqueCompaniesFromCache(),
   }
 }
 

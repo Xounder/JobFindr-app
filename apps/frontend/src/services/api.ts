@@ -39,6 +39,14 @@ export function searchJobs(params: SearchParams): Promise<SearchResponse> {
     queryParams.seniority = params.seniority;
   }
 
+  if (params.remoteMode.length > 0) {
+    queryParams.remoteMode = params.remoteMode.join(",");
+  }
+
+  if (params.countries.length > 0) {
+    queryParams.countries = params.countries.join(",");
+  }
+
   if (params.companies.length > 0) {
     queryParams.companies = params.companies.join(",");
   }

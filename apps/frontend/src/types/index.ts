@@ -30,6 +30,8 @@ export interface SearchParams {
   q: string;
   skills: string[];
   seniority: string;
+  remoteMode: string[];
+  countries: string[];
   companies: string[];
   excludeCompanies: string[];
   trustMin: number;
@@ -60,6 +62,8 @@ export interface FiltersState {
   query: string;
   skills: string[];
   seniority: string;
+  remoteMode: string[];
+  countries: string[];
   companies: string[];
   excludeCompanies: string[];
   trustMin: number;

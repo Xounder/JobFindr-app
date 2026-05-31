@@ -20,9 +20,14 @@
 | 14 | [EPIC-14-observability.md](EPIC-14-observability.md) | Observability & Monitoring | Done |
 | 15 | [EPIC-15-deployment.md](EPIC-15-deployment.md) | Deployment & DevOps | Done |
 | 16 | [EPIC-16-provider-acquisition.md](EPIC-16-provider-acquisition.md) | Provider Acquisition (Foundation) | In Progress — see `.opencode/plan/provider-acquisition/` |
+| 17 | [EPIC-17-bug-fixes.md](EPIC-17-bug-fixes.md) | Bug Fixes | Planned — see `.opencode/plan/EPIC-17-tasks.md` |
+| 18 | [EPIC-18-advanced-filters.md](EPIC-18-advanced-filters.md) | Advanced Filters | Planned — see `.opencode/plan/EPIC-18-tasks.md` |
+| 19 | [EPIC-19-performance-ux.md](EPIC-19-performance-ux.md) | Performance & UX | Planned — see `.opencode/plan/EPIC-19-tasks.md` |
 
 ---
 
 **EPIC 03** — Superseded by EPIC 16. Kept for historical reference only.
 
 **EPIC 16** — Detailed multi-phase plan at `.opencode/plan/provider-acquisition/`.
+
+**EPICs 17-19** — Improvement cycle: Bug Fixes → Advanced Filters → Performance & UX. Detailed tasks at `.opencode/plan/EPIC-17-tasks.md`, `EPIC-18-tasks.md`, `EPIC-19-tasks.md`.

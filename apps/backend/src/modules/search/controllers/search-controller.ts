@@ -58,6 +58,7 @@ export function registerSearchRoute(app: FastifyInstance): void {
           includeHidden: { type: 'string' },
           sort: { type: 'string' },
           postedAfter: { type: 'string' },
+          countries: { type: 'string' },
         },
       },
     },

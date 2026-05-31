@@ -35,7 +35,7 @@ Catalog of all `.md` files in `.opencode/` with content description and when to 
 | ~~`skills/02-tech-lead/SKILL.md`~~ | Removed — content migrated to `agents/02-tech-lead.md` | N/A |
 | ~~`skills/05-qa-reviewer/SKILL.md`~~ | Removed — content migrated to `agents/05-qa-reviewer.md` | N/A |
 | `skills/06-branding/SKILL.md` | Brand guide — colors, typography, visual rules | Palette changes; new components; dark mode |
-| `skills/learning-improvement/SKILL.md` | Session evaluation (step 1/3 of STOP) | Evaluation format changes |
+| `skills/learning-improvement/SKILL.md` | Session evaluation (step 1/3 of STOP) | Evaluation format changes; chaining enforcement |
 | `skills/continuous-learning/SKILL.md` | Doc update proposal (step 2/3 of STOP) | Scope of analyzed docs changes |
 | `skills/session-save/SKILL.md` | Session persistence (step 3/3 of STOP) | File format changes |
 

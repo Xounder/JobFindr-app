@@ -32,6 +32,8 @@ export type SearchJobsInput = {
   includeHidden?: boolean
   /** Sort order */
   sort?: SearchSortOption
+  /** Filter by countries (location-based) */
+  countries?: string[]
   /** ISO-8601 date to filter jobs posted after */
   postedAfter?: string
 }
@@ -58,5 +60,6 @@ export type ValidatedSearchInput = {
   minTrustScore: number
   includeHidden: boolean
   sort: SearchSortOption
+  countries: string[]
   postedAfter: string | undefined
 }

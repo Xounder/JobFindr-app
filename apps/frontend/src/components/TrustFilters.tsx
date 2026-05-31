@@ -22,15 +22,15 @@ export function TrustFilters({ value, onChange }: TrustFiltersProps) {
         id="trust-min"
         type="range"
         min={0}
-        max={100}
-        step={5}
+        max={10}
+        step={0.5}
         value={value}
         onChange={handleChange}
         className="mt-1 w-full accent-indigo-600"
       />
       <div className="flex justify-between text-xs text-gray-400">
         <span>0 (Any)</span>
-        <span>100 (Highest)</span>
+        <span>10 (Highest)</span>
       </div>
     </div>
   );

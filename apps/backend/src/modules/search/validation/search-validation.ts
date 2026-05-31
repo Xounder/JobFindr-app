@@ -80,6 +80,12 @@ export function validateSearchInput(params: Record<string, string | undefined>):
     errors.push('Maximum 50 excluded companies allowed')
   }
 
+  // countries - location-based filter
+  const countries = parseCommaSeparated(params.countries).map((c) => c.toLowerCase())
+  if (countries.length > 50) {
+    errors.push('Maximum 50 countries allowed')
+  }
+
   // sources - provider filter
   const sources = parseCommaSeparated(params.sources).map((s) => s.toLowerCase())
 
@@ -127,6 +133,7 @@ export function validateSearchInput(params: Record<string, string | undefined>):
     minTrustScore,
     includeHidden,
     sort,
+    countries,
     postedAfter,
   }
 }

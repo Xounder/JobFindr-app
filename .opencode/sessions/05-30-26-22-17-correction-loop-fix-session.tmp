@@ -1,0 +1,5 @@
+DONE: Analyzed the previous pipeline session and extracted learnings. Updated jobfindr-pipeline/SKILL.md to clarify the correction loop must re-invoke the implementation agent via Task tool, not fix code directly. Added explicit rule to orchestrator rules section.
+WRONG: Previous session violated the correction loop principle — when QA Backend found issues, the orchestrator fixed them directly instead of re-invoking the Senior Backend agent.
+IMPROV: Pipeline SKILL.md now has an explicit "Corrections loop rule" preventing orchestrators from fixing code directly. Phase 5 steps 3-5 now specify Task tool re-invocation for both implementation and re-validation.
+LEARN: The orchestrator's role is to route work, not implement. Any code change must go through the appropriate implementation agent. This preserves accountability and the QA loop.
+NEXT: Apply the same discipline in future sessions — always re-invoke dev agents when QA finds issues, never fix directly.

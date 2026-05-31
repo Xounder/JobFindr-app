@@ -38,3 +38,7 @@ Use this skill at the end of the STOP hook, after `learning-improvement` and `co
 - Do not modify the received evaluation
 - Do not propose changes to docs (this is the responsibility of `continuous-learning`)
 - Only save the file and report to the user
+
+## Chain position
+
+This is the **LAST** (3rd) skill in the STOP chain: `learning-improvement` → `continuous-learning` → **`session-save`**. After saving, the chain is complete — report to the user and stop. Do not load any further skills.

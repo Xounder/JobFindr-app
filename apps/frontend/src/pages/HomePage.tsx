@@ -14,12 +14,16 @@ export default function HomePage() {
     query,
     skills,
     seniority,
+    remoteMode,
+    countries,
     companies,
     excludeCompanies,
     trustMin,
     setQuery,
     setSkills,
     setSeniority,
+    setRemoteMode,
+    setCountries,
     setCompanies,
     setExcludeCompanies,
     setTrustMin,
@@ -67,8 +71,10 @@ export default function HomePage() {
         {/* Filters Sidebar */}
         <div className="lg:col-span-1">
           <FiltersPanel
-            filters={{ query, skills, seniority, companies, excludeCompanies, trustMin }}
+            filters={{ query, skills, seniority, remoteMode, countries, companies, excludeCompanies, trustMin }}
             onSeniorityChange={setSeniority}
+            onRemoteModeChange={setRemoteMode}
+            onCountriesChange={setCountries}
             onIncludeChange={setCompanies}
             onExcludeChange={setExcludeCompanies}
             onSkillsChange={setSkills}

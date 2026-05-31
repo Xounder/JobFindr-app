@@ -1,4 +1,6 @@
 import { SenioritySelector } from "./SenioritySelector";
+import { RemoteModeFilter } from "./RemoteModeFilter";
+import { CountryFilter } from "./CountryFilter";
 import { CompanyFilters } from "./CompanyFilters";
 import { SkillsTagsInput } from "./SkillsTagsInput";
 import { TrustFilters } from "./TrustFilters";
@@ -7,6 +9,8 @@ import type { FiltersState } from "@/types";
 interface FiltersPanelProps {
   filters: FiltersState;
   onSeniorityChange: (value: string) => void;
+  onRemoteModeChange: (value: string[]) => void;
+  onCountriesChange: (countries: string[]) => void;
   onIncludeChange: (companies: string[]) => void;
   onExcludeChange: (companies: string[]) => void;
   onSkillsChange: (skills: string[]) => void;
@@ -17,6 +21,8 @@ interface FiltersPanelProps {
 export function FiltersPanel({
   filters,
   onSeniorityChange,
+  onRemoteModeChange,
+  onCountriesChange,
   onIncludeChange,
   onExcludeChange,
   onSkillsChange,
@@ -25,6 +31,8 @@ export function FiltersPanel({
 }: FiltersPanelProps) {
   const hasActiveFilters =
     filters.seniority !== "" ||
+    filters.remoteMode.length > 0 ||
+    filters.countries.length > 0 ||
     filters.companies.length > 0 ||
     filters.excludeCompanies.length > 0 ||
     filters.skills.length > 0 ||
@@ -46,6 +54,10 @@ export function FiltersPanel({
       </div>
 
       <SenioritySelector value={filters.seniority} onChange={onSeniorityChange} />
+
+      <RemoteModeFilter value={filters.remoteMode} onChange={onRemoteModeChange} />
+
+      <CountryFilter value={filters.countries} onChange={onCountriesChange} />
 
       <SkillsTagsInput skills={filters.skills} onChange={onSkillsChange} />
 

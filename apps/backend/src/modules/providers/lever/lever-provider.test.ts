@@ -32,6 +32,7 @@ describe('LeverProvider', () => {
     minTrustScore: 0,
     includeHidden: false,
     sort: 'relevance',
+    countries: [],
     postedAfter: undefined,
   }
 

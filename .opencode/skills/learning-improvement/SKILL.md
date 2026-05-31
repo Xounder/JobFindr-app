@@ -8,7 +8,7 @@ description: >
 
 ## When to use
 
-Use this skill at the end of a complete implementation (e.g.: Frontend → QA → STOP). It is the **first** of 3 skills called in sequence in the STOP hook:
+Use this skill at the end of a complete implementation (e.g.: Frontend → QA → STOP). It is the **first** of 3 skills **MUST** be called in sequence:
 
 1. **learning-improvement** — evaluates the session (this skill)
 2. **continuous-learning** — proposes doc updates with user approval
@@ -24,9 +24,17 @@ Use this skill at the end of a complete implementation (e.g.: Frontend → QA �
    - **LEARN**: Discoveries and lessons learned
    - **NEXT**: Suggested next steps
 
-3. **Do not save file** — only produce the evaluation in memory to pass forward
+3. **Output the evaluation** — produce DONE, WRONG, IMPROV, LEARN, NEXT in text (English, 5-7 lines)
+4. **Chain to next skills IMMEDIATELY** — after outputting the evaluation, you MUST call the `continuous-learning` skill (load via skill tool) and pass the evaluation as context. After `continuous-learning` completes, you MUST call `session-save`.
+5. **Never stop after step 3** — producing the evaluation without chaining is a failure. The three skills are a single atomic sequence.
 
 ## Expected output
 
 - Text evaluation with DONE, WRONG, IMPROV, LEARN, NEXT (5-7 lines, English)
 - Pass this evaluation to the `continuous-learning` skill as input
+
+## Enforcement
+
+- This skill is invoked by the STOP hook in pipeline agents. The hook expects all 3 skills to run.
+- If only the evaluation is produced and the chain stops, the session is considered incomplete.
+- Whether loaded via `skill` tool or triggered by a direct command, the full chain MUST execute.

@@ -15,9 +15,9 @@ Creates/refines application stories and epics, ensuring the user has the best ex
 Update `pipeline.yaml` before starting:
 - `steps.product-manager.status: "in_progress"`
 
-## Requirement: collect information first
+## Requirement: collect information first (step-by-step wizard)
 
-**Before creating any artifact**, you MUST ask the user questions to collect:
+**Before creating any artifact**, you MUST ask the user questions to collect information. Use the `question` tool to present questions **one at a time** in a sequential wizard pattern:
 
 1. **Objective**: What does the user want to achieve with this feature?
 2. **Target audience**: Who will use this feature?
@@ -25,7 +25,13 @@ Update `pipeline.yaml` before starting:
 4. **Priority**: Is it for MVP or post-MVP?
 5. **Dependencies**: Does it need something that doesn't exist yet?
 
-Collect ALL of the above information before proceeding.
+### Wizard rules
+
+- Present **one question per `question` tool invocation** — never dump multiple questions in the same message
+- Each question must offer **arrow-key navigable options** using the `question` tool's options parameter
+- The user can navigate **backwards** (previous question) and **forwards** (next question) using up/down arrow keys, and **select** an option using the arrow keys
+- Wait for the user's answer before presenting the next question
+- After all questions are answered, proceed to create epics
 
 ## When receiving an existing plan/document
 
@@ -38,7 +44,7 @@ If the user provides a `.md` document with an existing plan (e.g.: `PROVIDER_ACQ
 
 ## Workflow
 
-1. Ask the user questions (list above)
+1. Ask the user questions **one at a time** using the `question` tool (step-by-step wizard with arrow-key navigation)
 2. Validate if it's part of the MVP scope
 3. Create a folder for the epic context in `.opencode/plan/<epic-context>/`
 4. Inside the folder, create a `.md` file for each individual epic (e.g.: `EPIC-NN-name.md`)

@@ -108,9 +108,10 @@ At each completed step, UPDATE `pipeline.yaml`:
 For each layer (frontend and backend), **independently**:
 1. If QA approved → `steps.qa-frontend.status: "completed"` or `steps.qa-backend.status: "completed"`
 2. If QA pointed out corrections → reopen `steps.senior-frontend` or `steps.senior-backend` as `in_progress`
-3. Agent implements corrections
-4. QA revalidates
-5. Repeat until approval
+3. **Re-invoke the implementation agent via Task tool** (`subagent_type: "Senior Frontend"` or `"Senior Backend"`) with the QA issues as input — do NOT fix code directly in the orchestrator role
+4. Agent implements corrections
+5. QA revalidates (via Task tool, `subagent_type: "QA Reviewer"`)
+6. Repeat until approval
 
 ### Phase 6: Conclusion
 1. Confirm frontend and backend are approved
@@ -153,3 +154,4 @@ Execute this flow when the user gives a direct and specific task:
 - In Full Pipeline Mode: **Always** update `pipeline.yaml` before and after each phase
 - **Validate** the YAML after each edit to avoid duplicate keys — prefer replacing entire blocks instead of appending new ones
 - In Direct Task Mode: **QA is mandatory** for non-trivial tasks
+- **Corrections loop rule**: When QA finds issues, the orchestrator MUST re-invoke the implementation agent via Task tool — NEVER fix code directly. The orchestrator's role is to route work, not to implement.

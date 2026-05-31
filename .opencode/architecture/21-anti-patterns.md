@@ -12,6 +12,7 @@
 - shared mutable state;
 - frontend ranking logic;
 - user data retention.
+- tests that duplicate implementation logic instead of testing the real code (tests pass even when the real implementation is broken).
 
 ---
 

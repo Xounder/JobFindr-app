@@ -28,9 +28,17 @@
       "template": "Execute o hook `.opencode/hooks/validate-after-agent.ps1 -Layer backend`. Se houver erros de lint ou TypeScript, retorne ao Senior Backend para correção. Caso contrário, prossiga.",
       "description": "Valida lint e TypeScript do backend após implementação"
     },
+    "continuous-learning": {
+      "template": "Carregue a skill `continuous-learning` e execute o fluxo completo de análise de docs, propostas e aplicação com aprovação do usuário. Após finalizar (com ou sem alterações), você DEVE carregar a skill `session-save` IMEDIATAMENTE — sem perguntar ao usuário. A cadeia completa é: learning-improvement → continuous-learning → session-save, executada atomicamente.",
+      "description": "Analisa docs e propõe melhorias com base nos aprendizados da sessão"
+    },
+    "session-save": {
+      "template": "Carregue a skill `session-save` e persista o arquivo de sessão em `.opencode/sessions/`. Esta é a ÚLTIMA skill da cadeia STOP — após salvar, reporte ao usuário e encerre.",
+      "description": "Persiste o arquivo de sessão atual"
+    },
     "learning-improvement": {
-      "template": "Carregue a skill `learning-improvement`, analise a sessão atual e extraia DONE, WRONG, IMPROV, LEARN, NEXT.",
-      "description": "Avalia a sessão atual e extrai aprendizados (DONE, WRONG, IMPROV, LEARN, NEXT)"
+      "template": "Carregue a skill `learning-improvement`, analise a sessão atual e extraia DONE, WRONG, IMPROV, LEARN, NEXT. Após extrair, você DEVE carregar a skill `continuous-learning` IMEDIATAMENTE — sem perguntar ao usuário. A cadeia completa é: learning-improvement → continuous-learning → session-save, executada atomicamente. Nunca pare após o learning-improvement.",
+      "description": "Avalia a sessão atual e extrai aprendizados (DONE, WRONG, IMPROV, LEARN, NEXT), depois continua automaticamente para continuous-learning → session-save"
     },
     "validate:both": {
       "template": "Execute em paralelo: (1) `.opencode/hooks/validate-after-agent.ps1 -Layer frontend` e (2) `.opencode/hooks/validate-after-agent.ps1 -Layer backend`. Se qualquer um falhar, retorne ao agente responsável (frontend ou backend) para correção.",
