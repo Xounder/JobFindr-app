@@ -19,6 +19,8 @@ export default function HomePage() {
     companies,
     excludeCompanies,
     trustMin,
+    userSkills,
+    userSeniority,
     setQuery,
     setSkills,
     setSeniority,
@@ -27,6 +29,8 @@ export default function HomePage() {
     setCompanies,
     setExcludeCompanies,
     setTrustMin,
+    setUserSkills,
+    setUserSeniority,
     setPage,
     resetFilters,
   } = useSearchStore();
@@ -48,6 +52,12 @@ export default function HomePage() {
     },
     [],
   );
+
+  const handleMoveToRequired = useCallback(() => {
+    const merged = [...new Set([...skills, ...userSkills])];
+    setSkills(merged);
+    setUserSkills([]);
+  }, [skills, userSkills, setSkills, setUserSkills]);
 
   const showLoading = isLoading;
   const showFetching = isFetching && !isLoading;
@@ -71,7 +81,7 @@ export default function HomePage() {
         {/* Filters Sidebar */}
         <div className="lg:col-span-1">
           <FiltersPanel
-            filters={{ query, skills, seniority, remoteMode, countries, companies, excludeCompanies, trustMin }}
+            filters={{ query, skills, seniority, remoteMode, countries, companies, excludeCompanies, trustMin, userSkills, userSeniority }}
             onSeniorityChange={setSeniority}
             onRemoteModeChange={setRemoteMode}
             onCountriesChange={setCountries}
@@ -79,6 +89,9 @@ export default function HomePage() {
             onExcludeChange={setExcludeCompanies}
             onSkillsChange={setSkills}
             onTrustMinChange={setTrustMin}
+            onUserSkillsChange={setUserSkills}
+            onUserSeniorityChange={setUserSeniority}
+            onMoveToRequired={handleMoveToRequired}
             onReset={resetFilters}
           />
         </div>

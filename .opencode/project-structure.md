@@ -53,7 +53,21 @@ jobfindr/
 │   ├── architecture/        # 22 architecture files (01-system-overview to 22-testing-philosophy)
 │   ├── commands/            # Chat commands (pipeline, QA, validation)
 │   ├── hooks/               # PowerShell scripts (validation)
-│   ├── plan/                # Epics, tasks, provider acquisition (modularized in folders)
+│   ├── plan/                # Epics, tasks, provider acquisition, three-changes-analysis (modularized in folders)
+│   │   ├── three-changes-analysis/  # Three Changes Analysis — Planning Analyst output
+│   │   │   ├── index.md              # Overview of all 3 changes
+│   │   │   ├── change-1-user-skills.md
+│   │   │   ├── change-2-trust-display.md
+│   │   │   ├── change-3-trust-redefinition.md
+│   │   │   ├── recommendations.md    # Prioritization, phasing, risk
+│   │   │   ├── epics/               # Product Manager output (2 epics)
+│   │   │   │   ├── index.md
+│   │   │   │   ├── EPIC-01-trust-model-rework.md
+│   │   │   │   └── EPIC-02-user-skills-matchmaking.md
+│   │   │   └── tasks/               # Tech Lead output (16 tasks)
+│   │   │       ├── index.md
+│   │   │       ├── EPIC-01-tasks.md
+│   │   │       └── EPIC-02-tasks.md
 │   ├── screenshots/         # Frontend screenshots for reference
 │   ├── sessions/            # Historical session .tmp files
 │   └── skills/              # 5 skills: pipeline, branding, learning, session, continuous-learning

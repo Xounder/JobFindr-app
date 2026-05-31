@@ -185,9 +185,10 @@ export async function aggregateSearch(
     })
   }
 
-  // Parse user skills for matchmaking
-  const userSkills = input.skills.length > 0
-    ? parseUserSkills(input.skills)
+  // Parse user skills for matchmaking (userSkills fallback to skills)
+  const skillsForMatchmaking = input.userSkills.length > 0 ? input.userSkills : input.skills
+  const userSkills = skillsForMatchmaking.length > 0
+    ? parseUserSkills(skillsForMatchmaking)
     : null
 
   // Apply matchmaking (if user skills provided)
@@ -195,7 +196,7 @@ export async function aggregateSearch(
     for (const job of allJobs) {
       const matchScore = calculateWeightedMatchScore(
         userSkills.normalized,
-        undefined, // User seniority not collected for MVP
+        input.userSeniority,
         job.skills,
         job.seniority,
       )

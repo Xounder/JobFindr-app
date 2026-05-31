@@ -1,0 +1,213 @@
+# JobFindr Pipeline
+
+pipeline:
+  name: "Three Changes Analysis — Implementation"
+  version: "1.0"
+  created_at: "2026-05-30T23:00:00Z"
+  updated_at: "2026-05-30T23:00:00Z"
+
+epics:
+  - id: "EPIC-01"
+    name: "Trust Model Rework"
+    priority: "high"
+    status: "ready"
+    source: ".opencode/plan/three-changes-analysis/epics/EPIC-01-trust-model-rework.md"
+
+  - id: "EPIC-02"
+    name: "User Skills & Personalized Matchmaking"
+    priority: "medium"
+    status: "ready"
+    source: ".opencode/plan/three-changes-analysis/epics/EPIC-02-user-skills-matchmaking.md"
+
+tasks:
+  # ── EPIC-01: Trust Model Rework ──────────────────────────────────
+  - id: "TASK-101"
+    name: "Update Trust Thresholds & Add 6-Level Classification"
+    layer: "types"
+    agent: "backend"
+    epic: "EPIC-01"
+    depends_on: []
+    complexity: "small"
+    status: "pending"
+    file: ".opencode/plan/three-changes-analysis/tasks/TASK-101-update-trust-thresholds-classification.md"
+
+  - id: "TASK-102"
+    name: "Add Ranking Boost Multipliers"
+    layer: "backend"
+    agent: "backend"
+    epic: "EPIC-01"
+    depends_on: ["TASK-101"]
+    complexity: "small"
+    status: "pending"
+    file: ".opencode/plan/three-changes-analysis/tasks/TASK-102-add-ranking-boost-logic.md"
+
+  - id: "TASK-103"
+    name: "Update Frontend trustLabel() to 6-Level"
+    layer: "frontend"
+    agent: "frontend"
+    epic: "EPIC-01"
+    depends_on: ["TASK-101"]
+    complexity: "small"
+    status: "pending"
+    file: ".opencode/plan/three-changes-analysis/tasks/TASK-103-update-frontend-trustlabel.md"
+
+  - id: "TASK-104"
+    name: "Update JobCard.tsx Color Thresholds"
+    layer: "frontend"
+    agent: "frontend"
+    epic: "EPIC-01"
+    depends_on: ["TASK-103"]
+    complexity: "small"
+    status: "pending"
+    file: ".opencode/plan/three-changes-analysis/tasks/TASK-104-update-jobcard-colors.md"
+
+  - id: "TASK-105"
+    name: "Update TrustFilters.tsx Labels (Optional)"
+    layer: "frontend"
+    agent: "frontend"
+    epic: "EPIC-01"
+    depends_on: ["TASK-104"]
+    complexity: "tiny"
+    status: "pending"
+    file: ".opencode/plan/three-changes-analysis/tasks/TASK-105-update-trustfilters-labels.md"
+
+  - id: "TASK-106"
+    name: "Update Tests for Trust Model Rework"
+    layer: "both"
+    agent: "both"
+    epic: "EPIC-01"
+    depends_on: ["TASK-101", "TASK-102", "TASK-103"]
+    complexity: "small"
+    status: "pending"
+    file: ".opencode/plan/three-changes-analysis/tasks/TASK-106-update-tests-trust-model.md"
+
+  - id: "TASK-107"
+    name: "Update Architecture Documentation"
+    layer: "docs"
+    agent: "any"
+    epic: "EPIC-01"
+    depends_on: ["TASK-101"]
+    complexity: "tiny"
+    status: "pending"
+    file: ".opencode/plan/three-changes-analysis/tasks/TASK-107-update-architecture-doc.md"
+
+  # ── EPIC-02: User Skills & Personalized Matchmaking ──────────────
+  - id: "TASK-201"
+    name: "Extend Shared Types for User Skills"
+    layer: "types"
+    agent: "backend"
+    epic: "EPIC-02"
+    depends_on: []
+    complexity: "tiny"
+    status: "pending"
+    file: ".opencode/plan/three-changes-analysis/tasks/TASK-201-extend-shared-types-user-skills.md"
+
+  - id: "TASK-202"
+    name: "Add Backend Query Params & Validation"
+    layer: "backend"
+    agent: "backend"
+    epic: "EPIC-02"
+    depends_on: ["TASK-201"]
+    complexity: "small"
+    status: "pending"
+    file: ".opencode/plan/three-changes-analysis/tasks/TASK-202-backend-params-validation.md"
+
+  - id: "TASK-203"
+    name: "Update Aggregation Service for User Skills"
+    layer: "backend"
+    agent: "backend"
+    epic: "EPIC-02"
+    depends_on: ["TASK-202"]
+    complexity: "small"
+    status: "pending"
+    file: ".opencode/plan/three-changes-analysis/tasks/TASK-203-update-aggregation-service.md"
+
+  - id: "TASK-204"
+    name: "Update Seniority Default in Match Scoring"
+    layer: "backend"
+    agent: "backend"
+    epic: "EPIC-02"
+    depends_on: ["TASK-202"]
+    complexity: "small"
+    status: "pending"
+    file: ".opencode/plan/three-changes-analysis/tasks/TASK-204-update-seniority-default.md"
+
+  - id: "TASK-205"
+    name: "Extend Frontend Types & Store for User Skills"
+    layer: "frontend"
+    agent: "frontend"
+    epic: "EPIC-02"
+    depends_on: ["TASK-201"]
+    complexity: "small"
+    status: "pending"
+    file: ".opencode/plan/three-changes-analysis/tasks/TASK-205-extend-frontend-types-store.md"
+
+  - id: "TASK-206"
+    name: "Create UserSkillsInput Component"
+    layer: "frontend"
+    agent: "frontend"
+    epic: "EPIC-02"
+    depends_on: ["TASK-205"]
+    complexity: "medium"
+    status: "pending"
+    file: ".opencode/plan/three-changes-analysis/tasks/TASK-206-create-userskillsinput-component.md"
+
+  - id: "TASK-207"
+    name: "Integrate UserSkillsInput into FiltersPanel"
+    layer: "frontend"
+    agent: "frontend"
+    epic: "EPIC-02"
+    depends_on: ["TASK-206"]
+    complexity: "small"
+    status: "pending"
+    file: ".opencode/plan/three-changes-analysis/tasks/TASK-207-integrate-userskillsinput.md"
+
+  - id: "TASK-208"
+    name: "Wire API Params & Hook Dependencies"
+    layer: "frontend"
+    agent: "frontend"
+    epic: "EPIC-02"
+    depends_on: ["TASK-205", "TASK-207"]
+    complexity: "small"
+    status: "pending"
+    file: ".opencode/plan/three-changes-analysis/tasks/TASK-208-wire-api-params-hook.md"
+
+  - id: "TASK-209"
+    name: "Add Tests for User Skills Feature"
+    layer: "both"
+    agent: "both"
+    epic: "EPIC-02"
+    depends_on:
+      - "TASK-202"
+      - "TASK-203"
+      - "TASK-204"
+      - "TASK-205"
+      - "TASK-206"
+      - "TASK-207"
+      - "TASK-208"
+    complexity: "medium"
+    status: "pending"
+    file: ".opencode/plan/three-changes-analysis/tasks/TASK-209-add-tests-user-skills.md"
+
+steps:
+  product-manager:
+    status: "completed"
+    notes: "Epics defined in .opencode/plan/three-changes-analysis/epics/"
+  tech-lead:
+    status: "completed"
+    notes: "14 tasks created in .opencode/plan/three-changes-analysis/tasks/"
+  senior-backend:
+    status: "in_progress"
+    notes: "Fix 3 QA issues: (1) else if -> if for boost stacking; (2) JSDoc trustScore 0-10 scale; (3) edge case tests"
+  updated_at: "2026-05-30T23:06:00Z"
+  qa-frontend:
+    status: "pending"
+    notes: ""
+  qa-backend:
+    status: "pending"
+    notes: "3 issues: (1) TASK-102 boost stacking bug — else if prevents 1.25x * 1.5x for >=9.0, fix by changing else if to if; (2) TASK-101 missing JSDoc on NormalizedJob.trustScore (needs 0-10 scale); (3) TASK-106 missing edge case tests for negative scores and >10"
+  complete:
+    status: "pending"
+    notes: ""
+
+current_step: "development"

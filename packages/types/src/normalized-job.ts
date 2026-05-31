@@ -31,7 +31,7 @@ export type NormalizedJob = {
   location?: string
   /** Company industry (if detectable) */
   industry?: string
-  /** Trust score assigned by the trust engine */
+  /** Trust score (0-10 scale) assigned by the trust engine */
   trustScore?: number
   /** Match score assigned by the matchmaking engine */
   matchScore?: number

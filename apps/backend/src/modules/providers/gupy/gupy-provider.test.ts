@@ -33,8 +33,10 @@ describe('GupyProvider', () => {
     includeHidden: false,
     sort: 'relevance',
     countries: [],
-    postedAfter: undefined,
-  }
+  postedAfter: undefined,
+  userSkills: [],
+  userSeniority: undefined,
+}
 
   it('should have correct provider metadata', () => {
     expect(provider.name).toBe('gupy')

@@ -21,6 +21,8 @@ export type SearchRequestQuery = {
   sort?: string
   postedAfter?: string
   countries?: string
+  userSkills?: string
+  userSeniority?: string
 }
 
 export type SearchSuccessResponse = {

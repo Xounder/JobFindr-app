@@ -14,7 +14,7 @@ const DEBOUNCE_MS = 300;
  * UI remains responsive — selected values show immediately in filter controls.
  */
 export function useJobSearch() {
-  const { query, skills, seniority, remoteMode, countries, companies, excludeCompanies, trustMin, page, pageSize } =
+  const { query, skills, seniority, remoteMode, countries, companies, excludeCompanies, trustMin, userSkills, userSeniority, page, pageSize } =
     useSearchStore();
 
   const searchParams = useMemo(
@@ -27,10 +27,12 @@ export function useJobSearch() {
       companies,
       excludeCompanies,
       trustMin,
+      userSkills,
+      userSeniority,
       page,
       pageSize,
     }),
-    [query, skills, seniority, remoteMode, countries, companies, excludeCompanies, trustMin, page, pageSize],
+    [query, skills, seniority, remoteMode, countries, companies, excludeCompanies, trustMin, userSkills, userSeniority, page, pageSize],
   );
 
   const debouncedParams = useDebounce(searchParams, DEBOUNCE_MS);

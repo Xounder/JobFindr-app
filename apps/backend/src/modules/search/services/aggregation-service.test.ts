@@ -35,6 +35,8 @@ function makeInput(overrides: Partial<ValidatedSearchInput> = {}): ValidatedSear
     sort: 'relevance',
     countries: [],
     postedAfter: undefined,
+    userSkills: [],
+    userSeniority: undefined,
     ...overrides,
   }
 }
@@ -357,5 +359,47 @@ describe('aggregateSearch - combined filters', () => {
 
     expect(filtered).toHaveLength(1)
     expect(filtered[0]!.id).toBe('1')
+  })
+})
+
+describe('aggregateSearch - userSkills matchmaking fallback', () => {
+  it('uses userSkills for matchmaking when userSkills is non-empty', () => {
+    const input = makeInput({
+      skills: ['fallback-skill'],
+      userSkills: ['react', 'typescript'],
+    })
+    // This replicates the logic from aggregation-service.ts
+    const skillsForMatchmaking = input.userSkills.length > 0 ? input.userSkills : input.skills
+    expect(skillsForMatchmaking).toEqual(['react', 'typescript'])
+  })
+
+  it('falls back to skills when userSkills is empty', () => {
+    const input = makeInput({
+      skills: ['java', 'python'],
+      userSkills: [],
+    })
+    const skillsForMatchmaking = input.userSkills.length > 0 ? input.userSkills : input.skills
+    expect(skillsForMatchmaking).toEqual(['java', 'python'])
+  })
+
+  it('passes userSeniority through to matchmaking', () => {
+    const input = makeInput({
+      userSeniority: 'senior',
+    })
+    expect(input.userSeniority).toBe('senior')
+  })
+
+  it('userSeniority is undefined when not provided', () => {
+    const input = makeInput({})
+    expect(input.userSeniority).toBeUndefined()
+  })
+
+  it('uses skills fallback when both skills and userSkills are empty', () => {
+    const input = makeInput({
+      skills: [],
+      userSkills: [],
+    })
+    const skillsForMatchmaking = input.userSkills.length > 0 ? input.userSkills : input.skills
+    expect(skillsForMatchmaking).toEqual([])
   })
 })

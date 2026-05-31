@@ -105,6 +105,23 @@ export function validateSearchInput(params: Record<string, string | undefined>):
     errors.push(`Invalid sort option: ${sort}`)
   }
 
+  // userSkills - comma-separated list
+  const userSkills = parseCommaSeparated(params.userSkills).map((s) => s.toLowerCase())
+  if (userSkills.length > 30) {
+    errors.push('Maximum 30 user skills allowed')
+  }
+
+  // userSeniority - single value, validated against allowed levels
+  const userSeniorityRaw = params.userSeniority?.trim().toLowerCase() || undefined
+  let userSeniority: string | undefined
+  if (userSeniorityRaw) {
+    if (!VALID_SENIORITY_LEVELS.includes(userSeniorityRaw as SeniorityLevel)) {
+      errors.push(`Invalid seniority level: ${userSeniorityRaw}`)
+    } else {
+      userSeniority = userSeniorityRaw
+    }
+  }
+
   // postedAfter - ISO date
   let postedAfter: string | undefined = params.postedAfter
   if (postedAfter) {
@@ -135,6 +152,8 @@ export function validateSearchInput(params: Record<string, string | undefined>):
     sort,
     countries,
     postedAfter,
+    userSkills,
+    userSeniority,
   }
 }
 

@@ -27,7 +27,8 @@ function calculateSeniorityScore(
   userSeniority: string | undefined,
   jobSeniority: string | undefined
 ): number {
-  if (!userSeniority || !jobSeniority) return 0.5 // Neutral if unknown
+  if (!userSeniority) return 0 // Penalize when user didn't specify seniority
+  if (!jobSeniority) return 0.5 // Neutral if job seniority unknown
 
   const levels = ['intern', 'junior', 'mid', 'senior', 'lead', 'principal', 'executive']
   const userIndex = levels.indexOf(userSeniority.toLowerCase())

@@ -36,6 +36,10 @@ export type SearchJobsInput = {
   countries?: string[]
   /** ISO-8601 date to filter jobs posted after */
   postedAfter?: string
+  /** User's skill profile for personalized matchmaking (falls back to `skills` if absent) */
+  userSkills?: string[]
+  /** User's seniority level for personalized matchmaking */
+  userSeniority?: string
 }
 
 export type SearchSortOption =
@@ -62,4 +66,6 @@ export type ValidatedSearchInput = {
   sort: SearchSortOption
   countries: string[]
   postedAfter: string | undefined
+  userSkills: string[]
+  userSeniority: string | undefined
 }

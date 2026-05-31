@@ -42,6 +42,8 @@ const mockInput: ValidatedSearchInput = {
   sort: 'relevance',
   countries: [],
   postedAfter: undefined,
+  userSkills: [],
+  userSeniority: undefined,
 }
 
 describe('runAllProviders', () => {

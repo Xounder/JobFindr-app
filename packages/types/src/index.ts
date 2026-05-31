@@ -36,8 +36,9 @@ export type {
   TrustSignals,
   CompanySizeCategory,
   TrustVisibility,
+  TrustClassification,
 } from './trust.types.ts'
-export { TRUST_THRESHOLDS, getTrustVisibility } from './trust.types.ts'
+export { TRUST_THRESHOLDS, getTrustVisibility, getTrustClassification } from './trust.types.ts'
 
 export type {
   RankingWeights,

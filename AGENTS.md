@@ -142,7 +142,7 @@ Playwright Chromium já está instalado em `%USERPROFILE%\AppData\Local\ms-playw
 ## Test & CI status
 
 - **vitest** installed in all 3 packages (`frontend`, `backend`, `@jobfindr/utils`)
-- **236 tests** created and passing (utils: 15, frontend: 22, backend: 199)
+- **300 tests** created and passing (utils: 15, frontend: 47, backend: 238)
 - **No CI/CD** (no GitHub Actions workflows)
 - Tests co-located with the module (`*.test.ts` next to the tested file)
 
@@ -175,6 +175,22 @@ See `.opencode/skills/jobfindr-pipeline/SKILL.md` for full mode details.
 All documentation files (`.md`, `.yaml`, `.json`, `.jsonc`, `.ts` comments, etc.) must be **100% in English**. No Portuguese or other languages allowed.
 - File names, headings, descriptions, code comments — all English
 - If you find a file with non-English content, translate it
+
+## Epics & tasks folder convention
+
+All epics and tasks MUST use the **folder-per-context** pattern:
+
+```
+.opencode/plan/<context-name>/
+├── epics/        # PM creates — one .md per epic + index.md
+└── tasks/        # Tech Lead creates — one .md per task + index.md
+```
+
+Example from this session: `.opencode/plan/three-changes-analysis/epics/` and `.opencode/plan/three-changes-analysis/tasks/`. The `epics/` and `tasks/` subfolders live inside the same context folder — never in separate top-level folders.
+
+## External files restriction
+
+Never open, read, write, or request files outside this project directory. All operations must stay within the project root.
 
 ## File size limit
 

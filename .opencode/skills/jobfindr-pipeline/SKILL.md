@@ -78,14 +78,14 @@ At each completed step, UPDATE `pipeline.yaml`:
 ### Phase 1: Product Manager
 1. Trigger **Product Manager Agent** via Task tool (`subagent_type: "Product Manager"`)
 2. Update `pipeline.yaml`: `current_step: "product-manager"`, `steps.product-manager.status: "in_progress"`
-3. The PM MUST ask the user questions about objective, audience, success criteria, priority and dependencies
-4. PM creates folder `.opencode/plan/<epic-context>/` with `index.md` + one `.md` per epic
+3. PM only asks questions if no plan was provided — questions use terminal choices (arrow keys + "Custom answer" option)
+4. PM creates folder `.opencode/plan/<context>/epics/` with `index.md` + one `.md` per epic
 5. **Update `pipeline.yaml`**: `steps.product-manager.status: "completed"`, `current_step: "tech-lead"`
 
 ### Phase 2: Tech Lead
 1. Trigger **Tech Lead Agent** via Task tool (`subagent_type: "Tech Lead"`)
 2. Update `pipeline.yaml`: `steps.tech-lead.status: "in_progress"`
-3. TL reads epics from `.opencode/plan/<epic-context>/` folder and creates tasks in `.opencode/plan/<task-context>/` with one `.md` per task + `index.md`
+3. TL reads epics from `.opencode/plan/<context>/epics/` folder and creates tasks in `.opencode/plan/<context>/tasks/` with one `.md` per task + `index.md`
 4. TL allocates tasks to frontend and/or backend
 5. **Update `pipeline.yaml`**: `steps.tech-lead.status: "completed"`, `current_step: "development"`
 

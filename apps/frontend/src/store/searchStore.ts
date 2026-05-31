@@ -13,6 +13,8 @@ interface SearchStore extends FiltersState {
   setCompanies: (companies: string[]) => void;
   setExcludeCompanies: (companies: string[]) => void;
   setTrustMin: (trustMin: number) => void;
+  setUserSkills: (skills: string[]) => void;
+  setUserSeniority: (seniority: string) => void;
   setPage: (page: number) => void;
   setPageSize: (pageSize: number) => void;
   resetFilters: () => void;
@@ -27,6 +29,8 @@ const initialState: FiltersState = {
   companies: [],
   excludeCompanies: [],
   trustMin: 0,
+  userSkills: [],
+  userSeniority: "",
 };
 
 export const useSearchStore = create<SearchStore>()(
@@ -44,6 +48,8 @@ export const useSearchStore = create<SearchStore>()(
       setCompanies: (companies) => set({ companies, page: 1 }),
       setExcludeCompanies: (excludeCompanies) => set({ excludeCompanies, page: 1 }),
       setTrustMin: (trustMin) => set({ trustMin, page: 1 }),
+      setUserSkills: (userSkills) => set({ userSkills, page: 1 }),
+      setUserSeniority: (userSeniority) => set({ userSeniority, page: 1 }),
       setPage: (page) => set({ page }),
       setPageSize: (pageSize) => set({ pageSize, page: 1 }),
       resetFilters: () => set({ ...initialState, page: 1 }),
@@ -59,6 +65,8 @@ export const useSearchStore = create<SearchStore>()(
         companies: state.companies,
         excludeCompanies: state.excludeCompanies,
         trustMin: state.trustMin,
+        userSkills: state.userSkills,
+        userSeniority: state.userSeniority,
       }),
       version: 1,
     },

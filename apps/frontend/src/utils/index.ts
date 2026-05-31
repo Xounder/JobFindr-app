@@ -30,12 +30,23 @@ export function truncate(text: string, maxLength: number): string {
 }
 
 /**
- * Transform a trust score (0–100) into a human-readable label.
+ * Transform a trust score (0–10) into a human-readable 6-level label.
+ *
+ * Thresholds:
+ *  >= 9  → "High Trust"
+ *  >= 8  → "Good Trust"
+ *  >= 7  → "Trust"
+ *  >= 6  → "Medium Trust"
+ *  >= 5  → "Low Trust"
+ *  <  5  → "Extreme Low Trust"
  */
 export function trustLabel(score: number): string {
-  if (score >= 80) return "High Trust";
-  if (score >= 50) return "Medium Trust";
-  return "Low Trust";
+  if (score >= 9) return "High Trust";
+  if (score >= 8) return "Good Trust";
+  if (score >= 7) return "Trust";
+  if (score >= 6) return "Medium Trust";
+  if (score >= 5) return "Low Trust";
+  return "Extreme Low Trust";
 }
 
 /**

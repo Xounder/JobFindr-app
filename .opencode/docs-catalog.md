@@ -110,6 +110,17 @@ Catalog of all `.md` files in `.opencode/` with content description and when to 
 | `plan/provider-acquisition/EPIC-PA-11-reliability-layer.md` | Circuit breaker, health scoring (post-MVP) | Reliability changes |
 | `plan/provider-acquisition/EPIC-PA-12-optimization.md` | Streaming, cache, dedup (post-MVP) | Optimization changes |
 | `plan/provider-acquisition/EPIC-PA-13-browser-automation.md` | Playwright automation (post-MVP, last resort) | Browser automation changes |
+| `plan/three-changes-analysis/index.md` | Three Changes Analysis overview | New analysis or updates |
+| `plan/three-changes-analysis/change-1-user-skills.md` | Change 1 — User Skills Tab analysis | Requirements for User Skills change |
+| `plan/three-changes-analysis/change-2-trust-display.md` | Change 2 — Trust Display Fix analysis | Requirements for Trust Display change |
+| `plan/three-changes-analysis/change-3-trust-redefinition.md` | Change 3 — Trust Redefinition analysis | Requirements for Trust Redefinition change |
+| `plan/three-changes-analysis/recommendations.md` | Cross-cutting recommendations and prioritization | Priority/dependency changes |
+| `plan/three-changes-analysis/epics/index.md` | Epic overview for Trust Model Rework + User Skills | New epic definitions |
+| `plan/three-changes-analysis/epics/EPIC-01-trust-model-rework.md` | Epic 01 — Trust Model Rework (Changel 2+3) | Epic refinement |
+| `plan/three-changes-analysis/epics/EPIC-02-user-skills-matchmaking.md` | Epic 02 — User Skills & Matchmaking (Change 1) | Epic refinement |
+| `plan/three-changes-analysis/tasks/index.md` | Task overview for Three Changes Analysis | New task definitions |
+| `plan/three-changes-analysis/tasks/EPIC-01-tasks.md` | Tasks for EPIC-01 (Trust Model Rework) | Task changes for Trust Model |
+| `plan/three-changes-analysis/tasks/EPIC-02-tasks.md` | Tasks for EPIC-02 (User Skills & Matchmaking) | Task changes for User Skills |
 
 ---
 

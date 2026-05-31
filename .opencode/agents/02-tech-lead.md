@@ -17,11 +17,33 @@ Update `pipeline.yaml`:
 
 ## Workflow
 
-1. Receive refined story from Product Manager (read files from `.opencode/plan/<epic-context>/` folder)
+1. Receive refined story from Product Manager (read files from `.opencode/plan/<context>/epics/` folder)
 2. Analyze impact on layers (frontend, backend, providers, etc.)
-3. Create a folder for the task context in `.opencode/plan/<task-context>/`
-4. Inside the folder, create a `.md` file for **each individual task** with the canonical format:
-   ```
+3. Inside the **same context folder** (`.opencode/plan/<context>/`), create a `tasks/` subfolder:
+   - If a `tasks/` folder already exists, use it
+   - If not, create `.opencode/plan/<context>/tasks/`
+4. Inside `tasks/`, create a `.md` file for **each individual task** with the canonical format:
+5. Include an `index.md` in `tasks/` with overview, execution order and dependencies
+6. Define dependencies and execution order
+7. Assign each task to the correct agent (Senior Frontend or Senior Backend)
+8. Ensure each task references the source epic
+9. Track progress and unblock impediments
+
+## Output structure example
+
+```
+.opencode/plan/
+├── three-changes-analysis/     # context (PM created epics/ subfolder)
+│   ├── epics/                  # PM output
+│   │   ├── index.md
+│   │   ├── EPIC-01-trust-model-rework.md
+│   │   └── EPIC-02-user-skills-matchmaking.md
+│   └── tasks/                  # Tech Lead output (same context)
+│       ├── index.md            # overview + execution order + allocation
+│       ├── EPIC-01-tasks.md
+│       └── EPIC-02-tasks.md
+└── ...
+```
    # TASK-NNN — Task Name
 
    **Layer:** frontend | backend | shared
@@ -62,13 +84,13 @@ Update `pipeline.yaml`:
 
 Update `pipeline.yaml`:
 - `steps.tech-lead.status: "completed"`
-- `steps.tech-lead.notes: "Tasks created in .opencode/plan/<task-context>/"`
+- `steps.tech-lead.notes: "Tasks created in .opencode/plan/<context>/tasks/"`
 - `current_step: "development"`
 - `updated_at: "<current-date-time>"`
 
 ## Output
 
-- Folder `.opencode/plan/<task-context>/` with `index.md` + one `.md` per task
+- Folder `.opencode/plan/<context>/tasks/` with `index.md` + one `.md` per task
 - Definition of which agent executes each task
 - Execution order and mapped dependencies
 

@@ -4,6 +4,7 @@ import { CountryFilter } from "./CountryFilter";
 import { CompanyFilters } from "./CompanyFilters";
 import { SkillsTagsInput } from "./SkillsTagsInput";
 import { TrustFilters } from "./TrustFilters";
+import { UserSkillsInput } from "./UserSkillsInput";
 import type { FiltersState } from "@/types";
 
 interface FiltersPanelProps {
@@ -15,6 +16,9 @@ interface FiltersPanelProps {
   onExcludeChange: (companies: string[]) => void;
   onSkillsChange: (skills: string[]) => void;
   onTrustMinChange: (value: number) => void;
+  onUserSkillsChange: (skills: string[]) => void;
+  onUserSeniorityChange: (seniority: string) => void;
+  onMoveToRequired: () => void;
   onReset: () => void;
 }
 
@@ -27,6 +31,9 @@ export function FiltersPanel({
   onExcludeChange,
   onSkillsChange,
   onTrustMinChange,
+  onUserSkillsChange,
+  onUserSeniorityChange,
+  onMoveToRequired,
   onReset,
 }: FiltersPanelProps) {
   const hasActiveFilters =
@@ -36,7 +43,9 @@ export function FiltersPanel({
     filters.companies.length > 0 ||
     filters.excludeCompanies.length > 0 ||
     filters.skills.length > 0 ||
-    filters.trustMin > 0;
+    filters.trustMin > 0 ||
+    filters.userSkills.length > 0 ||
+    filters.userSeniority !== "";
 
   return (
     <aside className="space-y-6 rounded-lg border border-gray-200 bg-white p-4">
@@ -52,6 +61,14 @@ export function FiltersPanel({
           </button>
         )}
       </div>
+
+      <UserSkillsInput
+        userSkills={filters.userSkills}
+        userSeniority={filters.userSeniority}
+        onUserSkillsChange={onUserSkillsChange}
+        onUserSeniorityChange={onUserSeniorityChange}
+        onMoveToRequired={onMoveToRequired}
+      />
 
       <SenioritySelector value={filters.seniority} onChange={onSeniorityChange} />
 

@@ -15,21 +15,31 @@ Creates/refines application stories and epics, ensuring the user has the best ex
 Update `pipeline.yaml` before starting:
 - `steps.product-manager.status: "in_progress"`
 
-## Requirement: collect information first (step-by-step wizard)
+## Requirement: collect information first (terminal-choice wizard)
 
-**Before creating any artifact**, you MUST ask the user questions to collect information. Use the `question` tool to present questions **one at a time** in a sequential wizard pattern:
+**Only ask questions if no initial plan/document was provided.** If the user gave a plan (`.md` files, feature description with clear scope), skip questions and proceed directly to epic creation.
 
-1. **Objective**: What does the user want to achieve with this feature?
-2. **Target audience**: Who will use this feature?
-3. **Success criteria**: How will we know it's ready?
-4. **Priority**: Is it for MVP or post-MVP?
-5. **Dependencies**: Does it need something that doesn't exist yet?
+When you must ask, use the `question` tool with **arrow-key navigable options** plus a **custom text option**:
+
+Each question must offer at least 3 concrete choices + 1 "Custom answer" option where the user can type freely. Example:
+
+```
+options:
+  - label: "End users (job seekers)"
+    description: "Improving UX for people searching jobs"
+  - label: "Dev team / maintainers"
+    description: "Improving code quality and architecture"
+  - label: "Both"
+    description: "Changes benefit different audiences"
+  - label: "Custom answer"
+    description: "Type your own response"
+```
 
 ### Wizard rules
 
 - Present **one question per `question` tool invocation** — never dump multiple questions in the same message
-- Each question must offer **arrow-key navigable options** using the `question` tool's options parameter
-- The user can navigate **backwards** (previous question) and **forwards** (next question) using up/down arrow keys, and **select** an option using the arrow keys
+- Each question must offer **arrow-key navigable options** (options parameter with label + description)
+- **ALWAYS include a "Custom answer" option as the last choice** so the user can type freely if none of the options fit
 - Wait for the user's answer before presenting the next question
 - After all questions are answered, proceed to create epics
 
@@ -38,48 +48,58 @@ Update `pipeline.yaml` before starting:
 If the user provides a `.md` document with an existing plan (e.g.: `PROVIDER_ACQUISITION_PLAN.md` → use `.opencode/plan/provider-acquisition-plan/`):
 1. Read the full document to understand the scope
 2. Identify each phase/epic described
-3. Create an epic `.md` for each phase inside the context folder
+3. Create an epic `.md` for each phase inside `epics/` subfolder
 4. Each epic must contain: Objective, Deliverables, Tasks, Acceptance Criteria
-5. Include an `index.md` in the folder with overview and mapping
+5. Include an `index.md` in the `epics/` folder with overview and mapping
 
 ## Workflow
 
-1. Ask the user questions **one at a time** using the `question` tool (step-by-step wizard with arrow-key navigation)
-2. Validate if it's part of the MVP scope
-3. Create a folder for the epic context in `.opencode/plan/<epic-context>/`
-4. Inside the folder, create a `.md` file for each individual epic (e.g.: `EPIC-NN-name.md`)
-5. Include an `index.md` in the folder with overview and epic mapping
-6. Each epic file must contain: Objective, Deliverables, Tasks (checklist), Acceptance Criteria (checklist)
-7. Forward to Tech Lead
+1. Skip questions if a plan/document was already provided — proceed directly to epic creation
+2. If no plan given, ask questions **one at a time** using the `question` tool with arrow-key options + custom answer option
+3. Validate if it's part of the MVP scope
+4. Create a folder for the context in `.opencode/plan/<context>/`
+5. Inside the folder, create an `epics/` subfolder
+6. Inside `epics/`, create a `.md` file for each individual epic (e.g.: `EPIC-01-name.md`)
+7. Include an `index.md` in `epics/` with overview and epic mapping
+8. Each epic file must contain: Objective, Deliverables, Tasks (checklist), Acceptance Criteria (checklist)
+9. Forward to Tech Lead
 
 ## Output structure example
 
 ```
 .opencode/plan/
-├── provider-acquisition/          # epic context
-│   ├── index.md                   # overview + phase→epic mapping
-│   ├── EPIC-PA-01-provider-foundation.md
-│   ├── EPIC-PA-02-provider-classification.md
-│   ├── EPIC-PA-03-greenhouse.md
-│   └── ...
-├── authentication/                # next context
-│   ├── index.md
-│   ├── EPIC-AUTH-01-login.md
-│   └── ...
-└── epics.md                       # global index (optional, can reference folders)
+├── three-changes-analysis/        # context name
+│   ├── index.md                   # overview of the analysis
+│   ├── change-1-user-skills.md    # detailed analysis per change
+│   ├── recommendations.md
+│   ├── epics/                     # PM output — one .md per epic
+│   │   ├── index.md               # overview + epic mapping
+│   │   ├── EPIC-01-trust-model-rework.md
+│   │   └── EPIC-02-user-skills-matchmaking.md
+│   └── tasks/                     # Tech Lead output (created in next phase)
+│       ├── index.md
+│       └── EPIC-01-tasks.md
+├── provider-acquisition/          # another context
+│   ├── epics/
+│   │   ├── index.md
+│   │   ├── EPIC-PA-01-provider-foundation.md
+│   │   └── ...
+│   └── tasks/
+│       └── ...
+└── ...
 ```
 
 ## When finished
 
 Update `pipeline.yaml`:
 - `steps.product-manager.status: "completed"`
-- `steps.product-manager.notes: "Epics created in .opencode/plan/<epic-context>/"`
+- `steps.product-manager.notes: "Epics created in .opencode/plan/<context>/epics/"`
 - `current_step: "tech-lead"`
 - `updated_at: "<current-date-time>"`
 
 ## Output
 
-- Folder `.opencode/plan/<epic-context>/` with `index.md` + one `.md` per epic
+- Folder `.opencode/plan/<context>/` with `epics/` subfolder containing `index.md` + one `.md` per epic
 - Clear acceptance criteria for each epic
 - Defined prioritization
 

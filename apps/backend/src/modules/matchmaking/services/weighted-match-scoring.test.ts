@@ -23,14 +23,16 @@ describe('calculateWeightedMatchScore', () => {
     expect(result.overall).toBeLessThan(50)
   })
 
-  it('handles missing seniority with neutral score', () => {
+  it('penalizes when user seniority is missing (returns 0 instead of neutral 0.5)', () => {
     const result = calculateWeightedMatchScore(
       ['react'],
       undefined,
       ['react'],
       undefined,
     )
-    expect(result.overall).toBeGreaterThan(50)
+    // Skill match still contributes ~60, but seniority contributes 0
+    expect(result.overall).toBeGreaterThanOrEqual(50)
+    expect(result.seniorityScore).toBe(0)
   })
 
   it('accepts custom weights', () => {
