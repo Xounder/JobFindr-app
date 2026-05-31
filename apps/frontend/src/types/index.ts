@@ -1,0 +1,66 @@
+// ─── Job Types ───────────────────────────────────────────────────────────────
+
+export type SalaryInfo = {
+  min: number;
+  max: number;
+  currency: string;
+  period: "yearly" | "monthly" | "hourly";
+};
+
+export interface Job {
+  id: string;
+  title: string;
+  company: string;
+  location: string;
+  description: string;
+  url: string;
+  skills: string[];
+  seniority: string;
+  salary: SalaryInfo | null;
+  matchScore: number | null;
+  matchSummary: string | null;
+  trustScore: number | null;
+  postedAt: string;
+  source: string;
+}
+
+// ─── Search ───────────────────────────────────────────────────────────────────
+
+export interface SearchParams {
+  q: string;
+  skills: string[];
+  seniority: string;
+  companies: string[];
+  excludeCompanies: string[];
+  trustMin: number;
+  page: number;
+  pageSize: number;
+}
+
+export interface SearchResponse {
+  jobs: Job[];
+  total: number;
+  page: number;
+  pageSize: number;
+  totalPages: number;
+}
+
+// ─── API Error ────────────────────────────────────────────────────────────────
+
+export interface ApiError {
+  error: {
+    code: string;
+    message: string;
+  };
+}
+
+// ─── Filters ──────────────────────────────────────────────────────────────────
+
+export interface FiltersState {
+  query: string;
+  skills: string[];
+  seniority: string;
+  companies: string[];
+  excludeCompanies: string[];
+  trustMin: number;
+}

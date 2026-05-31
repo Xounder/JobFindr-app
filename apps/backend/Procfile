@@ -1,0 +1,3 @@
+# Railway/Render deployment
+# TASK-109: Configure Railway/Render Deployment
+web: node dist/index.js

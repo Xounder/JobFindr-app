@@ -1,0 +1,5 @@
+DONE: Verified both servers (HTTP 200). Ran Playwright check. Fixed React crash (SalaryInfo object as child in JobCard.tsx). Added formatSalary(), updated Job type. Updated AGENTS.md with Playwright Windows instructions. Created /learning-improvement command. Applied doc updates (docs-catalog, hooks, project-structure).
+WRONG: Playwright MCP browser tools don't work on Windows (Chrome not found). Tried inline tsx scripts with PowerShell quoting issues. Added invalid --browser chromium arg to opencode.jsonc.
+IMPROV: Use standalone playwright-check.ts instead of MCP on Windows. Page has two visual states (empty vs results-loaded) - check script must handle both. Use pnpm --filter backend exec tsx for scripts needing backend deps.
+LEARN: Backend sends SalaryInfo as object not string - frontend type mismatch caused crash. waitUntil:load is more reliable than networkidle when backend is active. Playwright Chromium installed at USERPROFILE\AppData\Local\ms-playwright\chromium-*.
+NEXT: Update playwright-check.ts to detect page state and adjust selectors. Consider fixing Playwright MCP config for Windows.

@@ -1,0 +1,5 @@
+DONE: Brand guide audit — found 2 deviations (EmptyState gray-300, Pagination gray-300), fixed both. Installed vitest across 3 packages. Created 122 tests (utils 15, frontend 14, backend 93), all passing.
+WRONG: Bypassed pipeline entirely — no PM, no Tech Lead, no QA reviewers. Frontend/backend work done directly instead of through Senior Frontend/Senior Backend agents. QA step skipped entirely.
+IMPROV: Pipeline must be flexible — for direct task requests, route Orchestrator → relevant dev agent(s) → QA → STOP, skipping PM/TL. Document this as "Direct Task Mode" vs "Full Pipeline Mode".
+LEARN: Pipeline should be context-aware. If user says "create tests for X" this is a BE/FE task — skip PM/TL, route to the correct agents, always call QA after.
+NEXT: Update pipeline skills to document flexible mode, update AGENTS.md with pipeline modes. Ensure QA is never skipped regardless of pipeline mode.

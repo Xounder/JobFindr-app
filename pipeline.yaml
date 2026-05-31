@@ -1,0 +1,30 @@
+pipeline:
+  name: JobFindr Pipeline
+  started_at: "2026-05-30T17:00:00"
+  updated_at: "2026-05-30T17:00:00"
+  current_step: "completed"
+  steps:
+    product-manager:
+      status: completed
+      notes: "13 épicos de aquisição de providers criados em .opencode/plan/provider-acquisition/ (EPIC-PA-01 a EPIC-PA-13). MVP phases 1-7 detalhados com deliverables, tasks e critérios de aceitação. EPIC 16 adicionado em epics.md como referência."
+      updated_at: "2026-05-30T17:00:00"
+    tech-lead:
+      status: completed
+      notes: "19 tasks técnicas criadas (TASK-112 a TASK-130) em .opencode/plan/tasks/index.md — EPIC 16. Tasks 112-124 são MVP, 125-130 são pós-MVP. Todas alocadas para Senior Backend."
+      updated_at: "2026-05-30T17:00:00"
+    senior-frontend:
+      status: pending
+      notes: null
+      updated_at: null
+    senior-backend:
+      status: completed
+      notes: "EPIC 16 — Provider Acquisition implementado. TASK-112 a TASK-124 concluídas (exceto TASK-118 que já existia). 12 arquivos de infraestrutura, 5 providers reais, testes, remoção LinkedIn."
+      updated_at: "2026-05-30T17:30:00"
+    qa-frontend:
+      status: pending
+      notes: null
+      updated_at: null
+    qa-backend:
+      status: completed
+      notes: "APROVADO após correções. EPIC 16 (TASK-112 a TASK-124) verificado: build/lint ok, 158 testes passando (29 suites). Providers: Greenhouse, Ashby, Lever, Workday, Gupy implementados com classes base, engine, normalização, health monitoring, company mapping, retry system. LinkedIn removido. Arquitetura: provider isolation, stateless, sem lógica de negócio no frontend."
+      updated_at: "2026-05-30T20:00:00"

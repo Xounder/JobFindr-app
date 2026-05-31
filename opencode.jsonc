@@ -1,0 +1,40 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "playwright": {
+      "type": "local",
+      "command": [
+        "pnpm",
+        "dlx",
+        "@playwright/mcp@latest"
+      ],
+      "enabled": true
+    }
+  },
+  "command": {
+    "jobfindr-pipeline:start": {
+      "template": "Crie o arquivo `pipeline.yaml` na raiz do projeto com todos os steps como `pending` e `current_step: \"product-manager\"`. Carregue a skill `jobfindr-pipeline` e inicie o pipeline do zero — comece pelo Product Manager fazendo as perguntas obrigatórias ao usuário.",
+      "description": "Inicia o pipeline JobFindr do zero (Product Manager)"
+    },
+    "jobfindr-pipeline:next": {
+      "template": "Leia o arquivo `pipeline.yaml` na raiz do projeto para identificar o ponto de retomada. Carregue a skill `jobfindr-pipeline-next` e continue o pipeline de agentes do JobFindr de onde parou. NÃO refaça perguntas do Product Manager — use o pipeline.yaml para determinar o passo atual e retomar de lá.",
+      "description": "Continua o pipeline JobFindr de onde parou (lê pipeline.yaml)"
+    },
+    "validate:frontend": {
+      "template": "Execute o hook `.opencode/hooks/validate-after-agent.ps1 -Layer frontend`. Se houver erros de lint ou TypeScript, retorne ao Senior Frontend para correção. Caso contrário, prossiga.",
+      "description": "Valida lint e TypeScript do frontend após implementação"
+    },
+    "validate:backend": {
+      "template": "Execute o hook `.opencode/hooks/validate-after-agent.ps1 -Layer backend`. Se houver erros de lint ou TypeScript, retorne ao Senior Backend para correção. Caso contrário, prossiga.",
+      "description": "Valida lint e TypeScript do backend após implementação"
+    },
+    "learning-improvement": {
+      "template": "Carregue a skill `learning-improvement`, analise a sessão atual e extraia DONE, WRONG, IMPROV, LEARN, NEXT.",
+      "description": "Avalia a sessão atual e extrai aprendizados (DONE, WRONG, IMPROV, LEARN, NEXT)"
+    },
+    "validate:both": {
+      "template": "Execute em paralelo: (1) `.opencode/hooks/validate-after-agent.ps1 -Layer frontend` e (2) `.opencode/hooks/validate-after-agent.ps1 -Layer backend`. Se qualquer um falhar, retorne ao agente responsável (frontend ou backend) para correção.",
+      "description": "Valida lint e TypeScript de frontend e backend em paralelo"
+    }
+  }
+}
