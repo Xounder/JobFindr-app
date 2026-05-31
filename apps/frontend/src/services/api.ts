@@ -59,6 +59,10 @@ export function searchJobs(params: SearchParams): Promise<SearchResponse> {
     queryParams.minTrustScore = String(params.trustMin);
   }
 
+  if (params.sort) {
+    queryParams.sort = params.sort;
+  }
+
   if (params.userSkills.length > 0) {
     queryParams.userSkills = params.userSkills.join(",");
   }

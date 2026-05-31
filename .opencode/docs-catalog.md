@@ -121,6 +121,14 @@ Catalog of all `.md` files in `.opencode/` with content description and when to 
 | `plan/three-changes-analysis/tasks/index.md` | Task overview for Three Changes Analysis | New task definitions |
 | `plan/three-changes-analysis/tasks/EPIC-01-tasks.md` | Tasks for EPIC-01 (Trust Model Rework) | Task changes for Trust Model |
 | `plan/three-changes-analysis/tasks/EPIC-02-tasks.md` | Tasks for EPIC-02 (User Skills & Matchmaking) | Task changes for User Skills |
+| `plan/prioridades-ux/index.md` | Prioridades UX — 4 changes analysis overview | New planning cycle |
+| `plan/prioridades-ux/change-1-user-skills-header.md` | Change 1 — Your Skills in header modal | Your Skills requirements change |
+| `plan/prioridades-ux/change-2-trust-ordering.md` | Change 2 — Trust-first default ordering | Ordering requirements change |
+| `plan/prioridades-ux/change-3-search-bar.md` | Change 3 — Search bar visual indicator + suggestions | Search bar requirements change |
+| `plan/prioridades-ux/change-4-sort-toggle.md` | Change 4 — Sort preference toggle (trust vs match) | Sort requirements change |
+| `plan/prioridades-ux/impact-analysis.md` | Impact per layer for all 4 changes | Impact analysis updates |
+| `plan/prioridades-ux/risks.md` | Risk assessment for all 4 changes | Risk updates |
+| `plan/prioridades-ux/recommendations.md` | Phasing, epics, and recommendations | Priority/dependency changes |
 
 ---
 

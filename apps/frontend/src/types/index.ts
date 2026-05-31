@@ -35,6 +35,7 @@ export interface SearchParams {
   companies: string[];
   excludeCompanies: string[];
   trustMin: number;
+  sort: "trust" | "match";
   page: number;
   pageSize: number;
   userSkills: string[];
@@ -69,6 +70,7 @@ export interface FiltersState {
   companies: string[];
   excludeCompanies: string[];
   trustMin: number;
+  sort: "trust" | "match";
   userSkills: string[];
   userSeniority: string;
 }

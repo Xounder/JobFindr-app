@@ -59,9 +59,20 @@ Use `question` tool to present findings and ask for user input:
 3. Ask for preferences or clarifications
 4. Iterate until the user is satisfied
 
+### Phase 4b: Present plan structure before creating files
+
+Before writing any files, you MUST:
+
+1. Propose the folder name (`plan/<context-name>/`) and the planned document structure to the user
+2. Use the `question` tool to ask for approval: "I will create this folder with these files. Accept?"
+3. **Never create files without prior user approval**
+4. Only proceed to Phase 5 after receiving explicit approval
+
 ### Phase 5: Generate planning documents
 
-Create a folder in `.opencode/plan/<plan-context>/` where `<plan-context>` is a short kebab-case name describing the analysis subject (e.g., `country-filter-analysis`, `provider-acquisition-planning`).
+Create a **new** folder in `.opencode/plan/<plan-context>/` where `<plan-context>` is a short kebab-case name describing the analysis subject (e.g., `country-filter-analysis`, `provider-acquisition-planning`).
+
+**Important: Always create a new folder. Never modify or reuse an existing plan folder from a previous analysis.** Historical plan folders (e.g., `three-changes-analysis/`) must remain untouched — they are read-only archives of completed planning cycles.
 
 Structure:
 

@@ -14,6 +14,7 @@ function makeDefaultParams(overrides?: Partial<SearchParams>): SearchParams {
     companies: [],
     excludeCompanies: [],
     trustMin: 0,
+    sort: "trust",
     page: 1,
     pageSize: 20,
     userSkills: [],

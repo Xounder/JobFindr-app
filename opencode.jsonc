@@ -13,7 +13,7 @@
   },
   "command": {
     "jobfindr-pipeline:start": {
-      "template": "Crie o arquivo `pipeline.yaml` na raiz do projeto com todos os steps como `pending` e `current_step: \"product-manager\"`. Carregue a skill `jobfindr-pipeline` e inicie o pipeline do zero — comece pelo Product Manager fazendo as perguntas obrigatórias ao usuário.",
+      "template": "Crie o arquivo `pipeline.yaml` na raiz do projeto com todos os steps como `pending` e `current_step: \"product-manager\"`. Carregue a skill `jobfindr-pipeline` e inicie o pipeline do zero — comece pelo Product Manager. Ele só fará perguntas se nenhum plano/documento pré-existir em `.opencode/plan/<context>/`. Se já houver arquivos de análise, deve pular as perguntas e criar os épicos diretamente.",
       "description": "Inicia o pipeline JobFindr do zero (Product Manager)"
     },
     "jobfindr-pipeline:next": {

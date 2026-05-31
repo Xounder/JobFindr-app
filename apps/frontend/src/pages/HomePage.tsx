@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { SearchBar } from "@/components/SearchBar";
+import { SortToggle } from "@/components/SortToggle";
 import { FiltersPanel } from "@/components/FiltersPanel";
 import { JobCard } from "@/components/JobCard";
 import { Pagination } from "@/components/Pagination";
@@ -19,6 +20,7 @@ export default function HomePage() {
     companies,
     excludeCompanies,
     trustMin,
+    sort,
     userSkills,
     userSeniority,
     setQuery,
@@ -29,8 +31,7 @@ export default function HomePage() {
     setCompanies,
     setExcludeCompanies,
     setTrustMin,
-    setUserSkills,
-    setUserSeniority,
+    setSort,
     setPage,
     resetFilters,
   } = useSearchStore();
@@ -52,12 +53,6 @@ export default function HomePage() {
     },
     [],
   );
-
-  const handleMoveToRequired = useCallback(() => {
-    const merged = [...new Set([...skills, ...userSkills])];
-    setSkills(merged);
-    setUserSkills([]);
-  }, [skills, userSkills, setSkills, setUserSkills]);
 
   const showLoading = isLoading;
   const showFetching = isFetching && !isLoading;
@@ -81,7 +76,7 @@ export default function HomePage() {
         {/* Filters Sidebar */}
         <div className="lg:col-span-1">
           <FiltersPanel
-            filters={{ query, skills, seniority, remoteMode, countries, companies, excludeCompanies, trustMin, userSkills, userSeniority }}
+            filters={{ query, skills, seniority, remoteMode, countries, companies, excludeCompanies, trustMin, sort, userSkills, userSeniority }}
             onSeniorityChange={setSeniority}
             onRemoteModeChange={setRemoteMode}
             onCountriesChange={setCountries}
@@ -89,9 +84,6 @@ export default function HomePage() {
             onExcludeChange={setExcludeCompanies}
             onSkillsChange={setSkills}
             onTrustMinChange={setTrustMin}
-            onUserSkillsChange={setUserSkills}
-            onUserSeniorityChange={setUserSeniority}
-            onMoveToRequired={handleMoveToRequired}
             onReset={resetFilters}
           />
         </div>
@@ -107,12 +99,19 @@ export default function HomePage() {
           {/* Empty state */}
           {showEmpty && <EmptyState isSearching={false} />}
 
-          {/* Results */}
+          {/* Sort toggle */}
           {showResults && (
-            <div className="space-y-4">
+            <div className="mb-4 flex items-center justify-between">
               <p className="text-sm text-gray-500">
                 Showing {data.jobs.length} of {data.total} result{data.total !== 1 ? "s" : ""}
               </p>
+              <SortToggle value={sort} onChange={setSort} />
+            </div>
+          )}
+
+          {/* Results */}
+          {showResults && (
+            <div className="space-y-4">
 
               <div className="space-y-4">
                 {data.jobs.map((job) => (

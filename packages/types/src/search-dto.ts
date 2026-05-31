@@ -47,6 +47,8 @@ export type SearchSortOption =
   | 'date'
   | 'salary_high'
   | 'salary_low'
+  | 'trust'
+  | 'match'
 
 /**
  * Normalized search parameters after validation.

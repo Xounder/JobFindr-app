@@ -1,0 +1,5 @@
+DONE: Created pipeline.yaml, loaded jobfindr-pipeline skill, triggered PM agent
+WRONG: PM asked questions despite pre-existing prioridades-ux analysis files; root cause was opencode.jsonc line 16 forcing questions
+IMPROV: PM must detect pre-existing plan folder before asking; orchestrator must not override PM's skip-questions logic
+LEARN: opencode.jsonc command templates are the orchestrator's source of truth — they must be context-aware, not prescriptive
+NEXT: Pipeline can now be restarted — PM will skip questions and create epics directly from prioridades-ux analysis

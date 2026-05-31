@@ -4,7 +4,6 @@ import { CountryFilter } from "./CountryFilter";
 import { CompanyFilters } from "./CompanyFilters";
 import { SkillsTagsInput } from "./SkillsTagsInput";
 import { TrustFilters } from "./TrustFilters";
-import { UserSkillsInput } from "./UserSkillsInput";
 import type { FiltersState } from "@/types";
 
 interface FiltersPanelProps {
@@ -16,9 +15,6 @@ interface FiltersPanelProps {
   onExcludeChange: (companies: string[]) => void;
   onSkillsChange: (skills: string[]) => void;
   onTrustMinChange: (value: number) => void;
-  onUserSkillsChange: (skills: string[]) => void;
-  onUserSeniorityChange: (seniority: string) => void;
-  onMoveToRequired: () => void;
   onReset: () => void;
 }
 
@@ -31,9 +27,6 @@ export function FiltersPanel({
   onExcludeChange,
   onSkillsChange,
   onTrustMinChange,
-  onUserSkillsChange,
-  onUserSeniorityChange,
-  onMoveToRequired,
   onReset,
 }: FiltersPanelProps) {
   const hasActiveFilters =
@@ -62,13 +55,36 @@ export function FiltersPanel({
         )}
       </div>
 
-      <UserSkillsInput
-        userSkills={filters.userSkills}
-        userSeniority={filters.userSeniority}
-        onUserSkillsChange={onUserSkillsChange}
-        onUserSeniorityChange={onUserSeniorityChange}
-        onMoveToRequired={onMoveToRequired}
-      />
+      {/* Simplified Your Skills indicator (managed in header modal) */}
+      <div className="rounded-lg border border-indigo-100 bg-indigo-50/50 p-3">
+        <div className="flex items-center justify-between">
+          <h3 className="text-sm font-semibold text-indigo-900">Your Skills</h3>
+        </div>
+        {filters.userSkills.length > 0 ? (
+          <div className="mt-2">
+            <p className="text-xs text-indigo-700">
+              {filters.userSkills.length} skill{filters.userSkills.length !== 1 ? "s" : ""} set
+              {filters.userSeniority && (
+                <span className="ml-1">
+                  &middot; {filters.userSeniority}
+                </span>
+              )}
+            </p>
+            <div className="mt-1.5 flex flex-wrap gap-1">
+              {filters.userSkills.map((skill) => (
+                <span
+                  key={skill}
+                  className="inline-flex items-center rounded-full bg-indigo-100 px-2 py-0.5 text-xs font-medium text-indigo-800"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <p className="mt-1 text-xs text-gray-500">No skills set. Add them in the header.</p>
+        )}
+      </div>
 
       <SenioritySelector value={filters.seniority} onChange={onSeniorityChange} />
 

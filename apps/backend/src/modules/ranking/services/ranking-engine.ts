@@ -14,6 +14,7 @@ import { computeFinalScore } from './composite-score.ts'
 export type RankingOptions = {
   weights?: Partial<RankingWeights>
   userSkills?: string[]
+  sortBy?: 'trust' | 'match'
 }
 
 /**
@@ -46,12 +47,12 @@ export function rankJobs(
     rankings.set(job.id, rankingResult)
   }
 
-  // Sort jobs by composite score descending
-  const sortedJobs = [...jobs].sort((a, b) => {
-    const scoreA = rankings.get(a.id)?.compositeScore ?? 0
-    const scoreB = rankings.get(b.id)?.compositeScore ?? 0
-    return scoreB - scoreA
-  })
+  // Determine sort strategy (default to trust-first)
+  const sortBy = options.sortBy === 'trust' || options.sortBy === 'match' ? options.sortBy : 'trust'
+  const comparator = createSortComparator(sortBy)
+
+  // Sort jobs using the selected comparator
+  const sortedJobs = [...jobs].sort((a, b) => comparator(a, b, rankings))
 
   // Attach ranking scores to jobs
   for (const job of sortedJobs) {
@@ -62,4 +63,48 @@ export function rankJobs(
   }
 
   return { jobs: sortedJobs, rankings }
+}
+
+/**
+ * Create a sort comparator function based on the desired sort strategy.
+ * - 'trust': trustScore desc → matchScore desc → compositeScore desc
+ * - 'match': matchScore desc → trustScore desc → compositeScore desc
+ */
+function createSortComparator(sortBy: 'trust' | 'match') {
+  if (sortBy === 'match') {
+    return (a: NormalizedJob, b: NormalizedJob, rankings: Map<string, RankingResult>): number => {
+      // Primary: matchScore descending (default 50)
+      const matchA = a.matchScore ?? 50
+      const matchB = b.matchScore ?? 50
+      if (matchB !== matchA) return matchB - matchA
+
+      // Secondary: trustScore descending (default 5)
+      const trustA = a.trustScore ?? 5
+      const trustB = b.trustScore ?? 5
+      if (trustB !== trustA) return trustB - trustA
+
+      // Tertiary: compositeScore descending (fallback tiebreaker)
+      const scoreA = rankings.get(a.id)?.compositeScore ?? 0
+      const scoreB = rankings.get(b.id)?.compositeScore ?? 0
+      return scoreB - scoreA
+    }
+  }
+
+  // Default: trust-first sorting
+  return (a: NormalizedJob, b: NormalizedJob, rankings: Map<string, RankingResult>): number => {
+    // Primary: trustScore descending (default 5)
+    const trustA = a.trustScore ?? 5
+    const trustB = b.trustScore ?? 5
+    if (trustB !== trustA) return trustB - trustA
+
+    // Secondary: matchScore descending (default 50)
+    const matchA = a.matchScore ?? 50
+    const matchB = b.matchScore ?? 50
+    if (matchB !== matchA) return matchB - matchA
+
+    // Tertiary: compositeScore descending (fallback tiebreaker)
+    const scoreA = rankings.get(a.id)?.compositeScore ?? 0
+    const scoreB = rankings.get(b.id)?.compositeScore ?? 0
+    return scoreB - scoreA
+  }
 }

@@ -1,4 +1,5 @@
-import { useState, useCallback, type ChangeEvent, type FormEvent, type KeyboardEvent } from "react";
+import { useState, useCallback, useRef, useEffect, useMemo, type ChangeEvent, type FormEvent, type KeyboardEvent } from "react";
+import { useSuggestions } from "@/hooks";
 
 interface SearchBarProps {
   initialQuery?: string;
@@ -6,42 +7,139 @@ interface SearchBarProps {
   placeholder?: string;
 }
 
-export function SearchBar({ initialQuery = "", onSearch, placeholder = "Search jobs by title, company, or keyword…" }: SearchBarProps) {
+const MAX_SUGGESTIONS = 8;
+
+export function SearchBar({
+  initialQuery = "",
+  onSearch,
+  placeholder = "Search jobs by title, company, or keyword…",
+}: SearchBarProps) {
   const [value, setValue] = useState(initialQuery);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [highlightedIndex, setHighlightedIndex] = useState(-1);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const { data: suggestions } = useSuggestions();
+
+  const hasValue = value.trim().length > 0;
+
+  const filteredSuggestions = useMemo(() => {
+    if (!suggestions || !hasValue) return { skills: [] as string[], companies: [] as string[] };
+    const lower = value.toLowerCase();
+    const skills = suggestions.skills
+          .filter((s) => s.toLowerCase().includes(lower))
+          .slice(0, MAX_SUGGESTIONS);
+    const skillsCount = skills.length;
+    const companies = suggestions.companies
+          .filter((c) => c.toLowerCase().includes(lower))
+          .slice(0, Math.max(0, MAX_SUGGESTIONS - skillsCount));
+    return { skills, companies };
+  }, [suggestions, value, hasValue]);
+
+  const allSuggestions = useMemo(() => {
+    const items: { type: "skill" | "company"; label: string }[] = [];
+    for (const skill of filteredSuggestions.skills) {
+      items.push({ type: "skill", label: skill });
+    }
+    for (const company of filteredSuggestions.companies) {
+      items.push({ type: "company", label: company });
+    }
+    return items;
+  }, [filteredSuggestions]);
+
+  const showDropdown = showSuggestions && hasValue && allSuggestions.length > 0;
+
+  const triggerSearch = useCallback(
+    (q: string) => {
+      setValue(q);
+      onSearch(q.trim());
+      setShowSuggestions(false);
+      setHighlightedIndex(-1);
+    },
+    [onSearch],
+  );
 
   const handleSubmit = useCallback(
     (e: FormEvent) => {
       e.preventDefault();
-      onSearch(value.trim());
+      triggerSearch(value);
     },
-    [value, onSearch],
+    [value, triggerSearch],
   );
 
   const handleKeyDown = useCallback(
     (e: KeyboardEvent<HTMLInputElement>) => {
       if (e.key === "Enter") {
         e.preventDefault();
-        onSearch(value.trim());
+        if (highlightedIndex >= 0 && highlightedIndex < allSuggestions.length) {
+          triggerSearch(allSuggestions[highlightedIndex]!.label);
+        } else {
+          triggerSearch(value);
+        }
+      } else if (e.key === "ArrowDown") {
+        e.preventDefault();
+        setHighlightedIndex((prev) =>
+          prev < allSuggestions.length - 1 ? prev + 1 : 0,
+        );
+      } else if (e.key === "ArrowUp") {
+        e.preventDefault();
+        setHighlightedIndex((prev) =>
+          prev > 0 ? prev - 1 : allSuggestions.length - 1,
+        );
+      } else if (e.key === "Escape") {
+        setShowSuggestions(false);
+        setHighlightedIndex(-1);
       }
     },
-    [value, onSearch],
+    [highlightedIndex, allSuggestions, triggerSearch, value],
   );
 
   const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
+    setHighlightedIndex(-1);
   }, []);
 
   const handleClear = useCallback(() => {
     setValue("");
     onSearch("");
+    setShowSuggestions(false);
+    setHighlightedIndex(-1);
+    inputRef.current?.focus();
   }, [onSearch]);
+
+  const handleFocus = useCallback(() => {
+    setShowSuggestions(true);
+  }, []);
+
+  const handleBlur = useCallback(() => {
+    // Delay to allow click on suggestion to register
+    setTimeout(() => {
+      setShowSuggestions(false);
+      setHighlightedIndex(-1);
+    }, 200);
+  }, []);
+
+  // Close suggestions on click outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (wrapperRef.current && !wrapperRef.current.contains(event.target as Node)) {
+        setShowSuggestions(false);
+        setHighlightedIndex(-1);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
     <form onSubmit={handleSubmit} className="relative flex w-full items-center gap-2">
-      <div className="relative flex-1">
+      <div ref={wrapperRef} className="relative flex-1">
         {/* Search icon */}
         <svg
-          className="pointer-events-none absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400"
+          className={`pointer-events-none absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 transition-colors ${
+            hasValue ? "text-indigo-500" : "text-gray-400"
+          }`}
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -51,17 +149,28 @@ export function SearchBar({ initialQuery = "", onSearch, placeholder = "Search j
         </svg>
 
         <input
+          ref={inputRef}
           type="text"
           value={value}
           onChange={handleChange}
           onKeyDown={handleKeyDown}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
           placeholder={placeholder}
-          className="w-full rounded-lg border border-gray-300 py-2.5 pl-10 pr-10 text-sm shadow-sm transition-colors placeholder:text-gray-400 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+          className={`w-full rounded-lg border py-2.5 pl-10 pr-10 text-sm shadow-sm transition-colors placeholder:text-gray-400 focus:outline-none focus:ring-1 ${
+            hasValue
+              ? "border-indigo-400 ring-1 ring-indigo-400 focus:border-indigo-500 focus:ring-indigo-500"
+              : "border-gray-300 focus:border-indigo-500 focus:ring-indigo-500"
+          }`}
           aria-label="Search jobs"
+          role="combobox"
+          aria-expanded={showDropdown}
+          aria-autocomplete="list"
+          aria-controls="search-suggestions"
         />
 
         {/* Clear button */}
-        {value.length > 0 && (
+        {hasValue && (
           <button
             type="button"
             onClick={handleClear}
@@ -72,6 +181,48 @@ export function SearchBar({ initialQuery = "", onSearch, placeholder = "Search j
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
+        )}
+
+        {/* Suggestions dropdown */}
+        {showDropdown && (
+          <ul
+            id="search-suggestions"
+            role="listbox"
+            className="absolute z-50 mt-1 w-full overflow-auto rounded-md border border-gray-200 bg-white shadow-lg"
+          >
+            {allSuggestions.map((item, index) => {
+              const isHighlighted = index === highlightedIndex;
+              return (
+                <li
+                  key={`${item.type}-${item.label}`}
+                  role="option"
+                  aria-selected={isHighlighted}
+                  onMouseDown={(e) => {
+                    e.preventDefault();
+                    triggerSearch(item.label);
+                  }}
+                  onMouseEnter={() => setHighlightedIndex(index)}
+                  className={`flex cursor-pointer items-center gap-2 px-3 py-2 text-sm ${
+                    isHighlighted ? "bg-indigo-50 text-indigo-700" : "text-gray-700 hover:bg-gray-50"
+                  }`}
+                >
+                  {item.type === "skill" ? (
+                    <svg className="h-3.5 w-3.5 shrink-0 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                    </svg>
+                  ) : (
+                    <svg className="h-3.5 w-3.5 shrink-0 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                    </svg>
+                  )}
+                  <span>{item.label}</span>
+                  <span className="ml-auto text-xs text-gray-400">
+                    {item.type === "skill" ? "Skill" : "Company"}
+                  </span>
+                </li>
+              );
+            })}
+          </ul>
         )}
       </div>
 

@@ -216,6 +216,7 @@ export async function aggregateSearch(
   // Apply ranking
   const { jobs: rankedJobs } = rankJobs(allJobs, {
     userSkills: userSkills?.normalized,
+    sortBy: input.sort === 'trust' || input.sort === 'match' ? input.sort : 'trust',
   })
 
   // Store full ranked result in aggregated cache (before pagination)

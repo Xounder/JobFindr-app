@@ -17,7 +17,7 @@ const VALID_REMOTE_MODES: RemoteMode[] = [
 ]
 
 const VALID_SORT_OPTIONS: SearchSortOption[] = [
-  'relevance', 'date', 'salary_high', 'salary_low',
+  'relevance', 'date', 'salary_high', 'salary_low', 'trust', 'match',
 ]
 
 /**

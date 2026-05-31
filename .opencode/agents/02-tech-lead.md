@@ -20,11 +20,15 @@ Update `pipeline.yaml`:
 1. Receive refined story from Product Manager (read files from `.opencode/plan/<context>/epics/` folder)
 2. Analyze impact on layers (frontend, backend, providers, etc.)
 3. Inside the **same context folder** (`.opencode/plan/<context>/`), create a `tasks/` subfolder:
-   - If a `tasks/` folder already exists, use it
-   - If not, create `.opencode/plan/<context>/tasks/`
+    - If a `tasks/` folder already exists, use it
+    - If not, create `.opencode/plan/<context>/tasks/`
 4. Inside `tasks/`, create a `.md` file for **each individual task** with the canonical format:
 5. Include an `index.md` in `tasks/` with overview, execution order and dependencies
-6. Define dependencies and execution order
+6. **Define dependencies and execution order** - Use a clear dependency graph format in tasks/index.md:
+   - List all tasks with their IDs and dependencies
+   - Consider adding a mermaid diagram for visualization
+   - Ensure no circular dependencies exist
+   - Validate that all dependencies can be satisfied
 7. Assign each task to the correct agent (Senior Frontend or Senior Backend)
 8. Ensure each task references the source epic
 9. Track progress and unblock impediments

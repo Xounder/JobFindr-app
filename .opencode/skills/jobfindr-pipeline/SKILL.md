@@ -78,7 +78,7 @@ At each completed step, UPDATE `pipeline.yaml`:
 ### Phase 1: Product Manager
 1. Trigger **Product Manager Agent** via Task tool (`subagent_type: "Product Manager"`)
 2. Update `pipeline.yaml`: `current_step: "product-manager"`, `steps.product-manager.status: "in_progress"`
-3. PM only asks questions if no plan was provided — questions use terminal choices (arrow keys + "Custom answer" option)
+3. **IMPORTANT**: Do NOT instruct the PM to ask questions in your prompt. The PM agent checks existing docs automatically — if `.opencode/plan/<context>/` already exists, it skips questions. Telling it to ask questions overrides this logic.
 4. PM creates folder `.opencode/plan/<context>/epics/` with `index.md` + one `.md` per epic
 5. **Update `pipeline.yaml`**: `steps.product-manager.status: "completed"`, `current_step: "tech-lead"`
 

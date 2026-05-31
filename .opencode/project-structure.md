@@ -77,5 +77,5 @@ jobfindr/
 ├── opencode.jsonc           # opencode config — commands, MCP servers
 ├── pnpm-workspace.yaml      # Workspace pnpm (apps/*, packages/*)
 ├── package.json             # Root — shared scripts
-└── pipeline.yaml            # Current pipeline state (used by jobfindr-pipeline-next)
+└── pipeline.yaml            # Pipeline state file — tracks current step and status of each phase (used by jobfindr-pipeline and jobfindr-pipeline-next)
 ```

@@ -41,6 +41,7 @@ docker compose up
 | `/validate:frontend` | `pnpm --filter frontend lint` + `tsc -b`      |
 | `/validate:backend`  | `pnpm --filter backend lint` + `tsc --noEmit` |
 | `/validate:both`     | Both in parallel                              |
+| `/validate:pipeline` | `node -e \"const yaml=require('js-yaml');const fs=require('fs');const data=fs.readFileSync('pipeline.yaml','utf8');const obj=yaml.load(data);if(!obj.pipeline||!obj.pipeline.steps||!obj.pipeline.current_step)throw new Error('Invalid pipeline structure');if(obj.pipeline.steps.product-manager.status!=='pending'&&obj.pipeline.steps.product-manager.status!=='in_progress'&&obj.pipeline.steps.product-manager.status!=='completed')throw new Error('Product manager status invalid');if(obj.pipeline.current_step!=='product-manager'&&obj.pipeline.current_step!=='tech-lead'&&obj.pipeline.current_step!=='development'&&obj.pipeline.current_step!=='qa'&&obj.pipeline.current_step!=='completed')throw new Error('Invalid current_step');console.log('Pipeline validation passed:');console.log(`  current_step: ${obj.pipeline.current_step}`);console.log(`  product-manager: ${obj.pipeline.steps.product-manager.status}`);console.log(`  tech-lead: ${obj.pipeline.steps.tech-lead.status}`);console.log(`  senior-frontend: ${obj.pipeline.steps.senior-frontend.status}`);console.log(`  senior-backend: ${obj.pipeline.steps.senior-backend.status}`);console.log(`  qa-frontend: ${obj.pipeline.steps.qa-frontend.status}`);console.log(`  qa-backend: ${obj.pipeline.steps.qa-backend.status}`);\" || echo \"Pipeline validation failed - see error above\" |
 
 ## Monorepo layout
 
@@ -167,7 +168,7 @@ See `.opencode/skills/jobfindr-pipeline/SKILL.md` for full mode details.
 
 - **Full Pipeline** (`/start`): PM → Tech Lead → Frontend+Backend (parallel) → QA Frontend+QA Backend (parallel) → corrections loop → complete
 - **Direct Task Mode**: routes directly to implementation agent → QA → STOP, no PM/TL
-- **Planning Analyst** (optional, on-demand): invoke `Task(subagent_type: "Planning Analyst", ...)` before any mode for feasibility, risk, and impact analysis. Output can feed into Product Manager or directly inform implementation.
+- **Planning Analyst** (mandatory for planning): MUST be auto-invoked via `Task(subagent_type: "Planning Analyst", ...)` whenever the user asks for planning, feasibility, risk, impact analysis, or technical approach. Do NOT start manual exploration — route to Planning Analyst immediately.
 - QA is mandatory for non-trivial tasks.
 
 ## All docs must be in English

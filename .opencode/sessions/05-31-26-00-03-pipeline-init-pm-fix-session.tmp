@@ -1,0 +1,5 @@
+DONE: Created pipeline.yaml with clean pending state; loaded jobfindr-pipeline skill; launched PM agent; fixed PM question format and pipeline orchestrator rules in docs
+WRONG: PM agent asked mandatory questions despite .opencode/plan/prioridades-ux/ already containing complete analysis. Orchestrator prompt explicitly told PM to ask questions, overriding PM's built-in "skip if docs exist" rule
+IMPROV: PM agent prompt must never force questions — let PM check existing docs. PM question format updated to match actual question tool schema (questions array, automatic custom option)
+LEARN: Context folder prioridades-ux/ had rich pre-existing analysis; orchestrator should pass context name only, not instruct PM behavior. The question tool auto-adds "Type your own answer" — no manual custom option needed
+NEXT: Re-run PM agent correctly — pass context "prioridades-ux" without forcing questions; PM will read existing docs and create epics; continue pipeline through TL → dev → QA

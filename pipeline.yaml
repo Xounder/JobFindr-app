@@ -1,30 +1,30 @@
 pipeline:
-  name: JobFindr Pipeline — Three Changes Analysis
-  started_at: "2026-05-30T23:30:00"
-  updated_at: "2026-05-31T00:05:00"
-  current_step: "completed"
+  name: JobFindr Pipeline
+  started_at: "2026-05-31T00:00:00-03:00"
+  updated_at: "2026-05-31T00:10:00-03:00"
+    current_step: "completed"
   steps:
     product-manager:
       status: completed
-      notes: "Epics created in .opencode/plan/three-changes-analysis/epics/"
-      updated_at: "2026-05-30T23:35:00"
+      notes: "Epics created in .opencode/plan/prioridades-ux/epics/"
+      updated_at: "2026-05-31T00:07:00-03:00"
     tech-lead:
       status: completed
-      notes: "16 tasks created in .opencode/plan/three-changes-analysis/tasks/. EPIC-01: 7 tasks, EPIC-02: 9 tasks. Both epics can run in parallel."
-      updated_at: "2026-05-30T23:40:00"
+      notes: "Tasks created in .opencode/plan/prioridades-ux/tasks/"
+      updated_at: "2026-05-31T00:10:00-03:00"
     senior-frontend:
-      status: in_progress
-      notes: "Returned for corrections: add 3 test gaps identified by QA. 1) Create api.test.ts for searchJobs params. 2) Add remove-tag test to UserSkillsInput.test.tsx. 3) Add persist round-trip test to searchStore.test.ts."
-      updated_at: "2026-05-30T23:50:00"
+      status: completed
+      notes: "Completed implementation of TASK-203, TASK-301, TASK-401 - all frontend tests passing"
+      updated_at: "2026-05-31T00:50:00-03:00"
     senior-backend:
       status: completed
-      notes: "All backend+types tasks for EPIC-01 and EPIC-02 implemented and tested"
-      updated_at: "2026-05-30T23:19:00"
+      notes: "Completed implementation of TASK-101, TASK-201, TASK-202 with all backend tests passing"
+      updated_at: "2026-05-31T00:50:00-03:00"
     qa-frontend:
       status: completed
-      notes: "Approved"
-      updated_at: "2026-05-31T00:00:00"
+      notes: "Approved - All three tasks (TASK-203, TASK-301, TASK-401) implemented correctly. All 96 frontend tests pass, lint passes, build succeeds. No unused variables, proper TypeScript conventions followed, no architectural violations found."
+      updated_at: "2026-05-31T00:55:00-03:00"
     qa-backend:
       status: completed
-      notes: "Approved — all 3 fixes verified: boost stacking (if/if), JSDoc on trustScore, edge case tests. Build + 238 tests pass."
-      updated_at: "2026-05-31T00:00:00"
+      notes: "Approved - All three tasks (TASK-101, TASK-201, TASK-202) implemented correctly. All 246 backend tests pass, build succeeds, types package builds. No unused variables, proper TypeScript conventions followed, no architectural violations found."
+      updated_at: "2026-05-31T00:55:00-03:00"

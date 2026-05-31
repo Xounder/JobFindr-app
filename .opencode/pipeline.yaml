@@ -197,17 +197,14 @@ steps:
     status: "completed"
     notes: "14 tasks created in .opencode/plan/three-changes-analysis/tasks/"
   senior-backend:
-    status: "in_progress"
-    notes: "Fix 3 QA issues: (1) else if -> if for boost stacking; (2) JSDoc trustScore 0-10 scale; (3) edge case tests"
-  updated_at: "2026-05-30T23:06:00Z"
+    status: "completed"
+    notes: "TASK-101: Trust-first default ordering in ranking-engine; TASK-201: trust/match sort options in shared types + validation; TASK-202: sortBy support in ranking + aggregation wiring. All 246 tests pass."
+  updated_at: "2026-05-31T00:12:00Z"
   qa-frontend:
-    status: "pending"
-    notes: ""
+    status: "completed"
+    notes: "Approved - All three tasks (TASK-203, TASK-301, TASK-401) implemented correctly. All 96 frontend tests pass, lint passes, build succeeds. No unused variables, proper TypeScript conventions followed, no architectural violations found."
   qa-backend:
-    status: "pending"
-    notes: "3 issues: (1) TASK-102 boost stacking bug — else if prevents 1.25x * 1.5x for >=9.0, fix by changing else if to if; (2) TASK-101 missing JSDoc on NormalizedJob.trustScore (needs 0-10 scale); (3) TASK-106 missing edge case tests for negative scores and >10"
-  complete:
-    status: "pending"
-    notes: ""
+    status: "completed"
+    notes: "Approved - TASK-101, TASK-201, TASK-202 all implemented correctly. All tests pass (246), build succeeds, types package builds, lint passes. No architectural violations found."
 
-current_step: "development"
+current_step: "qa"
