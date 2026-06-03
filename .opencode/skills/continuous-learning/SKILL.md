@@ -19,7 +19,7 @@ Use this skill after `learning-improvement` in the STOP hook. It is the **second
 1. **Receive evaluation** — read the output of the `learning-improvement` skill (DONE, WRONG, IMPROV, LEARN, NEXT)
 2. **Analyze existing docs** — consult `.opencode/docs-catalog.md` to map which file to modify, then review the relevant files:
    - `project-structure.md` — keep updated if important folders/files changed
-   - `docs-catalog.md` — keep updated if new `.md` files were created in `.opencode/`
+   - `docs-catalog.md` — keep updated if new `.md` files were created in `.opencode/`; **remove completely** the entries for files that no longer exist in the project tree (do not leave strikethrough markdown)
    - `AGENTS.md` — commands, scripts, conventions
    - `INDEX.md` — central guide, references
    - `skills/**/SKILL.md` — skills that need adjustment

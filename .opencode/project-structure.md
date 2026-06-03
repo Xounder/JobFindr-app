@@ -5,13 +5,13 @@ jobfindr/
 ├── apps/
 │   ├── frontend/          # React 19 + Vite 6 + Tailwind 4 SPA
 │   │   └── src/
-│   │       ├── components/  # 15 UI components (JobCard, SearchBar, Filters, Pagination, etc.)
-│   │       ├── hooks/       # useJobSearch, useDebounce
+│   │       ├── components/  # 18 UI components (JobCard, SearchBar, Filters, Pagination, Modal, MatchExplanation, TrustExplanation, etc.)
+│   │       ├── hooks/       # useJobSearch (accepts committed params, no debounce), useDebounce
 │   │       ├── pages/       # HomePage (single route)
 │   │       ├── services/    # api.ts — HTTP client for backend (port 3001)
 │   │       ├── store/       # Zustand searchStore (filters, pagination)
 │   │       ├── types/       # Frontend interfaces (Job, SearchParams, FiltersState)
-│   │   └── utils/       # formatDate, truncate, trustLabel, buildQueryString, formatSalary
+│   │       ├── utils/       # formatDate, truncate, trustLabel, buildQueryString, formatSalary
 │   │   └── playwright-check.ts  # Standalone Playwright script for frontend verification (Windows)
 │   │
 │   └── backend/            # Node 22 + Fastify 5 + TypeScript 6
@@ -53,7 +53,26 @@ jobfindr/
 │   ├── architecture/        # 22 architecture files (01-system-overview to 22-testing-philosophy)
 │   ├── commands/            # Chat commands (pipeline, QA, validation)
 │   ├── hooks/               # PowerShell scripts (validation)
-│   ├── plan/                # Epics, tasks, provider acquisition, three-changes-analysis (modularized in folders)
+│   ├── plan/                # Epics, tasks, provider acquisition, three-changes-analysis, ux-fix-plan (modularized in folders)
+│   │   ├── ux-fix-plan/             # UX Fix Plan — 7 changes (4 MVP + 1 follow-up cycle)
+│   │   │   ├── index.md              # Overview of all 7 changes
+│   │   │   ├── epics/               # Product Manager output (5 epics)
+│   │   │   │   ├── index.md
+│   │   │   │   ├── EPIC-01-modal-and-trust-labels.md
+│   │   │   │   ├── EPIC-02-search-flow-rework.md
+│   │   │   │   ├── EPIC-03-skills-modal-sync.md
+│   │   │   │   ├── EPIC-04-show-more-modal.md
+│   │   │   │   └── EPIC-05-match-trust-explanation-modals.md
+│   │   │   └── tasks/               # Tech Lead output (8 tasks)
+│   │   │       ├── index.md
+│   │   │       ├── TASK-001-create-modal-component.md
+│   │   │       ├── TASK-002-add-trust-slider-labels.md
+│   │   │       ├── TASK-003-add-isdirty-store.md
+│   │   │       ├── TASK-004-refactor-useJobSearch.md
+│   │   │       ├── TASK-005-homepage-draft-commit.md
+│   │   │       ├── TASK-006-search-button-glow.md
+│   │   │       ├── TASK-007-userskills-modal-local-state.md
+│   │   │       └── TASK-008-show-more-modal.md
 │   │   ├── three-changes-analysis/  # Three Changes Analysis — Planning Analyst output
 │   │   │   ├── index.md              # Overview of all 3 changes
 │   │   │   ├── change-1-user-skills.md

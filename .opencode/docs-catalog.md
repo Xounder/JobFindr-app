@@ -32,9 +32,7 @@ Catalog of all `.md` files in `.opencode/` with content description and when to 
 |---|---|---|
 | `skills/jobfindr-pipeline/SKILL.md` | Orchestrator — Full Pipeline + Direct Task Mode | Pipeline flow changes; new steps; new rules |
 | `skills/jobfindr-pipeline-next/SKILL.md` | Pipeline continuation reading pipeline.yaml | pipeline.yaml format changes |
-| ~~`skills/01-product-manager/SKILL.md`~~ | Removed — content migrated to `agents/01-product-manager.md` | N/A |
-| ~~`skills/02-tech-lead/SKILL.md`~~ | Removed — content migrated to `agents/02-tech-lead.md` | N/A |
-| ~~`skills/05-qa-reviewer/SKILL.md`~~ | Removed — content migrated to `agents/05-qa-reviewer.md` | N/A |
+
 | `skills/06-branding/SKILL.md` | Brand guide — colors, typography, visual rules | Palette changes; new components; dark mode |
 | `skills/learning-improvement/SKILL.md` | Session evaluation (step 1/3 of STOP) | Evaluation format changes; chaining enforcement |
 | `skills/continuous-learning/SKILL.md` | Doc update proposal (step 2/3 of STOP) | Scope of analyzed docs changes |
@@ -93,9 +91,7 @@ Catalog of all `.md` files in `.opencode/` with content description and when to 
 | `plan/epics/EPIC-NN-*.md` | Individual epic | Specific EPIC changes |
 | `plan/tasks/index.md` | Detailed technical tasks (modularized by EPIC) | New task; task completed |
 | `plan/tasks/EPIC-NN-tasks.md` | Tasks of a specific EPIC | Task of that EPIC changes |
-| ~~`plan/EPIC-01-tasks.md`~~ | Removed — modularized into `plan/tasks/EPIC-01-tasks.md` | N/A |
-| ~~`plan/epics.md`~~ | Removed — modularized into `plan/epics/index.md` + EPIC files | N/A |
-| ~~`plan/PROVIDER_ACQUISITION_PLAN.md`~~ | Removed — modularized into `plan/provider-acquisition-plan/` | N/A |
+
 | `plan/provider-acquisition/index.md` | Provider acquisition overview — phase→epic mapping | New provider; removed phase |
 | `plan/provider-acquisition/EPIC-PA-01-provider-foundation.md` | Provider Foundation — interface, registry, engine | Infrastructure provider changes |
 | `plan/provider-acquisition/EPIC-PA-02-provider-classification.md` | Provider Classification — ApiProvider, JsonProvider | Classification changes |
@@ -129,6 +125,26 @@ Catalog of all `.md` files in `.opencode/` with content description and when to 
 | `plan/prioridades-ux/impact-analysis.md` | Impact per layer for all 4 changes | Impact analysis updates |
 | `plan/prioridades-ux/risks.md` | Risk assessment for all 4 changes | Risk updates |
 | `plan/prioridades-ux/recommendations.md` | Phasing, epics, and recommendations | Priority/dependency changes |
+| `plan/ux-fix-plan/index.md` | UX Fix Plan overview — 7 changes analysis | New planning cycle |
+| `plan/ux-fix-plan/feasibility.md` | Technical feasibility, approaches for each change | Approach changes |
+| `plan/ux-fix-plan/impact-analysis.md` | Impact per layer, 18-22 files touched | Impact assessment updates |
+| `plan/ux-fix-plan/risks.md` | Risk assessment, regressions, mitigations | Risk updates |
+| `plan/ux-fix-plan/recommendations.md` | Build order, phasing, MVP vs follow-up | Priority/dependency changes |
+| `plan/ux-fix-plan/epics/index.md` | Epic overview — 5 epics (4 MVP + 1 follow-up) | Epic refinement |
+| `plan/ux-fix-plan/epics/EPIC-01-modal-and-trust-labels.md` | Epic 01 — Modal component + trust slider labels | Epic refinement |
+| `plan/ux-fix-plan/epics/EPIC-02-search-flow-rework.md` | Epic 02 — Draft/commit search flow rework | Epic refinement |
+| `plan/ux-fix-plan/epics/EPIC-03-skills-modal-sync.md` | Epic 03 — Your Skills local state + sync on close | Epic refinement |
+| `plan/ux-fix-plan/epics/EPIC-04-show-more-modal.md` | Epic 04 — Show More as modal | Epic refinement |
+| `plan/ux-fix-plan/epics/EPIC-05-match-trust-explanation-modals.md` | Epic 05 — Match/Trust explanation modals (follow-up) | Epic refinement |
+| `plan/ux-fix-plan/tasks/index.md` | Task overview — 8 frontend tasks | Task changes |
+| `plan/ux-fix-plan/tasks/TASK-001-create-modal-component.md` | Task 001 — Create reusable Modal | Task changes |
+| `plan/ux-fix-plan/tasks/TASK-002-add-trust-slider-labels.md` | Task 002 — Trust descriptions on slider | Task changes |
+| `plan/ux-fix-plan/tasks/TASK-003-add-isdirty-store.md` | Task 003 — isDirty state + commitSearch to store | Task changes |
+| `plan/ux-fix-plan/tasks/TASK-004-refactor-useJobSearch.md` | Task 004 — Refactor useJobSearch to accept params | Task changes |
+| `plan/ux-fix-plan/tasks/TASK-005-homepage-draft-commit.md` | Task 005 — Draft/commit pattern in HomePage | Task changes |
+| `plan/ux-fix-plan/tasks/TASK-006-search-button-glow.md` | Task 006 — Search button glow animation | Task changes |
+| `plan/ux-fix-plan/tasks/TASK-007-userskills-modal-local-state.md` | Task 007 — UserSkillsModal local state | Task changes |
+| `plan/ux-fix-plan/tasks/TASK-008-show-more-modal.md` | Task 008 — Show More as modal | Task changes |
 
 ---
 

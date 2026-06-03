@@ -1,30 +1,29 @@
 pipeline:
-  name: JobFindr Pipeline
-  started_at: "2026-05-31T00:00:00-03:00"
-  updated_at: "2026-05-31T00:10:00-03:00"
-    current_step: "completed"
+  current_step: completed
+  started_at: "2026-06-03T00:00:00.000Z"
+  updated_at: "2026-06-03T20:40:00.000Z"
   steps:
     product-manager:
       status: completed
-      notes: "Epics created in .opencode/plan/prioridades-ux/epics/"
-      updated_at: "2026-05-31T00:07:00-03:00"
+      notes: "Epics created in .opencode/plan/ux-fix-plan/epics/ — 5 epics (4 MVP + 1 follow-up)"
+      updated_at: "2026-06-03T20:15:00.000Z"
     tech-lead:
       status: completed
-      notes: "Tasks created in .opencode/plan/prioridades-ux/tasks/"
-      updated_at: "2026-05-31T00:10:00-03:00"
+      notes: "8 tasks created in .opencode/plan/ux-fix-plan/tasks/ — all frontend-only"
+      updated_at: "2026-06-03T20:15:00.000Z"
     senior-frontend:
       status: completed
-      notes: "Completed implementation of TASK-203, TASK-301, TASK-401 - all frontend tests passing"
-      updated_at: "2026-05-31T00:50:00-03:00"
+      notes: "All 4 QA issues fixed: setPageSize dirty flag, sort bug, draft/commit pattern, tick labels"
+      updated_at: "2026-06-03T20:35:00.000Z"
     senior-backend:
       status: completed
-      notes: "Completed implementation of TASK-101, TASK-201, TASK-202 with all backend tests passing"
-      updated_at: "2026-05-31T00:50:00-03:00"
+      notes: "No backend tasks in this cycle"
+      updated_at: "2026-06-03T20:15:00.000Z"
     qa-frontend:
       status: completed
-      notes: "Approved - All three tasks (TASK-203, TASK-301, TASK-401) implemented correctly. All 96 frontend tests pass, lint passes, build succeeds. No unused variables, proper TypeScript conventions followed, no architectural violations found."
-      updated_at: "2026-05-31T00:55:00-03:00"
+      notes: "All checks passed — 4/4 issues fixed (setPageSize dirty, sort commit, draft/commit pattern, tick labels)"
+      updated_at: "2026-06-03T20:40:00.000Z"
     qa-backend:
       status: completed
-      notes: "Approved - All three tasks (TASK-101, TASK-201, TASK-202) implemented correctly. All 246 backend tests pass, build succeeds, types package builds. No unused variables, proper TypeScript conventions followed, no architectural violations found."
-      updated_at: "2026-05-31T00:55:00-03:00"
+      notes: "No backend changes to review"
+      updated_at: "2026-06-03T20:15:00.000Z"

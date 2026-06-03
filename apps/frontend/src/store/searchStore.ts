@@ -5,6 +5,7 @@ import type { FiltersState } from "@/types";
 interface SearchStore extends FiltersState {
   page: number;
   pageSize: number;
+  isDirty: boolean;
   setQuery: (query: string) => void;
   setSkills: (skills: string[]) => void;
   setSeniority: (seniority: string) => void;
@@ -19,6 +20,7 @@ interface SearchStore extends FiltersState {
   setPage: (page: number) => void;
   setPageSize: (pageSize: number) => void;
   resetFilters: () => void;
+  commitSearch: () => void;
 }
 
 const initialState: FiltersState = {
@@ -41,21 +43,23 @@ export const useSearchStore = create<SearchStore>()(
       ...initialState,
       page: 1,
       pageSize: 20,
+      isDirty: false,
 
-      setQuery: (query) => set({ query, page: 1 }),
-      setSkills: (skills) => set({ skills, page: 1 }),
-      setSeniority: (seniority) => set({ seniority, page: 1 }),
-      setRemoteMode: (remoteMode) => set({ remoteMode, page: 1 }),
-      setCountries: (countries) => set({ countries, page: 1 }),
-      setCompanies: (companies) => set({ companies, page: 1 }),
-      setExcludeCompanies: (excludeCompanies) => set({ excludeCompanies, page: 1 }),
-      setTrustMin: (trustMin) => set({ trustMin, page: 1 }),
-      setSort: (sort) => set({ sort, page: 1 }),
-      setUserSkills: (userSkills) => set({ userSkills, page: 1 }),
-      setUserSeniority: (userSeniority) => set({ userSeniority, page: 1 }),
+      setQuery: (query) => set({ query, page: 1, isDirty: true }),
+      setSkills: (skills) => set({ skills, page: 1, isDirty: true }),
+      setSeniority: (seniority) => set({ seniority, page: 1, isDirty: true }),
+      setRemoteMode: (remoteMode) => set({ remoteMode, page: 1, isDirty: true }),
+      setCountries: (countries) => set({ countries, page: 1, isDirty: true }),
+      setCompanies: (companies) => set({ companies, page: 1, isDirty: true }),
+      setExcludeCompanies: (excludeCompanies) => set({ excludeCompanies, page: 1, isDirty: true }),
+      setTrustMin: (trustMin) => set({ trustMin, page: 1, isDirty: true }),
+      setSort: (sort) => set({ sort, page: 1, isDirty: true }),
+      setUserSkills: (userSkills) => set({ userSkills, page: 1, isDirty: true }),
+      setUserSeniority: (userSeniority) => set({ userSeniority, page: 1, isDirty: true }),
       setPage: (page) => set({ page }),
       setPageSize: (pageSize) => set({ pageSize, page: 1 }),
-      resetFilters: () => set({ ...initialState, page: 1 }),
+      resetFilters: () => set({ ...initialState, page: 1, isDirty: false }),
+      commitSearch: () => set({ isDirty: false }),
     }),
     {
       name: "jobfindr-filters",

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { SearchBar } from "@/components/SearchBar";
 import { SortToggle } from "@/components/SortToggle";
 import { FiltersPanel } from "@/components/FiltersPanel";
@@ -7,8 +7,9 @@ import { Pagination } from "@/components/Pagination";
 import { LoadingSkeleton } from "@/components/LoadingSkeleton";
 import { LoadingStates } from "@/components/LoadingStates";
 import { EmptyState } from "@/components/EmptyState";
-import { useJobSearch, useDebounce } from "@/hooks";
+import { useJobSearch } from "@/hooks";
 import { useSearchStore } from "@/store/searchStore";
+import type { SearchParams } from "@/types";
 
 export default function HomePage() {
   const {
@@ -34,27 +35,101 @@ export default function HomePage() {
     setSort,
     setPage,
     resetFilters,
+    commitSearch,
+    isDirty,
   } = useSearchStore();
 
-  const { data, isLoading, isFetching, isError, error } = useJobSearch();
+  // committedParams snapshots the store values to trigger actual search
+  const [committedParams, setCommittedParams] = useState<SearchParams>(() => {
+    return {
+      q: query,
+      skills,
+      seniority,
+      remoteMode,
+      countries,
+      companies,
+      excludeCompanies,
+      trustMin,
+      sort,
+      userSkills,
+      userSeniority,
+      page: 1,
+      pageSize: 20,
+    };
+  });
 
-  const [localQuery, setLocalQuery] = useState(query);
+  // Auto-search on mount (committedParams already initialized from store)
+  const { data, isLoading, isFetching, isError, error } = useJobSearch(committedParams);
 
-  const debouncedQuery = useDebounce(localQuery, 400);
+  // Commit store values to trigger a search
+  const handleCommitSearch = useCallback(() => {
+    const state = useSearchStore.getState();
+    setCommittedParams({
+      q: state.query,
+      skills: state.skills,
+      seniority: state.seniority,
+      remoteMode: state.remoteMode,
+      countries: state.countries,
+      companies: state.companies,
+      excludeCompanies: state.excludeCompanies,
+      trustMin: state.trustMin,
+      sort: state.sort,
+      userSkills: state.userSkills,
+      userSeniority: state.userSeniority,
+      page: 1,
+      pageSize: 20,
+    });
+    commitSearch();
+  }, [commitSearch]);
 
-  // Sync debounced query to store (TASK-087: Debounce Search)
-  useEffect(() => {
-    setQuery(debouncedQuery);
-  }, [debouncedQuery, setQuery]);
-
+  // Handle search bar submit — immediate search
   const handleSearch = useCallback(
     (q: string) => {
-      setLocalQuery(q);
+      setQuery(q);
+      // Zustand updates are synchronous, so getState() reads updated value
+      handleCommitSearch();
     },
-    [],
+    [setQuery, handleCommitSearch],
   );
 
-  const showLoading = isLoading;
+  // Handle pagination — bypass dirty check, update committedParams directly
+  const handlePageChange = useCallback((newPage: number) => {
+    setPage(newPage);
+    setCommittedParams((prev) => ({ ...prev, page: newPage }));
+  }, [setPage]);
+
+  // Handle sort — just update store, let Search button commit
+  const handleSortChange = useCallback(
+    (newSort: "trust" | "match") => {
+      setSort(newSort);
+    },
+    [setSort],
+  );
+
+  // Filter changes only update the store (isDirty = true), Search button commits
+
+  // Handle reset — reset filters and commit
+  const handleReset = useCallback(() => {
+    resetFilters();
+    // Reset committedParams to initial empty state
+    setCommittedParams({
+      q: "",
+      skills: [],
+      seniority: "",
+      remoteMode: [],
+      countries: [],
+      companies: [],
+      excludeCompanies: [],
+      trustMin: 0,
+      sort: "trust",
+      userSkills: [],
+      userSeniority: "",
+      page: 1,
+      pageSize: 20,
+    });
+  }, [resetFilters]);
+
+  const showLoading = isLoading && !data;
   const showFetching = isFetching && !isLoading;
   const showEmpty = !isLoading && !isFetching && data && data.jobs.length === 0;
   const showResults = !isLoading && !isFetching && data && data.jobs.length > 0;
@@ -62,7 +137,7 @@ export default function HomePage() {
   return (
     <div className="space-y-6">
       {/* Search Bar */}
-      <SearchBar initialQuery={localQuery} onSearch={handleSearch} />
+      <SearchBar initialQuery={query} onSearch={handleSearch} isDirty={isDirty} />
 
       {/* Error banner */}
       {isError && (
@@ -77,23 +152,23 @@ export default function HomePage() {
         <div className="lg:col-span-1">
           <FiltersPanel
             filters={{ query, skills, seniority, remoteMode, countries, companies, excludeCompanies, trustMin, sort, userSkills, userSeniority }}
-            onSeniorityChange={setSeniority}
-            onRemoteModeChange={setRemoteMode}
-            onCountriesChange={setCountries}
-            onIncludeChange={setCompanies}
-            onExcludeChange={setExcludeCompanies}
-            onSkillsChange={setSkills}
-            onTrustMinChange={setTrustMin}
-            onReset={resetFilters}
+            onSeniorityChange={(v) => setSeniority(v)}
+            onRemoteModeChange={(v) => setRemoteMode(v)}
+            onCountriesChange={(v) => setCountries(v)}
+            onIncludeChange={(v) => setCompanies(v)}
+            onExcludeChange={(v) => setExcludeCompanies(v)}
+            onSkillsChange={(v) => setSkills(v)}
+            onTrustMinChange={(v) => setTrustMin(v)}
+            onReset={handleReset}
           />
         </div>
 
         {/* Results Area */}
         <div className="lg:col-span-3">
-          {/* Loading skeleton */}
+          {/* Loading skeleton (initial load only) */}
           {showLoading && <LoadingSkeleton count={6} />}
 
-          {/* Fetching indicator */}
+          {/* Fetching indicator (background refetch) */}
           {showFetching && <LoadingStates isLoading={true} message="Refreshing results…" />}
 
           {/* Empty state */}
@@ -105,7 +180,7 @@ export default function HomePage() {
               <p className="text-sm text-gray-500">
                 Showing {data.jobs.length} of {data.total} result{data.total !== 1 ? "s" : ""}
               </p>
-              <SortToggle value={sort} onChange={setSort} />
+              <SortToggle value={sort} onChange={handleSortChange} />
             </div>
           )}
 
@@ -123,7 +198,7 @@ export default function HomePage() {
                 currentPage={data.page}
                 totalPages={data.totalPages}
                 total={data.total}
-                onPageChange={setPage}
+                onPageChange={handlePageChange}
               />
             </div>
           )}

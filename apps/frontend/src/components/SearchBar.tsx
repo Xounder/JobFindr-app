@@ -5,6 +5,7 @@ interface SearchBarProps {
   initialQuery?: string;
   onSearch: (query: string) => void;
   placeholder?: string;
+  isDirty?: boolean;
 }
 
 const MAX_SUGGESTIONS = 8;
@@ -13,6 +14,7 @@ export function SearchBar({
   initialQuery = "",
   onSearch,
   placeholder = "Search jobs by title, company, or keyword…",
+  isDirty = false,
 }: SearchBarProps) {
   const [value, setValue] = useState(initialQuery);
   const [showSuggestions, setShowSuggestions] = useState(false);
@@ -228,7 +230,11 @@ export function SearchBar({
 
       <button
         type="submit"
-        className="rounded-lg bg-indigo-600 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+        className={`rounded-lg px-5 py-2.5 text-sm font-medium text-white transition-all focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 ${
+          isDirty
+            ? "animate-pulse bg-amber-500 ring-2 ring-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.5)] hover:bg-amber-600"
+            : "bg-indigo-600 hover:bg-indigo-700"
+        }`}
       >
         Search
       </button>

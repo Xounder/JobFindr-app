@@ -4,7 +4,7 @@ pipeline:
   name: "Three Changes Analysis — Implementation"
   version: "1.0"
   created_at: "2026-05-30T23:00:00Z"
-  updated_at: "2026-05-30T23:00:00Z"
+  updated_at: "2026-06-03T20:25:00Z"
 
 epics:
   - id: "EPIC-01"
@@ -196,10 +196,12 @@ steps:
   tech-lead:
     status: "completed"
     notes: "14 tasks created in .opencode/plan/three-changes-analysis/tasks/"
+  senior-frontend:
+    status: "completed"
+    notes: "All 8 UX Fix Plan tasks implemented (Modal, Trust slider labels, isDirty store, useJobSearch refactor, HomePage draft/commit, SearchBar glow, UserSkillsModal local state, ExpandableDescription modal). 129 tests pass, lint passes, build succeeds."
   senior-backend:
     status: "completed"
     notes: "TASK-101: Trust-first default ordering in ranking-engine; TASK-201: trust/match sort options in shared types + validation; TASK-202: sortBy support in ranking + aggregation wiring. All 246 tests pass."
-  updated_at: "2026-05-31T00:12:00Z"
   qa-frontend:
     status: "completed"
     notes: "Approved - All three tasks (TASK-203, TASK-301, TASK-401) implemented correctly. All 96 frontend tests pass, lint passes, build succeeds. No unused variables, proper TypeScript conventions followed, no architectural violations found."

@@ -43,32 +43,61 @@ describe("UserSkillsModal", () => {
     expect(dialog).toHaveAttribute("aria-modal", "true");
   });
 
-  it("closes when close button is clicked", () => {
+  it("syncs local state to store on close button click", () => {
+    const onUserSkillsChange = vi.fn();
+    const onUserSeniorityChange = vi.fn();
     const onClose = vi.fn();
-    render(<UserSkillsModal {...defaultProps} onClose={onClose} />);
+    render(
+      <UserSkillsModal
+        {...defaultProps}
+        userSkills={["TypeScript"]}
+        userSeniority="senior"
+        onUserSkillsChange={onUserSkillsChange}
+        onUserSeniorityChange={onUserSeniorityChange}
+        onClose={onClose}
+      />,
+    );
 
     fireEvent.click(screen.getByLabelText("Close modal"));
+    expect(onUserSkillsChange).toHaveBeenCalledWith(["TypeScript"]);
+    expect(onUserSeniorityChange).toHaveBeenCalledWith("senior");
     expect(onClose).toHaveBeenCalledOnce();
   });
 
-  it("closes when overlay is clicked", () => {
+  it("discards changes on overlay click (does not sync)", () => {
+    const onUserSkillsChange = vi.fn();
     const onClose = vi.fn();
-    render(<UserSkillsModal {...defaultProps} onClose={onClose} />);
+    render(
+      <UserSkillsModal
+        {...defaultProps}
+        onUserSkillsChange={onUserSkillsChange}
+        onClose={onClose}
+      />,
+    );
 
     const overlay = screen.getByRole("dialog");
     fireEvent.click(overlay);
+    expect(onUserSkillsChange).not.toHaveBeenCalled();
     expect(onClose).toHaveBeenCalledOnce();
   });
 
-  it("closes on Escape key", () => {
+  it("discards changes on Escape key (does not sync)", () => {
+    const onUserSkillsChange = vi.fn();
     const onClose = vi.fn();
-    render(<UserSkillsModal {...defaultProps} onClose={onClose} />);
+    render(
+      <UserSkillsModal
+        {...defaultProps}
+        onUserSkillsChange={onUserSkillsChange}
+        onClose={onClose}
+      />,
+    );
 
     fireEvent.keyDown(document, { key: "Escape" });
+    expect(onUserSkillsChange).not.toHaveBeenCalled();
     expect(onClose).toHaveBeenCalledOnce();
   });
 
-  it("renders skills as tags", () => {
+  it("renders skills as tags (local state)", () => {
     render(
       <UserSkillsModal
         {...defaultProps}
@@ -88,7 +117,7 @@ describe("UserSkillsModal", () => {
     expect(screen.getByLabelText("Your Seniority")).toBeDefined();
   });
 
-  it("calls onUserSeniorityChange when seniority changes", () => {
+  it("updates local seniority on change (does not sync until close)", () => {
     const onUserSeniorityChange = vi.fn();
     render(
       <UserSkillsModal
@@ -100,7 +129,9 @@ describe("UserSkillsModal", () => {
     fireEvent.change(screen.getByLabelText("Your Seniority"), {
       target: { value: "senior" },
     });
-    expect(onUserSeniorityChange).toHaveBeenCalledWith("senior");
+
+    // Should NOT call the store callback yet
+    expect(onUserSeniorityChange).not.toHaveBeenCalled();
   });
 
   it("shows selective move section when skills exist", () => {
@@ -151,7 +182,7 @@ describe("UserSkillsModal", () => {
     expect(checkboxes.every((cb) => (cb as HTMLInputElement).checked)).toBe(false);
   });
 
-  it("calls onMoveToRequired with checked skills", () => {
+  it("calls onMoveToRequired with checked skills and removes them from local state", () => {
     const onMoveToRequired = vi.fn();
     render(
       <UserSkillsModal
@@ -196,7 +227,7 @@ describe("UserSkillsModal", () => {
     expect(screen.getByText("Cancel")).toBeDefined();
   });
 
-  it("calls onUserSkillsChange with empty array on remove all confirm", () => {
+  it("removes all skills locally on confirm", () => {
     const onUserSkillsChange = vi.fn();
     render(
       <UserSkillsModal
@@ -209,7 +240,8 @@ describe("UserSkillsModal", () => {
     fireEvent.click(screen.getByText("Remove all skills"));
     fireEvent.click(screen.getByText("Confirm Remove All"));
 
-    expect(onUserSkillsChange).toHaveBeenCalledWith([]);
+    // Should NOT call onUserSkillsChange yet (waiting for close)
+    expect(onUserSkillsChange).not.toHaveBeenCalled();
   });
 
   it("cancels remove all", () => {
@@ -226,7 +258,7 @@ describe("UserSkillsModal", () => {
     expect(screen.queryByText("Confirm Remove All")).toBeNull();
   });
 
-  it("adds a skill via autocomplete input", () => {
+  it("adds a skill to local state", () => {
     const onUserSkillsChange = vi.fn();
     render(
       <UserSkillsModal
@@ -240,7 +272,8 @@ describe("UserSkillsModal", () => {
     fireEvent.change(input, { target: { value: "Rust" } });
     fireEvent.click(screen.getByText("Add"));
 
-    expect(onUserSkillsChange).toHaveBeenCalledWith(["Rust"]);
+    // Should NOT call onUserSkillsChange yet (waiting for close)
+    expect(onUserSkillsChange).not.toHaveBeenCalled();
   });
 
   it("renders autocomplete input", () => {

@@ -192,4 +192,26 @@ describe("SearchBar", () => {
     const input = screen.getByRole("combobox");
     expect(input).toHaveAttribute("aria-autocomplete", "list");
   });
+
+  it("renders with normal search button by default", () => {
+    render(<SearchBar onSearch={() => {}} />);
+    const button = screen.getByRole("button", { name: /search/i });
+    expect(button.className).toContain("bg-indigo-600");
+    expect(button.className).not.toContain("animate-pulse");
+  });
+
+  it("renders with glow animation when isDirty is true", () => {
+    render(<SearchBar onSearch={() => {}} isDirty={true} />);
+    const button = screen.getByRole("button", { name: /search/i });
+    expect(button.className).toContain("animate-pulse");
+    expect(button.className).toContain("bg-amber-500");
+    expect(button.className).toContain("ring-amber-400");
+  });
+
+  it("renders normal button when isDirty is false", () => {
+    render(<SearchBar onSearch={() => {}} isDirty={false} />);
+    const button = screen.getByRole("button", { name: /search/i });
+    expect(button.className).toContain("bg-indigo-600");
+    expect(button.className).not.toContain("animate-pulse");
+  });
 });
