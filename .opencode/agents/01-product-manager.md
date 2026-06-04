@@ -128,6 +128,7 @@ Update `pipeline.yaml`:
 - Stories must be testable and measurable
 - Focus on user experience without accumulating unnecessary technical debt
 - Each epic in a separate file within the context folder
+- **Never request or open files outside the project directory** — all operations must stay within the project root
 
 ## Related Documents
 

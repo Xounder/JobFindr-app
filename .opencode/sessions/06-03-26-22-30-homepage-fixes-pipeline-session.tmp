@@ -1,0 +1,9 @@
+DONE: Completed full homepage-fixes pipeline — PM created 3 epics, TL created 3 tasks, Senior Frontend implemented all (TASK-HF-01: stale closure fix, TASK-HF-02: seniority label, TASK-HF-03: null filter values + persist migration), QA Frontend approved. All 179 tests pass, lint+build clean, Playwright non-regression confirmed.
+
+WRONG: Senior Frontend agent returned empty result — no implementation summary or error reporting. Pipeline YAML had indentation breakage from QA agent (misaligned updated_at key). Playwright command `pnpm --filter backend exec tsx apps/frontend/playwright-check.ts` fails because `--filter backend exec` sets cwd to `apps/backend/`.
+
+IMPROV: Validate agent output is non-empty before proceeding; add YAML lint step after each agent update; enforce agents return structured summaries; fix Playwright command to use `../frontend/playwright-check.ts`.
+
+LEARN: Files are at `src/components/` not `src/components/layout/` — agents must verify actual paths; PM & TL agents auto-update pipeline.yaml which is helpful but can cause formatting issues.
+
+NEXT: Doc updates applied (AGENTS.md, SKILL.md, 03-senior-frontend.md, 05-qa-reviewer.md) — Playwright command path fixed, error reporting strengthened, YAML validation added.

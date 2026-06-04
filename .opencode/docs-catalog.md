@@ -163,6 +163,11 @@ Catalog of all `.md` files in `.opencode/` with content description and when to 
 | `plan/ux-fix-plan/tasks/TASK-006-search-button-glow.md` | Task 006 — Search button glow animation | Task changes |
 | `plan/ux-fix-plan/tasks/TASK-007-userskills-modal-local-state.md` | Task 007 — UserSkillsModal local state | Task changes |
 | `plan/ux-fix-plan/tasks/TASK-008-show-more-modal.md` | Task 008 — Show More as modal | Task changes |
+| `plan/homepage-fixes/index.md` | Homepage Fixes overview — 3 issues | New analysis or updates |
+| `plan/homepage-fixes/feasibility.md` | Technical feasibility and approaches for all 3 issues | Approach changes |
+| `plan/homepage-fixes/impact-analysis.md` | Impact per layer — 3-4 files changed | Impact assessment updates |
+| `plan/homepage-fixes/risks.md` | Risk assessment — persist migration risk, low overall | Risk updates |
+| `plan/homepage-fixes/recommendations.md` | Recommendations — single frontend sprint | Priority/dependency changes |
 
 ---
 

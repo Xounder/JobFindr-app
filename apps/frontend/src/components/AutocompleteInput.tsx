@@ -34,10 +34,13 @@ export function AutocompleteInput({
   const [highlightIndex, setHighlightIndex] = useState(-1);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
+  // Defensive null coalescing — prevents "null" rendering from corrupted state
+  const safeSelectedItems = selectedItems ?? [];
+
   const filtered = suggestions.filter(
     (s) =>
       s.toLowerCase().includes(input.toLowerCase()) &&
-      !selectedItems.includes(s) &&
+      !safeSelectedItems.includes(s) &&
       !(excludeItems ?? []).includes(s),
   );
   const showDropdown = isFocused && filtered.length > 0;
@@ -45,13 +48,13 @@ export function AutocompleteInput({
   const addItem = useCallback(
     (item: string) => {
       const trimmed = item.trim();
-      if (trimmed && !selectedItems.includes(trimmed) && !(excludeItems ?? []).includes(trimmed)) {
+      if (trimmed && !safeSelectedItems.includes(trimmed) && !(excludeItems ?? []).includes(trimmed)) {
         onAdd(trimmed);
       }
       setInput("");
       setHighlightIndex(-1);
     },
-    [selectedItems, excludeItems, onAdd],
+    [safeSelectedItems, excludeItems, onAdd],
   );
 
   const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
@@ -116,7 +119,7 @@ export function AutocompleteInput({
             <button
               type="button"
               onClick={onClear}
-              disabled={selectedItems.length === 0}
+              disabled={safeSelectedItems.length === 0}
               className="rounded-md bg-indigo-600 px-3 py-1.5 text-sm text-white hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-50"
             >
               {clearLabel}
@@ -150,9 +153,9 @@ export function AutocompleteInput({
           </ul>
         )}
       </div>
-      {selectedItems.length > 0 && (
+      {safeSelectedItems.length > 0 && (
         <div className="mt-2 flex flex-wrap gap-1.5">
-          {selectedItems.map((item) => renderTag(item, onRemove))}
+          {safeSelectedItems.map((item) => renderTag(item, onRemove))}
         </div>
       )}
     </div>

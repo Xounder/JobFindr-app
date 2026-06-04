@@ -21,11 +21,12 @@ export function Layout({ children }: LayoutProps) {
 
   const handleMoveToRequired = useCallback(
     (skillsToMove: string[]) => {
+      const currentUserSkills = useSearchStore.getState().userSkills;
       const merged = [...new Set([...skills, ...skillsToMove])];
       setSkills(merged);
-      setUserSkills(userSkills.filter((s) => !skillsToMove.includes(s)));
+      setUserSkills(currentUserSkills.filter((s) => !skillsToMove.includes(s)));
     },
-    [skills, userSkills, setSkills, setUserSkills],
+    [skills, setSkills, setUserSkills],
   );
 
   return (

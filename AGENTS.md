@@ -129,7 +129,7 @@ pnpm --filter backend start
 pnpm --filter frontend dev
 
 # 2. Executar verificação (usa tsx do backend)
-pnpm --filter backend exec tsx apps/frontend/playwright-check.ts
+pnpm --filter backend exec tsx ../frontend/playwright-check.ts
 ```
 
 O script usa `chromium.launch()` do `@playwright/test` diretamente (não o MCP).  
@@ -199,6 +199,28 @@ No file (including AGENTS.md, `tasks.md`, `epics.md`, etc.) may exceed **400 lin
 - Split sections into separate files within a folder
 - Create an `index.md` in the folder with an overview and links
 - Update all references that pointed to the original file
+
+## Agent rules
+
+### External files restriction
+Never open, read, write, or request files outside this project directory. All operations must stay within the project root.
+
+### Process handling
+- **Never check if a process is running** (no Get-Process, ps, etc.)
+- **Never kill/taskkill processes yourself** — just run `pnpm` commands as-is
+- If a port is already in use, report the error to the orchestrator — do not resolve it
+
+### All tasks must be completed
+The orchestrator MUST auto-continue phases until ALL tasks in the plan are implemented, validated, and QA-approved. Never stop after a partial phase. Only run the STOP hook after ALL tasks are done.
+
+### Error reporting
+All agents (Senior Frontend, Senior Backend, QA Reviewer) MUST return a summary of any errors encountered during their execution — including tool failures, process spawn issues, Playwright failures, port conflicts, build tool problems. These must be reported back to the orchestrator in the final return message of the task.
+
+### Playwright verification (Frontend & QA Frontend)
+Senior Frontend and QA Frontend MUST always run Playwright as the last verification step to confirm the application is functional. See "Playwright checks (Windows)" section for the exact command.
+
+### App cleanup
+After running the application for validation (Playwright, HTTP tests, etc.), agents MUST stop/terminate the running processes. Do not leave the app running after validation is complete.
 
 ## STOP hook (after complete implementation)
 

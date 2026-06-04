@@ -31,6 +31,9 @@ Identify which layer is being reviewed and update `pipeline.yaml`:
 - `pnpm --filter frontend build`
 - Verify there is no business logic in the frontend
 - Verify type-only imports, no enums/namespaces
+- **Start the app** — run `pnpm --filter backend start` and `pnpm --filter frontend dev`
+- **Verify with Playwright** — run `pnpm --filter backend exec tsx ../frontend/playwright-check.ts` (note: `--filter backend exec` sets cwd to `apps/backend/`, so path is relative from there)
+- **Stop the app** — after verification, kill the running processes
 
 ### For backend
 - Verify provider isolation
@@ -38,7 +41,8 @@ Identify which layer is being reviewed and update `pipeline.yaml`:
 - Verify deterministic scoring
 - Verify proper error handling
 
-5. Report result:
+5. **Return structured summary** — report back to the orchestrator a non-empty summary of what was reviewed, validation results, and any errors encountered (Playwright failures, port conflicts, process spawn issues, lint/build tool problems, etc.)
+6. Report result:
    - **Approved**: code meets all criteria
    - **Corrections needed**: list of items to adjust (send to the responsible agent)
 
@@ -62,6 +66,7 @@ Update `pipeline.yaml`:
 - Be strict but constructive — point out the problem and suggest the fix
 - Verify there is no dead code, unused imports or unused variables
 - Confirm that `noUnusedLocals` and `noUnusedParameters` were not violated
+- **Never request or open files outside the project directory** — all operations must stay within the project root
 
 ## Check List
 

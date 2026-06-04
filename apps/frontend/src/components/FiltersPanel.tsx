@@ -4,7 +4,16 @@ import { CountryFilter } from "./CountryFilter";
 import { CompanyFilters } from "./CompanyFilters";
 import { SkillsTagsInput } from "./SkillsTagsInput";
 import { TrustFilters } from "./TrustFilters";
+import { useSearchStore } from "@/store/searchStore";
 import type { FiltersState } from "@/types";
+
+const SENIORITY_DISPLAY: Record<string, string> = {
+  junior: "Junior",
+  mid: "Mid-Level",
+  senior: "Senior",
+  lead: "Lead",
+  principal: "Principal",
+};
 
 interface FiltersPanelProps {
   filters: FiltersState;
@@ -29,6 +38,7 @@ export function FiltersPanel({
   onTrustMinChange,
   onReset,
 }: FiltersPanelProps) {
+  const { userSeniority } = useSearchStore();
   const hasActiveFilters =
     filters.seniority !== "" ||
     filters.remoteMode.length > 0 ||
@@ -87,6 +97,11 @@ export function FiltersPanel({
       </div>
 
       <SenioritySelector value={filters.seniority} onChange={onSeniorityChange} />
+      <p className="mt-1 text-xs text-gray-500">
+        {userSeniority
+          ? `Seniority: ${SENIORITY_DISPLAY[userSeniority] ?? userSeniority}`
+          : "Seniority: Not set"}
+      </p>
 
       <RemoteModeFilter value={filters.remoteMode} onChange={onRemoteModeChange} />
 

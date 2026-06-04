@@ -77,6 +77,33 @@ export const useSearchStore = create<SearchStore>()(
         userSeniority: state.userSeniority,
       }),
       version: 1,
+      migrate: (persistedState: unknown) => {
+        // Handle completely null or undefined persisted state
+        if (!persistedState || typeof persistedState !== "object") {
+          return {
+            query: "",
+            skills: [],
+            seniority: "",
+            remoteMode: [],
+            countries: [],
+            companies: [],
+            excludeCompanies: [],
+            trustMin: 0,
+            sort: "trust",
+            userSkills: [],
+            userSeniority: "",
+          };
+        }
+        const state = persistedState as Record<string, unknown>;
+        // Convert any null array fields to empty arrays
+        const arrayFields = ["skills", "remoteMode", "countries", "companies", "excludeCompanies", "userSkills"] as const;
+        for (const field of arrayFields) {
+          if (state[field] === null) {
+            state[field] = [];
+          }
+        }
+        return state;
+      },
     },
   ),
 );

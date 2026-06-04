@@ -105,6 +105,7 @@ Update `pipeline.yaml`:
 - Never skip the planning step — every task needs architectural context
 - Respect MVP principles: stateless, provider isolation, deterministic scoring
 - One task per `.md` file — never group multiple tasks in the same file
+- **Never request or open files outside the project directory** — all operations must stay within the project root
 
 ## Related Documents
 

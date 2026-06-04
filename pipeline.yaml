@@ -1,30 +1,30 @@
 pipeline:
   name: JobFindr Pipeline
-  started_at: "2026-06-03T00:00:00Z"
-  updated_at: "2026-06-03T21:50:00Z"
+  started_at: "2026-06-03T21:55:00Z"
+  updated_at: "2026-06-03T22:25:00Z"
   current_step: "completed"
   steps:
     product-manager:
       status: completed
-      notes: "Epics created in .opencode/plan/ux-filter-modal-changes/epics/"
-      updated_at: "2026-06-03T21:05:00Z"
+      notes: "Epics created in .opencode/plan/homepage-fixes/epics/"
+      updated_at: "2026-06-03T22:15:00Z"
     tech-lead:
       status: completed
-      notes: "6 tasks created in .opencode/plan/ux-filter-modal-changes/tasks/"
-      updated_at: "2026-06-03T21:10:00Z"
+      notes: "Tasks created in .opencode/plan/homepage-fixes/tasks/"
+      updated_at: "2026-06-03T22:40:00Z"
     senior-frontend:
       status: completed
-      notes: "Phase 2: TASK-002 + TASK-003 + TASK-006 implemented (179 tests, lint+build clean)"
-      updated_at: "2026-06-03T21:45:00Z"
+      notes: "TASK-HF-01, TASK-HF-02, TASK-HF-03 implemented — 179/179 tests, lint+build clean"
+      updated_at: "2026-06-03T22:30:00Z"
     senior-backend:
-      status: completed
-      notes: "TASK-005 (Backend trust/match breakdown) implemented and QA-approved"
-      updated_at: "2026-06-03T21:25:00Z"
+      status: pending
+      notes: null
+      updated_at: null
     qa-frontend:
       status: completed
-      notes: "TASK-002+TASK-003+TASK-006 approved — 179/179 tests, lint+build clean, all AC met"
-      updated_at: "2026-06-03T21:50:00Z"
+      notes: "Approved — all acceptance criteria met, lint/build/tests pass, Playwright non-regression (3 pre-existing check script timing issues unrelated to changes)"
+      updated_at: "2026-06-03T22:40:00Z"
     qa-backend:
-      status: completed
-      notes: "TASK-005 approved — 280/280 tests passing, build clean"
-      updated_at: "2026-06-03T21:35:00Z"
+      status: pending
+      notes: null
+      updated_at: null

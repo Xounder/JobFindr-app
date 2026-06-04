@@ -1,0 +1,5 @@
+DONE: Planning Analyst analyzed 3 frontend issues (skill move bug, seniority label, null filter values). Plan created at .opencode/plan/homepage-fixes/ in standard format (index.md, feasibility.md, impact-analysis.md, risks.md, recommendations.md). Agent doc updated to enforce writing files + no epics/tasks for Planning Analyst. Docs-catalog updated.
+WRONG: Planning Analyst (via Task tool) failed to write files — only described what it would create. Phase 4b (ask approval) doesn't work in Task context. Fixed by adding critical rule to agent doc.
+IMPROV: Planning Analyst should always write files directly when invoked as subagent. Never propose with "I will" — execute.
+LEARN: Task subagents cannot use question tool. Planning agent doc needed explicit rule for Task context. Epics/tasks folders belong to PM/TL, not Planning Analyst.
+NEXT: Implement the 3 fixes per plan — Senior Frontend agent should execute tasks, followed by QA validation.

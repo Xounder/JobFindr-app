@@ -59,7 +59,9 @@ Use `question` tool to present findings and ask for user input:
 3. Ask for preferences or clarifications
 4. Iterate until the user is satisfied
 
-### Phase 4b: Present plan structure before creating files
+### Phase 4b: Present plan structure before creating files (direct chat only)
+
+This phase applies ONLY when the Planning Analyst is invoked directly in a chat session where `question` tool is available.
 
 Before writing any files, you MUST:
 
@@ -68,7 +70,11 @@ Before writing any files, you MUST:
 3. **Never create files without prior user approval**
 4. Only proceed to Phase 5 after receiving explicit approval
 
-### Phase 5: Generate planning documents
+**When invoked via `Task` tool (subagent), skip Phase 4b entirely** — the orchestrator already defined the task scope. Proceed directly to Phase 5.
+
+### Phase 5: Generate planning documents — ALWAYS write files
+
+**Critical rule: You MUST actually write the files using the `write` tool. Never just describe what you will create — create it.**
 
 Create a **new** folder in `.opencode/plan/<plan-context>/` where `<plan-context>` is a short kebab-case name describing the analysis subject (e.g., `country-filter-analysis`, `provider-acquisition-planning`).
 
@@ -84,6 +90,8 @@ Structure:
 ├── risks.md               # Risk assessment — what could go wrong, mitigations
 └── recommendations.md     # Recommendations for PM — inputs for epic creation
 ```
+
+**Never create epics/ or tasks/ subfolders.** Those are created by PM and Tech Lead agents respectively. The Planning Analyst only produces the plan documents listed above.
 
 #### index.md format
 
@@ -205,6 +213,7 @@ When the plan is complete:
 - Always highlight risks and trade-offs clearly
 - Folder names must be kebab-case
 - Respect the 400-line limit per file
+- **Never request or open files outside the project directory** — all operations must stay within the project root
 
 ## Related Documents
 

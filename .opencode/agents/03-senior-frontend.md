@@ -30,9 +30,12 @@ Update `pipeline.yaml`:
 3. If involving branding/visual, load skill `06-branding` first
 4. Implement the solution in the frontend (`apps/frontend/`)
 5. Run `pnpm --filter frontend lint` and `pnpm --filter frontend build`
-6. **Test with standalone Playwright script** — use `apps/frontend/playwright-check.ts` (MCP browser tools don't work on Windows — see `AGENTS.md` "Playwright checks (Windows)" section)
-7. Update `pipeline.yaml`: `steps.senior-frontend.status: "completed"`, `current_step: "qa"`
-8. Trigger QA Reviewer Agent via Task tool (`subagent_type: "QA Reviewer"`, frontend instance)
+6. **Start the app** — run `pnpm --filter backend start` and `pnpm --filter frontend dev` in parallel
+7. **Test with standalone Playwright script** — use `pnpm --filter backend exec tsx ../frontend/playwright-check.ts` (MCP browser tools don't work on Windows; `--filter backend exec` sets cwd to `apps/backend/`, so path is relative from there — see `AGENTS.md` "Playwright checks (Windows)" section)
+8. **Stop the app** — after Playwright verification, kill the running processes (Ctrl+C equivalent or taskkill)
+9. Update `pipeline.yaml`: `steps.senior-frontend.status: "completed"` (do NOT change `current_step` — the orchestrator owns phase transitions)
+10. **Return structured summary** — report back to the orchestrator a non-empty summary of what was implemented, validation results, and any errors encountered (Playwright failures, port conflicts, process spawn issues, build tool problems, etc.)
+11. Trigger QA Reviewer Agent via Task tool (`subagent_type: "QA Reviewer"`, frontend instance)
 
 ## Implementation rules
 
@@ -41,6 +44,7 @@ Update `pipeline.yaml`:
 - Do not use enums, namespaces or parameter properties (`erasableSyntaxOnly: true`)
 - Local state → Zustand → TanStack Query (in this order of preference)
 - Keep components small and with single responsibility
+- **Never request or open files outside the project directory** — all operations must stay within the project root
 
 ## Branding
 
