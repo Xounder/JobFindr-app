@@ -104,11 +104,10 @@ export function SearchBar({
 
   const handleClear = useCallback(() => {
     setValue("");
-    onSearch("");
     setShowSuggestions(false);
     setHighlightedIndex(-1);
     inputRef.current?.focus();
-  }, [onSearch]);
+  }, []);
 
   const handleFocus = useCallback(() => {
     setShowSuggestions(true);

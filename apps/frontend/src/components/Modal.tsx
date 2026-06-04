@@ -8,7 +8,9 @@ interface ModalProps {
   dialogClassName?: string;
 }
 
-export function Modal({ isOpen, onClose, title, children, dialogClassName = "" }: ModalProps) {
+const DEFAULT_DIALOG_CLASS = "w-full max-w-md";
+
+export function Modal({ isOpen, onClose, title, children, dialogClassName = DEFAULT_DIALOG_CLASS }: ModalProps) {
   const overlayRef = useRef<HTMLDivElement>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
 
@@ -86,7 +88,7 @@ export function Modal({ isOpen, onClose, title, children, dialogClassName = "" }
     >
       <div
         ref={dialogRef}
-        className={`mx-4 w-full max-w-md rounded-lg bg-white shadow-xl ${dialogClassName}`.trim()}
+        className={`mx-4 rounded-lg bg-white shadow-xl ${dialogClassName}`.trim()}
       >
         {/* Header */}
         <div className="flex items-center justify-between border-b border-gray-200 px-6 py-4">

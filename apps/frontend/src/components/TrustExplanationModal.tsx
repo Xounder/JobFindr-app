@@ -1,4 +1,6 @@
+import { useMemo } from "react";
 import { Modal } from "./Modal";
+import { buildTrustExplanation } from "@/utils/explain";
 import type { TrustBreakdown } from "@/types";
 
 interface TrustExplanationModalProps {
@@ -34,6 +36,11 @@ export function TrustExplanationModal({
   isOpen,
   onClose,
 }: TrustExplanationModalProps) {
+  const explanation = useMemo(
+    () => buildTrustExplanation(trustScore, trustBreakdown),
+    [trustScore, trustBreakdown],
+  );
+
   return (
     <Modal isOpen={isOpen} onClose={onClose} title="Trust Score Explanation">
       {/* Score */}
@@ -45,6 +52,13 @@ export function TrustExplanationModal({
           {label}
         </div>
       </div>
+
+      {/* Explanation paragraph */}
+      {explanation && (
+        <p className="mb-4 text-sm leading-relaxed text-gray-700">
+          {explanation}
+        </p>
+      )}
 
       {trustBreakdown ? (
         <div className="space-y-3 text-sm text-gray-700">

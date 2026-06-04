@@ -4,6 +4,7 @@ import { ExpandableDescription } from "./ExpandableDescription";
 import { ApplyCta } from "./ApplyCta";
 import { TrustExplanationModal } from "./TrustExplanationModal";
 import { MatchExplanationModal } from "./MatchExplanationModal";
+import { useSearchStore } from "@/store/searchStore";
 import { formatDate, formatSalary, trustLabel } from "@/utils";
 import type { Job } from "@/types";
 
@@ -16,6 +17,9 @@ export function JobCard({ job }: JobCardProps) {
   const [showMatchModal, setShowMatchModal] = useState(false);
 
   const hasBreakdown = !!(job.trustBreakdown || job.matchBreakdown);
+  const userSkills = useSearchStore((s) => s.userSkills);
+  const isUserSkill = (skill: string) =>
+    userSkills.some((us) => us.toLowerCase() === skill.toLowerCase());
 
   return (
     <article className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm transition-shadow hover:shadow-md">
@@ -112,7 +116,11 @@ export function JobCard({ job }: JobCardProps) {
           {job.skills.map((skill) => (
             <span
               key={skill}
-              className="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs text-gray-700"
+              className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs ${
+                isUserSkill(skill)
+                  ? "bg-indigo-100 text-indigo-800"
+                  : "bg-gray-100 text-gray-700"
+              }`}
             >
               {skill}
             </span>

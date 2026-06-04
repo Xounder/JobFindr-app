@@ -147,6 +147,21 @@ Playwright Chromium já está instalado em `%USERPROFILE%\AppData\Local\ms-playw
 - **No CI/CD** (no GitHub Actions workflows)
 - Tests co-located with the module (`*.test.ts` next to the tested file)
 
+## Commit Message Conventions
+
+Use conventional commit format with clear, descriptive messages:
+- **fix**: for bug fixes
+- **feat**: for new features
+- **docs**: for documentation changes
+- **style**: for formatting changes
+- **refactor**: for code restructuring
+- **test**: for test additions/changes
+- **chore**: for maintenance tasks
+
+Format: `type(scope): description`
+
+Example: `fix: homepage - resolve skill move bug, add seniority label, fix null filter values`
+
 ## Architecture docs
 
 Full AI guide at `.opencode/INDEX.md`. Layer docs in `.opencode/architecture/` (frontend 04-05, backend 06-07, providers 08-10, matchmaking/trust/ranking 11-13, infra 14-18, governance 19-22).

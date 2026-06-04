@@ -168,6 +168,11 @@ Catalog of all `.md` files in `.opencode/` with content description and when to 
 | `plan/homepage-fixes/impact-analysis.md` | Impact per layer — 3-4 files changed | Impact assessment updates |
 | `plan/homepage-fixes/risks.md` | Risk assessment — persist migration risk, low overall | Risk updates |
 | `plan/homepage-fixes/recommendations.md` | Recommendations — single frontend sprint | Priority/dependency changes |
+| `plan/four-ui-fixes-analysis/index.md` | Four UI fixes analysis overview | New analysis or updates |
+| `plan/four-ui-fixes-analysis/feasibility.md` | Root cause analysis and approaches for all 4 changes | Approach changes |
+| `plan/four-ui-fixes-analysis/impact-analysis.md` | Impact per layer with file-level details | Impact assessment updates |
+| `plan/four-ui-fixes-analysis/risks.md` | Risk matrix, regression points, performance impact | Risk updates |
+| `plan/four-ui-fixes-analysis/recommendations.md` | Implementation order and epic breakdown suggestions | Priority/dependency changes |
 
 ---
 

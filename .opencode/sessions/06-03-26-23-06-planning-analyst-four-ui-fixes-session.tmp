@@ -1,0 +1,5 @@
+DONE: Invoked Planning Analyst for 4 UI/UX changes — analysis complete at .opencode/plan/four-ui-fixes-analysis/. Root causes, file impacts, and approaches documented. docs-catalog.md updated with new entry.
+WRONG: None.
+IMPROV: Correct flow followed (Planning Analyst first).
+LEARN: Planning Analyst autonomously reads source files and produces detailed plans without manual file path hints.
+NEXT: PM should create epics from the plans, then Tech Lead tasks, then implement in order: Clear bug (4) → Skill highlight (3) → Modal size (1) → Trust/Match text (2).

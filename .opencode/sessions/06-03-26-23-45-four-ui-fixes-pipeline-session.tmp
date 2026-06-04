@@ -1,0 +1,5 @@
+DONE: Full pipeline completed — PM (4 epics) → Tech Lead (10 tasks) → Senior Frontend (all implemented) → QA Frontend (approved). All 4 UI fixes implemented: search bar bug, skill highlighting, modal sizing, explanation text. 214 tests passing, lint + build clean.
+WRONG: Senior Frontend and QA Frontend agents did NOT run Playwright verification (post-implementation validation). The agent definition files already had Playwright steps but the orchestrator prompts omitted them.
+IMPROV: Pipeline SKILL.md updated in Phases 3, 4, and Direct Task Mode to explicitly instruct orchestrator to include Playwright in agent prompts rather than relying on agents reading their own definition files.
+LEARN: Orchestrator must spell out Playwright start-app → verify → stop-app explicitly in every Senior Frontend and QA Frontend prompt. Agent definition files alone are not sufficient — the Task tool agents may not read them automatically.
+NEXT: Commit changes with descriptive message. Ensure next pipeline invocation follows the updated Playwright rules.

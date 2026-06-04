@@ -1,4 +1,6 @@
+import { useMemo } from "react";
 import { Modal } from "./Modal";
+import { buildMatchExplanation } from "@/utils/explain";
 import type { MatchBreakdown } from "@/types";
 
 interface MatchExplanationModalProps {
@@ -38,6 +40,11 @@ export function MatchExplanationModal({
   isOpen,
   onClose,
 }: MatchExplanationModalProps) {
+  const explanation = useMemo(
+    () => buildMatchExplanation(matchScore, matchBreakdown),
+    [matchScore, matchBreakdown],
+  );
+
   return (
     <Modal isOpen={isOpen} onClose={onClose} title="Match Score Explanation">
       {/* Score */}
@@ -49,6 +56,13 @@ export function MatchExplanationModal({
           match
         </div>
       </div>
+
+      {/* Explanation paragraph */}
+      {explanation && (
+        <p className="mb-4 text-sm leading-relaxed text-gray-700">
+          {explanation}
+        </p>
+      )}
 
       {matchBreakdown ? (
         <div className="space-y-4 text-sm text-gray-700">

@@ -1,212 +1,159 @@
 # JobFindr Pipeline
 
 pipeline:
-  name: "Three Changes Analysis — Implementation"
+  name: "Four UI Fixes — Implementation"
   version: "1.0"
-  created_at: "2026-05-30T23:00:00Z"
-  updated_at: "2026-06-03T20:25:00Z"
+  created_at: "2026-06-03T23:00:00Z"
+  updated_at: "2026-06-03T23:09:00Z"
 
 epics:
   - id: "EPIC-01"
-    name: "Trust Model Rework"
-    priority: "high"
+    name: "Search Bar Bug Fix"
+    priority: "highest"
     status: "ready"
-    source: ".opencode/plan/three-changes-analysis/epics/EPIC-01-trust-model-rework.md"
+    source: ".opencode/plan/four-ui-fixes-analysis/epics/EPIC-01-search-bar-bug-fix.md"
 
   - id: "EPIC-02"
-    name: "User Skills & Personalized Matchmaking"
+    name: "Job Card Skill Highlighting"
+    priority: "high"
+    status: "ready"
+    source: ".opencode/plan/four-ui-fixes-analysis/epics/EPIC-02-job-card-skill-highlighting.md"
+
+  - id: "EPIC-03"
+    name: "Modal Sizing Fix"
     priority: "medium"
     status: "ready"
-    source: ".opencode/plan/three-changes-analysis/epics/EPIC-02-user-skills-matchmaking.md"
+    source: ".opencode/plan/four-ui-fixes-analysis/epics/EPIC-03-modal-sizing-fix.md"
+
+  - id: "EPIC-04"
+    name: "Trust & Match Explanation Text"
+    priority: "lower"
+    status: "ready"
+    source: ".opencode/plan/four-ui-fixes-analysis/epics/EPIC-04-trust-match-explanation-text.md"
 
 tasks:
-  # ── EPIC-01: Trust Model Rework ──────────────────────────────────
-  - id: "TASK-101"
-    name: "Update Trust Thresholds & Add 6-Level Classification"
-    layer: "types"
-    agent: "backend"
-    epic: "EPIC-01"
-    depends_on: []
-    complexity: "small"
-    status: "pending"
-    file: ".opencode/plan/three-changes-analysis/tasks/TASK-101-update-trust-thresholds-classification.md"
-
-  - id: "TASK-102"
-    name: "Add Ranking Boost Multipliers"
-    layer: "backend"
-    agent: "backend"
-    epic: "EPIC-01"
-    depends_on: ["TASK-101"]
-    complexity: "small"
-    status: "pending"
-    file: ".opencode/plan/three-changes-analysis/tasks/TASK-102-add-ranking-boost-logic.md"
-
-  - id: "TASK-103"
-    name: "Update Frontend trustLabel() to 6-Level"
+  # ── EPIC-01: Search Bar Bug Fix ──────────────────────────────────
+  - id: "TASK-01"
+    name: "Remove onSearch('') from handleClear in SearchBar.tsx"
     layer: "frontend"
     agent: "frontend"
     epic: "EPIC-01"
-    depends_on: ["TASK-101"]
-    complexity: "small"
-    status: "pending"
-    file: ".opencode/plan/three-changes-analysis/tasks/TASK-103-update-frontend-trustlabel.md"
-
-  - id: "TASK-104"
-    name: "Update JobCard.tsx Color Thresholds"
-    layer: "frontend"
-    agent: "frontend"
-    epic: "EPIC-01"
-    depends_on: ["TASK-103"]
-    complexity: "small"
-    status: "pending"
-    file: ".opencode/plan/three-changes-analysis/tasks/TASK-104-update-jobcard-colors.md"
-
-  - id: "TASK-105"
-    name: "Update TrustFilters.tsx Labels (Optional)"
-    layer: "frontend"
-    agent: "frontend"
-    epic: "EPIC-01"
-    depends_on: ["TASK-104"]
-    complexity: "tiny"
-    status: "pending"
-    file: ".opencode/plan/three-changes-analysis/tasks/TASK-105-update-trustfilters-labels.md"
-
-  - id: "TASK-106"
-    name: "Update Tests for Trust Model Rework"
-    layer: "both"
-    agent: "both"
-    epic: "EPIC-01"
-    depends_on: ["TASK-101", "TASK-102", "TASK-103"]
-    complexity: "small"
-    status: "pending"
-    file: ".opencode/plan/three-changes-analysis/tasks/TASK-106-update-tests-trust-model.md"
-
-  - id: "TASK-107"
-    name: "Update Architecture Documentation"
-    layer: "docs"
-    agent: "any"
-    epic: "EPIC-01"
-    depends_on: ["TASK-101"]
-    complexity: "tiny"
-    status: "pending"
-    file: ".opencode/plan/three-changes-analysis/tasks/TASK-107-update-architecture-doc.md"
-
-  # ── EPIC-02: User Skills & Personalized Matchmaking ──────────────
-  - id: "TASK-201"
-    name: "Extend Shared Types for User Skills"
-    layer: "types"
-    agent: "backend"
-    epic: "EPIC-02"
     depends_on: []
     complexity: "tiny"
     status: "pending"
-    file: ".opencode/plan/three-changes-analysis/tasks/TASK-201-extend-shared-types-user-skills.md"
+    file: ".opencode/plan/four-ui-fixes-analysis/tasks/TASK-01-remove-onsearch-from-handleclear.md"
 
-  - id: "TASK-202"
-    name: "Add Backend Query Params & Validation"
-    layer: "backend"
-    agent: "backend"
-    epic: "EPIC-02"
-    depends_on: ["TASK-201"]
-    complexity: "small"
+  - id: "TASK-02"
+    name: "Fix SearchBar.test.tsx — update buggy-behavior test"
+    layer: "frontend"
+    agent: "frontend"
+    epic: "EPIC-01"
+    depends_on: ["TASK-01"]
+    complexity: "tiny"
     status: "pending"
-    file: ".opencode/plan/three-changes-analysis/tasks/TASK-202-backend-params-validation.md"
+    file: ".opencode/plan/four-ui-fixes-analysis/tasks/TASK-02-fix-searchbar-test-onsearch-clear.md"
 
-  - id: "TASK-203"
-    name: "Update Aggregation Service for User Skills"
-    layer: "backend"
-    agent: "backend"
-    epic: "EPIC-02"
-    depends_on: ["TASK-202"]
-    complexity: "small"
-    status: "pending"
-    file: ".opencode/plan/three-changes-analysis/tasks/TASK-203-update-aggregation-service.md"
-
-  - id: "TASK-204"
-    name: "Update Seniority Default in Match Scoring"
-    layer: "backend"
-    agent: "backend"
-    epic: "EPIC-02"
-    depends_on: ["TASK-202"]
-    complexity: "small"
-    status: "pending"
-    file: ".opencode/plan/three-changes-analysis/tasks/TASK-204-update-seniority-default.md"
-
-  - id: "TASK-205"
-    name: "Extend Frontend Types & Store for User Skills"
+  # ── EPIC-02: Job Card Skill Highlighting ──────────────────────────
+  - id: "TASK-03"
+    name: "Add conditional skill highlighting in JobCard.tsx"
     layer: "frontend"
     agent: "frontend"
     epic: "EPIC-02"
-    depends_on: ["TASK-201"]
+    depends_on: []
     complexity: "small"
     status: "pending"
-    file: ".opencode/plan/three-changes-analysis/tasks/TASK-205-extend-frontend-types-store.md"
+    file: ".opencode/plan/four-ui-fixes-analysis/tasks/TASK-03-skill-highlighting-jobcard.md"
 
-  - id: "TASK-206"
-    name: "Create UserSkillsInput Component"
+  - id: "TASK-04"
+    name: "Add tests for skill highlighting in JobCard.test.tsx"
     layer: "frontend"
     agent: "frontend"
     epic: "EPIC-02"
-    depends_on: ["TASK-205"]
-    complexity: "medium"
-    status: "pending"
-    file: ".opencode/plan/three-changes-analysis/tasks/TASK-206-create-userskillsinput-component.md"
-
-  - id: "TASK-207"
-    name: "Integrate UserSkillsInput into FiltersPanel"
-    layer: "frontend"
-    agent: "frontend"
-    epic: "EPIC-02"
-    depends_on: ["TASK-206"]
+    depends_on: ["TASK-03"]
     complexity: "small"
     status: "pending"
-    file: ".opencode/plan/three-changes-analysis/tasks/TASK-207-integrate-userskillsinput.md"
+    file: ".opencode/plan/four-ui-fixes-analysis/tasks/TASK-04-skill-highlighting-tests.md"
 
-  - id: "TASK-208"
-    name: "Wire API Params & Hook Dependencies"
+  # ── EPIC-03: Modal Sizing Fix ────────────────────────────────────
+  - id: "TASK-05"
+    name: "Refactor Modal.tsx — add DEFAULT_DIALOG_CLASS"
     layer: "frontend"
     agent: "frontend"
-    epic: "EPIC-02"
-    depends_on: ["TASK-205", "TASK-207"]
+    epic: "EPIC-03"
+    depends_on: []
     complexity: "small"
     status: "pending"
-    file: ".opencode/plan/three-changes-analysis/tasks/TASK-208-wire-api-params-hook.md"
+    file: ".opencode/plan/four-ui-fixes-analysis/tasks/TASK-05-modal-default-dialog-class.md"
 
-  - id: "TASK-209"
-    name: "Add Tests for User Skills Feature"
-    layer: "both"
-    agent: "both"
-    epic: "EPIC-02"
-    depends_on:
-      - "TASK-202"
-      - "TASK-203"
-      - "TASK-204"
-      - "TASK-205"
-      - "TASK-206"
-      - "TASK-207"
-      - "TASK-208"
-    complexity: "medium"
+  - id: "TASK-06"
+    name: "Verify ExpandableDescription.tsx modal sizing"
+    layer: "frontend"
+    agent: "frontend"
+    epic: "EPIC-03"
+    depends_on: ["TASK-05"]
+    complexity: "tiny"
     status: "pending"
-    file: ".opencode/plan/three-changes-analysis/tasks/TASK-209-add-tests-user-skills.md"
+    file: ".opencode/plan/four-ui-fixes-analysis/tasks/TASK-06-verify-expandable-description-modal.md"
+
+  # ── EPIC-04: Trust & Match Explanation Text ──────────────────────
+  - id: "TASK-07"
+    name: "Create explanation utility functions"
+    layer: "frontend"
+    agent: "frontend"
+    epic: "EPIC-04"
+    depends_on: []
+    complexity: "small"
+    status: "pending"
+    file: ".opencode/plan/four-ui-fixes-analysis/tasks/TASK-07-create-explanation-utilities.md"
+
+  - id: "TASK-08"
+    name: "Add explanation paragraph to TrustExplanationModal.tsx"
+    layer: "frontend"
+    agent: "frontend"
+    epic: "EPIC-04"
+    depends_on: ["TASK-07"]
+    complexity: "small"
+    status: "pending"
+    file: ".opencode/plan/four-ui-fixes-analysis/tasks/TASK-08-trust-explanation-modal-text.md"
+
+  - id: "TASK-09"
+    name: "Add explanation paragraph to MatchExplanationModal.tsx"
+    layer: "frontend"
+    agent: "frontend"
+    epic: "EPIC-04"
+    depends_on: ["TASK-07"]
+    complexity: "small"
+    status: "pending"
+    file: ".opencode/plan/four-ui-fixes-analysis/tasks/TASK-09-match-explanation-modal-text.md"
+
+  - id: "TASK-10"
+    name: "Add tests for explanation text in both modals"
+    layer: "frontend"
+    agent: "frontend"
+    epic: "EPIC-04"
+    depends_on: ["TASK-08", "TASK-09"]
+    complexity: "small"
+    status: "pending"
+    file: ".opencode/plan/four-ui-fixes-analysis/tasks/TASK-10-explanation-text-tests.md"
 
 steps:
   product-manager:
     status: "completed"
-    notes: "Epics defined in .opencode/plan/three-changes-analysis/epics/"
+    notes: "Epics defined in .opencode/plan/four-ui-fixes-analysis/epics/"
   tech-lead:
     status: "completed"
-    notes: "14 tasks created in .opencode/plan/three-changes-analysis/tasks/"
+    notes: "10 tasks created in .opencode/plan/four-ui-fixes-analysis/tasks/"
   senior-frontend:
-    status: "completed"
-    notes: "All 8 UX Fix Plan tasks implemented (Modal, Trust slider labels, isDirty store, useJobSearch refactor, HomePage draft/commit, SearchBar glow, UserSkillsModal local state, ExpandableDescription modal). 129 tests pass, lint passes, build succeeds."
+    status: "pending"
+    notes: ""
   senior-backend:
-    status: "completed"
-    notes: "TASK-101: Trust-first default ordering in ranking-engine; TASK-201: trust/match sort options in shared types + validation; TASK-202: sortBy support in ranking + aggregation wiring. All 246 tests pass."
+    status: "pending"
+    notes: ""
   qa-frontend:
-    status: "completed"
-    notes: "Approved - All three tasks (TASK-203, TASK-301, TASK-401) implemented correctly. All 96 frontend tests pass, lint passes, build succeeds. No unused variables, proper TypeScript conventions followed, no architectural violations found."
+    status: "pending"
+    notes: ""
   qa-backend:
-    status: "completed"
-    notes: "Approved - TASK-101, TASK-201, TASK-202 all implemented correctly. All tests pass (246), build succeeds, types package builds, lint passes. No architectural violations found."
+    status: "pending"
+    notes: ""
 
-current_step: "qa"
+current_step: "development"

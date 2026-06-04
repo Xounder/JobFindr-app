@@ -97,4 +97,47 @@ describe("TrustExplanationModal", () => {
     const companyAdjustments = screen.getAllByText(/\+0\.5|\+0\.3/);
     expect(companyAdjustments.length).toBeGreaterThanOrEqual(1);
   });
+
+  it("renders explanation text when trustBreakdown is provided", () => {
+    render(<TrustExplanationModal {...baseProps} />);
+    expect(screen.getByText(/Score 8\.2\/10/)).toBeDefined();
+  });
+
+  it("does not render explanation text when trustBreakdown is null", () => {
+    render(
+      <TrustExplanationModal
+        {...baseProps}
+        trustBreakdown={null}
+      />,
+    );
+    expect(screen.queryByText(/Score \d+\.\d+\/10/)).toBeNull();
+  });
+
+  it("explanation contains freshness information", () => {
+    render(<TrustExplanationModal {...baseProps} />);
+    expect(screen.getByText(/Posted 5 days ago/)).toBeDefined();
+  });
+
+  it("explanation contains provider reputation", () => {
+    render(<TrustExplanationModal {...baseProps} />);
+    expect(screen.getByText(/Provider reputation: 8\.0\/10/)).toBeDefined();
+  });
+
+  it("explanation mentions known employer when applicable", () => {
+    render(<TrustExplanationModal {...baseProps} />);
+    expect(screen.getByText(/known in our database/)).toBeDefined();
+  });
+
+  it("explanation does not mention known employer when isKnownEmployer is false", () => {
+    render(
+      <TrustExplanationModal
+        {...baseProps}
+        trustBreakdown={{
+          ...defaultBreakdown,
+          signals: { ...defaultBreakdown.signals, isKnownEmployer: false },
+        }}
+      />,
+    );
+    expect(screen.queryByText(/known in our database/)).toBeNull();
+  });
 });

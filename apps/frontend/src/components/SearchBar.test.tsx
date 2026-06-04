@@ -66,14 +66,14 @@ describe("SearchBar", () => {
     expect(screen.queryByLabelText("Clear search")).toBeNull();
   });
 
-  it("clears input and calls onSearch with empty string on clear", () => {
+  it("clears input without triggering onSearch on clear", () => {
     const handleSearch = vi.fn();
     render(<SearchBar initialQuery="React" onSearch={handleSearch} />);
 
     fireEvent.click(screen.getByLabelText("Clear search"));
     const input = screen.getByRole("combobox") as HTMLInputElement;
     expect(input.value).toBe("");
-    expect(handleSearch).toHaveBeenCalledWith("");
+    expect(handleSearch).not.toHaveBeenCalled();
   });
 
   it("calls onSearch on form submit", () => {

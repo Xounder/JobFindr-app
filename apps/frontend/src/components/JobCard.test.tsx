@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, afterEach } from "vitest";
 import { render, screen, cleanup, fireEvent } from "@testing-library/react";
 import { JobCard } from "./JobCard";
+import { useSearchStore } from "@/store/searchStore";
 import type { Job, MatchBreakdown, TrustBreakdown } from "@/types";
 
 // Mock child components that may have complex behavior
@@ -21,6 +22,7 @@ vi.mock("./ApplyCta", () => ({
 describe("JobCard", () => {
   afterEach(() => {
     cleanup();
+    useSearchStore.setState({ userSkills: [] });
   });
 
   const mockBreakdown: MatchBreakdown = {
@@ -148,5 +150,39 @@ describe("JobCard", () => {
     expect(screen.getByText("Match Score Explanation")).toBeDefined();
     fireEvent.click(screen.getByLabelText("Close modal"));
     expect(screen.queryByText("Match Score Explanation")).toBeNull();
+  });
+
+  it("highlights matching skills with indigo badge style", () => {
+    useSearchStore.setState({ userSkills: ["TypeScript"] });
+    render(<JobCard job={defaultJob} />);
+
+    const typeScriptBadge = screen.getByText("TypeScript");
+    expect(typeScriptBadge.className).toContain("bg-indigo-100");
+    expect(typeScriptBadge.className).toContain("text-indigo-800");
+
+    const reactBadge = screen.getByText("React");
+    expect(reactBadge.className).toContain("bg-gray-100");
+    expect(reactBadge.className).toContain("text-gray-700");
+  });
+
+  it("matches skills case-insensitively", () => {
+    useSearchStore.setState({ userSkills: ["typescript", "REACT"] });
+    render(<JobCard job={defaultJob} />);
+
+    expect(screen.getByText("TypeScript").className).toContain("bg-indigo-100");
+    expect(screen.getByText("React").className).toContain("bg-indigo-100");
+  });
+
+  it("shows all skills as gray when userSkills is empty", () => {
+    useSearchStore.setState({ userSkills: [] });
+    render(<JobCard job={defaultJob} />);
+
+    const skills = ["TypeScript", "React"];
+    for (const skill of skills) {
+      const badge = screen.getByText(skill);
+      expect(badge.className).toContain("bg-gray-100");
+      expect(badge.className).toContain("text-gray-700");
+      expect(badge.className).not.toContain("bg-indigo-100");
+    }
   });
 });

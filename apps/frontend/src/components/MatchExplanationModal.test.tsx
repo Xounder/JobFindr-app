@@ -125,4 +125,55 @@ describe("MatchExplanationModal", () => {
     );
     expect(screen.getByText("No Match")).toBeDefined();
   });
+
+  it("renders explanation text when matchBreakdown is provided", () => {
+    render(<MatchExplanationModal {...baseProps} />);
+    expect(screen.getByText(/85% match/)).toBeDefined();
+  });
+
+  it("does not render explanation text when matchBreakdown is null", () => {
+    render(
+      <MatchExplanationModal
+        {...baseProps}
+        matchBreakdown={null}
+      />,
+    );
+    expect(screen.queryByText(/% match/)).toBeNull();
+  });
+
+  it("explanation contains matched skills count", () => {
+    render(<MatchExplanationModal {...baseProps} />);
+    expect(screen.getByText(/3 of 5 skills matched/)).toBeDefined();
+  });
+
+  it("explanation shows seniority match as exact", () => {
+    render(<MatchExplanationModal {...baseProps} />);
+    expect(screen.getByText(/Seniority level is an exact match/)).toBeDefined();
+  });
+
+  it("explanation shows seniority close match", () => {
+    render(
+      <MatchExplanationModal
+        {...baseProps}
+        matchBreakdown={{
+          ...defaultBreakdown,
+          seniorityMatch: "close",
+        }}
+      />,
+    );
+    expect(screen.getByText(/Seniority level is a close match/)).toBeDefined();
+  });
+
+  it("explanation shows no seniority match", () => {
+    render(
+      <MatchExplanationModal
+        {...baseProps}
+        matchBreakdown={{
+          ...defaultBreakdown,
+          seniorityMatch: "none",
+        }}
+      />,
+    );
+    expect(screen.getByText(/Seniority level does not match/)).toBeDefined();
+  });
 });

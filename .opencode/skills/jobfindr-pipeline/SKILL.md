@@ -94,15 +94,17 @@ At each completed step, UPDATE `pipeline.yaml`:
 2. Trigger **Senior Frontend Agent** via Task tool (`subagent_type: "Senior Frontend"`)
 3. Trigger **Senior Backend Agent** via Task tool (`subagent_type: "Senior Backend"`)
 4. **Both execute in parallel** — use the Task tool to trigger simultaneously
-5. When each concludes: update `pipeline.yaml` with `steps.senior-frontend.status: "completed"` and/or `steps.senior-backend.status: "completed"`
-6. When both complete: `current_step: "qa"`
+5. **IMPORTANT**: The orchestrator prompt for Senior Frontend MUST explicitly include the full validation sequence: lint, build, start app (backend + frontend), run Playwright standalone script, stop app. Do NOT rely on the agent reading its own definition file — state Playwright explicitly in the prompt.
+6. When each concludes: update `pipeline.yaml` with `steps.senior-frontend.status: "completed"` and/or `steps.senior-backend.status: "completed"`
+7. When both complete: `current_step: "qa"`
 
 ### Phase 4: QA Review (parallel)
 1. Update `pipeline.yaml`: `steps.qa-frontend.status: "in_progress"`, `steps.qa-backend.status: "in_progress"`
 2. Trigger **QA Reviewer Agent** via Task tool (`subagent_type: "QA Reviewer"`) — **one instance for frontend, another for backend**
 3. Instantiate **two separate reviews**: one for frontend, another for backend
 4. **Both execute in parallel**
-5. When each QA concludes: update `pipeline.yaml`
+5. **IMPORTANT**: The orchestrator prompt for QA Frontend MUST explicitly include: review code, run lint + build + tests, start app (backend + frontend), run Playwright standalone script, stop app. Do NOT rely on the agent reading its own definition file — state Playwright explicitly in the prompt.
+6. When each QA concludes: update `pipeline.yaml`
 
 ### Phase 5: Corrections loop
 For each layer (frontend and backend), **independently**:
@@ -117,9 +119,10 @@ For each layer (frontend and backend), **independently**:
 1. Confirm frontend and backend are approved
 2. Update `pipeline.yaml`: `current_step: "completed"`
 3. Summarize what was done
-4. Report to the user
-5. Load skills in sequence: `learning-improvement` → `continuous-learning` → `session-save`
-6. Update `AGENTS.md` if necessary (tests, commands, scripts)
+4. Commit changes with a descriptive commit message following project conventions (use `git commit -m "type(scope): description"`)
+5. Report to the user
+6. Load skills in sequence: `learning-improvement` → `continuous-learning` → `session-save`
+7. Update `AGENTS.md` if necessary (tests, commands, scripts)
 
 ## Direct flow (Direct Task Mode)
 
@@ -142,7 +145,8 @@ Execute this flow when the user gives a direct and specific task:
    ```
 4. **Load skills** — use `Task tool` with the appropriate subagent type
 5. **QA is mandatory** for complex tasks — never skip
-6. **Skip learning-improvement/continuous-learning/session-save** — only complex and complete tasks justify session logging
+6. **Playwright is mandatory for frontend tasks** — when routing to Senior Frontend or QA Frontend, explicitly include Playwright start-app → verify → stop-app in the prompt
+7. **Skip learning-improvement/continuous-learning/session-save** — only complex and complete tasks justify session logging
 
 ## Orchestrator rules
 
