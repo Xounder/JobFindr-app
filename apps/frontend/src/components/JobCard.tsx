@@ -1,6 +1,9 @@
+import { useState } from "react";
 import { MatchSummary } from "./MatchSummary";
 import { ExpandableDescription } from "./ExpandableDescription";
 import { ApplyCta } from "./ApplyCta";
+import { TrustExplanationModal } from "./TrustExplanationModal";
+import { MatchExplanationModal } from "./MatchExplanationModal";
 import { formatDate, formatSalary, trustLabel } from "@/utils";
 import type { Job } from "@/types";
 
@@ -9,6 +12,11 @@ interface JobCardProps {
 }
 
 export function JobCard({ job }: JobCardProps) {
+  const [showTrustModal, setShowTrustModal] = useState(false);
+  const [showMatchModal, setShowMatchModal] = useState(false);
+
+  const hasBreakdown = !!(job.trustBreakdown || job.matchBreakdown);
+
   return (
     <article className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm transition-shadow hover:shadow-md">
       {/* Header */}
@@ -19,31 +27,61 @@ export function JobCard({ job }: JobCardProps) {
         </div>
         <div className="flex shrink-0 items-center gap-2">
           {job.trustScore !== null && (
-            <span
-              className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${
+            <button
+              type="button"
+              onClick={() => setShowTrustModal(true)}
+              className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium transition-shadow hover:ring-2 focus:outline-none focus:ring-2 ${
                 job.trustScore >= 9
-                  ? "bg-green-100 text-green-800"
+                  ? "bg-green-100 text-green-800 hover:ring-green-400 focus:ring-green-400"
                   : job.trustScore >= 8
-                    ? "bg-emerald-100 text-emerald-800"
+                    ? "bg-emerald-100 text-emerald-800 hover:ring-emerald-400 focus:ring-emerald-400"
                     : job.trustScore >= 7
-                      ? "bg-blue-100 text-blue-800"
+                      ? "bg-blue-100 text-blue-800 hover:ring-blue-400 focus:ring-blue-400"
                       : job.trustScore >= 6
-                        ? "bg-yellow-100 text-yellow-800"
+                        ? "bg-yellow-100 text-yellow-800 hover:ring-yellow-400 focus:ring-yellow-400"
                         : job.trustScore >= 5
-                          ? "bg-orange-100 text-orange-800"
-                          : "bg-red-100 text-red-800"
-              }`}
+                          ? "bg-orange-100 text-orange-800 hover:ring-orange-400 focus:ring-orange-400"
+                          : "bg-red-100 text-red-800 hover:ring-red-400 focus:ring-red-400"
+              } ${hasBreakdown ? "cursor-pointer" : ""}`}
+              aria-label={`Trust score: ${trustLabel(job.trustScore)}. Click for details.`}
             >
               {trustLabel(job.trustScore)}
-            </span>
+            </button>
           )}
           {job.matchScore !== null && (
-            <span className="inline-flex items-center rounded-full bg-indigo-100 px-2 py-0.5 text-xs font-medium text-indigo-800">
+            <button
+              type="button"
+              onClick={() => setShowMatchModal(true)}
+              className={`inline-flex items-center rounded-full bg-indigo-100 px-2 py-0.5 text-xs font-medium text-indigo-800 transition-shadow hover:ring-2 hover:ring-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-400 ${hasBreakdown ? "cursor-pointer" : ""}`}
+              aria-label={`Match score: ${job.matchScore}%. Click for details.`}
+            >
               {job.matchScore}% match
-            </span>
+            </button>
           )}
         </div>
       </div>
+
+      {/* Trust Explanation Modal */}
+      {job.trustScore !== null && (
+        <TrustExplanationModal
+          trustScore={job.trustScore}
+          trustLabel={trustLabel(job.trustScore)}
+          trustBreakdown={job.trustBreakdown ?? null}
+          isOpen={showTrustModal}
+          onClose={() => setShowTrustModal(false)}
+        />
+      )}
+
+      {/* Match Explanation Modal */}
+      {job.matchScore !== null && (
+        <MatchExplanationModal
+          matchScore={job.matchScore}
+          matchSummary={job.matchSummary}
+          matchBreakdown={job.matchBreakdown ?? null}
+          isOpen={showMatchModal}
+          onClose={() => setShowMatchModal(false)}
+        />
+      )}
 
       {/* Meta */}
       <div className="mb-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-gray-500">
@@ -86,7 +124,7 @@ export function JobCard({ job }: JobCardProps) {
       {job.matchSummary && <MatchSummary summary={job.matchSummary} />}
 
       {/* Description */}
-      <ExpandableDescription description={job.description} />
+      <ExpandableDescription description={job.description} jobTitle={job.title} />
 
       {/* Apply CTA */}
       <ApplyCta url={job.url} company={job.company} />

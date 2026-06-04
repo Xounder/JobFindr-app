@@ -4,7 +4,7 @@
  *
  * Calculates a weighted compatibility score between user skills and job requirements.
  */
-import type { MatchScore } from '@jobfindr/types'
+import type { MatchScore, MatchBreakdown } from '@jobfindr/types'
 import { calculateSimilarity, type SimilarityResult } from './similarity-engine.ts'
 
 export type MatchWeights = {
@@ -45,15 +45,15 @@ function calculateSeniorityScore(
 }
 
 /**
- * Calculate weighted match score between user profile and a job.
+ * Internal compute function that returns both MatchScore and MatchBreakdown.
  */
-export function calculateWeightedMatchScore(
+function computeMatchScoreWithBreakdown(
   userSkills: string[],
   userSeniority: string | undefined,
   jobSkills: string[],
   jobSeniority: string | undefined,
   weights: Partial<MatchWeights> = {}
-): MatchScore {
+): { score: MatchScore; breakdown: MatchBreakdown } {
   const w = { ...DEFAULT_WEIGHTS, ...weights }
 
   // Skill similarity
@@ -81,7 +81,7 @@ export function calculateWeightedMatchScore(
 
   const missingSkillsDisplay = similarity.missingSkills
 
-  const seniorityMatch =
+  const seniorityMatchDisplay =
     seniorityScore >= 1
       ? 'Exact seniority match'
       : seniorityScore >= 0.7
@@ -91,18 +91,65 @@ export function calculateWeightedMatchScore(
   const explanation = {
     matchedSkills: matchedSkillsDisplay,
     missingSkills: missingSkillsDisplay,
-    seniorityMatch,
+    seniorityMatch: seniorityMatchDisplay,
     keywordMatches: similarity.matchedSkills,
     summary: buildSummary(overall, matchedSkillsDisplay.length, userSkills.length),
   }
 
-  return {
+  // Derive seniorityMatch for breakdown
+  const seniorityMatch: MatchBreakdown['seniorityMatch'] =
+    seniorityScore >= 1
+      ? 'exact'
+      : seniorityScore >= 0.7
+        ? 'close'
+        : 'none'
+
+  const score: MatchScore = {
     overall,
     skillScore: Math.round(similarity.combinedScore * 100),
     seniorityScore: Math.round(seniorityScore * 100),
     keywordScore: Math.round(keywordScore * 100),
     explanation,
   }
+
+  const breakdown: MatchBreakdown = {
+    matchedSkills: matchedSkillsDisplay,
+    unmatchedSkills: missingSkillsDisplay,
+    seniorityMatch,
+    weightedScore: overall,
+    skillScoreContribution: Math.round(skillComponent * 100) / 100,
+    seniorityScoreContribution: Math.round(seniorityComponent * 100) / 100,
+  }
+
+  return { score, breakdown }
+}
+
+/**
+ * Calculate weighted match score between user profile and a job.
+ * Returns only the score (backward-compatible).
+ */
+export function calculateWeightedMatchScore(
+  userSkills: string[],
+  userSeniority: string | undefined,
+  jobSkills: string[],
+  jobSeniority: string | undefined,
+  weights: Partial<MatchWeights> = {}
+): MatchScore {
+  return computeMatchScoreWithBreakdown(userSkills, userSeniority, jobSkills, jobSeniority, weights).score
+}
+
+/**
+ * Calculate weighted match score with full breakdown data.
+ * Returns both the score and a MatchBreakdown for explanation modals.
+ */
+export function calculateWeightedMatchScoreWithBreakdown(
+  userSkills: string[],
+  userSeniority: string | undefined,
+  jobSkills: string[],
+  jobSeniority: string | undefined,
+  weights: Partial<MatchWeights> = {}
+): { score: MatchScore; breakdown: MatchBreakdown } {
+  return computeMatchScoreWithBreakdown(userSkills, userSeniority, jobSkills, jobSeniority, weights)
 }
 
 function buildSummary(

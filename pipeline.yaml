@@ -1,29 +1,30 @@
 pipeline:
-  current_step: completed
-  started_at: "2026-06-03T00:00:00.000Z"
-  updated_at: "2026-06-03T20:40:00.000Z"
+  name: JobFindr Pipeline
+  started_at: "2026-06-03T00:00:00Z"
+  updated_at: "2026-06-03T21:50:00Z"
+  current_step: "completed"
   steps:
     product-manager:
       status: completed
-      notes: "Epics created in .opencode/plan/ux-fix-plan/epics/ — 5 epics (4 MVP + 1 follow-up)"
-      updated_at: "2026-06-03T20:15:00.000Z"
+      notes: "Epics created in .opencode/plan/ux-filter-modal-changes/epics/"
+      updated_at: "2026-06-03T21:05:00Z"
     tech-lead:
       status: completed
-      notes: "8 tasks created in .opencode/plan/ux-fix-plan/tasks/ — all frontend-only"
-      updated_at: "2026-06-03T20:15:00.000Z"
+      notes: "6 tasks created in .opencode/plan/ux-filter-modal-changes/tasks/"
+      updated_at: "2026-06-03T21:10:00Z"
     senior-frontend:
       status: completed
-      notes: "All 4 QA issues fixed: setPageSize dirty flag, sort bug, draft/commit pattern, tick labels"
-      updated_at: "2026-06-03T20:35:00.000Z"
+      notes: "Phase 2: TASK-002 + TASK-003 + TASK-006 implemented (179 tests, lint+build clean)"
+      updated_at: "2026-06-03T21:45:00Z"
     senior-backend:
       status: completed
-      notes: "No backend tasks in this cycle"
-      updated_at: "2026-06-03T20:15:00.000Z"
+      notes: "TASK-005 (Backend trust/match breakdown) implemented and QA-approved"
+      updated_at: "2026-06-03T21:25:00Z"
     qa-frontend:
       status: completed
-      notes: "All checks passed — 4/4 issues fixed (setPageSize dirty, sort commit, draft/commit pattern, tick labels)"
-      updated_at: "2026-06-03T20:40:00.000Z"
+      notes: "TASK-002+TASK-003+TASK-006 approved — 179/179 tests, lint+build clean, all AC met"
+      updated_at: "2026-06-03T21:50:00Z"
     qa-backend:
       status: completed
-      notes: "No backend changes to review"
-      updated_at: "2026-06-03T20:15:00.000Z"
+      notes: "TASK-005 approved — 280/280 tests passing, build clean"
+      updated_at: "2026-06-03T21:35:00Z"

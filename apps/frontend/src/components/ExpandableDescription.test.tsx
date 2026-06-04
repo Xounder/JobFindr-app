@@ -74,4 +74,32 @@ describe("ExpandableDescription", () => {
     render(<ExpandableDescription description={text} maxLength={10} />);
     expect(screen.getByText(/…$/)).toBeDefined();
   });
+
+  it("shows jobTitle as modal title when provided", () => {
+    const longText = "A".repeat(300);
+    render(<ExpandableDescription description={longText} maxLength={250} jobTitle="Senior Frontend Developer" />);
+
+    fireEvent.click(screen.getByText("Show more"));
+
+    expect(screen.getByText("Senior Frontend Developer")).toBeDefined();
+  });
+
+  it("falls back to 'Job Description' when jobTitle is not provided", () => {
+    const longText = "A".repeat(300);
+    render(<ExpandableDescription description={longText} maxLength={250} />);
+
+    fireEvent.click(screen.getByText("Show more"));
+
+    expect(screen.getByText("Job Description")).toBeDefined();
+  });
+
+  it("displays full description in modal with jobTitle", () => {
+    const longText = "A".repeat(300);
+    render(<ExpandableDescription description={longText} maxLength={250} jobTitle="Senior Frontend Developer" />);
+
+    fireEvent.click(screen.getByText("Show more"));
+
+    expect(screen.getByText("Senior Frontend Developer")).toBeDefined();
+    expect(screen.getByText(longText)).toBeDefined();
+  });
 });

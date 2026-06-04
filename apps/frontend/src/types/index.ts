@@ -7,6 +7,27 @@ export type SalaryInfo = {
   period: "yearly" | "monthly" | "hourly";
 };
 
+export interface MatchBreakdown {
+  matchedSkills: string[];
+  unmatchedSkills: string[];
+  seniorityMatch: "exact" | "close" | "none";
+  weightedScore: number;
+  skillScoreContribution: number;
+  seniorityScoreContribution: number;
+}
+
+export interface TrustBreakdown {
+  providerScore: number;
+  companyAdjustment: number;
+  freshnessScore: number;
+  signals: {
+    providerReputation: number;
+    companySizeBonus: number;
+    isKnownEmployer: boolean;
+    daysSincePosted: number;
+  };
+}
+
 export interface Job {
   id: string;
   title: string;
@@ -22,6 +43,8 @@ export interface Job {
   trustScore: number | null;
   postedAt: string;
   source: string;
+  matchBreakdown?: MatchBreakdown | null;
+  trustBreakdown?: TrustBreakdown | null;
 }
 
 // ─── Search ───────────────────────────────────────────────────────────────────

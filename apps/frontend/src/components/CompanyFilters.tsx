@@ -20,8 +20,10 @@ export function CompanyFilters({ included, excluded, onIncludeChange, onExcludeC
         placeholder="Company name"
         suggestions={companySuggestions}
         selectedItems={included}
+        excludeItems={excluded}
         onAdd={(company) => onIncludeChange([...included, company])}
         onRemove={(company) => onIncludeChange(included.filter((c) => c !== company))}
+        onClear={() => onIncludeChange([])}
         renderTag={(company, onRemove) => (
           <span
             key={company}
@@ -46,8 +48,10 @@ export function CompanyFilters({ included, excluded, onIncludeChange, onExcludeC
         placeholder="Company name"
         suggestions={companySuggestions}
         selectedItems={excluded}
+        excludeItems={included}
         onAdd={(company) => onExcludeChange([...excluded, company])}
         onRemove={(company) => onExcludeChange(excluded.filter((c) => c !== company))}
+        onClear={() => onExcludeChange([])}
         renderTag={(company, onRemove) => (
           <span
             key={company}
@@ -64,7 +68,6 @@ export function CompanyFilters({ included, excluded, onIncludeChange, onExcludeC
             </button>
           </span>
         )}
-        buttonLabel="Add"
       />
     </div>
   );

@@ -18,6 +18,7 @@ export function SkillsTagsInput({ skills, onChange }: SkillsTagsInputProps) {
       selectedItems={skills}
       onAdd={(skill) => onChange([...skills, skill])}
       onRemove={(skill) => onChange(skills.filter((s) => s !== skill))}
+      onClear={() => onChange([])}
       renderTag={(skill, onRemove) => (
         <span
           key={skill}

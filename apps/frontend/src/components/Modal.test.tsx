@@ -77,4 +77,25 @@ describe("Modal", () => {
     expect(screen.getByTestId("child")).toBeDefined();
     expect(screen.getByText("Child element")).toBeDefined();
   });
+
+  it("applies dialogClassName to the inner dialog container", () => {
+    render(
+      <Modal isOpen={true} onClose={vi.fn()} title="Modal" dialogClassName="test-dialog-class">
+        <p>Content</p>
+      </Modal>,
+    );
+
+    const container = document.querySelector(".test-dialog-class");
+    expect(container).not.toBeNull();
+  });
+
+  it("renders without dialogClassName prop", () => {
+    render(
+      <Modal isOpen={true} onClose={vi.fn()} title="Modal">
+        <p>Content</p>
+      </Modal>,
+    );
+
+    expect(screen.getByText("Modal")).toBeDefined();
+  });
 });

@@ -106,6 +106,24 @@ Catalog of all `.md` files in `.opencode/` with content description and when to 
 | `plan/provider-acquisition/EPIC-PA-11-reliability-layer.md` | Circuit breaker, health scoring (post-MVP) | Reliability changes |
 | `plan/provider-acquisition/EPIC-PA-12-optimization.md` | Streaming, cache, dedup (post-MVP) | Optimization changes |
 | `plan/provider-acquisition/EPIC-PA-13-browser-automation.md` | Playwright automation (post-MVP, last resort) | Browser automation changes |
+| `plan/ux-filter-modal-changes/index.md` | UX Filter/Modal Changes overview | New analysis or updates |
+| `plan/ux-filter-modal-changes/item-1-clean-button.md` | Item 1 — Add → Clean button for AutocompleteInput | Requirements for Clean button change |
+| `plan/ux-filter-modal-changes/item-2-company-exclusion.md` | Item 2 — Mutual exclusion Include/Exclude companies | Requirements for company exclusion change |
+| `plan/ux-filter-modal-changes/item-3-skills-modal.md` | Item 3 — Your Skills modal rework (Save/discard) | Requirements for Skills modal change |
+| `plan/ux-filter-modal-changes/item-4-show-more-modal.md` | Item 4 — Show More modal 70% sizing + title | Requirements for Show More modal change |
+| `plan/ux-filter-modal-changes/item-5-trust-match-buttons.md` | Item 5 — Trust/Match explanation buttons (needs backend) | Requirements for Trust/Match button change |
+| `plan/ux-filter-modal-changes/epics/index.md` | Epic overview — 4 epics (Filter Input, Modal Rework, Detail Modal, Trust/Match) | Epic refinement |
+| `plan/ux-filter-modal-changes/epics/EPIC-01-filter-input-improvements.md` | Epic 01 — Clean button + Company mutual exclusion | Epic refinement |
+| `plan/ux-filter-modal-changes/epics/EPIC-02-your-skills-modal-rework.md` | Epic 02 — Your Skills modal save/discard | Epic refinement |
+| `plan/ux-filter-modal-changes/epics/EPIC-03-job-detail-modal-enhancement.md` | Epic 03 — Show More 70% sizing + title | Epic refinement |
+| `plan/ux-filter-modal-changes/epics/EPIC-04-interactive-trust-match-explanations.md` | Epic 04 — Trust/Match breakdown + explanation modals | Epic refinement |
+| `plan/ux-filter-modal-changes/tasks/index.md` | Task overview — 6 tasks across 4 epics | Task changes |
+| `plan/ux-filter-modal-changes/tasks/TASK-001-clean-button-autocomplete.md` | Task 001 — Clean button on AutocompleteInput | Task changes |
+| `plan/ux-filter-modal-changes/tasks/TASK-002-company-mutual-exclusion.md` | Task 002 — Company mutual exclusion | Task changes |
+| `plan/ux-filter-modal-changes/tasks/TASK-003-skills-modal-save-discard.md` | Task 003 — Your Skills modal save/discard | Task changes |
+| `plan/ux-filter-modal-changes/tasks/TASK-004-modal-sizing-job-title.md` | Task 004 — Modal 70% sizing + job title | Task changes |
+| `plan/ux-filter-modal-changes/tasks/TASK-005-backend-trust-match-breakdown.md` | Task 005 — Backend trust/match breakdown data | Task changes |
+| `plan/ux-filter-modal-changes/tasks/TASK-006-frontend-trust-match-modals.md` | Task 006 — Frontend trust/match explanation modals | Task changes |
 | `plan/three-changes-analysis/index.md` | Three Changes Analysis overview | New analysis or updates |
 | `plan/three-changes-analysis/change-1-user-skills.md` | Change 1 — User Skills Tab analysis | Requirements for User Skills change |
 | `plan/three-changes-analysis/change-2-trust-display.md` | Change 2 — Trust Display Fix analysis | Requirements for Trust Display change |

@@ -28,6 +28,21 @@ export type CompanySizeCategory =
   | 'unknown'
 
 /**
+ * Structured breakdown of trust score for explanation modals.
+ */
+export type TrustBreakdown = {
+  providerScore: number
+  companyAdjustment: number
+  freshnessScore: number
+  signals: {
+    providerReputation: number
+    companySizeBonus: number
+    isKnownEmployer: boolean
+    daysSincePosted: number
+  }
+}
+
+/**
  * Trust thresholds for visibility.
  *
  * - BLOCKED:   < 5.0 → blocked (Extreme Low Trust)

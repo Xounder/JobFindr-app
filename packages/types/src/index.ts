@@ -28,6 +28,7 @@ export type {
   MatchScore,
   MatchExplanation,
   MatchThresholdLabel,
+  MatchBreakdown,
 } from './match.types.ts'
 export { MATCH_THRESHOLDS, getMatchThresholdLabel } from './match.types.ts'
 
@@ -37,6 +38,7 @@ export type {
   CompanySizeCategory,
   TrustVisibility,
   TrustClassification,
+  TrustBreakdown,
 } from './trust.types.ts'
 export { TRUST_THRESHOLDS, getTrustVisibility, getTrustClassification } from './trust.types.ts'
 

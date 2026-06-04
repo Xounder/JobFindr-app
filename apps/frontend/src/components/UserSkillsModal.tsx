@@ -33,12 +33,11 @@ export function UserSkillsModal({
 }: UserSkillsModalProps) {
   const { data: suggestions } = useSuggestions();
   const overlayRef = useRef<HTMLDivElement>(null);
-  const [checkedSkills, setCheckedSkills] = useState<Set<string>>(new Set());
-  const [showRemoveConfirm, setShowRemoveConfirm] = useState(false);
 
-  // Local state for skills and seniority — initialized from props on open
+  // Local state for skills, seniority, and checked skills — initialized from props on open
   const [localSkills, setLocalSkills] = useState<string[]>(userSkills);
   const [localSeniority, setLocalSeniority] = useState<string>(userSeniority);
+  const [checkedSkills, setCheckedSkills] = useState<Set<string>>(new Set());
 
   // Sync local state from props when modal opens
   useEffect(() => {
@@ -46,7 +45,6 @@ export function UserSkillsModal({
       setLocalSkills(userSkills);
       setLocalSeniority(userSeniority);
       setCheckedSkills(new Set());
-      setShowRemoveConfirm(false);
     }
   }, [isOpen, userSkills, userSeniority]);
 
@@ -71,12 +69,20 @@ export function UserSkillsModal({
     [onClose],
   );
 
-  // Close button — sync local state to store
+  // Close (X) — discard local changes, do NOT sync to store
   const handleClose = useCallback(() => {
+    onClose();
+  }, [onClose]);
+
+  // Save — sync all local state to store, then close
+  const handleSave = useCallback(() => {
     onUserSkillsChange(localSkills);
     onUserSeniorityChange(localSeniority);
+    if (checkedSkills.size > 0) {
+      onMoveToRequired(Array.from(checkedSkills));
+    }
     onClose();
-  }, [localSkills, localSeniority, onUserSkillsChange, onUserSeniorityChange, onClose]);
+  }, [localSkills, localSeniority, checkedSkills, onUserSkillsChange, onUserSeniorityChange, onMoveToRequired, onClose]);
 
   const handleSeniorityChange = useCallback(
     (e: ChangeEvent<HTMLSelectElement>) => {
@@ -109,19 +115,6 @@ export function UserSkillsModal({
       }
       return next;
     });
-  }, []);
-
-  const handleMoveSelected = useCallback(() => {
-    const skillsToMove = Array.from(checkedSkills);
-    if (skillsToMove.length === 0) return;
-    onMoveToRequired(skillsToMove);
-    setLocalSkills((prev) => prev.filter((s) => !checkedSkills.has(s)));
-    setCheckedSkills(new Set());
-  }, [checkedSkills, onMoveToRequired]);
-
-  const handleRemoveAll = useCallback(() => {
-    setLocalSkills([]);
-    setShowRemoveConfirm(false);
   }, []);
 
   const allChecked = localSkills.length > 0 && checkedSkills.size === localSkills.length;
@@ -172,6 +165,7 @@ export function UserSkillsModal({
             selectedItems={localSkills}
             onAdd={handleAddSkill}
             onRemove={handleRemoveSkill}
+            onClear={() => setLocalSkills([])}
             renderTag={(skill, onRemove) => (
               <span
                 key={skill}
@@ -209,7 +203,7 @@ export function UserSkillsModal({
             </select>
           </div>
 
-          {/* Selective Move Section */}
+          {/* Selective Move Section — checkbox labels only, no move button */}
           {localSkills.length > 0 && (
             <div className="space-y-2">
               <div className="flex items-center justify-between">
@@ -245,53 +239,19 @@ export function UserSkillsModal({
                   );
                 })}
               </div>
-              <button
-                type="button"
-                onClick={handleMoveSelected}
-                disabled={checkedSkills.size === 0}
-                className="rounded bg-indigo-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-50"
-              >
-                Move Selected to Required ({checkedSkills.size})
-              </button>
             </div>
           )}
+        </div>
 
-          {/* Remove All */}
-          {localSkills.length > 0 && (
-            <div className="border-t border-gray-100 pt-3">
-              {showRemoveConfirm ? (
-                <div className="space-y-2 rounded-md bg-red-50 p-3">
-                  <p className="text-sm text-red-700">
-                    Are you sure you want to remove all {localSkills.length} skills?
-                  </p>
-                  <div className="flex gap-2">
-                    <button
-                      type="button"
-                      onClick={handleRemoveAll}
-                      className="rounded bg-red-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-red-700"
-                    >
-                      Confirm Remove All
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setShowRemoveConfirm(false)}
-                      className="rounded bg-gray-100 px-3 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-200"
-                    >
-                      Cancel
-                    </button>
-                  </div>
-                </div>
-              ) : (
-                <button
-                  type="button"
-                  onClick={() => setShowRemoveConfirm(true)}
-                  className="text-xs text-red-600 hover:text-red-800"
-                >
-                  Remove all skills
-                </button>
-              )}
-            </div>
-          )}
+        {/* Footer with Save button */}
+        <div className="flex items-center justify-end border-t border-gray-200 px-6 py-3">
+          <button
+            type="button"
+            onClick={handleSave}
+            className="rounded-md bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700"
+          >
+            Save
+          </button>
         </div>
       </div>
     </div>

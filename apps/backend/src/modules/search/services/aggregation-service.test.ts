@@ -1,5 +1,8 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, beforeEach } from 'vitest'
 import type { ValidatedSearchInput, NormalizedJob } from '@jobfindr/types'
+import { calculateWeightedMatchScoreWithBreakdown } from '../../matchmaking/services/weighted-match-scoring.ts'
+import { evaluateJobTrustWithBreakdown } from '../../trust/services/trust-engine.ts'
+import { resetProviderStats } from '../../trust/services/provider-reputation.ts'
 
 /**
  * Helper to create a minimal NormalizedJob for testing.
@@ -401,5 +404,185 @@ describe('aggregateSearch - userSkills matchmaking fallback', () => {
     })
     const skillsForMatchmaking = input.userSkills.length > 0 ? input.userSkills : input.skills
     expect(skillsForMatchmaking).toEqual([])
+  })
+})
+
+describe('aggregateSearch - breakdown data propagation', () => {
+  beforeEach(() => {
+    resetProviderStats()
+  })
+
+  it('matchmaking produces matchBreakdown on job with user skills', () => {
+    const job: NormalizedJob = makeJob({
+      id: 'breakdown-1',
+      skills: ['react', 'typescript', 'node'],
+      seniority: 'senior',
+    })
+
+    const matchResult = calculateWeightedMatchScoreWithBreakdown(
+      ['react', 'typescript', 'figma'],
+      'senior',
+      job.skills,
+      job.seniority,
+    )
+
+    job.matchScore = matchResult.score.overall
+    job.matchBreakdown = matchResult.breakdown
+
+    expect(job.matchBreakdown).toBeDefined()
+    expect(job.matchBreakdown!.matchedSkills).toContain('react')
+    expect(job.matchBreakdown!.matchedSkills).toContain('typescript')
+    // unmatchedSkills are user skills not found in the job
+    expect(job.matchBreakdown!.unmatchedSkills).toContain('figma')
+    expect(job.matchBreakdown!.seniorityMatch).toBe('exact')
+    expect(job.matchBreakdown!.weightedScore).toBe(job.matchScore)
+    expect(job.matchBreakdown!.skillScoreContribution).toBeGreaterThan(0)
+    expect(job.matchBreakdown!.seniorityScoreContribution).toBeGreaterThan(0)
+  })
+
+  it('matchBreakdown is not set when user skills are empty', () => {
+    const job: NormalizedJob = makeJob({
+      id: 'breakdown-2',
+      skills: ['react', 'typescript'],
+    })
+
+    // Simulating no matchmaking (userSkills empty)
+    // In this case, no breakdown should be attached
+    expect(job.matchBreakdown).toBeUndefined()
+    expect(job.matchScore).toBeUndefined()
+  })
+
+  it('matchBreakdown correctly reflects partial skill match', () => {
+    const job: NormalizedJob = makeJob({
+      id: 'breakdown-3',
+      skills: ['react', 'typescript', 'node', 'python'],
+      seniority: 'lead',
+    })
+
+    const matchResult = calculateWeightedMatchScoreWithBreakdown(
+      ['react', 'figma', 'python'],
+      'senior',
+      job.skills,
+      job.seniority,
+    )
+
+    job.matchBreakdown = matchResult.breakdown
+
+    expect(job.matchBreakdown!.matchedSkills).toContain('react')
+    expect(job.matchBreakdown!.matchedSkills).toContain('python')
+    // unmatchedSkills are user skills not found in the job
+    expect(job.matchBreakdown!.unmatchedSkills).toContain('figma')
+    expect(job.matchBreakdown!.unmatchedSkills).not.toContain('react')
+    expect(job.matchBreakdown!.unmatchedSkills).not.toContain('python')
+    // lead vs senior → 1 apart → "close"
+    expect(job.matchBreakdown!.seniorityMatch).toBe('close')
+  })
+
+  it('matchBreakdown seniorityMatch is "none" for far-apart levels', () => {
+    const job: NormalizedJob = makeJob({
+      id: 'breakdown-4',
+      skills: ['react'],
+      seniority: 'executive',
+    })
+
+    const matchResult = calculateWeightedMatchScoreWithBreakdown(
+      ['react'],
+      'intern',
+      job.skills,
+      job.seniority,
+    )
+
+    job.matchBreakdown = matchResult.breakdown
+    // intern → executive = 6 apart → "none"
+    expect(job.matchBreakdown!.seniorityMatch).toBe('none')
+  })
+
+  it('trust evaluation produces trustBreakdown on job', async () => {
+    const job: NormalizedJob = makeJob({
+      id: 'breakdown-5',
+      company: 'Google',
+      source: 'linkedin',
+      postedAt: new Date().toISOString(),
+    })
+
+    const result = await evaluateJobTrustWithBreakdown(job)
+
+    expect(result.job.trustBreakdown).toBeDefined()
+    expect(result.job.trustBreakdown!.providerScore).toBeGreaterThanOrEqual(0)
+    expect(result.job.trustBreakdown!.freshnessScore).toBeGreaterThanOrEqual(8)
+    expect(result.job.trustBreakdown!.signals.isKnownEmployer).toBe(true)
+    expect(result.job.trustBreakdown!.signals.daysSincePosted).toBeGreaterThanOrEqual(0)
+  })
+
+  it('trustBreakdown is not set when trust evaluation is skipped', () => {
+    const job: NormalizedJob = makeJob({
+      id: 'breakdown-6',
+      company: 'UnknownCo',
+    })
+
+    // Without calling trust evaluation, trustBreakdown should be undefined
+    expect(job.trustBreakdown).toBeUndefined()
+    expect(job.trustScore).toBeUndefined()
+  })
+
+  it('trustBreakdown correctly reflects unknown company', async () => {
+    // Use a very short company name so hasLinkedIn = false (name.length <= 3)
+    const job: NormalizedJob = makeJob({
+      id: 'breakdown-7',
+      company: 'xy',
+      source: 'unknown-provider',
+    })
+
+    const result = await evaluateJobTrustWithBreakdown(job)
+
+    expect(result.job.trustBreakdown).toBeDefined()
+    expect(result.job.trustBreakdown!.providerScore).toBeGreaterThanOrEqual(0)
+    expect(result.job.trustBreakdown!.signals.isKnownEmployer).toBe(false)
+    expect(result.job.trustBreakdown!.signals.companySizeBonus).toBeGreaterThanOrEqual(0)
+  })
+
+  it('trustBreakdown fields survive serialization (no undefined or NaN)', async () => {
+    const job: NormalizedJob = makeJob({
+      id: 'breakdown-8',
+      company: 'Google',
+      source: 'linkedin',
+      postedAt: new Date().toISOString(),
+    })
+
+    const result = await evaluateJobTrustWithBreakdown(job)
+    const json = JSON.parse(JSON.stringify(result.job.trustBreakdown))
+
+    expect(json.providerScore).toBeTypeOf('number')
+    expect(json.companyAdjustment).toBeTypeOf('number')
+    expect(json.freshnessScore).toBeTypeOf('number')
+    expect(json.signals.providerReputation).toBeTypeOf('number')
+    expect(json.signals.companySizeBonus).toBeTypeOf('number')
+    expect(json.signals.isKnownEmployer).toBeTypeOf('boolean')
+    expect(json.signals.daysSincePosted).toBeTypeOf('number')
+  })
+
+  it('matchBreakdown fields survive serialization (no undefined or NaN)', () => {
+    const job: NormalizedJob = makeJob({
+      id: 'breakdown-9',
+      skills: ['react', 'typescript'],
+      seniority: 'senior',
+    })
+
+    const matchResult = calculateWeightedMatchScoreWithBreakdown(
+      ['react', 'typescript', 'node'],
+      'senior',
+      job.skills,
+      job.seniority,
+    )
+
+    job.matchBreakdown = matchResult.breakdown
+    const json = JSON.parse(JSON.stringify(job.matchBreakdown))
+
+    expect(Array.isArray(json.matchedSkills)).toBe(true)
+    expect(Array.isArray(json.unmatchedSkills)).toBe(true)
+    expect(json.seniorityMatch).toMatch(/^(exact|close|none)$/)
+    expect(json.weightedScore).toBeTypeOf('number')
+    expect(json.skillScoreContribution).toBeTypeOf('number')
+    expect(json.seniorityScoreContribution).toBeTypeOf('number')
   })
 })

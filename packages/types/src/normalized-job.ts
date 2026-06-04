@@ -2,6 +2,9 @@
  * Standardized job entity after normalization.
  * TASK-034: Create NormalizedJob Type
  */
+import type { MatchBreakdown } from './match.types.ts'
+import type { TrustBreakdown } from './trust.types.ts'
+
 export type NormalizedJob = {
   /** Unique identifier generated from source + provider id */
   id: string
@@ -37,6 +40,10 @@ export type NormalizedJob = {
   matchScore?: number
   /** Ranking score assigned by the ranking engine */
   rankingScore?: number
+  /** Match breakdown data for explanation modals */
+  matchBreakdown?: MatchBreakdown
+  /** Trust breakdown data for explanation modals */
+  trustBreakdown?: TrustBreakdown
 }
 
 export type SalaryInfo = {

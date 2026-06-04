@@ -143,7 +143,7 @@ Playwright Chromium já está instalado em `%USERPROFILE%\AppData\Local\ms-playw
 ## Test & CI status
 
 - **vitest** installed in all 3 packages (`frontend`, `backend`, `@jobfindr/utils`)
-- **300 tests** created and passing (utils: 15, frontend: 47, backend: 238)
+- **474 tests** created and passing (utils: 15, frontend: 179, backend: 280)
 - **No CI/CD** (no GitHub Actions workflows)
 - Tests co-located with the module (`*.test.ts` next to the tested file)
 

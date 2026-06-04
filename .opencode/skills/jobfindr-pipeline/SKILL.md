@@ -155,3 +155,4 @@ Execute this flow when the user gives a direct and specific task:
 - **Validate** the YAML after each edit to avoid duplicate keys — prefer replacing entire blocks instead of appending new ones
 - In Direct Task Mode: **QA is mandatory** for non-trivial tasks
 - **Corrections loop rule**: When QA finds issues, the orchestrator MUST re-invoke the implementation agent via Task tool — NEVER fix code directly. The orchestrator's role is to route work, not to implement.
+- **Orchestrator owns `current_step`**: Agents (PM, TL, Senior, QA) must only update their own `status` and `notes` in `pipeline.yaml`. Only the orchestrator sets `current_step` to advance phases. Agents MUST NOT change `current_step`.

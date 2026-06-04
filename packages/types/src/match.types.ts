@@ -10,6 +10,18 @@ export type MatchScore = {
   explanation: MatchExplanation
 }
 
+/**
+ * Structured breakdown of match score for explanation modals.
+ */
+export type MatchBreakdown = {
+  matchedSkills: string[]
+  unmatchedSkills: string[]
+  seniorityMatch: 'exact' | 'close' | 'none'
+  weightedScore: number
+  skillScoreContribution: number
+  seniorityScoreContribution: number
+}
+
 export type MatchExplanation = {
   matchedSkills: string[]
   missingSkills: string[]

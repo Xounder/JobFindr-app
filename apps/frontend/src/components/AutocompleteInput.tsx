@@ -10,6 +10,9 @@ interface AutocompleteInputProps {
   onRemove: (item: string) => void;
   renderTag: (item: string, onRemove: (item: string) => void) => React.ReactNode;
   buttonLabel?: string;
+  onClear?: () => void;
+  clearLabel?: string;
+  excludeItems?: string[];
 }
 
 export function AutocompleteInput({
@@ -22,6 +25,9 @@ export function AutocompleteInput({
   onRemove,
   renderTag,
   buttonLabel = "Add",
+  onClear,
+  clearLabel = "Clean",
+  excludeItems,
 }: AutocompleteInputProps) {
   const [input, setInput] = useState("");
   const [isFocused, setIsFocused] = useState(false);
@@ -31,20 +37,21 @@ export function AutocompleteInput({
   const filtered = suggestions.filter(
     (s) =>
       s.toLowerCase().includes(input.toLowerCase()) &&
-      !selectedItems.includes(s),
+      !selectedItems.includes(s) &&
+      !(excludeItems ?? []).includes(s),
   );
   const showDropdown = isFocused && filtered.length > 0;
 
   const addItem = useCallback(
     (item: string) => {
       const trimmed = item.trim();
-      if (trimmed && !selectedItems.includes(trimmed)) {
+      if (trimmed && !selectedItems.includes(trimmed) && !(excludeItems ?? []).includes(trimmed)) {
         onAdd(trimmed);
       }
       setInput("");
       setHighlightIndex(-1);
     },
-    [selectedItems, onAdd],
+    [selectedItems, excludeItems, onAdd],
   );
 
   const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
@@ -105,13 +112,24 @@ export function AutocompleteInput({
             placeholder={placeholder}
             className="block flex-1 rounded-md border border-gray-300 px-3 py-1.5 text-sm shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
           />
-          <button
-            type="button"
-            onClick={() => addItem(input)}
-            className="rounded-md bg-indigo-600 px-3 py-1.5 text-sm text-white hover:bg-indigo-700"
-          >
-            {buttonLabel}
-          </button>
+          {onClear ? (
+            <button
+              type="button"
+              onClick={onClear}
+              disabled={selectedItems.length === 0}
+              className="rounded-md bg-indigo-600 px-3 py-1.5 text-sm text-white hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              {clearLabel}
+            </button>
+          ) : (
+            <button
+              type="button"
+              onClick={() => addItem(input)}
+              className="rounded-md bg-indigo-600 px-3 py-1.5 text-sm text-white hover:bg-indigo-700"
+            >
+              {buttonLabel}
+            </button>
+          )}
         </div>
         {showDropdown && (
           <ul className="absolute z-10 mt-1 max-h-48 w-full overflow-auto rounded-md border border-gray-200 bg-white shadow-lg">

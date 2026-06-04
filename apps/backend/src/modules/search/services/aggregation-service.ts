@@ -5,7 +5,7 @@
  * Coordinates parallel provider execution, collects results,
  * applies matchmaking, trust, and ranking.
  */
-import type { NormalizedJob, ValidatedSearchInput, ProviderResult, PaginationMeta, PartialResponseMeta } from '@jobfindr/types'
+import type { NormalizedJob, ValidatedSearchInput, ProviderResult, PaginationMeta, PartialResponseMeta, TrustBreakdown } from '@jobfindr/types'
 import { logger } from '../../../shared/logger/logger.ts'
 import { providerRegistry } from '../../providers/domain/provider-registry.ts'
 import { executeIsolatedProvider } from '../../../shared/services/provider-isolation.ts'
@@ -14,9 +14,9 @@ import { paginateJobs } from './pagination.ts'
 import { recordProviderSuccess, recordProviderFailure } from '../../../shared/metrics/provider-metrics.ts'
 import { ProviderCacheLayer } from '../../../cache/provider-cache-layer.ts'
 import { aggregatedCache } from '../../../cache/aggregated-cache.ts'
-import { evaluateJobsTrust, filterByTrust } from '../../trust/services/trust-engine.ts'
+import { evaluateJobsTrustWithBreakdown, filterByTrust } from '../../trust/services/trust-engine.ts'
 import { rankJobs } from '../../ranking/services/ranking-engine.ts'
-import { calculateWeightedMatchScore } from '../../matchmaking/services/weighted-match-scoring.ts'
+import { calculateWeightedMatchScoreWithBreakdown } from '../../matchmaking/services/weighted-match-scoring.ts'
 import { parseUserSkills } from '../../matchmaking/services/user-skill-parser.ts'
 import { aggregatePartialResults } from '../../../shared/streaming/partial-streaming.ts'
 import { RequestBatcher } from '../../../shared/services/request-batching.ts'
@@ -194,24 +194,32 @@ export async function aggregateSearch(
   // Apply matchmaking (if user skills provided)
   if (userSkills && userSkills.normalized.length > 0) {
     for (const job of allJobs) {
-      const matchScore = calculateWeightedMatchScore(
+      const matchResult = calculateWeightedMatchScoreWithBreakdown(
         userSkills.normalized,
         input.userSeniority,
         job.skills,
         job.seniority,
       )
-      job.matchScore = matchScore.overall
+      job.matchScore = matchResult.score.overall
+      job.matchBreakdown = matchResult.breakdown
     }
   }
 
-  // Apply trust evaluation
-  const trustEvaluations = await evaluateJobsTrust(allJobs)
+  // Apply trust evaluation (with breakdown data)
+  const trustEvaluations = await evaluateJobsTrustWithBreakdown(allJobs)
   const filteredEvaluations = filterByTrust(
     trustEvaluations,
     input.minTrustScore,
     input.includeHidden
   )
-  allJobs = filteredEvaluations.map((e) => e.job)
+  // Preserve trustBreakdown from evaluation results on the job objects
+  allJobs = filteredEvaluations.map((e) => {
+    const evaluatedJob = e.job
+    if ('trustBreakdown' in e) {
+      evaluatedJob.trustBreakdown = (e as { trustBreakdown: TrustBreakdown }).trustBreakdown
+    }
+    return evaluatedJob
+  })
 
   // Apply ranking
   const { jobs: rankedJobs } = rankJobs(allJobs, {

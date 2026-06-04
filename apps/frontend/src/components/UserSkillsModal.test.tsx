@@ -43,7 +43,9 @@ describe("UserSkillsModal", () => {
     expect(dialog).toHaveAttribute("aria-modal", "true");
   });
 
-  it("syncs local state to store on close button click", () => {
+  // ─── Save / Discard Behavior ──────────────────────────────────────
+
+  it("discards changes on Close (X) — does NOT sync to store", () => {
     const onUserSkillsChange = vi.fn();
     const onUserSeniorityChange = vi.fn();
     const onClose = vi.fn();
@@ -59,8 +61,8 @@ describe("UserSkillsModal", () => {
     );
 
     fireEvent.click(screen.getByLabelText("Close modal"));
-    expect(onUserSkillsChange).toHaveBeenCalledWith(["TypeScript"]);
-    expect(onUserSeniorityChange).toHaveBeenCalledWith("senior");
+    expect(onUserSkillsChange).not.toHaveBeenCalled();
+    expect(onUserSeniorityChange).not.toHaveBeenCalled();
     expect(onClose).toHaveBeenCalledOnce();
   });
 
@@ -97,6 +99,54 @@ describe("UserSkillsModal", () => {
     expect(onClose).toHaveBeenCalledOnce();
   });
 
+  it("Save button syncs all local state to store and closes", () => {
+    const onUserSkillsChange = vi.fn();
+    const onUserSeniorityChange = vi.fn();
+    const onMoveToRequired = vi.fn();
+    const onClose = vi.fn();
+    render(
+      <UserSkillsModal
+        {...defaultProps}
+        userSkills={["TypeScript", "React"]}
+        userSeniority="senior"
+        onUserSkillsChange={onUserSkillsChange}
+        onUserSeniorityChange={onUserSeniorityChange}
+        onMoveToRequired={onMoveToRequired}
+        onClose={onClose}
+      />,
+    );
+
+    // Check TypeScript to be moved to required
+    fireEvent.click(screen.getByLabelText("TypeScript"));
+
+    // Click Save
+    fireEvent.click(screen.getByText("Save"));
+
+    expect(onUserSkillsChange).toHaveBeenCalledWith(["TypeScript", "React"]);
+    expect(onUserSeniorityChange).toHaveBeenCalledWith("senior");
+    expect(onMoveToRequired).toHaveBeenCalledWith(["TypeScript"]);
+    expect(onClose).toHaveBeenCalledOnce();
+  });
+
+  it("Save button does NOT call onMoveToRequired when no skills checked", () => {
+    const onMoveToRequired = vi.fn();
+    const onClose = vi.fn();
+    render(
+      <UserSkillsModal
+        {...defaultProps}
+        userSkills={["TypeScript", "React"]}
+        onMoveToRequired={onMoveToRequired}
+        onClose={onClose}
+      />,
+    );
+
+    // Click Save without checking any skills
+    fireEvent.click(screen.getByText("Save"));
+
+    expect(onMoveToRequired).not.toHaveBeenCalled();
+    expect(onClose).toHaveBeenCalledOnce();
+  });
+
   it("renders skills as tags (local state)", () => {
     render(
       <UserSkillsModal
@@ -117,7 +167,7 @@ describe("UserSkillsModal", () => {
     expect(screen.getByLabelText("Your Seniority")).toBeDefined();
   });
 
-  it("updates local seniority on change (does not sync until close)", () => {
+  it("updates local seniority on change (does not sync until Save)", () => {
     const onUserSeniorityChange = vi.fn();
     render(
       <UserSkillsModal
@@ -182,26 +232,9 @@ describe("UserSkillsModal", () => {
     expect(checkboxes.every((cb) => (cb as HTMLInputElement).checked)).toBe(false);
   });
 
-  it("calls onMoveToRequired with checked skills and removes them from local state", () => {
-    const onMoveToRequired = vi.fn();
-    render(
-      <UserSkillsModal
-        {...defaultProps}
-        userSkills={["TypeScript", "React"]}
-        onMoveToRequired={onMoveToRequired}
-      />,
-    );
+  // ─── Bug fix: skills remain in "Add your skills" after being moved ──
 
-    // Check TypeScript
-    fireEvent.click(screen.getByLabelText("TypeScript"));
-
-    // Click Move Selected
-    fireEvent.click(screen.getByText("Move Selected to Required (1)"));
-
-    expect(onMoveToRequired).toHaveBeenCalledWith(["TypeScript"]);
-  });
-
-  it("disables move button when no skills checked", () => {
+  it("does NOT have a 'Move Selected to Required' button", () => {
     render(
       <UserSkillsModal
         {...defaultProps}
@@ -209,11 +242,12 @@ describe("UserSkillsModal", () => {
       />,
     );
 
-    const moveButton = screen.getByText("Move Selected to Required (0)");
-    expect(moveButton).toBeDisabled();
+    expect(screen.queryByText(/Move Selected to Required/)).toBeNull();
   });
 
-  it("shows remove all confirmation", () => {
+  // ─── Remove all skills no longer exists ────────────────────────────
+
+  it("does NOT have 'Remove all skills' action", () => {
     render(
       <UserSkillsModal
         {...defaultProps}
@@ -221,44 +255,21 @@ describe("UserSkillsModal", () => {
       />,
     );
 
-    fireEvent.click(screen.getByText("Remove all skills"));
-    expect(screen.getByText(/Are you sure you want to remove all/)).toBeDefined();
-    expect(screen.getByText("Confirm Remove All")).toBeDefined();
-    expect(screen.getByText("Cancel")).toBeDefined();
+    expect(screen.queryByText("Remove all skills")).toBeNull();
   });
 
-  it("removes all skills locally on confirm", () => {
-    const onUserSkillsChange = vi.fn();
+  it("does NOT show remove all confirmation", () => {
     render(
       <UserSkillsModal
         {...defaultProps}
-        userSkills={["TypeScript", "React"]}
-        onUserSkillsChange={onUserSkillsChange}
+        userSkills={["TypeScript"]}
       />,
     );
 
-    fireEvent.click(screen.getByText("Remove all skills"));
-    fireEvent.click(screen.getByText("Confirm Remove All"));
-
-    // Should NOT call onUserSkillsChange yet (waiting for close)
-    expect(onUserSkillsChange).not.toHaveBeenCalled();
+    expect(screen.queryByText(/Are you sure you want to remove all/)).toBeNull();
   });
 
-  it("cancels remove all", () => {
-    render(
-      <UserSkillsModal
-        {...defaultProps}
-        userSkills={["TypeScript", "React"]}
-      />,
-    );
-
-    fireEvent.click(screen.getByText("Remove all skills"));
-    fireEvent.click(screen.getByText("Cancel"));
-
-    expect(screen.queryByText("Confirm Remove All")).toBeNull();
-  });
-
-  it("adds a skill to local state", () => {
+  it("adds a skill to local state via Enter key", () => {
     const onUserSkillsChange = vi.fn();
     render(
       <UserSkillsModal
@@ -270,9 +281,9 @@ describe("UserSkillsModal", () => {
 
     const input = screen.getByPlaceholderText("e.g. TypeScript, React, Node.js");
     fireEvent.change(input, { target: { value: "Rust" } });
-    fireEvent.click(screen.getByText("Add"));
+    fireEvent.keyDown(input, { key: "Enter" });
 
-    // Should NOT call onUserSkillsChange yet (waiting for close)
+    // Should NOT call onUserSkillsChange yet (waiting for Save)
     expect(onUserSkillsChange).not.toHaveBeenCalled();
   });
 
