@@ -91,7 +91,7 @@ Structure:
 └── recommendations.md     # Recommendations for PM — inputs for epic creation
 ```
 
-**Never create epics/ or tasks/ subfolders.** Those are created by PM and Tech Lead agents respectively. The Planning Analyst only produces the plan documents listed above.
+**The Planning Analyst only produces the plan documents listed above.**
 
 #### index.md format
 

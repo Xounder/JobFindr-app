@@ -98,6 +98,35 @@ describe('evaluateJobTrustWithBreakdown', () => {
     expect(result.trustBreakdown.freshnessScore).toBeLessThanOrEqual(2)
   })
 
+  it('trustScore.overall is higher for recently posted jobs (freshness effect)', async () => {
+    // Use different companies to avoid cache collision (cache key is source:company)
+    const recentJob = makeJob({ id: '9a', company: 'GoogleRecent', source: 'linkedin', postedAt: new Date().toISOString() })
+    const recentResult = await evaluateJobTrustWithBreakdown(recentJob)
+
+    const oldDate = new Date()
+    oldDate.setDate(oldDate.getDate() - 90)
+    const oldJob = makeJob({ id: '9b', company: 'GoogleOld', source: 'linkedin', postedAt: oldDate.toISOString() })
+    const oldResult = await evaluateJobTrustWithBreakdown(oldJob)
+
+    // Recent job should have higher overall trust due to freshness (weight 15%)
+    expect(recentResult.trustScore.overall).toBeGreaterThan(oldResult.trustScore.overall)
+    // Difference should be measurable: freshness diff ~8 (recent) vs ~0 (old) * 0.15 weight = ~1.2 points
+    expect(recentResult.trustScore.overall - oldResult.trustScore.overall).toBeGreaterThanOrEqual(1.0)
+  })
+
+  it('evaluateJobTrust also respects freshness (non-breakdown path)', async () => {
+    // Use different companies to avoid cache collision
+    const recentJob = makeJob({ id: '10a', company: 'MicrosoftRecent', source: 'greenhouse', postedAt: new Date().toISOString() })
+    const recentResult = await evaluateJobTrust(recentJob)
+
+    const oldDate = new Date()
+    oldDate.setDate(oldDate.getDate() - 90)
+    const oldJob = makeJob({ id: '10b', company: 'MicrosoftOld', source: 'greenhouse', postedAt: oldDate.toISOString() })
+    const oldResult = await evaluateJobTrust(oldJob)
+
+    expect(recentResult.trustScore.overall).toBeGreaterThan(oldResult.trustScore.overall)
+  })
+
   it('returns job with trustBreakdown attached', async () => {
     const job = makeJob({ id: '9', company: 'Google', source: 'linkedin' })
     const result = await evaluateJobTrustWithBreakdown(job)

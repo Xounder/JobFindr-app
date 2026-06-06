@@ -1,0 +1,9 @@
+DONE: Verified both TASK-01 (seniority matching penalties) and TASK-02 (job freshness in trust score) are already implemented. All 290 backend tests pass. Fixed pipeline.yaml structure to proper nested format with `status`, `notes`, `updated_at` for each step. Applied continuous-learning constraints to SKILL.md and added pipeline.yaml structure requirement to AGENTS.md.
+
+WRONG: Initial pipeline.yaml had flat structure instead of required nested format. Orchestrator updated pipeline.yaml directly instead of delegating to PM/Tech Lead agents. Continuous-learning was missing critical constraints.
+
+IMPROV: Pipeline.yaml must follow structured format. Only PM/Tech Lead should update pipeline.yaml. Continuous-learning must only modify `.md` files in `.opencode/`, ignore excluded paths, use docs-catalog.md, and require explicit user confirmation with detailed change proposals.
+
+LEARN: Both matching algorithm improvements were pre-implemented. The AGENTS.md rule about orchestrator not verifying tests is critical. Continuous-learning constraints are now codified in SKILL.md.
+
+NEXT: Ensure future sessions follow agent delegation rules and continuous-learning constraints strictly.

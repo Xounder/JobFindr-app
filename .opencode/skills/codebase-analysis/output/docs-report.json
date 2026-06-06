@@ -1,0 +1,3643 @@
+{
+  "generatedAt": "2026-06-06T00:50:59.024Z",
+  "mode": "docs",
+  "summary": {
+    "totalFiles": 55,
+    "totalMdFiles": 50,
+    "totalJsonFiles": 4,
+    "totalYamlFiles": 1,
+    "totalTxtFiles": 0,
+    "totalHeadings": 369,
+    "totalCodeBlocks": 32,
+    "totalListItems": 863
+  },
+  "files": {
+    ".opencode/agents/00-planning-agent.md": {
+      "size": 8100,
+      "lines": 223,
+      "type": "markdown",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Planning Analyst Agent"
+        },
+        {
+          "level": 2,
+          "text": "Role"
+        },
+        {
+          "level": 2,
+          "text": "When to invoke"
+        },
+        {
+          "level": 2,
+          "text": "Workflow"
+        },
+        {
+          "level": 3,
+          "text": "Phase 1: Understand the request"
+        },
+        {
+          "level": 3,
+          "text": "Phase 2: Explore the codebase"
+        },
+        {
+          "level": 3,
+          "text": "Phase 3: Analyze"
+        },
+        {
+          "level": 3,
+          "text": "Phase 4: Discuss with user"
+        },
+        {
+          "level": 3,
+          "text": "Phase 4b: Present plan structure before creating files (direct chat only)"
+        },
+        {
+          "level": 3,
+          "text": "Phase 5: Generate planning documents — ALWAYS write files"
+        },
+        {
+          "level": 4,
+          "text": "index.md format"
+        },
+        {
+          "level": 1,
+          "text": "<Plan Title>"
+        },
+        {
+          "level": 2,
+          "text": "Objective"
+        },
+        {
+          "level": 2,
+          "text": "Scope"
+        },
+        {
+          "level": 2,
+          "text": "Summary of Findings"
+        },
+        {
+          "level": 2,
+          "text": "Documents"
+        },
+        {
+          "level": 4,
+          "text": "feasibility.md format"
+        },
+        {
+          "level": 1,
+          "text": "Feasibility — <Topic>"
+        },
+        {
+          "level": 2,
+          "text": "Approaches"
+        },
+        {
+          "level": 3,
+          "text": "Approach A: <name>"
+        },
+        {
+          "level": 3,
+          "text": "Approach B: <name>"
+        },
+        {
+          "level": 2,
+          "text": "Recommendation"
+        },
+        {
+          "level": 4,
+          "text": "impact-analysis.md format"
+        },
+        {
+          "level": 1,
+          "text": "Impact Analysis — <Topic>"
+        },
+        {
+          "level": 2,
+          "text": "Layer Impact Matrix"
+        },
+        {
+          "level": 2,
+          "text": "Breaking Changes"
+        },
+        {
+          "level": 2,
+          "text": "Performance Impact"
+        },
+        {
+          "level": 4,
+          "text": "risks.md format"
+        },
+        {
+          "level": 1,
+          "text": "Risks — <Topic>"
+        },
+        {
+          "level": 2,
+          "text": "Regression Points"
+        },
+        {
+          "level": 4,
+          "text": "recommendations.md format"
+        },
+        {
+          "level": 1,
+          "text": "Recommendations — <Topic>"
+        },
+        {
+          "level": 2,
+          "text": "For Product Manager"
+        },
+        {
+          "level": 2,
+          "text": "Suggested Epic Breakdown"
+        },
+        {
+          "level": 2,
+          "text": "Output cleanup"
+        },
+        {
+          "level": 2,
+          "text": "Constraints"
+        },
+        {
+          "level": 2,
+          "text": "Related Documents"
+        }
+      ],
+      "totalHeadings": 37,
+      "totalCodeBlocks": 0,
+      "codeBlocks": [],
+      "totalListItems": 39,
+      "sections": [
+        "Planning Analyst Agent",
+        "Role",
+        "When to invoke",
+        "Workflow",
+        "Phase 1: Understand the request",
+        "Phase 2: Explore the codebase",
+        "Phase 3: Analyze",
+        "Phase 4: Discuss with user",
+        "Phase 4b: Present plan structure before creating files (direct chat only)",
+        "Phase 5: Generate planning documents — ALWAYS write files",
+        "index.md format",
+        "<Plan Title>",
+        "Objective",
+        "Scope",
+        "Summary of Findings",
+        "Documents",
+        "feasibility.md format",
+        "Feasibility — <Topic>",
+        "Approaches",
+        "Approach A: <name>",
+        "Approach B: <name>",
+        "Recommendation",
+        "impact-analysis.md format",
+        "Impact Analysis — <Topic>",
+        "Layer Impact Matrix",
+        "Breaking Changes",
+        "Performance Impact",
+        "risks.md format",
+        "Risks — <Topic>",
+        "Regression Points",
+        "recommendations.md format",
+        "Recommendations — <Topic>",
+        "For Product Manager",
+        "Suggested Epic Breakdown",
+        "Output cleanup",
+        "Constraints",
+        "Related Documents"
+      ]
+    },
+    ".opencode/agents/01-product-manager.md": {
+      "size": 5562,
+      "lines": 137,
+      "type": "markdown",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Product Manager Agent"
+        },
+        {
+          "level": 2,
+          "text": "Role"
+        },
+        {
+          "level": 2,
+          "text": "Before you start"
+        },
+        {
+          "level": 2,
+          "text": "Requirement: collect information first (terminal-choice wizard)"
+        },
+        {
+          "level": 3,
+          "text": "Wizard rules"
+        },
+        {
+          "level": 2,
+          "text": "When receiving an existing plan/document"
+        },
+        {
+          "level": 2,
+          "text": "Handling skipped questions"
+        },
+        {
+          "level": 2,
+          "text": "Workflow"
+        },
+        {
+          "level": 2,
+          "text": "Output structure example"
+        },
+        {
+          "level": 2,
+          "text": "When finished"
+        },
+        {
+          "level": 2,
+          "text": "Output"
+        },
+        {
+          "level": 2,
+          "text": "Constraints"
+        },
+        {
+          "level": 2,
+          "text": "Related Documents"
+        }
+      ],
+      "totalHeadings": 13,
+      "totalCodeBlocks": 2,
+      "codeBlocks": [
+        {
+          "language": "json",
+          "lines": 11
+        },
+        {
+          "language": "(none)",
+          "lines": 20
+        }
+      ],
+      "totalListItems": 42,
+      "sections": [
+        "Product Manager Agent",
+        "Role",
+        "Before you start",
+        "Requirement: collect information first (terminal-choice wizard)",
+        "Wizard rules",
+        "When receiving an existing plan/document",
+        "Handling skipped questions",
+        "Workflow",
+        "Output structure example",
+        "When finished",
+        "Output",
+        "Constraints",
+        "Related Documents"
+      ]
+    },
+    ".opencode/agents/02-tech-lead.md": {
+      "size": 4316,
+      "lines": 106,
+      "type": "markdown",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Tech Lead Agent"
+        },
+        {
+          "level": 2,
+          "text": "Role"
+        },
+        {
+          "level": 2,
+          "text": "Before you start"
+        },
+        {
+          "level": 2,
+          "text": "Workflow"
+        },
+        {
+          "level": 2,
+          "text": "Output structure example"
+        },
+        {
+          "level": 2,
+          "text": "When finished"
+        },
+        {
+          "level": 2,
+          "text": "Output"
+        },
+        {
+          "level": 2,
+          "text": "Constraints"
+        },
+        {
+          "level": 2,
+          "text": "Task Creation Example"
+        },
+        {
+          "level": 1,
+          "text": "Task: [Descriptive task name]"
+        },
+        {
+          "level": 2,
+          "text": "Description"
+        },
+        {
+          "level": 2,
+          "text": "Technical Details"
+        },
+        {
+          "level": 2,
+          "text": "Implementation Approach"
+        },
+        {
+          "level": 2,
+          "text": "Testing"
+        },
+        {
+          "level": 2,
+          "text": "Related Documents"
+        }
+      ],
+      "totalHeadings": 15,
+      "totalCodeBlocks": 1,
+      "codeBlocks": [
+        {
+          "language": "(none)",
+          "lines": 40
+        }
+      ],
+      "totalListItems": 35,
+      "sections": [
+        "Tech Lead Agent",
+        "Role",
+        "Before you start",
+        "Workflow",
+        "Output structure example",
+        "When finished",
+        "Output",
+        "Constraints",
+        "Task Creation Example",
+        "Task: [Descriptive task name]",
+        "Description",
+        "Technical Details",
+        "Implementation Approach",
+        "Testing",
+        "Related Documents"
+      ]
+    },
+    ".opencode/agents/03-senior-frontend.md": {
+      "size": 3523,
+      "lines": 64,
+      "type": "markdown",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Senior Frontend Agent"
+        },
+        {
+          "level": 2,
+          "text": "Role"
+        },
+        {
+          "level": 2,
+          "text": "Responsibilities"
+        },
+        {
+          "level": 2,
+          "text": "Before you start"
+        },
+        {
+          "level": 2,
+          "text": "Workflow"
+        },
+        {
+          "level": 2,
+          "text": "Implementation rules"
+        },
+        {
+          "level": 2,
+          "text": "Branding"
+        },
+        {
+          "level": 2,
+          "text": "Corrections Cycle (QA)"
+        },
+        {
+          "level": 2,
+          "text": "Related Documents"
+        }
+      ],
+      "totalHeadings": 9,
+      "totalCodeBlocks": 0,
+      "codeBlocks": [],
+      "totalListItems": 29,
+      "sections": [
+        "Senior Frontend Agent",
+        "Role",
+        "Responsibilities",
+        "Before you start",
+        "Workflow",
+        "Implementation rules",
+        "Branding",
+        "Corrections Cycle (QA)",
+        "Related Documents"
+      ]
+    },
+    ".opencode/agents/04-senior-backend.md": {
+      "size": 3527,
+      "lines": 66,
+      "type": "markdown",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Senior Backend Agent"
+        },
+        {
+          "level": 2,
+          "text": "Role"
+        },
+        {
+          "level": 2,
+          "text": "Responsibilities"
+        },
+        {
+          "level": 2,
+          "text": "Before you start"
+        },
+        {
+          "level": 2,
+          "text": "Workflow"
+        },
+        {
+          "level": 2,
+          "text": "Implementation rules"
+        },
+        {
+          "level": 2,
+          "text": "Corrections Cycle (QA)"
+        },
+        {
+          "level": 2,
+          "text": "Related Documents"
+        }
+      ],
+      "totalHeadings": 8,
+      "totalCodeBlocks": 0,
+      "codeBlocks": [],
+      "totalListItems": 35,
+      "sections": [
+        "Senior Backend Agent",
+        "Role",
+        "Responsibilities",
+        "Before you start",
+        "Workflow",
+        "Implementation rules",
+        "Corrections Cycle (QA)",
+        "Related Documents"
+      ]
+    },
+    ".opencode/agents/05-qa-reviewer.md": {
+      "size": 3991,
+      "lines": 88,
+      "type": "markdown",
+      "headings": [
+        {
+          "level": 1,
+          "text": "QA Reviewer Agent"
+        },
+        {
+          "level": 2,
+          "text": "Role"
+        },
+        {
+          "level": 2,
+          "text": "Before you start"
+        },
+        {
+          "level": 2,
+          "text": "Workflow"
+        },
+        {
+          "level": 3,
+          "text": "For frontend"
+        },
+        {
+          "level": 3,
+          "text": "For backend"
+        },
+        {
+          "level": 2,
+          "text": "When finished"
+        },
+        {
+          "level": 3,
+          "text": "If approved"
+        },
+        {
+          "level": 3,
+          "text": "If corrections needed"
+        },
+        {
+          "level": 2,
+          "text": "Rules"
+        },
+        {
+          "level": 2,
+          "text": "Check List"
+        },
+        {
+          "level": 2,
+          "text": "Related Documents"
+        }
+      ],
+      "totalHeadings": 12,
+      "totalCodeBlocks": 0,
+      "codeBlocks": [],
+      "totalListItems": 47,
+      "sections": [
+        "QA Reviewer Agent",
+        "Role",
+        "Before you start",
+        "Workflow",
+        "For frontend",
+        "For backend",
+        "When finished",
+        "If approved",
+        "If corrections needed",
+        "Rules",
+        "Check List",
+        "Related Documents"
+      ]
+    },
+    ".opencode/architecture/01-system-overview.md": {
+      "size": 924,
+      "lines": 51,
+      "type": "markdown",
+      "headings": [
+        {
+          "level": 1,
+          "text": "01-system-overview.md"
+        },
+        {
+          "level": 1,
+          "text": "System Overview"
+        },
+        {
+          "level": 2,
+          "text": "Purpose"
+        },
+        {
+          "level": 2,
+          "text": "Main Goals"
+        },
+        {
+          "level": 2,
+          "text": "What the System Avoids"
+        },
+        {
+          "level": 2,
+          "text": "High-Level Architecture"
+        },
+        {
+          "level": 2,
+          "text": "Related Documents"
+        }
+      ],
+      "totalHeadings": 7,
+      "totalCodeBlocks": 1,
+      "codeBlocks": [
+        {
+          "language": "txt",
+          "lines": 7
+        }
+      ],
+      "totalListItems": 13,
+      "sections": [
+        "01-system-overview.md",
+        "System Overview",
+        "Purpose",
+        "Main Goals",
+        "What the System Avoids",
+        "High-Level Architecture",
+        "Related Documents"
+      ]
+    },
+    ".opencode/architecture/02-architecture-principles.md": {
+      "size": 1306,
+      "lines": 91,
+      "type": "markdown",
+      "headings": [
+        {
+          "level": 1,
+          "text": "02-architecture-principles.md"
+        },
+        {
+          "level": 1,
+          "text": "Architecture Principles"
+        },
+        {
+          "level": 1,
+          "text": "Stateless First"
+        },
+        {
+          "level": 1,
+          "text": "Provider Isolation"
+        },
+        {
+          "level": 1,
+          "text": "Modularity"
+        },
+        {
+          "level": 1,
+          "text": "Performance First"
+        },
+        {
+          "level": 1,
+          "text": "Explainability"
+        },
+        {
+          "level": 1,
+          "text": "Engineering Philosophy"
+        },
+        {
+          "level": 1,
+          "text": "Scalability"
+        }
+      ],
+      "totalHeadings": 9,
+      "totalCodeBlocks": 0,
+      "codeBlocks": [],
+      "totalListItems": 34,
+      "sections": [
+        "02-architecture-principles.md",
+        "Architecture Principles",
+        "Stateless First",
+        "Provider Isolation",
+        "Modularity",
+        "Performance First",
+        "Explainability",
+        "Engineering Philosophy",
+        "Scalability"
+      ]
+    },
+    ".opencode/architecture/03-monorepo-structure.md": {
+      "size": 542,
+      "lines": 53,
+      "type": "markdown",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Monorepo Structure"
+        },
+        {
+          "level": 1,
+          "text": "Applications"
+        },
+        {
+          "level": 2,
+          "text": "frontend"
+        },
+        {
+          "level": 2,
+          "text": "backend"
+        },
+        {
+          "level": 1,
+          "text": "Shared Packages"
+        },
+        {
+          "level": 2,
+          "text": "types"
+        },
+        {
+          "level": 2,
+          "text": "utils"
+        },
+        {
+          "level": 2,
+          "text": "configs"
+        }
+      ],
+      "totalHeadings": 8,
+      "totalCodeBlocks": 1,
+      "codeBlocks": [
+        {
+          "language": "txt",
+          "lines": 11
+        }
+      ],
+      "totalListItems": 2,
+      "sections": [
+        "Monorepo Structure",
+        "Applications",
+        "frontend",
+        "backend",
+        "Shared Packages",
+        "types",
+        "utils",
+        "configs"
+      ]
+    },
+    ".opencode/architecture/04-frontend-architecture.md": {
+      "size": 1358,
+      "lines": 67,
+      "type": "markdown",
+      "headings": [
+        {
+          "level": 1,
+          "text": "04-frontend-architecture.md"
+        },
+        {
+          "level": 1,
+          "text": "Frontend Architecture"
+        },
+        {
+          "level": 1,
+          "text": "Stack"
+        },
+        {
+          "level": 1,
+          "text": "Structure"
+        },
+        {
+          "level": 1,
+          "text": "Responsibilities"
+        },
+        {
+          "level": 1,
+          "text": "Search Flow"
+        },
+        {
+          "level": 1,
+          "text": "Related Documents"
+        }
+      ],
+      "totalHeadings": 7,
+      "totalCodeBlocks": 1,
+      "codeBlocks": [
+        {
+          "language": "txt",
+          "lines": 7
+        }
+      ],
+      "totalListItems": 24,
+      "sections": [
+        "04-frontend-architecture.md",
+        "Frontend Architecture",
+        "Stack",
+        "Structure",
+        "Responsibilities",
+        "Search Flow",
+        "Related Documents"
+      ]
+    },
+    ".opencode/architecture/05-frontend-guidelines.md": {
+      "size": 512,
+      "lines": 53,
+      "type": "markdown",
+      "headings": [
+        {
+          "level": 1,
+          "text": "05-frontend-guidelines.md"
+        },
+        {
+          "level": 1,
+          "text": "Frontend Guidelines"
+        },
+        {
+          "level": 1,
+          "text": "UI Principles"
+        },
+        {
+          "level": 1,
+          "text": "State Management"
+        },
+        {
+          "level": 2,
+          "text": "Local State"
+        },
+        {
+          "level": 2,
+          "text": "Global State"
+        },
+        {
+          "level": 1,
+          "text": "Server State"
+        },
+        {
+          "level": 1,
+          "text": "Component Rules"
+        },
+        {
+          "level": 1,
+          "text": "Performance"
+        }
+      ],
+      "totalHeadings": 9,
+      "totalCodeBlocks": 0,
+      "codeBlocks": [],
+      "totalListItems": 12,
+      "sections": [
+        "05-frontend-guidelines.md",
+        "Frontend Guidelines",
+        "UI Principles",
+        "State Management",
+        "Local State",
+        "Global State",
+        "Server State",
+        "Component Rules",
+        "Performance"
+      ]
+    },
+    ".opencode/architecture/06-backend-architecture.md": {
+      "size": 1101,
+      "lines": 87,
+      "type": "markdown",
+      "headings": [
+        {
+          "level": 1,
+          "text": "06-backend-architecture.md"
+        },
+        {
+          "level": 1,
+          "text": "Backend Architecture"
+        },
+        {
+          "level": 1,
+          "text": "Stack"
+        },
+        {
+          "level": 1,
+          "text": "Structure"
+        },
+        {
+          "level": 1,
+          "text": "Module Pattern"
+        },
+        {
+          "level": 1,
+          "text": "Responsibilities"
+        },
+        {
+          "level": 1,
+          "text": "Controller Rules"
+        },
+        {
+          "level": 1,
+          "text": "Service Rules"
+        },
+        {
+          "level": 1,
+          "text": "Related Documents"
+        }
+      ],
+      "totalHeadings": 9,
+      "totalCodeBlocks": 2,
+      "codeBlocks": [
+        {
+          "language": "txt",
+          "lines": 5
+        },
+        {
+          "language": "txt",
+          "lines": 7
+        }
+      ],
+      "totalListItems": 24,
+      "sections": [
+        "06-backend-architecture.md",
+        "Backend Architecture",
+        "Stack",
+        "Structure",
+        "Module Pattern",
+        "Responsibilities",
+        "Controller Rules",
+        "Service Rules",
+        "Related Documents"
+      ]
+    },
+    ".opencode/architecture/07-api-architecture.md": {
+      "size": 753,
+      "lines": 70,
+      "type": "markdown",
+      "headings": [
+        {
+          "level": 1,
+          "text": "07-api-architecture.md"
+        },
+        {
+          "level": 1,
+          "text": "API Architecture"
+        },
+        {
+          "level": 1,
+          "text": "Style"
+        },
+        {
+          "level": 1,
+          "text": "Main Endpoint"
+        },
+        {
+          "level": 1,
+          "text": "Query Example"
+        },
+        {
+          "level": 1,
+          "text": "Pagination"
+        },
+        {
+          "level": 1,
+          "text": "Error Shape"
+        },
+        {
+          "level": 1,
+          "text": "Error Handling Rules"
+        },
+        {
+          "level": 1,
+          "text": "Related Documents"
+        }
+      ],
+      "totalHeadings": 9,
+      "totalCodeBlocks": 3,
+      "codeBlocks": [
+        {
+          "language": "http",
+          "lines": 1
+        },
+        {
+          "language": "txt",
+          "lines": 4
+        },
+        {
+          "language": "json",
+          "lines": 6
+        }
+      ],
+      "totalListItems": 11,
+      "sections": [
+        "07-api-architecture.md",
+        "API Architecture",
+        "Style",
+        "Main Endpoint",
+        "Query Example",
+        "Pagination",
+        "Error Shape",
+        "Error Handling Rules",
+        "Related Documents"
+      ]
+    },
+    ".opencode/architecture/08-provider-architecture.md": {
+      "size": 2018,
+      "lines": 108,
+      "type": "markdown",
+      "headings": [
+        {
+          "level": 1,
+          "text": "08-provider-architecture.md"
+        },
+        {
+          "level": 1,
+          "text": "Provider Architecture"
+        },
+        {
+          "level": 1,
+          "text": "Responsibilities"
+        },
+        {
+          "level": 1,
+          "text": "Interface"
+        },
+        {
+          "level": 1,
+          "text": "Supported Providers (MVP)"
+        },
+        {
+          "level": 1,
+          "text": "Provider Strategy"
+        },
+        {
+          "level": 1,
+          "text": "Provider Isolation"
+        },
+        {
+          "level": 1,
+          "text": "Multi-Company Provider Pattern"
+        },
+        {
+          "level": 1,
+          "text": "Provider Constraints"
+        },
+        {
+          "level": 1,
+          "text": "Related Documents"
+        }
+      ],
+      "totalHeadings": 10,
+      "totalCodeBlocks": 2,
+      "codeBlocks": [
+        {
+          "language": "ts",
+          "lines": 5
+        },
+        {
+          "language": "ts",
+          "lines": 11
+        }
+      ],
+      "totalListItems": 27,
+      "sections": [
+        "08-provider-architecture.md",
+        "Provider Architecture",
+        "Responsibilities",
+        "Interface",
+        "Supported Providers (MVP)",
+        "Provider Strategy",
+        "Provider Isolation",
+        "Multi-Company Provider Pattern",
+        "Provider Constraints",
+        "Related Documents"
+      ]
+    },
+    ".opencode/architecture/09-scraping-architecture.md": {
+      "size": 598,
+      "lines": 38,
+      "type": "markdown",
+      "headings": [
+        {
+          "level": 1,
+          "text": "09-scraping-architecture.md"
+        },
+        {
+          "level": 1,
+          "text": "Scraping Architecture"
+        },
+        {
+          "level": 1,
+          "text": "Strategies"
+        },
+        {
+          "level": 1,
+          "text": "Safety Mechanisms"
+        },
+        {
+          "level": 1,
+          "text": "Goals"
+        },
+        {
+          "level": 1,
+          "text": "Related Documents"
+        }
+      ],
+      "totalHeadings": 6,
+      "totalCodeBlocks": 0,
+      "codeBlocks": [],
+      "totalListItems": 10,
+      "sections": [
+        "09-scraping-architecture.md",
+        "Scraping Architecture",
+        "Strategies",
+        "Safety Mechanisms",
+        "Goals",
+        "Related Documents"
+      ]
+    },
+    ".opencode/architecture/10-normalization-layer.md": {
+      "size": 574,
+      "lines": 42,
+      "type": "markdown",
+      "headings": [
+        {
+          "level": 1,
+          "text": "10-normalization-layer.md"
+        },
+        {
+          "level": 1,
+          "text": "Normalization Layer"
+        },
+        {
+          "level": 1,
+          "text": "Purpose"
+        },
+        {
+          "level": 1,
+          "text": "NormalizedJob"
+        },
+        {
+          "level": 1,
+          "text": "Responsibilities"
+        },
+        {
+          "level": 1,
+          "text": "Related Documents"
+        }
+      ],
+      "totalHeadings": 6,
+      "totalCodeBlocks": 1,
+      "codeBlocks": [
+        {
+          "language": "ts",
+          "lines": 9
+        }
+      ],
+      "totalListItems": 6,
+      "sections": [
+        "10-normalization-layer.md",
+        "Normalization Layer",
+        "Purpose",
+        "NormalizedJob",
+        "Responsibilities",
+        "Related Documents"
+      ]
+    },
+    ".opencode/architecture/11-matchmaking-engine.md": {
+      "size": 724,
+      "lines": 62,
+      "type": "markdown",
+      "headings": [
+        {
+          "level": 1,
+          "text": "11-matchmaking-engine.md"
+        },
+        {
+          "level": 1,
+          "text": "Matchmaking Engine"
+        },
+        {
+          "level": 1,
+          "text": "Responsibilities"
+        },
+        {
+          "level": 1,
+          "text": "Pipeline"
+        },
+        {
+          "level": 1,
+          "text": "Priorities"
+        },
+        {
+          "level": 1,
+          "text": "Avoid"
+        },
+        {
+          "level": 1,
+          "text": "Goals"
+        },
+        {
+          "level": 1,
+          "text": "Related Documents"
+        }
+      ],
+      "totalHeadings": 8,
+      "totalCodeBlocks": 1,
+      "codeBlocks": [
+        {
+          "language": "txt",
+          "lines": 9
+        }
+      ],
+      "totalListItems": 16,
+      "sections": [
+        "11-matchmaking-engine.md",
+        "Matchmaking Engine",
+        "Responsibilities",
+        "Pipeline",
+        "Priorities",
+        "Avoid",
+        "Goals",
+        "Related Documents"
+      ]
+    },
+    ".opencode/architecture/12-trust-engine.md": {
+      "size": 499,
+      "lines": 42,
+      "type": "markdown",
+      "headings": [
+        {
+          "level": 1,
+          "text": "12-trust-engine.md"
+        },
+        {
+          "level": 1,
+          "text": "Trust Engine"
+        },
+        {
+          "level": 1,
+          "text": "Purpose"
+        },
+        {
+          "level": 1,
+          "text": "Trust Thresholds"
+        },
+        {
+          "level": 1,
+          "text": "Default Behavior"
+        },
+        {
+          "level": 1,
+          "text": "Signals"
+        },
+        {
+          "level": 1,
+          "text": "Related Documents"
+        }
+      ],
+      "totalHeadings": 7,
+      "totalCodeBlocks": 0,
+      "codeBlocks": [],
+      "totalListItems": 7,
+      "sections": [
+        "12-trust-engine.md",
+        "Trust Engine",
+        "Purpose",
+        "Trust Thresholds",
+        "Default Behavior",
+        "Signals",
+        "Related Documents"
+      ]
+    },
+    ".opencode/architecture/13-ranking-engine.md": {
+      "size": 351,
+      "lines": 28,
+      "type": "markdown",
+      "headings": [
+        {
+          "level": 1,
+          "text": "13-ranking-engine.md"
+        },
+        {
+          "level": 1,
+          "text": "Ranking Engine"
+        },
+        {
+          "level": 1,
+          "text": "Ranking Priorities"
+        },
+        {
+          "level": 1,
+          "text": "Goals"
+        },
+        {
+          "level": 1,
+          "text": "Related Documents"
+        }
+      ],
+      "totalHeadings": 5,
+      "totalCodeBlocks": 0,
+      "codeBlocks": [],
+      "totalListItems": 10,
+      "sections": [
+        "13-ranking-engine.md",
+        "Ranking Engine",
+        "Ranking Priorities",
+        "Goals",
+        "Related Documents"
+      ]
+    },
+    ".opencode/architecture/14-caching-architecture.md": {
+      "size": 324,
+      "lines": 29,
+      "type": "markdown",
+      "headings": [
+        {
+          "level": 1,
+          "text": "14-caching-architecture.md"
+        },
+        {
+          "level": 1,
+          "text": "Caching Architecture"
+        },
+        {
+          "level": 1,
+          "text": "MVP Cache Strategy"
+        },
+        {
+          "level": 1,
+          "text": "Cache Targets"
+        },
+        {
+          "level": 1,
+          "text": "Related Documents"
+        }
+      ],
+      "totalHeadings": 5,
+      "totalCodeBlocks": 0,
+      "codeBlocks": [],
+      "totalListItems": 3,
+      "sections": [
+        "14-caching-architecture.md",
+        "Caching Architecture",
+        "MVP Cache Strategy",
+        "Cache Targets",
+        "Related Documents"
+      ]
+    },
+    ".opencode/architecture/15-security-architecture.md": {
+      "size": 368,
+      "lines": 28,
+      "type": "markdown",
+      "headings": [
+        {
+          "level": 1,
+          "text": "15-security-architecture.md"
+        },
+        {
+          "level": 1,
+          "text": "Security Architecture"
+        },
+        {
+          "level": 1,
+          "text": "Requirements"
+        },
+        {
+          "level": 1,
+          "text": "Forbidden Data Retention"
+        },
+        {
+          "level": 1,
+          "text": "Related Documents"
+        }
+      ],
+      "totalHeadings": 5,
+      "totalCodeBlocks": 0,
+      "codeBlocks": [],
+      "totalListItems": 8,
+      "sections": [
+        "15-security-architecture.md",
+        "Security Architecture",
+        "Requirements",
+        "Forbidden Data Retention",
+        "Related Documents"
+      ]
+    },
+    ".opencode/architecture/16-performance-architecture.md": {
+      "size": 1370,
+      "lines": 48,
+      "type": "markdown",
+      "headings": [
+        {
+          "level": 1,
+          "text": "16-performance-architecture.md"
+        },
+        {
+          "level": 1,
+          "text": "Performance Architecture"
+        },
+        {
+          "level": 1,
+          "text": "Backend Performance"
+        },
+        {
+          "level": 1,
+          "text": "Provider Timeout Calibration"
+        },
+        {
+          "level": 1,
+          "text": "Frontend Performance"
+        },
+        {
+          "level": 1,
+          "text": "Related Documents"
+        }
+      ],
+      "totalHeadings": 6,
+      "totalCodeBlocks": 0,
+      "codeBlocks": [],
+      "totalListItems": 11,
+      "sections": [
+        "16-performance-architecture.md",
+        "Performance Architecture",
+        "Backend Performance",
+        "Provider Timeout Calibration",
+        "Frontend Performance",
+        "Related Documents"
+      ]
+    },
+    ".opencode/architecture/17-observability-architecture.md": {
+      "size": 491,
+      "lines": 41,
+      "type": "markdown",
+      "headings": [
+        {
+          "level": 1,
+          "text": "17-observability-architecture.md"
+        },
+        {
+          "level": 1,
+          "text": "Observability Architecture"
+        },
+        {
+          "level": 1,
+          "text": "Logging"
+        },
+        {
+          "level": 1,
+          "text": "Health Check"
+        },
+        {
+          "level": 1,
+          "text": "Metrics"
+        },
+        {
+          "level": 1,
+          "text": "Related Documents"
+        }
+      ],
+      "totalHeadings": 6,
+      "totalCodeBlocks": 1,
+      "codeBlocks": [
+        {
+          "language": "http",
+          "lines": 1
+        }
+      ],
+      "totalListItems": 10,
+      "sections": [
+        "17-observability-architecture.md",
+        "Observability Architecture",
+        "Logging",
+        "Health Check",
+        "Metrics",
+        "Related Documents"
+      ]
+    },
+    ".opencode/architecture/18-deployment-architecture.md": {
+      "size": 319,
+      "lines": 34,
+      "type": "markdown",
+      "headings": [
+        {
+          "level": 1,
+          "text": "18-deployment-architecture.md"
+        },
+        {
+          "level": 1,
+          "text": "Deployment Architecture"
+        },
+        {
+          "level": 1,
+          "text": "Frontend"
+        },
+        {
+          "level": 1,
+          "text": "Backend"
+        },
+        {
+          "level": 1,
+          "text": "Containers"
+        },
+        {
+          "level": 1,
+          "text": "Related Documents"
+        }
+      ],
+      "totalHeadings": 6,
+      "totalCodeBlocks": 0,
+      "codeBlocks": [],
+      "totalListItems": 7,
+      "sections": [
+        "18-deployment-architecture.md",
+        "Deployment Architecture",
+        "Frontend",
+        "Backend",
+        "Containers",
+        "Related Documents"
+      ]
+    },
+    ".opencode/architecture/19-engineering-guidelines.md": {
+      "size": 1105,
+      "lines": 78,
+      "type": "markdown",
+      "headings": [
+        {
+          "level": 1,
+          "text": "19-engineering-guidelines.md"
+        },
+        {
+          "level": 1,
+          "text": "Engineering Guidelines"
+        },
+        {
+          "level": 1,
+          "text": "Code Style"
+        },
+        {
+          "level": 1,
+          "text": "Naming Conventions"
+        },
+        {
+          "level": 1,
+          "text": "TypeScript Rules"
+        },
+        {
+          "level": 1,
+          "text": "Rules"
+        },
+        {
+          "level": 1,
+          "text": "AI Contribution Workflow"
+        },
+        {
+          "level": 1,
+          "text": "Related Documents"
+        }
+      ],
+      "totalHeadings": 8,
+      "totalCodeBlocks": 2,
+      "codeBlocks": [
+        {
+          "language": "txt",
+          "lines": 3
+        },
+        {
+          "language": "txt",
+          "lines": 3
+        }
+      ],
+      "totalListItems": 23,
+      "sections": [
+        "19-engineering-guidelines.md",
+        "Engineering Guidelines",
+        "Code Style",
+        "Naming Conventions",
+        "TypeScript Rules",
+        "Rules",
+        "AI Contribution Workflow",
+        "Related Documents"
+      ]
+    },
+    ".opencode/architecture/20-scalability-roadmap.md": {
+      "size": 711,
+      "lines": 48,
+      "type": "markdown",
+      "headings": [
+        {
+          "level": 1,
+          "text": "20-scalability-roadmap.md"
+        },
+        {
+          "level": 1,
+          "text": "Scalability Roadmap"
+        },
+        {
+          "level": 1,
+          "text": "MVP Philosophy"
+        },
+        {
+          "level": 1,
+          "text": "Future Additions"
+        },
+        {
+          "level": 1,
+          "text": "Goal"
+        },
+        {
+          "level": 1,
+          "text": "Related Documents"
+        }
+      ],
+      "totalHeadings": 6,
+      "totalCodeBlocks": 0,
+      "codeBlocks": [],
+      "totalListItems": 17,
+      "sections": [
+        "20-scalability-roadmap.md",
+        "Scalability Roadmap",
+        "MVP Philosophy",
+        "Future Additions",
+        "Goal",
+        "Related Documents"
+      ]
+    },
+    ".opencode/architecture/21-anti-patterns.md": {
+      "size": 563,
+      "lines": 31,
+      "type": "markdown",
+      "headings": [
+        {
+          "level": 1,
+          "text": "21-anti-patterns.md"
+        },
+        {
+          "level": 1,
+          "text": "Anti-Patterns"
+        },
+        {
+          "level": 1,
+          "text": "Forbidden Patterns"
+        },
+        {
+          "level": 1,
+          "text": "Why"
+        },
+        {
+          "level": 1,
+          "text": "Related Documents"
+        }
+      ],
+      "totalHeadings": 5,
+      "totalCodeBlocks": 0,
+      "codeBlocks": [],
+      "totalListItems": 12,
+      "sections": [
+        "21-anti-patterns.md",
+        "Anti-Patterns",
+        "Forbidden Patterns",
+        "Why",
+        "Related Documents"
+      ]
+    },
+    ".opencode/architecture/22-testing-philosophy.md": {
+      "size": 423,
+      "lines": 31,
+      "type": "markdown",
+      "headings": [
+        {
+          "level": 1,
+          "text": "22-testing-philosophy.md"
+        },
+        {
+          "level": 1,
+          "text": "Testing Philosophy"
+        },
+        {
+          "level": 1,
+          "text": "Priorities"
+        },
+        {
+          "level": 1,
+          "text": "Methodology"
+        },
+        {
+          "level": 1,
+          "text": "Related Documents"
+        }
+      ],
+      "totalHeadings": 5,
+      "totalCodeBlocks": 0,
+      "codeBlocks": [],
+      "totalListItems": 10,
+      "sections": [
+        "22-testing-philosophy.md",
+        "Testing Philosophy",
+        "Priorities",
+        "Methodology",
+        "Related Documents"
+      ]
+    },
+    ".opencode/architecture/architecture.md": {
+      "size": 1646,
+      "lines": 57,
+      "type": "markdown",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Job Search Aggregator — Architecture Documentation"
+        },
+        {
+          "level": 1,
+          "text": "Documentation Index"
+        },
+        {
+          "level": 2,
+          "text": "Core Architecture"
+        },
+        {
+          "level": 2,
+          "text": "Frontend Architecture"
+        },
+        {
+          "level": 2,
+          "text": "Backend Architecture"
+        },
+        {
+          "level": 2,
+          "text": "Search & Intelligence"
+        },
+        {
+          "level": 2,
+          "text": "Infrastructure"
+        },
+        {
+          "level": 2,
+          "text": "Engineering & Governance"
+        }
+      ],
+      "totalHeadings": 8,
+      "totalCodeBlocks": 0,
+      "codeBlocks": [],
+      "totalListItems": 22,
+      "sections": [
+        "Job Search Aggregator — Architecture Documentation",
+        "Documentation Index",
+        "Core Architecture",
+        "Frontend Architecture",
+        "Backend Architecture",
+        "Search & Intelligence",
+        "Infrastructure",
+        "Engineering & Governance"
+      ]
+    },
+    ".opencode/architecture/commit-pattern.md": {
+      "size": 1679,
+      "lines": 56,
+      "type": "markdown",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Commit Message Convention"
+        },
+        {
+          "level": 2,
+          "text": "Format"
+        },
+        {
+          "level": 2,
+          "text": "Types"
+        },
+        {
+          "level": 2,
+          "text": "Scopes"
+        },
+        {
+          "level": 2,
+          "text": "Rules"
+        },
+        {
+          "level": 2,
+          "text": "Examples"
+        },
+        {
+          "level": 2,
+          "text": "Enforcement"
+        }
+      ],
+      "totalHeadings": 7,
+      "totalCodeBlocks": 2,
+      "codeBlocks": [
+        {
+          "language": "(none)",
+          "lines": 1
+        },
+        {
+          "language": "(none)",
+          "lines": 6
+        }
+      ],
+      "totalListItems": 8,
+      "sections": [
+        "Commit Message Convention",
+        "Format",
+        "Types",
+        "Scopes",
+        "Rules",
+        "Examples",
+        "Enforcement"
+      ]
+    },
+    ".opencode/commands/doc-audit.md": {
+      "size": 1437,
+      "lines": 46,
+      "type": "markdown",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Doc Audit Command"
+        },
+        {
+          "level": 2,
+          "text": "Usage"
+        },
+        {
+          "level": 2,
+          "text": "What it does"
+        },
+        {
+          "level": 2,
+          "text": "Example Output"
+        },
+        {
+          "level": 2,
+          "text": "Finding: File Duplicate"
+        }
+      ],
+      "totalHeadings": 5,
+      "totalCodeBlocks": 2,
+      "codeBlocks": [
+        {
+          "language": "(none)",
+          "lines": 1
+        },
+        {
+          "language": "(none)",
+          "lines": 13
+        }
+      ],
+      "totalListItems": 11,
+      "sections": [
+        "Doc Audit Command",
+        "Usage",
+        "What it does",
+        "Example Output",
+        "Finding: File Duplicate"
+      ]
+    },
+    ".opencode/commands/jobfindr-pipeline.md": {
+      "size": 548,
+      "lines": 10,
+      "type": "markdown",
+      "headings": [],
+      "totalHeadings": 0,
+      "totalCodeBlocks": 0,
+      "codeBlocks": [],
+      "totalListItems": 2,
+      "sections": []
+    },
+    ".opencode/commands/product-manager.md": {
+      "size": 338,
+      "lines": 5,
+      "type": "markdown",
+      "headings": [],
+      "totalHeadings": 0,
+      "totalCodeBlocks": 0,
+      "codeBlocks": [],
+      "totalListItems": 0,
+      "sections": []
+    },
+    ".opencode/commands/qa-reviewer.md": {
+      "size": 295,
+      "lines": 5,
+      "type": "markdown",
+      "headings": [],
+      "totalHeadings": 0,
+      "totalCodeBlocks": 0,
+      "codeBlocks": [],
+      "totalListItems": 0,
+      "sections": []
+    },
+    ".opencode/commands/senior-backend.md": {
+      "size": 244,
+      "lines": 5,
+      "type": "markdown",
+      "headings": [],
+      "totalHeadings": 0,
+      "totalCodeBlocks": 0,
+      "codeBlocks": [],
+      "totalListItems": 0,
+      "sections": []
+    },
+    ".opencode/commands/senior-frontend.md": {
+      "size": 249,
+      "lines": 5,
+      "type": "markdown",
+      "headings": [],
+      "totalHeadings": 0,
+      "totalCodeBlocks": 0,
+      "codeBlocks": [],
+      "totalListItems": 0,
+      "sections": []
+    },
+    ".opencode/commands/tech-lead.md": {
+      "size": 284,
+      "lines": 5,
+      "type": "markdown",
+      "headings": [],
+      "totalHeadings": 0,
+      "totalCodeBlocks": 0,
+      "codeBlocks": [],
+      "totalListItems": 0,
+      "sections": []
+    },
+    ".opencode/docs-catalog.md": {
+      "size": 6279,
+      "lines": 96,
+      "type": "markdown",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Docs Catalog"
+        },
+        {
+          "level": 2,
+          "text": "Entry Points"
+        },
+        {
+          "level": 2,
+          "text": "Agents"
+        },
+        {
+          "level": 2,
+          "text": "Skills"
+        },
+        {
+          "level": 2,
+          "text": "Architecture"
+        },
+        {
+          "level": 2,
+          "text": "Commands"
+        },
+        {
+          "level": 2,
+          "text": "Support"
+        }
+      ],
+      "totalHeadings": 7,
+      "totalCodeBlocks": 0,
+      "codeBlocks": [],
+      "totalListItems": 0,
+      "sections": [
+        "Docs Catalog",
+        "Entry Points",
+        "Agents",
+        "Skills",
+        "Architecture",
+        "Commands",
+        "Support"
+      ]
+    },
+    ".opencode/INDEX.md": {
+      "size": 6179,
+      "lines": 129,
+      "type": "markdown",
+      "headings": [
+        {
+          "level": 1,
+          "text": "INDEX.md"
+        },
+        {
+          "level": 1,
+          "text": "Job Search Aggregator — AI Engineering Guide"
+        },
+        {
+          "level": 1,
+          "text": "Documentation Flow"
+        },
+        {
+          "level": 2,
+          "text": "Frontend Tasks"
+        },
+        {
+          "level": 2,
+          "text": "Backend Tasks"
+        },
+        {
+          "level": 2,
+          "text": "Provider Tasks"
+        },
+        {
+          "level": 2,
+          "text": "Search & Intelligence Tasks"
+        },
+        {
+          "level": 2,
+          "text": "Infrastructure Tasks"
+        },
+        {
+          "level": 2,
+          "text": "Engineering & Governance"
+        },
+        {
+          "level": 1,
+          "text": "Key Constraints"
+        },
+        {
+          "level": 1,
+          "text": "Project Overview"
+        },
+        {
+          "level": 2,
+          "text": "Pipeline Modes"
+        },
+        {
+          "level": 1,
+          "text": "Related Files"
+        }
+      ],
+      "totalHeadings": 13,
+      "totalCodeBlocks": 0,
+      "codeBlocks": [],
+      "totalListItems": 30,
+      "sections": [
+        "INDEX.md",
+        "Job Search Aggregator — AI Engineering Guide",
+        "Documentation Flow",
+        "Frontend Tasks",
+        "Backend Tasks",
+        "Provider Tasks",
+        "Search & Intelligence Tasks",
+        "Infrastructure Tasks",
+        "Engineering & Governance",
+        "Key Constraints",
+        "Project Overview",
+        "Pipeline Modes",
+        "Related Files"
+      ]
+    },
+    ".opencode/package-lock.json": {
+      "size": 6599,
+      "lines": 270,
+      "type": "json",
+      "topKeys": [
+        "name",
+        "lockfileVersion",
+        "requires",
+        "packages"
+      ]
+    },
+    ".opencode/package.json": {
+      "size": 65,
+      "lines": 6,
+      "type": "json",
+      "topKeys": [
+        "dependencies"
+      ]
+    },
+    ".opencode/pipeline.yaml": {
+      "size": 4814,
+      "lines": 160,
+      "type": "yaml",
+      "topKeys": [
+        "pipeline",
+        "epics",
+        "tasks",
+        "steps",
+        "current_step"
+      ]
+    },
+    ".opencode/project-structure.md": {
+      "size": 6755,
+      "lines": 101,
+      "type": "markdown",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Project Structure"
+        }
+      ],
+      "totalHeadings": 1,
+      "totalCodeBlocks": 0,
+      "codeBlocks": [],
+      "totalListItems": 0,
+      "sections": [
+        "Project Structure"
+      ]
+    },
+    ".opencode/skills/06-branding/SKILL.md": {
+      "size": 6905,
+      "lines": 164,
+      "type": "markdown",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Branding Skill — JobFindr"
+        },
+        {
+          "level": 2,
+          "text": "When to use"
+        },
+        {
+          "level": 2,
+          "text": "Color Analysis"
+        },
+        {
+          "level": 3,
+          "text": "Project Context"
+        },
+        {
+          "level": 3,
+          "text": "Current Colors (mapped from existing components)"
+        },
+        {
+          "level": 3,
+          "text": "Recommended Palette — \"Indigo Trust\""
+        },
+        {
+          "level": 4,
+          "text": "Design Tokens (Tailwind + CSS Custom Properties)"
+        },
+        {
+          "level": 3,
+          "text": "Usage Rules"
+        },
+        {
+          "level": 3,
+          "text": "Tipografia"
+        },
+        {
+          "level": 3,
+          "text": "Spacing & Layout"
+        },
+        {
+          "level": 3,
+          "text": "Shadow System"
+        },
+        {
+          "level": 3,
+          "text": "Dark Mode (roadmap)"
+        }
+      ],
+      "totalHeadings": 12,
+      "totalCodeBlocks": 3,
+      "codeBlocks": [
+        {
+          "language": "css",
+          "lines": 10
+        },
+        {
+          "language": "css",
+          "lines": 11
+        },
+        {
+          "language": "css",
+          "lines": 14
+        }
+      ],
+      "totalListItems": 39,
+      "sections": [
+        "Branding Skill — JobFindr",
+        "When to use",
+        "Color Analysis",
+        "Project Context",
+        "Current Colors (mapped from existing components)",
+        "Recommended Palette — \"Indigo Trust\"",
+        "Design Tokens (Tailwind + CSS Custom Properties)",
+        "Usage Rules",
+        "Tipografia",
+        "Spacing & Layout",
+        "Shadow System",
+        "Dark Mode (roadmap)"
+      ]
+    },
+    ".opencode/skills/codebase-analysis/output/docs-report.json": {
+      "size": 86972,
+      "lines": 3603,
+      "type": "json",
+      "topKeys": [
+        "generatedAt",
+        "mode",
+        "summary",
+        "files",
+        "errors",
+        "headingIndex",
+        "codeBlockLanguages"
+      ]
+    },
+    ".opencode/skills/codebase-analysis/output/docs-report.md": {
+      "size": 7681,
+      "lines": 139,
+      "type": "markdown",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Codebase Analysis — Documentation"
+        }
+      ],
+      "totalHeadings": 1,
+      "totalCodeBlocks": 1,
+      "codeBlocks": [
+        {
+          "language": "(none)",
+          "lines": 132
+        }
+      ],
+      "totalListItems": 0,
+      "sections": [
+        "Codebase Analysis — Documentation"
+      ]
+    },
+    ".opencode/skills/codebase-analysis/scripts/package.json": {
+      "size": 173,
+      "lines": 10,
+      "type": "json",
+      "topKeys": [
+        "name",
+        "type",
+        "private",
+        "dependencies"
+      ]
+    },
+    ".opencode/skills/codebase-analysis/SKILL.md": {
+      "size": 3426,
+      "lines": 102,
+      "type": "markdown",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Codebase Analysis Skill — JobFindr"
+        },
+        {
+          "level": 2,
+          "text": "When to use"
+        },
+        {
+          "level": 2,
+          "text": "How it works"
+        },
+        {
+          "level": 2,
+          "text": "Scan Modes"
+        },
+        {
+          "level": 2,
+          "text": "Usage"
+        },
+        {
+          "level": 1,
+          "text": "Implementation (source code) — default"
+        },
+        {
+          "level": 1,
+          "text": "Documentation (.opencode/ folder)"
+        },
+        {
+          "level": 1,
+          "text": "Both modes"
+        },
+        {
+          "level": 2,
+          "text": "Options"
+        },
+        {
+          "level": 2,
+          "text": "Output"
+        },
+        {
+          "level": 2,
+          "text": "Implementation Report"
+        },
+        {
+          "level": 2,
+          "text": "Documentation Report"
+        },
+        {
+          "level": 2,
+          "text": "Rules"
+        }
+      ],
+      "totalHeadings": 13,
+      "totalCodeBlocks": 2,
+      "codeBlocks": [
+        {
+          "language": "powershell",
+          "lines": 12
+        },
+        {
+          "language": "powershell",
+          "lines": 2
+        }
+      ],
+      "totalListItems": 20,
+      "sections": [
+        "Codebase Analysis Skill — JobFindr",
+        "When to use",
+        "How it works",
+        "Scan Modes",
+        "Usage",
+        "Implementation (source code) — default",
+        "Documentation (.opencode/ folder)",
+        "Both modes",
+        "Options",
+        "Output",
+        "Implementation Report",
+        "Documentation Report",
+        "Rules"
+      ]
+    },
+    ".opencode/skills/continuous-learning/SKILL.md": {
+      "size": 3675,
+      "lines": 65,
+      "type": "markdown",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Continuous Learning Skill"
+        },
+        {
+          "level": 2,
+          "text": "When to use"
+        },
+        {
+          "level": 2,
+          "text": "Workflow"
+        },
+        {
+          "level": 2,
+          "text": "Rules"
+        }
+      ],
+      "totalHeadings": 4,
+      "totalCodeBlocks": 1,
+      "codeBlocks": [
+        {
+          "language": "(none)",
+          "lines": 13
+        }
+      ],
+      "totalListItems": 31,
+      "sections": [
+        "Continuous Learning Skill",
+        "When to use",
+        "Workflow",
+        "Rules"
+      ]
+    },
+    ".opencode/skills/doc-audit/SKILL.md": {
+      "size": 3938,
+      "lines": 89,
+      "type": "markdown",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Doc Audit Skill"
+        },
+        {
+          "level": 2,
+          "text": "Prerequisites"
+        },
+        {
+          "level": 2,
+          "text": "Workflow"
+        },
+        {
+          "level": 3,
+          "text": "Phase 1: Discovery & Catalog Analysis"
+        },
+        {
+          "level": 3,
+          "text": "Phase 2: File-Level Duplicate/Similarity Detection"
+        },
+        {
+          "level": 3,
+          "text": "Phase 3: Intra-File Prompt Duplication Detection"
+        },
+        {
+          "level": 3,
+          "text": "Phase 4: Human Review & Approval (MANDATORY)"
+        },
+        {
+          "level": 3,
+          "text": "Phase 5: Consolidation (After Approval)"
+        },
+        {
+          "level": 2,
+          "text": "Rules"
+        },
+        {
+          "level": 2,
+          "text": "Output Format"
+        },
+        {
+          "level": 2,
+          "text": "Finding: [Type - File Duplicate / Intra-file Duplication]"
+        }
+      ],
+      "totalHeadings": 11,
+      "totalCodeBlocks": 1,
+      "codeBlocks": [
+        {
+          "language": "(none)",
+          "lines": 13
+        }
+      ],
+      "totalListItems": 42,
+      "sections": [
+        "Doc Audit Skill",
+        "Prerequisites",
+        "Workflow",
+        "Phase 1: Discovery & Catalog Analysis",
+        "Phase 2: File-Level Duplicate/Similarity Detection",
+        "Phase 3: Intra-File Prompt Duplication Detection",
+        "Phase 4: Human Review & Approval (MANDATORY)",
+        "Phase 5: Consolidation (After Approval)",
+        "Rules",
+        "Output Format",
+        "Finding: [Type - File Duplicate / Intra-file Duplication]"
+      ]
+    },
+    ".opencode/skills/jobfindr-pipeline/SKILL.md": {
+      "size": 10234,
+      "lines": 168,
+      "type": "markdown",
+      "headings": [
+        {
+          "level": 1,
+          "text": "JobFindr Pipeline Skill (Orchestrator)"
+        },
+        {
+          "level": 2,
+          "text": "When to use"
+        },
+        {
+          "level": 2,
+          "text": "Operation modes"
+        },
+        {
+          "level": 3,
+          "text": "Full Pipeline Mode"
+        },
+        {
+          "level": 3,
+          "text": "Direct Task Mode"
+        },
+        {
+          "level": 2,
+          "text": "Pipeline initialization (Full Pipeline Mode)"
+        },
+        {
+          "level": 2,
+          "text": "Full flow (Full Pipeline Mode)"
+        },
+        {
+          "level": 3,
+          "text": "Phase 1: Product Manager"
+        },
+        {
+          "level": 3,
+          "text": "Phase 2: Tech Lead"
+        },
+        {
+          "level": 3,
+          "text": "Phase 3: Development (parallel)"
+        },
+        {
+          "level": 3,
+          "text": "Phase 4: QA Review (parallel)"
+        },
+        {
+          "level": 3,
+          "text": "Phase 5: Corrections loop"
+        },
+        {
+          "level": 3,
+          "text": "Phase 6: Conclusion"
+        },
+        {
+          "level": 2,
+          "text": "Direct flow (Direct Task Mode)"
+        },
+        {
+          "level": 2,
+          "text": "Orchestrator rules"
+        }
+      ],
+      "totalHeadings": 15,
+      "totalCodeBlocks": 0,
+      "codeBlocks": [],
+      "totalListItems": 71,
+      "sections": [
+        "JobFindr Pipeline Skill (Orchestrator)",
+        "When to use",
+        "Operation modes",
+        "Full Pipeline Mode",
+        "Direct Task Mode",
+        "Pipeline initialization (Full Pipeline Mode)",
+        "Full flow (Full Pipeline Mode)",
+        "Phase 1: Product Manager",
+        "Phase 2: Tech Lead",
+        "Phase 3: Development (parallel)",
+        "Phase 4: QA Review (parallel)",
+        "Phase 5: Corrections loop",
+        "Phase 6: Conclusion",
+        "Direct flow (Direct Task Mode)",
+        "Orchestrator rules"
+      ]
+    },
+    ".opencode/skills/jobfindr-pipeline-next/SKILL.md": {
+      "size": 2989,
+      "lines": 66,
+      "type": "markdown",
+      "headings": [
+        {
+          "level": 1,
+          "text": "JobFindr Pipeline Next Skill (Continuation)"
+        },
+        {
+          "level": 2,
+          "text": "When to use"
+        },
+        {
+          "level": 2,
+          "text": "How to determine the resumption point"
+        },
+        {
+          "level": 3,
+          "text": "Step to phase mapping"
+        },
+        {
+          "level": 2,
+          "text": "Flow (from the resumption point)"
+        },
+        {
+          "level": 3,
+          "text": "If resuming from Tech Lead"
+        },
+        {
+          "level": 3,
+          "text": "If resuming from Development"
+        },
+        {
+          "level": 3,
+          "text": "If resuming from QA / Corrections loop"
+        },
+        {
+          "level": 3,
+          "text": "If resuming from Conclusion"
+        },
+        {
+          "level": 2,
+          "text": "Rules"
+        }
+      ],
+      "totalHeadings": 10,
+      "totalCodeBlocks": 0,
+      "codeBlocks": [],
+      "totalListItems": 24,
+      "sections": [
+        "JobFindr Pipeline Next Skill (Continuation)",
+        "When to use",
+        "How to determine the resumption point",
+        "Step to phase mapping",
+        "Flow (from the resumption point)",
+        "If resuming from Tech Lead",
+        "If resuming from Development",
+        "If resuming from QA / Corrections loop",
+        "If resuming from Conclusion",
+        "Rules"
+      ]
+    },
+    ".opencode/skills/learning-improvement/SKILL.md": {
+      "size": 1987,
+      "lines": 41,
+      "type": "markdown",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Learning Improvement Skill"
+        },
+        {
+          "level": 2,
+          "text": "When to use"
+        },
+        {
+          "level": 2,
+          "text": "Workflow"
+        },
+        {
+          "level": 2,
+          "text": "Expected output"
+        },
+        {
+          "level": 2,
+          "text": "Enforcement"
+        }
+      ],
+      "totalHeadings": 5,
+      "totalCodeBlocks": 0,
+      "codeBlocks": [],
+      "totalListItems": 18,
+      "sections": [
+        "Learning Improvement Skill",
+        "When to use",
+        "Workflow",
+        "Expected output",
+        "Enforcement"
+      ]
+    },
+    ".opencode/skills/session-load/SKILL.md": {
+      "size": 1253,
+      "lines": 37,
+      "type": "markdown",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Session Load Skill"
+        },
+        {
+          "level": 2,
+          "text": "When to use"
+        },
+        {
+          "level": 2,
+          "text": "Workflow"
+        },
+        {
+          "level": 2,
+          "text": "Expected output"
+        },
+        {
+          "level": 2,
+          "text": "Session file format"
+        }
+      ],
+      "totalHeadings": 5,
+      "totalCodeBlocks": 1,
+      "codeBlocks": [
+        {
+          "language": "(none)",
+          "lines": 5
+        }
+      ],
+      "totalListItems": 5,
+      "sections": [
+        "Session Load Skill",
+        "When to use",
+        "Workflow",
+        "Expected output",
+        "Session file format"
+      ]
+    },
+    ".opencode/skills/session-save/SKILL.md": {
+      "size": 1746,
+      "lines": 45,
+      "type": "markdown",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Session Save Skill"
+        },
+        {
+          "level": 2,
+          "text": "When to use"
+        },
+        {
+          "level": 2,
+          "text": "Workflow"
+        },
+        {
+          "level": 2,
+          "text": "Expected output"
+        },
+        {
+          "level": 2,
+          "text": "Rules"
+        },
+        {
+          "level": 2,
+          "text": "Chain position"
+        }
+      ],
+      "totalHeadings": 6,
+      "totalCodeBlocks": 1,
+      "codeBlocks": [
+        {
+          "language": "(none)",
+          "lines": 1
+        }
+      ],
+      "totalListItems": 16,
+      "sections": [
+        "Session Save Skill",
+        "When to use",
+        "Workflow",
+        "Expected output",
+        "Rules",
+        "Chain position"
+      ]
+    }
+  },
+  "errors": [],
+  "headingIndex": {
+    "planning analyst agent": [
+      ".opencode/agents/00-planning-agent.md"
+    ],
+    "role": [
+      ".opencode/agents/00-planning-agent.md",
+      ".opencode/agents/01-product-manager.md",
+      ".opencode/agents/02-tech-lead.md",
+      ".opencode/agents/03-senior-frontend.md",
+      ".opencode/agents/04-senior-backend.md",
+      ".opencode/agents/05-qa-reviewer.md"
+    ],
+    "when to invoke": [
+      ".opencode/agents/00-planning-agent.md"
+    ],
+    "workflow": [
+      ".opencode/agents/00-planning-agent.md",
+      ".opencode/agents/01-product-manager.md",
+      ".opencode/agents/02-tech-lead.md",
+      ".opencode/agents/03-senior-frontend.md",
+      ".opencode/agents/04-senior-backend.md",
+      ".opencode/agents/05-qa-reviewer.md",
+      ".opencode/skills/continuous-learning/SKILL.md",
+      ".opencode/skills/doc-audit/SKILL.md",
+      ".opencode/skills/learning-improvement/SKILL.md",
+      ".opencode/skills/session-load/SKILL.md",
+      ".opencode/skills/session-save/SKILL.md"
+    ],
+    "phase 1: understand the request": [
+      ".opencode/agents/00-planning-agent.md"
+    ],
+    "phase 2: explore the codebase": [
+      ".opencode/agents/00-planning-agent.md"
+    ],
+    "phase 3: analyze": [
+      ".opencode/agents/00-planning-agent.md"
+    ],
+    "phase 4: discuss with user": [
+      ".opencode/agents/00-planning-agent.md"
+    ],
+    "phase 4b: present plan structure before creating files (direct chat only)": [
+      ".opencode/agents/00-planning-agent.md"
+    ],
+    "phase 5: generate planning documents — always write files": [
+      ".opencode/agents/00-planning-agent.md"
+    ],
+    "index.md format": [
+      ".opencode/agents/00-planning-agent.md"
+    ],
+    "<plan title>": [
+      ".opencode/agents/00-planning-agent.md"
+    ],
+    "objective": [
+      ".opencode/agents/00-planning-agent.md"
+    ],
+    "scope": [
+      ".opencode/agents/00-planning-agent.md"
+    ],
+    "summary of findings": [
+      ".opencode/agents/00-planning-agent.md"
+    ],
+    "documents": [
+      ".opencode/agents/00-planning-agent.md"
+    ],
+    "feasibility.md format": [
+      ".opencode/agents/00-planning-agent.md"
+    ],
+    "feasibility — <topic>": [
+      ".opencode/agents/00-planning-agent.md"
+    ],
+    "approaches": [
+      ".opencode/agents/00-planning-agent.md"
+    ],
+    "approach a: <name>": [
+      ".opencode/agents/00-planning-agent.md"
+    ],
+    "approach b: <name>": [
+      ".opencode/agents/00-planning-agent.md"
+    ],
+    "recommendation": [
+      ".opencode/agents/00-planning-agent.md"
+    ],
+    "impact-analysis.md format": [
+      ".opencode/agents/00-planning-agent.md"
+    ],
+    "impact analysis — <topic>": [
+      ".opencode/agents/00-planning-agent.md"
+    ],
+    "layer impact matrix": [
+      ".opencode/agents/00-planning-agent.md"
+    ],
+    "breaking changes": [
+      ".opencode/agents/00-planning-agent.md"
+    ],
+    "performance impact": [
+      ".opencode/agents/00-planning-agent.md"
+    ],
+    "risks.md format": [
+      ".opencode/agents/00-planning-agent.md"
+    ],
+    "risks — <topic>": [
+      ".opencode/agents/00-planning-agent.md"
+    ],
+    "regression points": [
+      ".opencode/agents/00-planning-agent.md"
+    ],
+    "recommendations.md format": [
+      ".opencode/agents/00-planning-agent.md"
+    ],
+    "recommendations — <topic>": [
+      ".opencode/agents/00-planning-agent.md"
+    ],
+    "for product manager": [
+      ".opencode/agents/00-planning-agent.md"
+    ],
+    "suggested epic breakdown": [
+      ".opencode/agents/00-planning-agent.md"
+    ],
+    "output cleanup": [
+      ".opencode/agents/00-planning-agent.md"
+    ],
+    "constraints": [
+      ".opencode/agents/00-planning-agent.md",
+      ".opencode/agents/01-product-manager.md",
+      ".opencode/agents/02-tech-lead.md"
+    ],
+    "related documents": [
+      ".opencode/agents/00-planning-agent.md",
+      ".opencode/agents/01-product-manager.md",
+      ".opencode/agents/02-tech-lead.md",
+      ".opencode/agents/03-senior-frontend.md",
+      ".opencode/agents/04-senior-backend.md",
+      ".opencode/agents/05-qa-reviewer.md",
+      ".opencode/architecture/01-system-overview.md",
+      ".opencode/architecture/04-frontend-architecture.md",
+      ".opencode/architecture/06-backend-architecture.md",
+      ".opencode/architecture/07-api-architecture.md",
+      ".opencode/architecture/08-provider-architecture.md",
+      ".opencode/architecture/09-scraping-architecture.md",
+      ".opencode/architecture/10-normalization-layer.md",
+      ".opencode/architecture/11-matchmaking-engine.md",
+      ".opencode/architecture/12-trust-engine.md",
+      ".opencode/architecture/13-ranking-engine.md",
+      ".opencode/architecture/14-caching-architecture.md",
+      ".opencode/architecture/15-security-architecture.md",
+      ".opencode/architecture/16-performance-architecture.md",
+      ".opencode/architecture/17-observability-architecture.md",
+      ".opencode/architecture/18-deployment-architecture.md",
+      ".opencode/architecture/19-engineering-guidelines.md",
+      ".opencode/architecture/20-scalability-roadmap.md",
+      ".opencode/architecture/21-anti-patterns.md",
+      ".opencode/architecture/22-testing-philosophy.md"
+    ],
+    "product manager agent": [
+      ".opencode/agents/01-product-manager.md"
+    ],
+    "before you start": [
+      ".opencode/agents/01-product-manager.md",
+      ".opencode/agents/02-tech-lead.md",
+      ".opencode/agents/03-senior-frontend.md",
+      ".opencode/agents/04-senior-backend.md",
+      ".opencode/agents/05-qa-reviewer.md"
+    ],
+    "requirement: collect information first (terminal-choice wizard)": [
+      ".opencode/agents/01-product-manager.md"
+    ],
+    "wizard rules": [
+      ".opencode/agents/01-product-manager.md"
+    ],
+    "when receiving an existing plan/document": [
+      ".opencode/agents/01-product-manager.md"
+    ],
+    "handling skipped questions": [
+      ".opencode/agents/01-product-manager.md"
+    ],
+    "output structure example": [
+      ".opencode/agents/01-product-manager.md",
+      ".opencode/agents/02-tech-lead.md"
+    ],
+    "when finished": [
+      ".opencode/agents/01-product-manager.md",
+      ".opencode/agents/02-tech-lead.md",
+      ".opencode/agents/05-qa-reviewer.md"
+    ],
+    "output": [
+      ".opencode/agents/01-product-manager.md",
+      ".opencode/agents/02-tech-lead.md",
+      ".opencode/skills/codebase-analysis/SKILL.md"
+    ],
+    "tech lead agent": [
+      ".opencode/agents/02-tech-lead.md"
+    ],
+    "task creation example": [
+      ".opencode/agents/02-tech-lead.md"
+    ],
+    "task: [descriptive task name]": [
+      ".opencode/agents/02-tech-lead.md"
+    ],
+    "description": [
+      ".opencode/agents/02-tech-lead.md"
+    ],
+    "technical details": [
+      ".opencode/agents/02-tech-lead.md"
+    ],
+    "implementation approach": [
+      ".opencode/agents/02-tech-lead.md"
+    ],
+    "testing": [
+      ".opencode/agents/02-tech-lead.md"
+    ],
+    "senior frontend agent": [
+      ".opencode/agents/03-senior-frontend.md"
+    ],
+    "responsibilities": [
+      ".opencode/agents/03-senior-frontend.md",
+      ".opencode/agents/04-senior-backend.md",
+      ".opencode/architecture/04-frontend-architecture.md",
+      ".opencode/architecture/06-backend-architecture.md",
+      ".opencode/architecture/08-provider-architecture.md",
+      ".opencode/architecture/10-normalization-layer.md",
+      ".opencode/architecture/11-matchmaking-engine.md"
+    ],
+    "implementation rules": [
+      ".opencode/agents/03-senior-frontend.md",
+      ".opencode/agents/04-senior-backend.md"
+    ],
+    "branding": [
+      ".opencode/agents/03-senior-frontend.md"
+    ],
+    "corrections cycle (qa)": [
+      ".opencode/agents/03-senior-frontend.md",
+      ".opencode/agents/04-senior-backend.md"
+    ],
+    "senior backend agent": [
+      ".opencode/agents/04-senior-backend.md"
+    ],
+    "qa reviewer agent": [
+      ".opencode/agents/05-qa-reviewer.md"
+    ],
+    "for frontend": [
+      ".opencode/agents/05-qa-reviewer.md"
+    ],
+    "for backend": [
+      ".opencode/agents/05-qa-reviewer.md"
+    ],
+    "if approved": [
+      ".opencode/agents/05-qa-reviewer.md"
+    ],
+    "if corrections needed": [
+      ".opencode/agents/05-qa-reviewer.md"
+    ],
+    "rules": [
+      ".opencode/agents/05-qa-reviewer.md",
+      ".opencode/architecture/19-engineering-guidelines.md",
+      ".opencode/architecture/commit-pattern.md",
+      ".opencode/skills/codebase-analysis/SKILL.md",
+      ".opencode/skills/continuous-learning/SKILL.md",
+      ".opencode/skills/doc-audit/SKILL.md",
+      ".opencode/skills/jobfindr-pipeline-next/SKILL.md",
+      ".opencode/skills/session-save/SKILL.md"
+    ],
+    "check list": [
+      ".opencode/agents/05-qa-reviewer.md"
+    ],
+    "01-system-overview.md": [
+      ".opencode/architecture/01-system-overview.md"
+    ],
+    "system overview": [
+      ".opencode/architecture/01-system-overview.md"
+    ],
+    "purpose": [
+      ".opencode/architecture/01-system-overview.md",
+      ".opencode/architecture/10-normalization-layer.md",
+      ".opencode/architecture/12-trust-engine.md"
+    ],
+    "main goals": [
+      ".opencode/architecture/01-system-overview.md"
+    ],
+    "what the system avoids": [
+      ".opencode/architecture/01-system-overview.md"
+    ],
+    "high-level architecture": [
+      ".opencode/architecture/01-system-overview.md"
+    ],
+    "02-architecture-principles.md": [
+      ".opencode/architecture/02-architecture-principles.md"
+    ],
+    "architecture principles": [
+      ".opencode/architecture/02-architecture-principles.md"
+    ],
+    "stateless first": [
+      ".opencode/architecture/02-architecture-principles.md"
+    ],
+    "provider isolation": [
+      ".opencode/architecture/02-architecture-principles.md",
+      ".opencode/architecture/08-provider-architecture.md"
+    ],
+    "modularity": [
+      ".opencode/architecture/02-architecture-principles.md"
+    ],
+    "performance first": [
+      ".opencode/architecture/02-architecture-principles.md"
+    ],
+    "explainability": [
+      ".opencode/architecture/02-architecture-principles.md"
+    ],
+    "engineering philosophy": [
+      ".opencode/architecture/02-architecture-principles.md"
+    ],
+    "scalability": [
+      ".opencode/architecture/02-architecture-principles.md"
+    ],
+    "monorepo structure": [
+      ".opencode/architecture/03-monorepo-structure.md"
+    ],
+    "applications": [
+      ".opencode/architecture/03-monorepo-structure.md"
+    ],
+    "frontend": [
+      ".opencode/architecture/03-monorepo-structure.md",
+      ".opencode/architecture/18-deployment-architecture.md"
+    ],
+    "backend": [
+      ".opencode/architecture/03-monorepo-structure.md",
+      ".opencode/architecture/18-deployment-architecture.md"
+    ],
+    "shared packages": [
+      ".opencode/architecture/03-monorepo-structure.md"
+    ],
+    "types": [
+      ".opencode/architecture/03-monorepo-structure.md",
+      ".opencode/architecture/commit-pattern.md"
+    ],
+    "utils": [
+      ".opencode/architecture/03-monorepo-structure.md"
+    ],
+    "configs": [
+      ".opencode/architecture/03-monorepo-structure.md"
+    ],
+    "04-frontend-architecture.md": [
+      ".opencode/architecture/04-frontend-architecture.md"
+    ],
+    "frontend architecture": [
+      ".opencode/architecture/04-frontend-architecture.md",
+      ".opencode/architecture/architecture.md"
+    ],
+    "stack": [
+      ".opencode/architecture/04-frontend-architecture.md",
+      ".opencode/architecture/06-backend-architecture.md"
+    ],
+    "structure": [
+      ".opencode/architecture/04-frontend-architecture.md",
+      ".opencode/architecture/06-backend-architecture.md"
+    ],
+    "search flow": [
+      ".opencode/architecture/04-frontend-architecture.md"
+    ],
+    "05-frontend-guidelines.md": [
+      ".opencode/architecture/05-frontend-guidelines.md"
+    ],
+    "frontend guidelines": [
+      ".opencode/architecture/05-frontend-guidelines.md"
+    ],
+    "ui principles": [
+      ".opencode/architecture/05-frontend-guidelines.md"
+    ],
+    "state management": [
+      ".opencode/architecture/05-frontend-guidelines.md"
+    ],
+    "local state": [
+      ".opencode/architecture/05-frontend-guidelines.md"
+    ],
+    "global state": [
+      ".opencode/architecture/05-frontend-guidelines.md"
+    ],
+    "server state": [
+      ".opencode/architecture/05-frontend-guidelines.md"
+    ],
+    "component rules": [
+      ".opencode/architecture/05-frontend-guidelines.md"
+    ],
+    "performance": [
+      ".opencode/architecture/05-frontend-guidelines.md"
+    ],
+    "06-backend-architecture.md": [
+      ".opencode/architecture/06-backend-architecture.md"
+    ],
+    "backend architecture": [
+      ".opencode/architecture/06-backend-architecture.md",
+      ".opencode/architecture/architecture.md"
+    ],
+    "module pattern": [
+      ".opencode/architecture/06-backend-architecture.md"
+    ],
+    "controller rules": [
+      ".opencode/architecture/06-backend-architecture.md"
+    ],
+    "service rules": [
+      ".opencode/architecture/06-backend-architecture.md"
+    ],
+    "07-api-architecture.md": [
+      ".opencode/architecture/07-api-architecture.md"
+    ],
+    "api architecture": [
+      ".opencode/architecture/07-api-architecture.md"
+    ],
+    "style": [
+      ".opencode/architecture/07-api-architecture.md"
+    ],
+    "main endpoint": [
+      ".opencode/architecture/07-api-architecture.md"
+    ],
+    "query example": [
+      ".opencode/architecture/07-api-architecture.md"
+    ],
+    "pagination": [
+      ".opencode/architecture/07-api-architecture.md"
+    ],
+    "error shape": [
+      ".opencode/architecture/07-api-architecture.md"
+    ],
+    "error handling rules": [
+      ".opencode/architecture/07-api-architecture.md"
+    ],
+    "08-provider-architecture.md": [
+      ".opencode/architecture/08-provider-architecture.md"
+    ],
+    "provider architecture": [
+      ".opencode/architecture/08-provider-architecture.md"
+    ],
+    "interface": [
+      ".opencode/architecture/08-provider-architecture.md"
+    ],
+    "supported providers (mvp)": [
+      ".opencode/architecture/08-provider-architecture.md"
+    ],
+    "provider strategy": [
+      ".opencode/architecture/08-provider-architecture.md"
+    ],
+    "multi-company provider pattern": [
+      ".opencode/architecture/08-provider-architecture.md"
+    ],
+    "provider constraints": [
+      ".opencode/architecture/08-provider-architecture.md"
+    ],
+    "09-scraping-architecture.md": [
+      ".opencode/architecture/09-scraping-architecture.md"
+    ],
+    "scraping architecture": [
+      ".opencode/architecture/09-scraping-architecture.md"
+    ],
+    "strategies": [
+      ".opencode/architecture/09-scraping-architecture.md"
+    ],
+    "safety mechanisms": [
+      ".opencode/architecture/09-scraping-architecture.md"
+    ],
+    "goals": [
+      ".opencode/architecture/09-scraping-architecture.md",
+      ".opencode/architecture/11-matchmaking-engine.md",
+      ".opencode/architecture/13-ranking-engine.md"
+    ],
+    "10-normalization-layer.md": [
+      ".opencode/architecture/10-normalization-layer.md"
+    ],
+    "normalization layer": [
+      ".opencode/architecture/10-normalization-layer.md"
+    ],
+    "normalizedjob": [
+      ".opencode/architecture/10-normalization-layer.md"
+    ],
+    "11-matchmaking-engine.md": [
+      ".opencode/architecture/11-matchmaking-engine.md"
+    ],
+    "matchmaking engine": [
+      ".opencode/architecture/11-matchmaking-engine.md"
+    ],
+    "pipeline": [
+      ".opencode/architecture/11-matchmaking-engine.md"
+    ],
+    "priorities": [
+      ".opencode/architecture/11-matchmaking-engine.md",
+      ".opencode/architecture/22-testing-philosophy.md"
+    ],
+    "avoid": [
+      ".opencode/architecture/11-matchmaking-engine.md"
+    ],
+    "12-trust-engine.md": [
+      ".opencode/architecture/12-trust-engine.md"
+    ],
+    "trust engine": [
+      ".opencode/architecture/12-trust-engine.md"
+    ],
+    "trust thresholds": [
+      ".opencode/architecture/12-trust-engine.md"
+    ],
+    "default behavior": [
+      ".opencode/architecture/12-trust-engine.md"
+    ],
+    "signals": [
+      ".opencode/architecture/12-trust-engine.md"
+    ],
+    "13-ranking-engine.md": [
+      ".opencode/architecture/13-ranking-engine.md"
+    ],
+    "ranking engine": [
+      ".opencode/architecture/13-ranking-engine.md"
+    ],
+    "ranking priorities": [
+      ".opencode/architecture/13-ranking-engine.md"
+    ],
+    "14-caching-architecture.md": [
+      ".opencode/architecture/14-caching-architecture.md"
+    ],
+    "caching architecture": [
+      ".opencode/architecture/14-caching-architecture.md"
+    ],
+    "mvp cache strategy": [
+      ".opencode/architecture/14-caching-architecture.md"
+    ],
+    "cache targets": [
+      ".opencode/architecture/14-caching-architecture.md"
+    ],
+    "15-security-architecture.md": [
+      ".opencode/architecture/15-security-architecture.md"
+    ],
+    "security architecture": [
+      ".opencode/architecture/15-security-architecture.md"
+    ],
+    "requirements": [
+      ".opencode/architecture/15-security-architecture.md"
+    ],
+    "forbidden data retention": [
+      ".opencode/architecture/15-security-architecture.md"
+    ],
+    "16-performance-architecture.md": [
+      ".opencode/architecture/16-performance-architecture.md"
+    ],
+    "performance architecture": [
+      ".opencode/architecture/16-performance-architecture.md"
+    ],
+    "backend performance": [
+      ".opencode/architecture/16-performance-architecture.md"
+    ],
+    "provider timeout calibration": [
+      ".opencode/architecture/16-performance-architecture.md"
+    ],
+    "frontend performance": [
+      ".opencode/architecture/16-performance-architecture.md"
+    ],
+    "17-observability-architecture.md": [
+      ".opencode/architecture/17-observability-architecture.md"
+    ],
+    "observability architecture": [
+      ".opencode/architecture/17-observability-architecture.md"
+    ],
+    "logging": [
+      ".opencode/architecture/17-observability-architecture.md"
+    ],
+    "health check": [
+      ".opencode/architecture/17-observability-architecture.md"
+    ],
+    "metrics": [
+      ".opencode/architecture/17-observability-architecture.md"
+    ],
+    "18-deployment-architecture.md": [
+      ".opencode/architecture/18-deployment-architecture.md"
+    ],
+    "deployment architecture": [
+      ".opencode/architecture/18-deployment-architecture.md"
+    ],
+    "containers": [
+      ".opencode/architecture/18-deployment-architecture.md"
+    ],
+    "19-engineering-guidelines.md": [
+      ".opencode/architecture/19-engineering-guidelines.md"
+    ],
+    "engineering guidelines": [
+      ".opencode/architecture/19-engineering-guidelines.md"
+    ],
+    "code style": [
+      ".opencode/architecture/19-engineering-guidelines.md"
+    ],
+    "naming conventions": [
+      ".opencode/architecture/19-engineering-guidelines.md"
+    ],
+    "typescript rules": [
+      ".opencode/architecture/19-engineering-guidelines.md"
+    ],
+    "ai contribution workflow": [
+      ".opencode/architecture/19-engineering-guidelines.md"
+    ],
+    "20-scalability-roadmap.md": [
+      ".opencode/architecture/20-scalability-roadmap.md"
+    ],
+    "scalability roadmap": [
+      ".opencode/architecture/20-scalability-roadmap.md"
+    ],
+    "mvp philosophy": [
+      ".opencode/architecture/20-scalability-roadmap.md"
+    ],
+    "future additions": [
+      ".opencode/architecture/20-scalability-roadmap.md"
+    ],
+    "goal": [
+      ".opencode/architecture/20-scalability-roadmap.md"
+    ],
+    "21-anti-patterns.md": [
+      ".opencode/architecture/21-anti-patterns.md"
+    ],
+    "anti-patterns": [
+      ".opencode/architecture/21-anti-patterns.md"
+    ],
+    "forbidden patterns": [
+      ".opencode/architecture/21-anti-patterns.md"
+    ],
+    "why": [
+      ".opencode/architecture/21-anti-patterns.md"
+    ],
+    "22-testing-philosophy.md": [
+      ".opencode/architecture/22-testing-philosophy.md"
+    ],
+    "testing philosophy": [
+      ".opencode/architecture/22-testing-philosophy.md"
+    ],
+    "methodology": [
+      ".opencode/architecture/22-testing-philosophy.md"
+    ],
+    "job search aggregator — architecture documentation": [
+      ".opencode/architecture/architecture.md"
+    ],
+    "documentation index": [
+      ".opencode/architecture/architecture.md"
+    ],
+    "core architecture": [
+      ".opencode/architecture/architecture.md"
+    ],
+    "search & intelligence": [
+      ".opencode/architecture/architecture.md"
+    ],
+    "infrastructure": [
+      ".opencode/architecture/architecture.md"
+    ],
+    "engineering & governance": [
+      ".opencode/architecture/architecture.md",
+      ".opencode/INDEX.md"
+    ],
+    "commit message convention": [
+      ".opencode/architecture/commit-pattern.md"
+    ],
+    "format": [
+      ".opencode/architecture/commit-pattern.md"
+    ],
+    "scopes": [
+      ".opencode/architecture/commit-pattern.md"
+    ],
+    "examples": [
+      ".opencode/architecture/commit-pattern.md"
+    ],
+    "enforcement": [
+      ".opencode/architecture/commit-pattern.md",
+      ".opencode/skills/learning-improvement/SKILL.md"
+    ],
+    "doc audit command": [
+      ".opencode/commands/doc-audit.md"
+    ],
+    "usage": [
+      ".opencode/commands/doc-audit.md",
+      ".opencode/skills/codebase-analysis/SKILL.md"
+    ],
+    "what it does": [
+      ".opencode/commands/doc-audit.md"
+    ],
+    "example output": [
+      ".opencode/commands/doc-audit.md"
+    ],
+    "finding: file duplicate": [
+      ".opencode/commands/doc-audit.md"
+    ],
+    "docs catalog": [
+      ".opencode/docs-catalog.md"
+    ],
+    "entry points": [
+      ".opencode/docs-catalog.md"
+    ],
+    "agents": [
+      ".opencode/docs-catalog.md"
+    ],
+    "skills": [
+      ".opencode/docs-catalog.md"
+    ],
+    "architecture": [
+      ".opencode/docs-catalog.md"
+    ],
+    "commands": [
+      ".opencode/docs-catalog.md"
+    ],
+    "support": [
+      ".opencode/docs-catalog.md"
+    ],
+    "index.md": [
+      ".opencode/INDEX.md"
+    ],
+    "job search aggregator — ai engineering guide": [
+      ".opencode/INDEX.md"
+    ],
+    "documentation flow": [
+      ".opencode/INDEX.md"
+    ],
+    "frontend tasks": [
+      ".opencode/INDEX.md"
+    ],
+    "backend tasks": [
+      ".opencode/INDEX.md"
+    ],
+    "provider tasks": [
+      ".opencode/INDEX.md"
+    ],
+    "search & intelligence tasks": [
+      ".opencode/INDEX.md"
+    ],
+    "infrastructure tasks": [
+      ".opencode/INDEX.md"
+    ],
+    "key constraints": [
+      ".opencode/INDEX.md"
+    ],
+    "project overview": [
+      ".opencode/INDEX.md"
+    ],
+    "pipeline modes": [
+      ".opencode/INDEX.md"
+    ],
+    "related files": [
+      ".opencode/INDEX.md"
+    ],
+    "project structure": [
+      ".opencode/project-structure.md"
+    ],
+    "branding skill — jobfindr": [
+      ".opencode/skills/06-branding/SKILL.md"
+    ],
+    "when to use": [
+      ".opencode/skills/06-branding/SKILL.md",
+      ".opencode/skills/codebase-analysis/SKILL.md",
+      ".opencode/skills/continuous-learning/SKILL.md",
+      ".opencode/skills/jobfindr-pipeline/SKILL.md",
+      ".opencode/skills/jobfindr-pipeline-next/SKILL.md",
+      ".opencode/skills/learning-improvement/SKILL.md",
+      ".opencode/skills/session-load/SKILL.md",
+      ".opencode/skills/session-save/SKILL.md"
+    ],
+    "color analysis": [
+      ".opencode/skills/06-branding/SKILL.md"
+    ],
+    "project context": [
+      ".opencode/skills/06-branding/SKILL.md"
+    ],
+    "current colors (mapped from existing components)": [
+      ".opencode/skills/06-branding/SKILL.md"
+    ],
+    "recommended palette — \"indigo trust\"": [
+      ".opencode/skills/06-branding/SKILL.md"
+    ],
+    "design tokens (tailwind + css custom properties)": [
+      ".opencode/skills/06-branding/SKILL.md"
+    ],
+    "usage rules": [
+      ".opencode/skills/06-branding/SKILL.md"
+    ],
+    "tipografia": [
+      ".opencode/skills/06-branding/SKILL.md"
+    ],
+    "spacing & layout": [
+      ".opencode/skills/06-branding/SKILL.md"
+    ],
+    "shadow system": [
+      ".opencode/skills/06-branding/SKILL.md"
+    ],
+    "dark mode (roadmap)": [
+      ".opencode/skills/06-branding/SKILL.md"
+    ],
+    "codebase analysis — documentation": [
+      ".opencode/skills/codebase-analysis/output/docs-report.md"
+    ],
+    "codebase analysis skill — jobfindr": [
+      ".opencode/skills/codebase-analysis/SKILL.md"
+    ],
+    "how it works": [
+      ".opencode/skills/codebase-analysis/SKILL.md"
+    ],
+    "scan modes": [
+      ".opencode/skills/codebase-analysis/SKILL.md"
+    ],
+    "implementation (source code) — default": [
+      ".opencode/skills/codebase-analysis/SKILL.md"
+    ],
+    "documentation (.opencode/ folder)": [
+      ".opencode/skills/codebase-analysis/SKILL.md"
+    ],
+    "both modes": [
+      ".opencode/skills/codebase-analysis/SKILL.md"
+    ],
+    "options": [
+      ".opencode/skills/codebase-analysis/SKILL.md"
+    ],
+    "implementation report": [
+      ".opencode/skills/codebase-analysis/SKILL.md"
+    ],
+    "documentation report": [
+      ".opencode/skills/codebase-analysis/SKILL.md"
+    ],
+    "continuous learning skill": [
+      ".opencode/skills/continuous-learning/SKILL.md"
+    ],
+    "doc audit skill": [
+      ".opencode/skills/doc-audit/SKILL.md"
+    ],
+    "prerequisites": [
+      ".opencode/skills/doc-audit/SKILL.md"
+    ],
+    "phase 1: discovery & catalog analysis": [
+      ".opencode/skills/doc-audit/SKILL.md"
+    ],
+    "phase 2: file-level duplicate/similarity detection": [
+      ".opencode/skills/doc-audit/SKILL.md"
+    ],
+    "phase 3: intra-file prompt duplication detection": [
+      ".opencode/skills/doc-audit/SKILL.md"
+    ],
+    "phase 4: human review & approval (mandatory)": [
+      ".opencode/skills/doc-audit/SKILL.md"
+    ],
+    "phase 5: consolidation (after approval)": [
+      ".opencode/skills/doc-audit/SKILL.md"
+    ],
+    "output format": [
+      ".opencode/skills/doc-audit/SKILL.md"
+    ],
+    "finding: [type - file duplicate / intra-file duplication]": [
+      ".opencode/skills/doc-audit/SKILL.md"
+    ],
+    "jobfindr pipeline skill (orchestrator)": [
+      ".opencode/skills/jobfindr-pipeline/SKILL.md"
+    ],
+    "operation modes": [
+      ".opencode/skills/jobfindr-pipeline/SKILL.md"
+    ],
+    "full pipeline mode": [
+      ".opencode/skills/jobfindr-pipeline/SKILL.md"
+    ],
+    "direct task mode": [
+      ".opencode/skills/jobfindr-pipeline/SKILL.md"
+    ],
+    "pipeline initialization (full pipeline mode)": [
+      ".opencode/skills/jobfindr-pipeline/SKILL.md"
+    ],
+    "full flow (full pipeline mode)": [
+      ".opencode/skills/jobfindr-pipeline/SKILL.md"
+    ],
+    "phase 1: product manager": [
+      ".opencode/skills/jobfindr-pipeline/SKILL.md"
+    ],
+    "phase 2: tech lead": [
+      ".opencode/skills/jobfindr-pipeline/SKILL.md"
+    ],
+    "phase 3: development (parallel)": [
+      ".opencode/skills/jobfindr-pipeline/SKILL.md"
+    ],
+    "phase 4: qa review (parallel)": [
+      ".opencode/skills/jobfindr-pipeline/SKILL.md"
+    ],
+    "phase 5: corrections loop": [
+      ".opencode/skills/jobfindr-pipeline/SKILL.md"
+    ],
+    "phase 6: conclusion": [
+      ".opencode/skills/jobfindr-pipeline/SKILL.md"
+    ],
+    "direct flow (direct task mode)": [
+      ".opencode/skills/jobfindr-pipeline/SKILL.md"
+    ],
+    "orchestrator rules": [
+      ".opencode/skills/jobfindr-pipeline/SKILL.md"
+    ],
+    "jobfindr pipeline next skill (continuation)": [
+      ".opencode/skills/jobfindr-pipeline-next/SKILL.md"
+    ],
+    "how to determine the resumption point": [
+      ".opencode/skills/jobfindr-pipeline-next/SKILL.md"
+    ],
+    "step to phase mapping": [
+      ".opencode/skills/jobfindr-pipeline-next/SKILL.md"
+    ],
+    "flow (from the resumption point)": [
+      ".opencode/skills/jobfindr-pipeline-next/SKILL.md"
+    ],
+    "if resuming from tech lead": [
+      ".opencode/skills/jobfindr-pipeline-next/SKILL.md"
+    ],
+    "if resuming from development": [
+      ".opencode/skills/jobfindr-pipeline-next/SKILL.md"
+    ],
+    "if resuming from qa / corrections loop": [
+      ".opencode/skills/jobfindr-pipeline-next/SKILL.md"
+    ],
+    "if resuming from conclusion": [
+      ".opencode/skills/jobfindr-pipeline-next/SKILL.md"
+    ],
+    "learning improvement skill": [
+      ".opencode/skills/learning-improvement/SKILL.md"
+    ],
+    "expected output": [
+      ".opencode/skills/learning-improvement/SKILL.md",
+      ".opencode/skills/session-load/SKILL.md",
+      ".opencode/skills/session-save/SKILL.md"
+    ],
+    "session load skill": [
+      ".opencode/skills/session-load/SKILL.md"
+    ],
+    "session file format": [
+      ".opencode/skills/session-load/SKILL.md"
+    ],
+    "session save skill": [
+      ".opencode/skills/session-save/SKILL.md"
+    ],
+    "chain position": [
+      ".opencode/skills/session-save/SKILL.md"
+    ]
+  },
+  "codeBlockLanguages": {
+    "json": 2,
+    "(none)": 11,
+    "txt": 9,
+    "http": 2,
+    "ts": 3,
+    "css": 3,
+    "powershell": 2
+  }
+}

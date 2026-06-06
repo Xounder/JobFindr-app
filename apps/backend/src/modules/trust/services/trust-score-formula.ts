@@ -1,11 +1,13 @@
 /**
  * Trust score formula - weighted trust calculations.
  * TASK-050: Create Trust Score Formula
+ * TASK-02: Incorporate Job Freshness into Trust Score
  *
  * Implements a deterministic trust scoring formula:
- * - Provider reputation (30%)
- * - Company reputation (40%)
- * - Transparency signals (30%)
+ * - Provider reputation (25%)
+ * - Company reputation (35%)
+ * - Transparency signals (25%)
+ * - Freshness (15%)
  */
 import type { TrustScore, TrustSignals, CompanySizeCategory } from '@jobfindr/types'
 
@@ -23,9 +25,10 @@ export type CompanyReputationInput = {
 }
 
 const WEIGHTS = {
-  providerReputation: 0.3,
-  companyReputation: 0.4,
-  transparencySignals: 0.3,
+  providerReputation: 0.25,
+  companyReputation: 0.35,
+  transparencySignals: 0.25,
+  freshness: 0.15,
 }
 
 /**
@@ -64,7 +67,8 @@ function calculateTransparencyScore(signals: TrustSignals): number {
  */
 export function calculateTrustScore(
   providerRep: ProviderReputationInput,
-  companyRep: CompanyReputationInput
+  companyRep: CompanyReputationInput,
+  freshnessScore: number = 5
 ): TrustScore {
   // Provider reputation score (0-10)
   const providerScore = Math.min(10, providerRep.score * 2)
@@ -76,11 +80,15 @@ export function calculateTrustScore(
   // Transparency signals score (0-10)
   const transparencyScore = calculateTransparencyScore(companyRep.signals)
 
+  // Freshness score (0-10, already normalized)
+  const clampedFreshness = Math.max(0, Math.min(10, freshnessScore))
+
   // Weighted overall score
   const overall = Math.round(
     (providerScore * WEIGHTS.providerReputation +
       companyScore * WEIGHTS.companyReputation +
-      transparencyScore * WEIGHTS.transparencySignals) *
+      transparencyScore * WEIGHTS.transparencySignals +
+      clampedFreshness * WEIGHTS.freshness) *
       10
   ) / 10
 

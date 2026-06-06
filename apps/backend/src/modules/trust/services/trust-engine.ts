@@ -110,8 +110,12 @@ export async function evaluateJobTrust(
   // Get company reputation
   const companyRep = evaluateCompanyReputation(job.company, job.industry)
 
-  // Calculate trust score
-  const trustScore = calculateTrustScore(providerRep, companyRep)
+  // Compute freshness score
+  const days = daysSincePosted(job.postedAt)
+  const freshnessScore = computeFreshnessScore(days)
+
+  // Calculate trust score with freshness
+  const trustScore = calculateTrustScore(providerRep, companyRep, freshnessScore)
 
   // Cache result
   trustCache.set(cacheKey, trustScore)
@@ -148,8 +152,12 @@ export async function evaluateJobTrustWithBreakdown(
   // Get company reputation
   const companyRep = evaluateCompanyReputation(job.company, job.industry)
 
-  // Calculate trust score
-  const trustScore = calculateTrustScore(providerRep, companyRep)
+  // Compute freshness score
+  const days = daysSincePosted(job.postedAt)
+  const freshnessScore = computeFreshnessScore(days)
+
+  // Calculate trust score with freshness
+  const trustScore = calculateTrustScore(providerRep, companyRep, freshnessScore)
 
   // Build breakdown
   const breakdown = buildTrustBreakdown(job, trustScore)

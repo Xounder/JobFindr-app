@@ -1,0 +1,9 @@
+DONE: Fixed continuous-learning/SKILL.md to define explicit <changes> template format and align workflow presentation with it; removed conflicting undefined format reference.
+
+WRONG: Previous continuous-learning output used workflow format instead of <changes> template because template was referenced but never defined in skill.
+
+IMPROV: continuous-learning/SKILL.md now has explicit <changes> template definition in Rules (line 51) and workflow presentation (lines 30-39) uses same format.
+
+LEARN: Skill had ambiguous format specification — line 51 required "<changes> template format" but workflow (lines 30-39) showed different format. Fixed by defining template explicitly in both places.
+
+NEXT: Test /doc-audit command; verify continuous-learning now outputs <changes> format consistently.

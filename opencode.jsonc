@@ -1,5 +1,10 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "plugin": [
+    "validate-agent",
+    "session-load-autoloader",
+    "sound-alert"
+  ],
   "mcp": {
     "playwright": {
       "type": "local",
@@ -20,22 +25,6 @@
       "template": "Leia o arquivo `pipeline.yaml` na raiz do projeto para identificar o ponto de retomada. Carregue a skill `jobfindr-pipeline-next` e continue o pipeline de agentes do JobFindr de onde parou. NÃO refaça perguntas do Product Manager — use o pipeline.yaml para determinar o passo atual e retomar de lá.",
       "description": "Continua o pipeline JobFindr de onde parou (lê pipeline.yaml)"
     },
-    "validate:frontend": {
-      "template": "Execute o hook `.opencode/hooks/validate-after-agent.ps1 -Layer frontend`. Se houver erros de lint ou TypeScript, retorne ao Senior Frontend para correção. Caso contrário, prossiga.",
-      "description": "Valida lint e TypeScript do frontend após implementação"
-    },
-    "validate:backend": {
-      "template": "Execute o hook `.opencode/hooks/validate-after-agent.ps1 -Layer backend`. Se houver erros de lint ou TypeScript, retorne ao Senior Backend para correção. Caso contrário, prossiga.",
-      "description": "Valida lint e TypeScript do backend após implementação"
-    },
-    "continuous-learning": {
-      "template": "Carregue a skill `continuous-learning` e execute o fluxo completo de análise de docs, propostas e aplicação com aprovação do usuário. Após finalizar (com ou sem alterações), você DEVE carregar a skill `session-save` IMEDIATAMENTE — sem perguntar ao usuário. A cadeia completa é: learning-improvement → continuous-learning → session-save, executada atomicamente.",
-      "description": "Analisa docs e propõe melhorias com base nos aprendizados da sessão"
-    },
-    "session-save": {
-      "template": "Carregue a skill `session-save` e persista o arquivo de sessão em `.opencode/sessions/`. Esta é a ÚLTIMA skill da cadeia STOP — após salvar, reporte ao usuário e encerre.",
-      "description": "Persiste o arquivo de sessão atual"
-    },
     "learning-improvement": {
       "template": "Carregue a skill `learning-improvement`, analise a sessão atual e extraia DONE, WRONG, IMPROV, LEARN, NEXT. Após extrair, você DEVE carregar a skill `continuous-learning` IMEDIATAMENTE — sem perguntar ao usuário. A cadeia completa é: learning-improvement → continuous-learning → session-save, executada atomicamente. Nunca pare após o learning-improvement.",
       "description": "Avalia a sessão atual e extrai aprendizados (DONE, WRONG, IMPROV, LEARN, NEXT), depois continua automaticamente para continuous-learning → session-save"
@@ -43,10 +32,6 @@
     "jobfindr-pipeline:plan": {
       "template": "Analise a solicitação do usuário e invoque o agente **Planning Analyst** via Task (`subagent_type: \"Planning Analyst\"`) para realizar análise de viabilidade, risco, impacto e abordagem técnica. O Planning Analyst criará os artefatos de planejamento em `.opencode/plan/<context>/`. Após o Planning Analyst concluir, SEM PERGUNTAR ao usuário, execute o comando `learning-improvement` (que automaticamente encadeia para continuous-learning → session-save).",
       "description": "Invoca o Planning Analyst para análise de viabilidade e impacto, depois chama learning-improvement"
-    },
-    "validate:both": {
-      "template": "Execute em paralelo: (1) `.opencode/hooks/validate-after-agent.ps1 -Layer frontend` e (2) `.opencode/hooks/validate-after-agent.ps1 -Layer backend`. Se qualquer um falhar, retorne ao agente responsável (frontend ou backend) para correção.",
-      "description": "Valida lint e TypeScript de frontend e backend em paralelo"
     }
   }
 }

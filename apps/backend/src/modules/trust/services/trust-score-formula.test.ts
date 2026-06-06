@@ -80,4 +80,46 @@ describe('calculateTrustScore', () => {
     expect(result.overall).toBeGreaterThanOrEqual(0)
     expect(result.overall).toBeLessThanOrEqual(10)
   })
+
+  describe('freshnessScore parameter', () => {
+    const baseProvider = { score: 7, successRate: 0.9, averageLatencyMs: 300, totalRequests: 100 }
+    const baseSignals: TrustSignals = {
+      hasWebsite: true,
+      hasLinkedIn: true,
+      isPublicCompany: true,
+      companySize: 'large',
+      complaintScore: 1,
+      transparencyScore: 8,
+    }
+    const baseCompany = { name: 'TestCorp', signals: baseSignals }
+
+    it('higher freshnessScore increases overall score', () => {
+      const lowFreshness = calculateTrustScore(baseProvider, baseCompany, 0)
+      const highFreshness = calculateTrustScore(baseProvider, baseCompany, 10)
+      expect(highFreshness.overall).toBeGreaterThan(lowFreshness.overall)
+    })
+
+    it('freshnessScore of 10 vs 0 makes measurable difference', () => {
+      const lowFreshness = calculateTrustScore(baseProvider, baseCompany, 0)
+      const highFreshness = calculateTrustScore(baseProvider, baseCompany, 10)
+      // Freshness weight is 15%, so 10 point diff * 0.15 = 1.5 points overall
+      expect(highFreshness.overall - lowFreshness.overall).toBeGreaterThanOrEqual(1.4)
+      expect(highFreshness.overall - lowFreshness.overall).toBeLessThanOrEqual(1.6)
+    })
+
+    it('default freshnessScore is 5 (neutral)', () => {
+      const defaultFreshness = calculateTrustScore(baseProvider, baseCompany) // no 3rd arg
+      const explicitNeutral = calculateTrustScore(baseProvider, baseCompany, 5)
+      expect(defaultFreshness.overall).toBe(explicitNeutral.overall)
+    })
+
+    it('freshnessScore is clamped to 0-10 range', () => {
+      const belowZero = calculateTrustScore(baseProvider, baseCompany, -5)
+      const aboveTen = calculateTrustScore(baseProvider, baseCompany, 15)
+      const atZero = calculateTrustScore(baseProvider, baseCompany, 0)
+      const atTen = calculateTrustScore(baseProvider, baseCompany, 10)
+      expect(belowZero.overall).toBe(atZero.overall)
+      expect(aboveTen.overall).toBe(atTen.overall)
+    })
+  })
 })

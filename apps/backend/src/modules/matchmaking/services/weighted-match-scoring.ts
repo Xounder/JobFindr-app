@@ -14,8 +14,8 @@ export type MatchWeights = {
 }
 
 const DEFAULT_WEIGHTS: MatchWeights = {
-  skillWeight: 0.6,
-  seniorityWeight: 0.25,
+  skillWeight: 0.5,
+  seniorityWeight: 0.35,
   keywordWeight: 0.15,
 }
 
