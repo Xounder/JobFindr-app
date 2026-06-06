@@ -25,17 +25,16 @@ Update `pipeline.yaml`:
 
 ## Workflow
 
-1. Receive technical task from Tech Lead (via `.opencode/plan/tasks/index.md`)
-2. Read the relevant architecture documentation
-3. If involving branding/visual, load skill `06-branding` first
-4. Implement the solution in the frontend (`apps/frontend/`)
-5. Run `pnpm --filter frontend lint` and `pnpm --filter frontend build`
-6. **Start the app** — run `pnpm --filter backend start` and `pnpm --filter frontend dev` in parallel
-7. **Test with standalone Playwright script** — use `pnpm --filter backend exec tsx ../frontend/playwright-check.ts` (MCP browser tools don't work on Windows; `--filter backend exec` sets cwd to `apps/backend/`, so path is relative from there — see `AGENTS.md` "Playwright checks (Windows)" section)
-8. **Stop the app** — after Playwright verification, kill the running processes (Ctrl+C equivalent or taskkill)
-9. Update `pipeline.yaml`: `steps.senior-frontend.status: "completed"` (do NOT change `current_step` — the orchestrator owns phase transitions)
-10. **Return structured summary** — report back to the orchestrator a non-empty summary of what was implemented, validation results, and any errors encountered (Playwright failures, port conflicts, process spawn issues, build tool problems, etc.)
-11. Trigger QA Reviewer Agent via Task tool (`subagent_type: "QA Reviewer"`, frontend instance)
+  1. Receive technical task from Tech Lead (via `.opencode/plan/<context>/tasks/index.md`)
+  2. Read the relevant architecture documentation
+  3. If involving branding/visual, load skill `06-branding` first
+  4. Implement the solution in the frontend (`apps/frontend/`)
+  5. **Start the app** — run `pnpm --filter backend start` and `pnpm --filter frontend dev` in parallel
+  6. **Test with standalone Playwright script** — use `pnpm --filter backend exec tsx ../frontend/playwright-check.ts` (MCP browser tools don't work on Windows; `--filter backend exec` sets cwd to `apps/backend/`, so path is relative from there — see `AGENTS.md` "Playwright checks (Windows)" section)
+  7. **Stop the app** — after Playwright verification, kill the running processes (Ctrl+C equivalent or taskkill)
+  8. Update `pipeline.yaml`: `steps.senior-frontend.status: "completed"` (do NOT change `current_step` — the orchestrator owns phase transitions)
+  9. **Return structured summary** — report back to the orchestrator a non-empty summary of what was implemented, validation results, and any errors encountered (Playwright failures, port conflicts, process spawn issues, build tool problems, etc.)
+  10. Trigger QA Reviewer Agent via Task tool (`subagent_type: "QA Reviewer"`, frontend instance)
 
 ## Implementation rules
 
@@ -61,4 +60,4 @@ Update `pipeline.yaml`:
 - [.opencode/architecture/04-frontend-architecture.md](../architecture/04-frontend-architecture.md)
 - [.opencode/architecture/05-frontend-guidelines.md](../architecture/05-frontend-guidelines.md)
 - [.opencode/architecture/07-api-architecture.md](../architecture/07-api-architecture.md)
-- [.opencode/plan/tasks/index.md](../plan/tasks/index.md)
+- [.opencode/plan/](../plan/) — tasks in `plan/<context>/tasks/`

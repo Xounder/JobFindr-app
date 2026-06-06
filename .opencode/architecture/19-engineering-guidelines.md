@@ -74,5 +74,5 @@ When generating code:
 
 # Related Documents
 
-* [18-testing-philosophy.md](./18-testing-philosophy.md)
+* [22-testing-philosophy.md](./22-testing-philosophy.md)
 * [21-anti-patterns.md](./21-anti-patterns.md)

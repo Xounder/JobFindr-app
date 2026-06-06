@@ -19,6 +19,15 @@ The Job Search Aggregator is a lightweight SaaS MVP focused on aggregating onlin
 
 ---
 
+## What the System Avoids
+
+- User accounts
+- Resumes
+- Persistent search history
+- Personal data retention
+
+---
+
 ## High-Level Architecture
 
 ```txt

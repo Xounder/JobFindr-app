@@ -26,18 +26,17 @@ Update `pipeline.yaml`:
 
 ## Workflow
 
-1. Receive technical task from Tech Lead (via `.opencode/plan/tasks/index.md`)
-2. Read the relevant architecture documentation
-3. Implement the solution in the backend (`apps/backend/`)
-4. Verify the solution respects architectural principles (stateless, provider isolation)
-5. Ensure backend `package.json` has the scripts: `"dev"`, `"build": "tsc -b"`, `"lint"`, `"start"`
-6. Run `pnpm --filter backend build` to validate the build
-7. **Validate endpoints** — start the server (`pnpm --filter backend dev`) and test the created/modified endpoints with HTTP calls (curl, fetch, or similar tool)
-8. **Stop the server** — after validation, kill the running process
-9. **Create or update tests** following the policy defined in `AGENTS.md`
-10. Update `pipeline.yaml`: `steps.senior-backend.status: "completed"` (do NOT change `current_step` — the orchestrator owns phase transitions)
-11. **Return all errors** — report back to the orchestrator any non-implementation errors encountered (server startup failures, port conflicts, HTTP test failures, build tool issues, etc.)
-12. Trigger QA Reviewer Agent via Task tool (`subagent_type: "QA Reviewer"`, backend instance)
+  1. Receive technical task from Tech Lead (via `.opencode/plan/<context>/tasks/index.md`)
+  2. Read the relevant architecture documentation
+  3. Implement the solution in the backend (`apps/backend/`)
+  4. Verify the solution respects architectural principles (stateless, provider isolation)
+  5. Ensure backend `package.json` has the scripts: `"dev"`, `"build": "tsc -b"`, `"lint"`, `"start"`
+  6. **Validate endpoints** — start the server (`pnpm --filter backend dev`) and test the created/modified endpoints with HTTP calls (curl, fetch, or similar tool)
+  7. **Stop the server** — after validation, kill the running process
+  8. **Create or update tests** following the policy defined in `AGENTS.md`
+  9. Update `pipeline.yaml`: `steps.senior-backend.status: "completed"` (do NOT change `current_step` — the orchestrator owns phase transitions)
+  10. **Return all errors** — report back to the orchestrator any non-implementation errors encountered (server startup failures, port conflicts, HTTP test failures, build tool issues, etc.)
+  11. Trigger QA Reviewer Agent via Task tool (`subagent_type: "QA Reviewer"`, backend instance)
 
 ## Implementation rules
 
@@ -63,4 +62,4 @@ Update `pipeline.yaml`:
 - [.opencode/architecture/12-trust-engine.md](../architecture/12-trust-engine.md)
 - [.opencode/architecture/13-ranking-engine.md](../architecture/13-ranking-engine.md)
 - [.opencode/architecture/14-caching-architecture.md](../architecture/14-caching-architecture.md)
-- [.opencode/plan/tasks/index.md](../plan/tasks/index.md)
+- [.opencode/plan/](../plan/) — tasks in `plan/<context>/tasks/`

@@ -98,21 +98,7 @@ Then continue depending on the task below.
 
 # Project Overview
 
-The Job Search Aggregator is a lightweight SaaS MVP that aggregates job opportunities from multiple online providers into a single search experience.
-
-Core features:
-- multi-provider job aggregation;
-- intelligent job ranking;
-- skill matchmaking;
-- trust-based filtering;
-- provider abstraction;
-- stateless backend.
-
-The system intentionally avoids:
-- user accounts;
-- resumes;
-- persistent search history;
-- personal data retention.
+See [01-system-overview.md](./architecture/01-system-overview.md) for the full system description, goals, and architecture diagram.
 
 ---
 
@@ -139,3 +125,4 @@ See [jobfindr-pipeline skill](./skills/jobfindr-pipeline/SKILL.md) for details.
 - [Learning Improvement skill](./skills/learning-improvement/SKILL.md) — session evaluation (skill 1/3 of STOP)
 - [Continuous Learning skill](./skills/continuous-learning/SKILL.md) — doc updates (skill 2/3 of STOP)
 - [Session Save skill](./skills/session-save/SKILL.md) — session persistence (skill 3/3 of STOP)
+- [Codebase Analysis skill](./skills/codebase-analysis/SKILL.md) — standalone structural scanner for source code (`--mode implementation`) and `.opencode/` documentation (`--mode docs`); load on-demand when agents need a full map of the codebase

@@ -51,7 +51,7 @@ This folder contains the complete architectural documentation for the project.
 
 ## Engineering & Governance
 
-- [18-testing-philosophy.md](./18-testing-philosophy.md)
+- [22-testing-philosophy.md](./22-testing-philosophy.md)
 - [19-engineering-guidelines.md](./19-engineering-guidelines.md)
 - [20-scalability-roadmap.md](./20-scalability-roadmap.md)
 - [21-anti-patterns.md](./21-anti-patterns.md)

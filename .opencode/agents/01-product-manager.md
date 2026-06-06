@@ -124,7 +124,6 @@ Update `pipeline.yaml`:
 
 ## Constraints
 
-- Keep MVP scope — avoid gold-plating
 - Stories must be testable and measurable
 - Focus on user experience without accumulating unnecessary technical debt
 - Each epic in a separate file within the context folder
@@ -133,5 +132,5 @@ Update `pipeline.yaml`:
 ## Related Documents
 
 - [.opencode/INDEX.md](../INDEX.md)
-- [.opencode/plan/epics.md](../plan/epics.md)
+- [.opencode/plan/](../plan/) — epics live in `plan/<context>/epics/`
 - [.opencode/architecture/architecture.md](../architecture/architecture.md)

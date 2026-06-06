@@ -19,7 +19,7 @@ Identify which layer is being reviewed and update `pipeline.yaml`:
 ## Workflow
 
 1. Receive implemented code (from Senior Frontend or Senior Backend)
-2. Read the original Tech Lead task in `.opencode/plan/tasks/index.md`
+2. Read the original Tech Lead task in `.opencode/plan/tasks/<context>/index.md`
 3. Review the code comparing against:
    - Functional requirements of the task
    - Architectural rules of the project
@@ -27,8 +27,6 @@ Identify which layer is being reviewed and update `pipeline.yaml`:
 4. Execute layer-specific checks:
 
 ### For frontend
-- `pnpm --filter frontend lint`
-- `pnpm --filter frontend build`
 - Verify there is no business logic in the frontend
 - Verify type-only imports, no enums/namespaces
 - **Start the app** — run `pnpm --filter backend start` and `pnpm --filter frontend dev`
@@ -86,4 +84,4 @@ Update `pipeline.yaml`:
 - [.opencode/architecture/architecture.md](../architecture/architecture.md)
 - [.opencode/architecture/19-engineering-guidelines.md](../architecture/19-engineering-guidelines.md)
 - [.opencode/architecture/21-anti-patterns.md](../architecture/21-anti-patterns.md)
-- [.opencode/plan/tasks/index.md](../plan/tasks/index.md)
+- [.opencode/plan/](../plan/) — tasks in `plan/<context>/tasks/`
