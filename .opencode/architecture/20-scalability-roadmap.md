@@ -4,9 +4,9 @@
 
 ---
 
-# MVP Philosophy
+# Scalability Philosophy
 
-This is a lean MVP.
+This is a lean application built for continuous development.
 
 Prioritize:
 - fast iteration;
@@ -21,7 +21,7 @@ Do NOT prematurely implement:
 - distributed systems;
 - advanced AI infrastructure.
 
-Build only what is necessary for the MVP while preserving scalability paths.
+Build only what is necessary for the current version while preserving scalability paths.
 
 ---
 
@@ -39,7 +39,7 @@ Build only what is necessary for the MVP while preserving scalability paths.
 
 # Goal
 
-The MVP architecture must remain compatible with future scaling.
+The current architecture must remain compatible with future scaling.
 
 ---
 

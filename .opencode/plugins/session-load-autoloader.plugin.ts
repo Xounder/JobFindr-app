@@ -1,26 +1,41 @@
-import type { Plugin, Hooks } from "@opencode-ai/plugin"
+import type { Plugin } from "@opencode-ai/plugin"
+import { readFileSync, readdirSync, statSync } from "fs"
+import { join } from "path"
 
-export const SessionLoadAutoLoaderPlugin: Plugin = async ({ project, client, $, directory, worktree }) => {
-  const hooks: Hooks = {
-    "session.created": async () => {
-      try {
-        const sessionsDir = `${directory}/.opencode/sessions`
-        // List session files, sorted by modification time (newest first)
-        const lsResult = await $`ls -t ${sessionsDir}/*.tmp 2>/dev/null`.text()
-        const files = lsResult.trim().split('\n').filter(Boolean)
-        if (files.length === 0) {
-          // No session files found
-          return
+export const SessionLoadAutoLoaderPlugin: Plugin = async ({ directory }) => {
+  let sessionContent: string | null = null
+
+  try {
+    const sessionsDir = join(directory, ".opencode", "sessions")
+    const allFiles = readdirSync(sessionsDir)
+    const tmpFiles = allFiles
+      .filter(f => f.endsWith(".tmp"))
+      .map(f => ({
+        path: join(sessionsDir, f),
+        mtime: statSync(join(sessionsDir, f)).mtime.getTime()
+      }))
+      .sort((a, b) => b.mtime - a.mtime)
+
+    if (tmpFiles.length > 0) {
+      sessionContent = readFileSync(tmpFiles[0].path, "utf-8")
+    }
+  } catch {
+    // Silently fail
+  }
+
+  let injected = false
+
+  return {
+    "chat.message": async (_input, output) => {
+      if (sessionContent && !injected) {
+        injected = true
+        for (const part of output.parts) {
+          if (part.type === "text") {
+            (part as any).text = `[Previous Session Context]\n${sessionContent}\n\n${(part as any).text}`
+            break
+          }
         }
-        const mostRecent = files[0]
-        const content = await $`cat ${mostRecent}`.text()
-        // Output to console so the user sees it
-        console.log(`\n=== Last Session (loaded by plugin) ===\n${content}\n=== End of Last Session ===\n`)
-      } catch (error) {
-        // Don't break session start on error
-        console.warn('Session load plugin warning:', error.message)
       }
     }
   }
-  return hooks
 }

@@ -4,7 +4,7 @@
 
 ---
 
-# MVP Cache Strategy
+# Cache Strategy
 
 Use:
 - in-memory cache.

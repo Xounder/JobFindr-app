@@ -33,7 +33,22 @@ Triggered when the user makes a **specific and direct** request like "create tes
 
 ## Pipeline initialization (Full Pipeline Mode)
 
-**Before any phase**, create the `pipeline.yaml` file at the project root with the initial state:
+**Before any phase**, the orchestrator MUST check for existing context:
+
+1. Use `glob(".opencode/plan/active.txt")` to check if an active context exists
+2. If `active.txt` exists, read it with `read()` to get the active context folder
+3. Check for analysis files in the context folder root: `glob(".opencode/plan/<folder>/*.md")` (e.g., feasibility.md, impact-analysis.md, risks.md, recommendations.md, index.md)
+4. Check if epics already exist with `glob(".opencode/plan/<folder>/epics/**/*")`
+5. If analysis files exist in folder root OR epics exist → skip PM, go directly to Tech Lead (Phase 2) to create tasks from epics/analysis
+6. If no `active.txt` → start normally with PM (Phase 1)
+
+**Create `pipeline.yaml`** at the project root with the initial state:
+
+**Also create/read `.opencode/plan/active.txt`** to track the active planning context folder:
+- If starting fresh: Product Manager creates `.opencode/plan/<context>/` folder, then orchestrator writes `active.txt`
+- If resuming: read `active.txt` to get the active context folder
+- Format: `{active: [<context-folder-name>], date: <ISO-8601-date>}`
+- **Removed at pipeline conclusion** (Phase 6)
 
 ```yaml
 pipeline:
@@ -46,26 +61,32 @@ pipeline:
       status: pending
       notes: null
       updated_at: null
+      problems: []
     tech-lead:
       status: pending
       notes: null
       updated_at: null
+      problems: []
     senior-frontend:
       status: pending
       notes: null
       updated_at: null
+      problems: []
     senior-backend:
       status: pending
       notes: null
       updated_at: null
+      problems: []
     qa-frontend:
       status: pending
       notes: null
       updated_at: null
+      problems: []
     qa-backend:
       status: pending
       notes: null
       updated_at: null
+      problems: []
 ```
 
 At each completed step, UPDATE `pipeline.yaml`:
@@ -75,26 +96,36 @@ At each completed step, UPDATE `pipeline.yaml`:
 
 ## Full flow (Full Pipeline Mode)
 
-### Phase 1: Product Manager
-1. Trigger **Product Manager Agent** via Task tool (`subagent_type: "Product Manager"`)
-2. Update `pipeline.yaml`: `current_step: "product-manager"`, `steps.product-manager.status: "in_progress"`
-3. **IMPORTANT**: Do NOT instruct the PM to ask questions in your prompt. The PM agent checks existing docs automatically — if `.opencode/plan/<context>/` already exists, it skips questions. Telling it to ask questions overrides this logic.
-4. PM creates folder `.opencode/plan/<context>/epics/` with `index.md` + one `.md` per epic
-5. **Update `pipeline.yaml`**: `steps.product-manager.status: "completed"`, `current_step: "tech-lead"`
+### Phase 1: Product Manager (conditional)
+**Pre-check:** Before entering Phase 1, the orchestrator MUST check if `active.txt` exists via `glob(".opencode/plan/active.txt")`:
+- If `active.txt` exists **and** (analysis files exist in `.opencode/plan/<folder>/` root like feasibility.md, impact-analysis.md, risks.md, recommendations.md **OR** epics exist in `.opencode/plan/<folder>/epics/`) → **skip PM entirely**. Set `steps.product-manager.status: "skipped"`, advance `current_step` to `tech-lead`, and proceed to Phase 2.
+- If no `active.txt` → proceed with PM normally.
+
+Only if PM is needed:
+ 1. Trigger **Product Manager Agent** via Task tool (`subagent_type: "Product Manager"`)
+ 2. Update `pipeline.yaml`: `current_step: "product-manager"`, `steps.product-manager.status: "in_progress"`
+ 3. **IMPORTANT**: Do NOT instruct the PM to ask questions in your prompt. The PM agent checks existing docs automatically:
+    - If `.opencode/plan/active.txt` exists: read it to get the active context folder, then read existing epics from `.opencode/plan/<active-folder>/epics/` — **skip questions entirely**
+    - If no `active.txt`: PM creates new context folder and asks clarifying questions
+    - Telling it to ask questions overrides this logic.
+ 4. PM creates folder `.opencode/plan/<context>/epics/` with `index.md` + one `.md` per epic
+ 5. **Update `pipeline.yaml`**: `steps.product-manager.status: "completed"`, `current_step: "tech-lead"`
+ 6. **Write `.opencode/plan/active.txt`** with the context folder name created by PM:  `{active: [<context-folder-name>], date: <ISO-8601-date>}`
 
 ### Phase 2: Tech Lead
-1. Trigger **Tech Lead Agent** via Task tool (`subagent_type: "Tech Lead"`)
-2. Update `pipeline.yaml`: `steps.tech-lead.status: "in_progress"`
-3. TL reads epics from `.opencode/plan/<context>/epics/` folder and creates tasks in `.opencode/plan/<context>/tasks/` with one `.md` per task + `index.md`
-4. TL allocates tasks to frontend and/or backend
-5. **Update `pipeline.yaml`**: `steps.tech-lead.status: "completed"`, `current_step: "development"`
+ 1. Trigger **Tech Lead Agent** via Task tool (`subagent_type: "Tech Lead"`)
+ 2. Update `pipeline.yaml`: `steps.tech-lead.status: "in_progress"`
+ 3. TL reads epics from `.opencode/plan/<context>/epics/` folder and creates tasks in `.opencode/plan/<context>/tasks/` with one `.md` per task + `index.md`
+ 4. **REQUIRED**: All task files MUST follow `TASK-NN-<context-task>` naming convention (e.g., `TASK-01-<context-task>.md`, `TASK-02-<context-task>.md`, etc.)
+ 5. TL allocates tasks to frontend and/or backend
+ 6. **Update `pipeline.yaml`**: `steps.tech-lead.status: "completed"`, `current_step: "development"`
 
 ### Phase 3: Development (parallel)
 1. Update `pipeline.yaml`: `steps.senior-frontend.status: "in_progress"`, `steps.senior-backend.status: "in_progress"`
 2. Trigger **Senior Frontend Agent** via Task tool (`subagent_type: "Senior Frontend"`)
 3. Trigger **Senior Backend Agent** via Task tool (`subagent_type: "Senior Backend"`)
 4. **Both execute in parallel** — use the Task tool to trigger simultaneously
-5. **IMPORTANT**: The orchestrator prompt for Senior Frontend MUST explicitly include the full validation sequence: lint, build, start app (backend + frontend), run Playwright standalone script, stop app. Do NOT rely on the agent reading its own definition file — state Playwright explicitly in the prompt.
+5. **IMPORTANT**: The orchestrator prompt for Senior Frontend MUST explicitly include the full validation sequence: lint, build, start app (backend or frontend), stop app. Do NOT rely on the agent reading its own definition file.
 6. When each concludes: update `pipeline.yaml` with `steps.senior-frontend.status: "completed"` and/or `steps.senior-backend.status: "completed"`
 7. When both complete: `current_step: "qa"`
 
@@ -103,7 +134,7 @@ At each completed step, UPDATE `pipeline.yaml`:
 2. Trigger **QA Reviewer Agent** via Task tool (`subagent_type: "QA Reviewer"`) — **one instance for frontend, another for backend**
 3. Instantiate **two separate reviews**: one for frontend, another for backend
 4. **Both execute in parallel**
-5. **IMPORTANT**: The orchestrator prompt for QA Frontend MUST explicitly include: review code, run lint + build + tests, start app (backend + frontend), run Playwright standalone script, stop app. Do NOT rely on the agent reading its own definition file — state Playwright explicitly in the prompt.
+5. **IMPORTANT**: The orchestrator prompt for QA Frontend MUST explicitly include: review code, run lint + build + tests, start app (backend or frontend), stop app. Do NOT rely on the agent reading its own definition file.
 6. When each QA concludes: update `pipeline.yaml`
 
 ### Phase 5: Corrections loop
@@ -116,13 +147,14 @@ For each layer (frontend and backend), **independently**:
 6. Repeat until approval
 
 ### Phase 6: Conclusion
-1. Confirm frontend and backend are approved
-2. Update `pipeline.yaml`: `current_step: "completed"`
-3. Summarize what was done
-4. Commit changes with a descriptive commit message following project conventions (use `git commit -m "type(scope): description"`)
-5. Report to the user
-6. Load skills in sequence: `learning-improvement` → `continuous-learning` → `session-save`
-7. Update `AGENTS.md` if necessary (tests, commands, scripts)
+  1. Confirm frontend and backend are approved
+  2. Update `pipeline.yaml`: `current_step: "completed"`
+  3. Summarize what was done
+  4. Commit changes with a descriptive commit message following project conventions (use `git commit -m "type(scope): description"`)
+  5. Report to the user
+  6. **Remove `.opencode/plan/active.txt`** — the active context file is only needed during pipeline execution
+  7. Load skills in sequence: `learning-improvement` → `continuous-learning` → `session-save`
+  8. Update `AGENTS.md` if necessary (tests, commands, scripts)
 
 ## Direct flow (Direct Task Mode)
 
@@ -145,8 +177,7 @@ Execute this flow when the user gives a direct and specific task:
    ```
 4. **Load skills** — use `Task tool` with the appropriate subagent type
 5. **QA is mandatory** for complex tasks — never skip
-6. **Playwright is mandatory for frontend tasks** — when routing to Senior Frontend or QA Frontend, explicitly include Playwright start-app → verify → stop-app in the prompt
-7. **Skip learning-improvement/continuous-learning/session-save** — only complex and complete tasks justify session logging
+6. **Skip learning-improvement/continuous-learning/session-save** — only complex and complete tasks justify session logging
 
 ## Orchestrator rules
 
@@ -161,7 +192,8 @@ Execute this flow when the user gives a direct and specific task:
 - **Corrections loop rule**: When QA finds issues, the orchestrator MUST re-invoke the implementation agent via Task tool — NEVER fix code directly. The orchestrator's role is to route work, not to implement.
 - **Orchestrator owns `current_step`**: Agents (PM, TL, Senior, QA) must only update their own `status` and `notes` in `pipeline.yaml`. Only the orchestrator sets `current_step` to advance phases. Agents MUST NOT change `current_step`.
 - **All tasks must be completed**: The orchestrator MUST auto-continue phases until ALL tasks in the plan are implemented, validated, and QA-approved. For example, after Phase 1 (TASK-001, TASK-004, TASK-005) passes QA, the orchestrator must immediately proceed to Phase 2 (TASK-002, TASK-003, TASK-006) without waiting for user input. Only run the STOP hook after ALL tasks are done.
-- **Playwright verification**: Senior Frontend and QA Frontend agents MUST run the Playwright standalone script as the last verification step. Use `pnpm --filter backend exec tsx ../frontend/playwright-check.ts` (note: `--filter backend exec` sets cwd to `apps/backend/`, so the path is relative from there).
-- **App cleanup**: After agents finish validation (Playwright, HTTP tests, etc.), they MUST terminate any running processes started during their execution. Do not leave the app running.
-- **Error reporting**: All agents MUST return a structured summary (non-empty) of what was implemented, validation results, and any errors encountered. This includes tool failures, process spawn issues, Playwright failures, port conflicts, build problems, and empty/missing agent results. Errors must be reported back to the orchestrator in the final return message.
+- **App cleanup**: After agents finish validation (HTTP tests, etc.), they MUST terminate any running processes started during their execution. Do not leave the app running.
+- **Error reporting**: All agents MUST return a structured summary (non-empty) of what was implemented, validation results, and any errors encountered. This includes tool failures, process spawn issues, port conflicts, build problems, and empty/missing agent results. Errors must be reported back to the orchestrator in the final return message AND added to the step's `problems` array in `pipeline.yaml`.
+- **Problems tracking**: Agents MUST populate the `problems` array in `pipeline.yaml` for their step with any non-code errors (test failures, process spawn issues, port conflicts, build problems).
 - **YAML validation**: After any agent updates `pipeline.yaml`, the orchestrator MUST validate the YAML has correct indentation (no misaligned keys).
+- **Active context propagation**: The orchestrator MUST read `.opencode/plan/active.txt` at startup (both Full Pipeline and Direct Task Mode) and pass the `active` folder path to ALL subagents via the Task tool prompt. Subagents (Tech Lead, Senior Frontend, Senior Backend, QA Reviewer) MUST read their working context from `.opencode/plan/<active-folder>/` — do NOT hardcode or guess the folder name.

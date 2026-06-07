@@ -44,7 +44,7 @@ Focus on:
 Avoid:
 - opaque AI scoring;
 - non-deterministic ranking;
-- black-box embeddings in MVP.
+- black-box embeddings.
 
 ---
 

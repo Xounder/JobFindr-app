@@ -10,6 +10,13 @@ function makeParams(overrides: Record<string, string | undefined> = {}): Record<
   }
 }
 
+describe('validateSearchInput - skills', () => {
+  it('rejects skills with more than 100 items', () => {
+    const manySkills = Array.from({ length: 101 }, (_, i) => `skill${i}`).join(',')
+    expect(() => validateSearchInput(makeParams({ skills: manySkills }))).toThrow('Maximum 100 skills allowed')
+  })
+})
+
 describe('validateSearchInput - userSkills', () => {
   it('parses comma-separated userSkills into array', () => {
     const result = validateSearchInput(makeParams({ userSkills: 'react,typescript,node' }))
@@ -31,9 +38,9 @@ describe('validateSearchInput - userSkills', () => {
     expect(result.userSkills).toEqual([])
   })
 
-  it('rejects userSkills with more than 30 items', () => {
-    const manySkills = Array.from({ length: 31 }, (_, i) => `skill${i}`).join(',')
-    expect(() => validateSearchInput(makeParams({ userSkills: manySkills }))).toThrow('Maximum 30 user skills allowed')
+  it('rejects userSkills with more than 100 items', () => {
+    const manySkills = Array.from({ length: 101 }, (_, i) => `skill${i}`).join(',')
+    expect(() => validateSearchInput(makeParams({ userSkills: manySkills }))).toThrow('Maximum 100 user skills allowed')
   })
 
   it('trims whitespace from userSkills', () => {

@@ -27,7 +27,7 @@ Use:
 Use:
 - Zustand
 
-Avoid Redux for MVP.
+Avoid Redux — Zustand is sufficient.
 
 ---
 

@@ -47,11 +47,25 @@ Prefer:
 
 ---
 
-# Rules
+# Anti-Patterns / Forbidden Patterns
 
-* business logic outside controllers;
-* avoid giant services;
-* avoid shared mutable state.
+- giant services;
+- provider coupling;
+- business logic in controllers;
+- shared mutable state;
+- frontend ranking logic;
+- user data retention.
+- tests that duplicate implementation logic instead of testing the real code (tests pass even when the real implementation is broken).
+
+---
+
+# Why These Patterns Are Forbidden
+
+These patterns:
+- reduce maintainability;
+- increase coupling;
+- reduce scalability;
+- increase technical debt.
 
 ---
 
@@ -75,4 +89,3 @@ When generating code:
 # Related Documents
 
 * [22-testing-philosophy.md](./22-testing-philosophy.md)
-* [21-anti-patterns.md](./21-anti-patterns.md)

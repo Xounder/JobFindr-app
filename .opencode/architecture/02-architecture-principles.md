@@ -57,7 +57,7 @@ The system must prioritize explainable behavior:
 - explainable matchmaking;
 - deterministic scoring.
 
-Opaque AI scoring must be avoided in the MVP.
+Opaque AI scoring must be avoided.
 
 ---
 
@@ -81,7 +81,7 @@ Avoid:
 
 # Scalability
 
-The MVP must support future migration toward:
+The current architecture must support future migration toward:
 - Redis;
 - PostgreSQL;
 - ElasticSearch;

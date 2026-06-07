@@ -31,7 +31,7 @@ interface AntiSpamConfig {
 
 const defaultConfig: AntiSpamConfig = {
   maxQueryLength: 200,
-  maxSkillsCount: 30,
+  maxSkillsCount: 100,
   enabled: true,
 }
 

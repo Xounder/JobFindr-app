@@ -46,20 +46,78 @@ describe('calculateWeightedMatchScore', () => {
     expect(result.overall).toBeGreaterThan(80)
   })
 
-  it('returns explanation with matched and missing skills', () => {
+  it('returns explanation with matched and missing skills (job-centric)', () => {
+    // User has: javascript (synonym of react/typescript in js_ecosystem group), python
+    // Job requires: react, typescript
+    // Matched (job skills user has via synonym): react, typescript (both in js_ecosystem group with javascript)
+    // Missing (job skills user lacks): none
     const result = calculateWeightedMatchScore(
-      ['react', 'python'],
+      ['javascript', 'python'],
       'mid',
       ['react', 'typescript'],
       'senior',
     )
     expect(result.explanation.matchedSkills).toContain('react')
-    expect(result.explanation.missingSkills).toContain('python')
+    expect(result.explanation.matchedSkills).toContain('typescript')
+    expect(result.explanation.matchedSkills).not.toContain('python')
+    expect(result.explanation.matchedSkills).not.toContain('javascript')
+    expect(result.explanation.missingSkills).not.toContain('react')
+    expect(result.explanation.missingSkills).not.toContain('typescript')
+    expect(result.explanation.missingSkills).not.toContain('python')
+  })
+
+  it('returns explanation with unmatched job skills when user lacks them', () => {
+    // User has: javascript (synonym of react/typescript/node.js in js_ecosystem group)
+    // Job requires: react, typescript, node.js
+    // Matched (job skills user has via synonym): react, typescript, node.js
+    // Missing (job skills user lacks): none
+    const result = calculateWeightedMatchScore(
+      ['javascript'],
+      'mid',
+      ['react', 'typescript', 'node.js'],
+      'senior',
+    )
+    expect(result.explanation.matchedSkills).toContain('react')
+    expect(result.explanation.matchedSkills).toContain('typescript')
+    expect(result.explanation.matchedSkills).toContain('node.js')
+    expect(result.explanation.missingSkills).not.toContain('react')
+    expect(result.explanation.missingSkills).not.toContain('typescript')
+    expect(result.explanation.missingSkills).not.toContain('node.js')
+  })
+
+  it('returns explanation with unmatched job skills when user lacks some', () => {
+    // User has: python (no js skills)
+    // Job requires: react, typescript, node.js
+    // Matched (job skills user has via synonym): none
+    // Missing (job skills user lacks): react, typescript, node.js
+    const result = calculateWeightedMatchScore(
+      ['python'],
+      'mid',
+      ['react', 'typescript', 'node.js'],
+      'senior',
+    )
+    expect(result.explanation.matchedSkills).not.toContain('react')
+    expect(result.explanation.matchedSkills).not.toContain('typescript')
+    expect(result.explanation.matchedSkills).not.toContain('node.js')
+    expect(result.explanation.missingSkills).toContain('react')
+    expect(result.explanation.missingSkills).toContain('typescript')
+    expect(result.explanation.missingSkills).toContain('node.js')
   })
 
   it('handles empty user skills', () => {
     const result = calculateWeightedMatchScore([], 'senior', ['react'], 'senior')
-    expect(result.explanation.summary).toContain('No skills provided')
+    // With empty user skills, matchedSkills is empty, so 0 of 1 job skills matched
+    expect(result.explanation.summary).toContain('0 of 1 job skills matched')
+  })
+
+  it('handles empty job skills', () => {
+    const result = calculateWeightedMatchScore(['react'], 'senior', [], 'senior')
+    expect(result.explanation.summary).toContain('No job skills')
+  })
+
+  it('handles empty job skills', () => {
+    const result = calculateWeightedMatchScore(['react'], 'senior', [], 'senior')
+    expect(result.explanation.summary).toContain('No job skills')
   })
 })
 
@@ -78,19 +136,73 @@ describe('calculateWeightedMatchScoreWithBreakdown', () => {
     expect(result.breakdown.weightedScore).toBe(result.score.overall)
     expect(result.breakdown.skillScoreContribution).toBeGreaterThan(0)
     expect(result.breakdown.seniorityScoreContribution).toBeGreaterThan(0)
+    expect(result.breakdown.userSeniority).toBe('senior')
+    expect(result.breakdown.jobSeniority).toBe('senior')
   })
 
-  it('returns breakdown with unmatched skills for partial match', () => {
+  it('returns breakdown with unmatched skills for partial match (job-centric)', () => {
+    // User has: javascript (synonym of react/typescript in js_ecosystem group), python
+    // Job requires: react, typescript
+    // Matched (job skills user has via synonym): react, typescript (both in js_ecosystem group with javascript)
+    // Missing (job skills user lacks): none
     const result = calculateWeightedMatchScoreWithBreakdown(
-      ['react', 'python', 'figma'],
+      ['javascript', 'python'],
       'mid',
       ['react', 'typescript'],
       'senior',
     )
     expect(result.breakdown.matchedSkills).toContain('react')
-    expect(result.breakdown.unmatchedSkills).toContain('python')
-    expect(result.breakdown.unmatchedSkills).toContain('figma')
+    expect(result.breakdown.matchedSkills).toContain('typescript')
+    expect(result.breakdown.matchedSkills).not.toContain('python')
+    expect(result.breakdown.matchedSkills).not.toContain('javascript')
+    expect(result.breakdown.unmatchedSkills).not.toContain('react')
+    expect(result.breakdown.unmatchedSkills).not.toContain('typescript')
+    expect(result.breakdown.unmatchedSkills).not.toContain('python')
     expect(result.breakdown.seniorityMatch).toBe('close') // mid → senior = 1 diff = 0.7 ≥ 0.7
+    expect(result.breakdown.userSeniority).toBe('mid')
+    expect(result.breakdown.jobSeniority).toBe('senior')
+  })
+
+  it('returns breakdown with unmatched job skills when user lacks them (job-centric)', () => {
+    // User has: javascript (synonym of react/typescript/node.js in js_ecosystem group)
+    // Job requires: react, typescript, node.js
+    // Matched (job skills user has via synonym): react, typescript, node.js
+    // Missing (job skills user lacks): none
+    const result = calculateWeightedMatchScoreWithBreakdown(
+      ['javascript'],
+      'mid',
+      ['react', 'typescript', 'node.js'],
+      'senior',
+    )
+    expect(result.breakdown.matchedSkills).toContain('react')
+    expect(result.breakdown.matchedSkills).toContain('typescript')
+    expect(result.breakdown.matchedSkills).toContain('node.js')
+    expect(result.breakdown.unmatchedSkills).not.toContain('react')
+    expect(result.breakdown.unmatchedSkills).not.toContain('typescript')
+    expect(result.breakdown.unmatchedSkills).not.toContain('node.js')
+    expect(result.breakdown.userSeniority).toBe('mid')
+    expect(result.breakdown.jobSeniority).toBe('senior')
+  })
+
+  it('returns breakdown with unmatched job skills when user lacks some (job-centric)', () => {
+    // User has: python (no js skills)
+    // Job requires: react, typescript, node.js
+    // Matched (job skills user has via synonym): none
+    // Missing (job skills user lacks): react, typescript, node.js
+    const result = calculateWeightedMatchScoreWithBreakdown(
+      ['python'],
+      'mid',
+      ['react', 'typescript', 'node.js'],
+      'senior',
+    )
+    expect(result.breakdown.matchedSkills).not.toContain('react')
+    expect(result.breakdown.matchedSkills).not.toContain('typescript')
+    expect(result.breakdown.matchedSkills).not.toContain('node.js')
+    expect(result.breakdown.unmatchedSkills).toContain('react')
+    expect(result.breakdown.unmatchedSkills).toContain('typescript')
+    expect(result.breakdown.unmatchedSkills).toContain('node.js')
+    expect(result.breakdown.userSeniority).toBe('mid')
+    expect(result.breakdown.jobSeniority).toBe('senior')
   })
 
   it('returns seniorityMatch "none" for far-apart seniority', () => {
@@ -129,6 +241,13 @@ describe('calculateWeightedMatchScoreWithBreakdown', () => {
   it('handles empty user skills', () => {
     const result = calculateWeightedMatchScoreWithBreakdown([], 'senior', ['react'], 'senior')
     expect(result.breakdown.matchedSkills).toEqual([])
+    expect(result.breakdown.weightedScore).toBeGreaterThanOrEqual(0)
+  })
+
+  it('handles empty job skills', () => {
+    const result = calculateWeightedMatchScoreWithBreakdown(['react'], 'senior', [], 'senior')
+    expect(result.breakdown.matchedSkills).toEqual([])
+    expect(result.breakdown.unmatchedSkills).toEqual([])
     expect(result.breakdown.weightedScore).toBeGreaterThanOrEqual(0)
   })
 
@@ -241,5 +360,27 @@ describe('calculateWeightedMatchScoreWithBreakdown', () => {
     const weights = { skillWeight: 0.5, seniorityWeight: 0.35, keywordWeight: 0.15 }
     const sum = weights.skillWeight + weights.seniorityWeight + weights.keywordWeight
     expect(sum).toBe(1.0)
+  })
+
+  it('populates userSeniority and jobSeniority in breakdown', () => {
+    const result = calculateWeightedMatchScoreWithBreakdown(
+      ['react'],
+      'mid',
+      ['react'],
+      'senior',
+    )
+    expect(result.breakdown.userSeniority).toBe('mid')
+    expect(result.breakdown.jobSeniority).toBe('senior')
+  })
+
+  it('handles undefined seniority in breakdown', () => {
+    const result = calculateWeightedMatchScoreWithBreakdown(
+      ['react'],
+      undefined,
+      ['react'],
+      undefined,
+    )
+    expect(result.breakdown.userSeniority).toBeUndefined()
+    expect(result.breakdown.jobSeniority).toBeUndefined()
   })
 })

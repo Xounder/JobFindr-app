@@ -17,28 +17,43 @@ Use this skill at the end of the STOP hook, after `learning-improvement` and `co
 ## Workflow
 
 1. **Receive evaluation** — use the output of the `learning-improvement` skill (evaluation with DONE, WRONG, IMPROV, LEARN, NEXT)
-2. **Create file** in `.opencode/sessions/` in the format:
+2. **Call the `save-session` custom tool** — the tool is defined at `.opencode/tools/save-session.ts` and runs via Bun/Node (not shell):
+   ```json
+   {
+     "evaluation": "DONE: ...\nWRONG: ...\nIMPROV: ...\nLEARN: ...\nNEXT: ...",
+     "description": "brief-description"
+   }
    ```
-   MM-DD-YY-HH-MM-description-session.tmp
-   ```
-   - `MM` — month (2 digits)
-   - `DD` — day (2 digits)
-   - `YY` — year (2 digits)
-   - `HH` — hour (2 digits, 24h)
-   - `MM` — minute (2 digits)
-   - `description` — brief description of what was done (e.g.: `brand-tests`, `pipeline-mvp`)
+   The tool:
+   - Creates file in `.opencode/sessions/` with format: `YYYYMMDD-HH-MM-description-session.tmp`
+   - Keeps only the 2 most recent session files (newly created + previous one)
+   - Deletes older session files automatically
 3. **Content** — same as the received evaluation, 5-7 lines in English, each section starting with an uppercase label followed by `:`
 
 ## Expected output
 
-- File `.opencode/sessions/MM-DD-YY-HH-MM-description-session.tmp` created
+- File `.opencode/sessions/YYYYMMDD-HH-MM-description-session.tmp` created
+- Only 2 session files retained in the directory
 
 ## Rules
 
 - Do not modify the received evaluation
 - Do not propose changes to docs (this is the responsibility of `continuous-learning`)
 - Only save the file and report to the user
+- Use the `save-session` custom tool for consistent behavior
 
 ## Chain position
 
 This is the **LAST** (3rd) skill in the STOP chain: `learning-improvement` → `continuous-learning` → **`session-save`**. After saving, the chain is complete — report to the user and stop. Do not load any further skills.
+
+## Tool Reference
+
+**Tool location**: `.opencode/tools/save-session.ts` (custom tool, runs via Bun/Node)
+
+**Usage** (called automatically by opencode):
+```json
+{
+  "evaluation": "DONE: ...\nWRONG: ...\nIMPROV: ...\nLEARN: ...\nNEXT: ...",
+  "description": "doc-audit"
+}
+```

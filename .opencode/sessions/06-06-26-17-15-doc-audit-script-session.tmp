@@ -1,0 +1,5 @@
+DONE: Ran doc-audit on all .opencode/ markdown files (excluding /plan): removed redundant architecture/architecture.md index file, fixed Portuguese->English in skills/06-branding/SKILL.md (4 lines), updated docs-catalog.md and INDEX.md references, created session-save script (scripts/save-session.ps1) with 2-file retention logic, updated session-save/SKILL.md with script reference.
+WRONG: Initial INDEX.md still referenced deleted architecture.md (lines 26, 31) - caught and fixed after removal. Script creation was not anticipated in original session scope.
+IMPROV: Run doc-audit proactively before cleanup to catch cross-references; add pre-delete check for incoming references; new scripts should be documented in SKILL.md immediately.
+LEARN: Architecture index file was purely redundant - INDEX.md and docs-catalog.md already serve as complete navigation. Portuguese content persisted in branding skill despite English-only rule. New session-save script improves automation consistency.
+NEXT: Verify no other docs reference deleted architecture.md; consider adding script to docs-catalog.md.

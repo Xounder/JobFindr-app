@@ -12,7 +12,7 @@ jobfindr/
 │   │       ├── store/       # Zustand searchStore (filters, pagination)
 │   │       ├── types/       # Frontend interfaces (Job, SearchParams, FiltersState)
 │   │       ├── utils/       # formatDate, truncate, trustLabel, buildQueryString, formatSalary
-│   │   └── playwright-check.ts  # Standalone Playwright script for frontend verification (Windows)
+│   │   └── index.ts             # Public exports
 │   │
 │   └── backend/            # Node 22 + Fastify 5 + TypeScript 6
 │       └── src/

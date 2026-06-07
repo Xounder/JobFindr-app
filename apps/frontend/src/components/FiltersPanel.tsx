@@ -75,8 +75,8 @@ export function FiltersPanel({
             <p className="text-xs text-indigo-700">
               {filters.userSkills.length} skill{filters.userSkills.length !== 1 ? "s" : ""} set
               {filters.userSeniority && (
-                <span className="ml-1">
-                  &middot; {filters.userSeniority}
+                <span className="ml-1 font-semibold text-indigo-700">
+                  &middot; {SENIORITY_DISPLAY[filters.userSeniority] ?? filters.userSeniority}
                 </span>
               )}
             </p>
@@ -97,11 +97,11 @@ export function FiltersPanel({
       </div>
 
       <SenioritySelector value={filters.seniority} onChange={onSeniorityChange} />
-      <p className="mt-1 text-xs text-gray-500">
-        {userSeniority
-          ? `Seniority: ${SENIORITY_DISPLAY[userSeniority] ?? userSeniority}`
-          : "Seniority: Not set"}
-      </p>
+      {userSeniority && userSeniority !== filters.seniority && (
+        <p className="mt-1 text-xs text-gray-500">
+          Your Skill Seniority: {SENIORITY_DISPLAY[userSeniority] ?? userSeniority}
+        </p>
+      )}
 
       <RemoteModeFilter value={filters.remoteMode} onChange={onRemoteModeChange} />
 

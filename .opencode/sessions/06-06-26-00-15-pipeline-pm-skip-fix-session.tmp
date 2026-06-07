@@ -1,0 +1,5 @@
+DONE: Created pipeline.yaml, found active.txt with seven-changes-analysis context, found existing epics, updated pipeline.yaml to skip PM (skipped) and set tech-lead to in_progress
+WRONG: Tech Lead task cancelled by user before creating tasks; user incorrectly claimed Tech Lead was creating epics when it was cancelled immediately
+IMPROV: Ensure Tech Lead prompt explicitly states "create tasks only, never epics"; validate pipeline.yaml updates before each phase
+LEARN: Pipeline correctly skips PM when active.txt exists with complete analysis; seven-changes-analysis has full epics/analysis ready for task decomposition; Fixed pipeline skill PM skip logic to check for analysis files in folder root (feasibility.md, impact-analysis.md, etc.) OR epics in epics/ folder
+NEXT: Re-launch Tech Lead agent to create tasks from existing epics, then proceed to development phase

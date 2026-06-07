@@ -76,7 +76,7 @@ export function buildMatchExplanation(
   // Skills breakdown
   if (totalSkills > 0) {
     parts.push(
-      `${matchBreakdown.matchedSkills.length} of ${totalSkills} skills matched${matchBreakdown.matchedSkills.length > 0 ? ` (${matchBreakdown.matchedSkills.join(", ")})` : ""}.`,
+      `${matchBreakdown.matchedSkills.length} of ${totalSkills} job skills matched${matchBreakdown.matchedSkills.length > 0 ? ` (${matchBreakdown.matchedSkills.join(", ")})` : ""}.`,
     );
   }
 

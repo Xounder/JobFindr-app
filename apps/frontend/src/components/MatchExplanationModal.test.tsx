@@ -143,7 +143,7 @@ describe("MatchExplanationModal", () => {
 
   it("explanation contains matched skills count", () => {
     render(<MatchExplanationModal {...baseProps} />);
-    expect(screen.getByText(/3 of 5 skills matched/)).toBeDefined();
+    expect(screen.getByText(/3 of 5 job skills matched/)).toBeDefined();
   });
 
   it("explanation shows seniority match as exact", () => {

@@ -2,6 +2,37 @@
 name: Product Manager
 description: >
   Creates and refines epics and stories for the application, prioritizes the backlog based on user value, and ensures deliveries provide the best experience. Should be used at the start of each cycle to define what will be built.
+mode: subagent
+model: opencode/deepseek-v4-flash-free
+temperature: 0.3
+steps: 30
+color: primary
+hidden: false
+permission:
+  read: allow
+  edit:
+    "*": deny
+    ".opencode/plan/**": allow
+  glob: allow
+  grep: allow
+  list: allow
+  bash:
+    "*": ask
+    "cat *": allow
+    "ls *": allow
+    "git status": allow
+    "git diff": allow
+  task:
+    "*": deny
+    "codebase-analysis": allow
+    "explore": allow
+  webfetch: deny
+  websearch: deny
+  lsp: allow
+  skill: allow
+  question: allow
+  todowrite: allow
+  external_directory: deny
 ---
 
 # Product Manager Agent

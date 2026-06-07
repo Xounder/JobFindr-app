@@ -1,31 +1,27 @@
 import type { Plugin } from "@opencode-ai/plugin"
 
 export const SoundAlertPlugin: Plugin = async ({ project, client, $, directory, worktree }) => {
-  const playSound = async (soundType: "idle" | "permission") => {
+  const beep = async (freq: number, duration: number, repeat: number) => {
     try {
-      if (process.platform === "win32") {
-        const soundPath = soundType === "idle"
-          ? "C:\\Windows\\Media\\Windows Notify System Generic.wav"
-          : "C:\\Windows\\Media\\Windows Notify Calendar.wav"
-        await $`powershell -c "(New-Object Media.SoundPlayer '${soundPath}').PlaySync()"`
-      } else if (process.platform === "darwin") {
-        await $`afplay /System/Library/Sounds/${soundType === "idle" ? "Glass" : "Ping"}.aiff`
-      } else {
-        await $`paplay /usr/share/sounds/freedesktop/stereo/${soundType === "idle" ? "complete" : "message-new-instant"}.oga 2>/dev/null || true`
+      for (let i = 0; i < repeat; i++) {
+        await $`powershell -c "[System.Console]::Beep(${freq}, ${duration})"`
+        if (repeat > 1) {
+          await new Promise(r => setTimeout(r, 100))
+        }
       }
     } catch {
-      // Silently fail if sound cannot be played
+      // Silently fail
     }
   }
 
-  const hooks = {
-    "session.idle": async () => {
-      await playSound("idle")
+  return {
+    "permission.ask": async () => {
+      await beep(800, 300, 3)
     },
-    "permission.asked": async () => {
-      await playSound("permission")
+    event: async ({ event }) => {
+      if (event.type === "session.idle") {
+        await beep(600, 500, 2)
+      }
     }
   }
-
-  return hooks
 }

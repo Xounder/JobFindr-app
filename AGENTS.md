@@ -1,13 +1,13 @@
-# AGENTS.md — JobFindr
+# AGENTS.md — JobFindr (Operational Guide)
 
-**Startup ritual (executar em toda nova sessão):**
+**Startup ritual (run in every new session):**
 Read `.opencode/INDEX.md` — central architecture guide
-**Sempre utilize o Full AI guide at `.opencode/INDEX.md` é um ponto central que guia para as outras partes.**
+
+> **Note**: This file (AGENTS.md) contains operational rules, commands, and conventions. For architectural navigation and design principles, see `.opencode/INDEX.md` (Architecture Guide).
 
 ## Package manager
 
 pnpm ^11.1.3 required. `npm`/`npx` will fail (devEngines enforces pnpm).  
-Use `pnpm dlx` instead of `npx` for one-off commands (e.g., Playwright MCP).
 
 ## Commands
 
@@ -107,27 +107,20 @@ The backend validation accepts both old and new names (alias fallback), but new 
 - Backend shared packages: scoped (`@jobfindr/types`, `@jobfindr/utils`)
 - Frontend: path alias (`@/components/...`, `@/hooks/...`)
 
-## Playwright checks (Windows)
+## Error Reporting
 
-**⚠ Playwright MCP browser tools não funcionam no Windows** (Chrome não encontrado no path padrão).  
-Use o script standalone em `apps/frontend/playwright-check.ts`:
+**Pipeline.yaml problems section**: Each step in `pipeline.yaml` must include a `problems` array to track non-code errors:
 
-```bash
-# 1. Iniciar backend e frontend (terminais separados)
-pnpm --filter backend start
-pnpm --filter frontend dev
-
-# 2. Executar verificação (usa tsx do backend)
-pnpm --filter backend exec tsx ../frontend/playwright-check.ts
+```yaml
+steps:
+  senior-frontend:
+    status: "in_progress"
+    notes: ""
+    updated_at: ""
+    problems: []  # e.g., ["Port 5173 in use", "Build failed"]
 ```
 
-O script usa `chromium.launch()` do `@playwright/test` diretamente (não o MCP).  
-Playwright Chromium já está instalado em `%USERPROFILE%\AppData\Local\ms-playwright\chromium-*`.
-
-**Notas:**
-- `waitUntil: "load"` é mais confiável que `networkidle` quando backend está ativo
-- A página tem dois estados visuais: **vazio** (sem backend) e **resultados** (com backend) — os seletores mudam
-- Screenshots são salvas em `.opencode/screenshots/`
+**Error reporting** (updated): All agents MUST return a summary of any errors encountered — including tool failures, process spawn issues, port conflicts, build tool problems, test failures. These must be reported in the agent's final return message AND added to the step's `problems` array in `pipeline.yaml`.
 
 ## Test & CI status
 
@@ -164,16 +157,10 @@ Before any implementation work, read these two files to understand project layou
 1. **`.opencode/project-structure.md`** — full directory tree with folder-by-folder explanation
 2. **`.opencode/docs-catalog.md`** — what every `.md` file in `.opencode/` contains and when to modify it
 
-## Running Playwright (frontend agent)
-
-See **"Playwright checks (Windows)"** section below. The frontend agent must use the standalone script instead of the MCP browser tools (they do not work on Windows).
-
 ## Pipeline agents
 
-See `.opencode/skills/jobfindr-pipeline/SKILL.md` for full mode details.
+See `.opencode/skills/jobfindr-pipeline/SKILL.md` for full mode details and authoritative pipeline specification.
 
-- **Full Pipeline** (`/start`): PM → Tech Lead → Frontend+Backend (parallel) → QA Frontend+QA Backend (parallel) → corrections loop → complete
-- **Direct Task Mode**: routes directly to implementation agent → QA → STOP, no PM/TL
 - **Planning Analyst** (mandatory for planning): MUST be auto-invoked via `Task(subagent_type: "Planning Analyst", ...)` whenever the user asks for planning, feasibility, risk, impact analysis, or technical approach. Do NOT start manual exploration — route to Planning Analyst immediately.
 - QA is mandatory for non-trivial tasks.
 - **Pipeline.yaml structure**: PM and Tech Lead agents MUST update `pipeline.yaml` with nested structure containing `status`, `notes`, and `updated_at` for each step (see `jobfindr-pipeline/SKILL.md` for format). Orchestrator must NOT update `pipeline.yaml` directly — only PM/Tech Lead agents own their step's status and notes.
@@ -221,13 +208,10 @@ Never open, read, write, or request files outside this project directory. All op
 The orchestrator MUST auto-continue phases until ALL tasks in the plan are implemented, validated, and QA-approved. Never stop after a partial phase. Only run the STOP hook after ALL tasks are done.
 
 ### Error reporting
-All agents (Senior Frontend, Senior Backend, QA Reviewer) MUST return a summary of any errors encountered during their execution — including tool failures, process spawn issues, Playwright failures, port conflicts, build tool problems. These must be reported back to the orchestrator in the final return message of the task.
-
-### Playwright verification (Frontend & QA Frontend)
-Senior Frontend and QA Frontend MUST always run Playwright as the last verification step to confirm the application is functional. See "Playwright checks (Windows)" section for the exact command.
+All agents (Senior Frontend, Senior Backend, QA Reviewer) MUST return a summary of any errors encountered during their execution — including tool failures, process spawn issues, port conflicts, build tool problems. These must be reported back to the orchestrator in the final return message of the task.
 
 ### App cleanup
-After running the application for validation (Playwright, HTTP tests, etc.), agents MUST stop/terminate the running processes. Do not leave the app running after validation is complete.
+After running the application for validation (HTTP tests, etc.), agents MUST stop/terminate the running apllication. Do not leave the app running after validation is complete.
 
 ## STOP hook (after complete implementation)
 

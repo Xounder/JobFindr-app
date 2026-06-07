@@ -34,7 +34,7 @@ GET /jobs/search
 # Pagination
 
 - Maximum 20 jobs per page
-- Offset pagination for MVP
+- Offset pagination
 
 ---
 

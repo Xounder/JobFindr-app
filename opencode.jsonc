@@ -1,21 +1,5 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "plugin": [
-    "validate-agent",
-    "session-load-autoloader",
-    "sound-alert"
-  ],
-  "mcp": {
-    "playwright": {
-      "type": "local",
-      "command": [
-        "pnpm",
-        "dlx",
-        "@playwright/mcp@latest"
-      ],
-      "enabled": true
-    }
-  },
   "command": {
     "jobfindr-pipeline:start": {
       "template": "Crie o arquivo `pipeline.yaml` na raiz do projeto com todos os steps como `pending` e `current_step: \"product-manager\"`. Carregue a skill `jobfindr-pipeline` e inicie o pipeline do zero — comece pelo Product Manager. Ele só fará perguntas se nenhum plano/documento pré-existir em `.opencode/plan/<context>/`. Se já houver arquivos de análise, deve pular as perguntas e criar os épicos diretamente.",
@@ -30,7 +14,7 @@
       "description": "Avalia a sessão atual e extrai aprendizados (DONE, WRONG, IMPROV, LEARN, NEXT), depois continua automaticamente para continuous-learning → session-save"
     },
     "jobfindr-pipeline:plan": {
-      "template": "Analise a solicitação do usuário e invoque o agente **Planning Analyst** via Task (`subagent_type: \"Planning Analyst\"`) para realizar análise de viabilidade, risco, impacto e abordagem técnica. O Planning Analyst criará os artefatos de planejamento em `.opencode/plan/<context>/`. Após o Planning Analyst concluir, SEM PERGUNTAR ao usuário, execute o comando `learning-improvement` (que automaticamente encadeia para continuous-learning → session-save).",
+      "template": "Analise a solicitação do usuário e invoque o agente **Planning Analyst** via Task (`subagent_type: \"Planning Analyst\"`) para realizar análise de viabilidade, risco, impacto e abordagem técnica. O Planning Analyst criará os artefatos de planejamento em `.opencode/plan/<context>/` e o arquivo 'active.txt' em `.opencode/plan/` contendo `{active: [<context>], date: <ISO-8601-date>}`. Após o Planning Analyst concluir, SEM PERGUNTAR ao usuário, execute o comando `learning-improvement` (que automaticamente encadeia para continuous-learning → session-save).",
       "description": "Invoca o Planning Analyst para análise de viabilidade e impacto, depois chama learning-improvement"
     }
   }

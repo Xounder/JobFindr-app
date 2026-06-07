@@ -415,12 +415,12 @@ describe('aggregateSearch - breakdown data propagation', () => {
   it('matchmaking produces matchBreakdown on job with user skills', () => {
     const job: NormalizedJob = makeJob({
       id: 'breakdown-1',
-      skills: ['react', 'typescript', 'node'],
+      skills: ['react', 'typescript', 'node.js'],
       seniority: 'senior',
     })
 
     const matchResult = calculateWeightedMatchScoreWithBreakdown(
-      ['react', 'typescript', 'figma'],
+      ['javascript', 'typescript', 'figma'],
       'senior',
       job.skills,
       job.seniority,
@@ -430,10 +430,13 @@ describe('aggregateSearch - breakdown data propagation', () => {
     job.matchBreakdown = matchResult.breakdown
 
     expect(job.matchBreakdown).toBeDefined()
+    // Job-centric: matchedSkills are job skills user has (react, typescript, node.js via javascript synonym)
+    // unmatchedSkills are job skills user lacks
     expect(job.matchBreakdown!.matchedSkills).toContain('react')
     expect(job.matchBreakdown!.matchedSkills).toContain('typescript')
-    // unmatchedSkills are user skills not found in the job
-    expect(job.matchBreakdown!.unmatchedSkills).toContain('figma')
+    expect(job.matchBreakdown!.matchedSkills).toContain('node.js') // via js_ecosystem synonym
+    // figma is a user skill, not a job skill, so not in matched/unmatched
+    expect(job.matchBreakdown!.unmatchedSkills).not.toContain('figma')
     expect(job.matchBreakdown!.seniorityMatch).toBe('exact')
     expect(job.matchBreakdown!.weightedScore).toBe(job.matchScore)
     expect(job.matchBreakdown!.skillScoreContribution).toBeGreaterThan(0)
@@ -452,15 +455,19 @@ describe('aggregateSearch - breakdown data propagation', () => {
     expect(job.matchScore).toBeUndefined()
   })
 
-  it('matchBreakdown correctly reflects partial skill match', () => {
+  it('matchBreakdown correctly reflects partial skill match (job-centric)', () => {
     const job: NormalizedJob = makeJob({
       id: 'breakdown-3',
-      skills: ['react', 'typescript', 'node', 'python'],
+      skills: ['react', 'typescript', 'node.js', 'python'],
       seniority: 'lead',
     })
 
+    // User has: javascript (synonym for react/typescript/node.js), figma, python
+    // Job requires: react, typescript, node.js, python
+    // Matched (job skills user has): python, react, typescript, node.js (via javascript synonym)
+    // Missing (job skills user lacks): none
     const matchResult = calculateWeightedMatchScoreWithBreakdown(
-      ['react', 'figma', 'python'],
+      ['javascript', 'figma', 'python'],
       'senior',
       job.skills,
       job.seniority,
@@ -468,12 +475,15 @@ describe('aggregateSearch - breakdown data propagation', () => {
 
     job.matchBreakdown = matchResult.breakdown
 
-    expect(job.matchBreakdown!.matchedSkills).toContain('react')
     expect(job.matchBreakdown!.matchedSkills).toContain('python')
-    // unmatchedSkills are user skills not found in the job
-    expect(job.matchBreakdown!.unmatchedSkills).toContain('figma')
+    expect(job.matchBreakdown!.matchedSkills).toContain('react')
+    expect(job.matchBreakdown!.matchedSkills).toContain('typescript')
+    expect(job.matchBreakdown!.matchedSkills).toContain('node.js')
+    // figma is a user skill, not a job skill
+    expect(job.matchBreakdown!.matchedSkills).not.toContain('figma')
     expect(job.matchBreakdown!.unmatchedSkills).not.toContain('react')
     expect(job.matchBreakdown!.unmatchedSkills).not.toContain('python')
+    expect(job.matchBreakdown!.unmatchedSkills).not.toContain('figma')
     // lead vs senior → 1 apart → "close"
     expect(job.matchBreakdown!.seniorityMatch).toBe('close')
   })

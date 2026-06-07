@@ -74,10 +74,10 @@ function computeMatchScoreWithBreakdown(
     Math.min(100, skillComponent + seniorityComponent + keywordComponent)
   )
 
-  // Build explanation
+  // Build explanation (job-centric: matched/unmatched are job skills)
   const matchedSkillsDisplay = similarity.matchedSkills.length > 0
     ? similarity.matchedSkills
-    : userSkills.filter((s) => jobSkills.some((js) => js.toLowerCase() === s.toLowerCase()))
+    : jobSkills.filter((js) => userSkills.some((s) => s.toLowerCase() === js.toLowerCase()))
 
   const missingSkillsDisplay = similarity.missingSkills
 
@@ -93,7 +93,7 @@ function computeMatchScoreWithBreakdown(
     missingSkills: missingSkillsDisplay,
     seniorityMatch: seniorityMatchDisplay,
     keywordMatches: similarity.matchedSkills,
-    summary: buildSummary(overall, matchedSkillsDisplay.length, userSkills.length),
+    summary: buildSummary(overall, matchedSkillsDisplay.length, jobSkills.length),
   }
 
   // Derive seniorityMatch for breakdown
@@ -119,6 +119,8 @@ function computeMatchScoreWithBreakdown(
     weightedScore: overall,
     skillScoreContribution: Math.round(skillComponent * 100) / 100,
     seniorityScoreContribution: Math.round(seniorityComponent * 100) / 100,
+    userSeniority,
+    jobSeniority,
   }
 
   return { score, breakdown }
@@ -155,22 +157,22 @@ export function calculateWeightedMatchScoreWithBreakdown(
 function buildSummary(
   score: number,
   matchedCount: number,
-  totalUserSkills: number
+  totalJobSkills: number
 ): string {
-  if (totalUserSkills === 0) {
-    return 'No skills provided to compare.'
+  if (totalJobSkills === 0) {
+    return 'No job skills to compare.'
   }
 
-  const percentage = Math.round((matchedCount / totalUserSkills) * 100)
+  const percentage = Math.round((matchedCount / totalJobSkills) * 100)
 
   if (score >= 80) {
-    return `Strong match! ${matchedCount}/${totalUserSkills} skills match (${percentage}% skill coverage).`
+    return `Strong match! ${matchedCount} of ${totalJobSkills} job skills matched (${percentage}% coverage).`
   }
   if (score >= 60) {
-    return `Good match. ${matchedCount}/${totalUserSkills} skills match (${percentage}% skill coverage).`
+    return `Good match. ${matchedCount} of ${totalJobSkills} job skills matched (${percentage}% coverage).`
   }
   if (score >= 40) {
-    return `Fair match. ${matchedCount}/${totalUserSkills} skills match (${percentage}% skill coverage).`
+    return `Fair match. ${matchedCount} of ${totalJobSkills} job skills matched (${percentage}% coverage).`
   }
-  return `Low match. ${matchedCount}/${totalUserSkills} skills match (${percentage}% skill coverage).`
+  return `Low match. ${matchedCount} of ${totalJobSkills} job skills matched (${percentage}% coverage).`
 }

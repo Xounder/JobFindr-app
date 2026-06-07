@@ -119,7 +119,7 @@ describe("buildMatchExplanation", () => {
 
   it("includes matched skills count and names", () => {
     const result = buildMatchExplanation(85, mockBreakdown);
-    expect(result).toContain("3 of 5 skills matched");
+    expect(result).toContain("3 of 5 job skills matched");
     expect(result).toContain("TypeScript, React, Node.js");
   });
 
@@ -129,7 +129,7 @@ describe("buildMatchExplanation", () => {
       matchedSkills: [],
     };
     const result = buildMatchExplanation(85, breakdown);
-    expect(result).toContain("0 of 2 skills matched");
+    expect(result).toContain("0 of 2 job skills matched");
   });
 
   it("shows seniority exact match", () => {

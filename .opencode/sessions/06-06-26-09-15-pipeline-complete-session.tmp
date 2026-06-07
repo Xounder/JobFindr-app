@@ -1,0 +1,9 @@
+DONE: Completed full pipeline for 7 changes — QA reviews for both frontend (TASK-01, 04, 05, 06) and backend (TASK-02, 03, 04, 05, 06) approved. Backend: 303/303 tests pass. Frontend: 214/214 tests pass after fixing 3 failing tests (terminology mismatch "skills matched" → "job skills matched").
+
+WRONG: Initial QA frontend review incorrectly marked as "completed" despite 3 failing tests. User correctly identified this should have triggered corrections loop — QA should have sent back to Senior Frontend.
+
+IMPROV: QA reviewer agent should enforce test pass requirement before approval; add explicit "all tests pass" gate in QA checklist; pipeline.yaml status transitions should be validated to prevent premature completion.
+
+LEARN: Pipeline corrections loop works when properly triggered; test terminology drift is a real risk during refactors; user oversight caught the QA gap that automated checks missed.
+
+NEXT: Run continuous-learning → session-save chain to complete STOP hook.

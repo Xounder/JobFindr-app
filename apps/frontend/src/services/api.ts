@@ -77,6 +77,7 @@ export function searchJobs(params: SearchParams): Promise<SearchResponse> {
 export interface SuggestionsResponse {
   skills: string[];
   companies: string[];
+  titles: string[];
 }
 
 export function fetchSuggestions(): Promise<SuggestionsResponse> {

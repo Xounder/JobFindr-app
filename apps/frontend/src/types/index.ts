@@ -14,6 +14,8 @@ export interface MatchBreakdown {
   weightedScore: number;
   skillScoreContribution: number;
   seniorityScoreContribution: number;
+  userSeniority?: string;
+  jobSeniority?: string;
 }
 
 export interface TrustBreakdown {

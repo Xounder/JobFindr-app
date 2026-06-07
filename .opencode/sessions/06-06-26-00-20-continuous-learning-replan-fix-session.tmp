@@ -1,0 +1,5 @@
+DONE: Fixed pipeline skill PM skip logic to check analysis files in folder root OR epics; Fixed continuous-learning skill to enforce re-plan phase (no edits between 'adjustments' and 'yes')
+WRONG: Violated continuous-learning workflow by editing pipeline skill after first 'adjustments' without presenting updated plan
+IMPROV: Continuous-learning skill now explicitly forbids editing during re-plan phase
+LEARN: Continuous-learning requires: plan → present → wait → if adjustments: re-plan → present updated → wait for 'yes' → THEN edit
+NEXT: none

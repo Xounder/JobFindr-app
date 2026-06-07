@@ -1,0 +1,7 @@
+DONE: Reviewed the Planning Analyst's seven-changes-analysis output. User identified 2 missing behaviors in the Planning Agent's workflow. Read the agent and codebase-analysis skill files to understand where to apply improvements. Updated `.opencode/agents/00-planning-agent.md` with 4 changes.
+WRONG: None.
+IMPROV: 
+1. Planning agent must leverage `.opencode/skills/codebase-analysis/` for file searching (faster, more thorough)
+2. Planning agent must present approach options (with recommended + custom option) to the user as multiple choice BEFORE creating feasibility.md
+LEARN: Planning Analyst's process was missing a user-consultation phase. Feasibility should be co-created with the user via question tool, not written in isolation.
+NEXT: Future Planning Analyst invocations will now follow the improved workflow. Verify in next session that the updated instructions are being followed.

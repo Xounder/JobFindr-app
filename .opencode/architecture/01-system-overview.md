@@ -4,7 +4,7 @@
 
 ## Purpose
 
-The Job Search Aggregator is a lightweight SaaS MVP focused on aggregating online job opportunities from multiple platforms into a single intelligent search experience.
+The Job Search Aggregator is a lightweight SaaS application focused on aggregating online job opportunities from multiple platforms into a single intelligent search experience.
 
 ---
 

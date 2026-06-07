@@ -14,7 +14,9 @@ It can also be used in **Direct Task Mode**: if there is no pipeline.yaml, use t
 
 ## How to determine the resumption point
 
-Read the `pipeline.yaml` file at the project root and identify the first step with status `pending`:
+**First, read `.opencode/plan/active.txt`** to get the active planning context folder. The file format: `{active: [<context-folder-name>], date: <ISO-8601-date>}`
+
+Then read the `pipeline.yaml` file at the project root and identify the first step with status `pending`:
 
 1. **`current_step` indicates the current step** — this is your starting point
 2. Check the status of each step in `pipeline.steps` and find the first `pending` or `in_progress`
@@ -53,7 +55,8 @@ Read the `pipeline.yaml` file at the project root and identify the first step wi
 5. If approved → mark as `completed`
 
 ### If resuming from Conclusion
-1. Just confirm status and report to the user
+ 1. Just confirm status and report to the user
+ 2. **Remove `.opencode/plan/active.txt`** — the active context file is only needed during pipeline execution
 
 ## Rules
 
@@ -63,3 +66,4 @@ Read the `pipeline.yaml` file at the project root and identify the first step wi
 - **Always** update `pipeline.yaml` after each step
 - Respect parallelism between frontend and backend
 - If `pipeline.yaml` does not exist, assume **Direct Task Mode** (see `jobfindr-pipeline` skill)
+- **Active context propagation**: The orchestrator MUST read `.opencode/plan/active.txt` at startup and pass the `active` folder path to ALL subagents via the Task tool prompt. Subagents (Tech Lead, Senior Frontend, Senior Backend, QA Reviewer) MUST read their working context from `.opencode/plan/<active-folder>/` — do NOT hardcode or guess the folder name.

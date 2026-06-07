@@ -107,7 +107,14 @@ export function MatchExplanationModal({
           {/* Seniority Match */}
           <div className="flex items-center justify-between rounded-md bg-gray-50 px-3 py-2">
             <span className="font-medium text-gray-700">Seniority Match</span>
-            <span className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${seniorityBadgeColor(matchBreakdown.seniorityMatch)}`}>
+            <span
+              className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${seniorityBadgeColor(matchBreakdown.seniorityMatch)}`}
+              title={
+                matchBreakdown.userSeniority || matchBreakdown.jobSeniority
+                  ? `${matchBreakdown.userSeniority ?? "Not specified"} / ${matchBreakdown.jobSeniority ?? "Not specified"}`
+                  : undefined
+              }
+            >
               {seniorityBadgeLabel(matchBreakdown.seniorityMatch)}
             </span>
           </div>

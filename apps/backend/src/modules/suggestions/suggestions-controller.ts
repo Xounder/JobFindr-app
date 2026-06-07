@@ -14,6 +14,20 @@ const SUGGESTED_SKILLS = [
   'Figma', 'UX Research', 'Product Management', 'A/B Testing', 'Analytics',
 ]
 
+const SUGGESTED_TITLES = [
+  'Software Engineer', 'Senior Software Engineer', 'Lead Software Engineer',
+  'Frontend Engineer', 'Backend Engineer', 'Full Stack Engineer',
+  'DevOps Engineer', 'Platform Engineer', 'Site Reliability Engineer',
+  'Data Engineer', 'Data Scientist', 'Machine Learning Engineer',
+  'Mobile Engineer', 'iOS Engineer', 'Android Engineer',
+  'QA Engineer', 'Test Engineer', 'Automation Engineer',
+  'Security Engineer', 'Cloud Engineer', 'Infrastructure Engineer',
+  'Engineering Manager', 'Technical Lead', 'Principal Engineer',
+  'Product Manager', 'Technical Product Manager',
+  'Designer', 'UX Designer', 'UI Designer', 'Product Designer',
+  'Architect', 'Solutions Architect', 'Systems Architect',
+]
+
 const FALLBACK_COMPANIES = [
   'Google', 'Microsoft', 'Amazon', 'Meta', 'Apple',
   'Netflix', 'Stripe', 'Shopify', 'Spotify', 'Airbnb',
@@ -47,6 +61,7 @@ async function suggestionsHandler() {
   return {
     skills: SUGGESTED_SKILLS,
     companies: getUniqueCompaniesFromCache(),
+    titles: SUGGESTED_TITLES,
   }
 }
 

@@ -20,6 +20,8 @@ export type MatchBreakdown = {
   weightedScore: number
   skillScoreContribution: number
   seniorityScoreContribution: number
+  userSeniority?: string
+  jobSeniority?: string
 }
 
 export type MatchExplanation = {

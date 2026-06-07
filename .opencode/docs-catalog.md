@@ -8,7 +8,7 @@ Catalog of all `.md` files in `.opencode/` with content description and when to 
 
 | File | Content | When to modify |
 |---|---|---|
-| `AGENTS.md` | pnpm commands, validation, TS quirks, constraints, pipeline modes, test status, Playwright checks (Windows), Running Playwright (frontend agent) | Tasks AFFECT commands/scripts/build scripts; new tests created; pipeline mode changes; Playwright check flow changes |
+| `AGENTS.md` | pnpm commands, validation, TS quirks, constraints, pipeline modes, test status | Tasks AFFECT commands/scripts/build scripts; new tests created; pipeline mode changes |
 | `INDEX.md` | Central guide — links to all architecture docs, constraints, pipeline modes | New docs created; architecture changes; pipeline modes change |
 
 ---
@@ -37,6 +37,7 @@ Catalog of all `.md` files in `.opencode/` with content description and when to 
 | `skills/learning-improvement/SKILL.md` | Session evaluation (step 1/3 of STOP) | Evaluation format changes; chaining enforcement |
 | `skills/continuous-learning/SKILL.md` | Doc update proposal (step 2/3 of STOP) | Scope of analyzed docs changes |
 | `skills/session-save/SKILL.md` | Session persistence (step 3/3 of STOP) | File format changes |
+| `tools/save-session.ts` | Session save custom tool — creates session file, keeps 2 most recent (runs via Bun/Node) | Tool logic changes; retention policy changes |
 | `skills/doc-audit/SKILL.md` | Audits .md files for duplicates and intra-file prompt duplication (excludes /plan folder) | New audit rules; file similarity detection changes |
 | `skills/codebase-analysis/SKILL.md` | Scans all TS/TSX files with tree-sitter — extracts imports, exports, declarations, React components, dependency maps | New scan targets; grammar changes; output format changes |
 
@@ -46,7 +47,6 @@ Catalog of all `.md` files in `.opencode/` with content description and when to 
 
 | File | Content | When to modify |
 |---|---|---|
-| `architecture/architecture.md` | General architecture index — folder README | General architecture changes |
 | `architecture/01-system-overview.md` | System overview | General architecture changes |
 | `architecture/02-architecture-principles.md` | Principles and philosophy | Principles change |
 | `architecture/03-monorepo-structure.md` | Monorepo structure | Packages/folders change |
@@ -66,9 +66,8 @@ Catalog of all `.md` files in `.opencode/` with content description and when to 
 | `architecture/17-observability-architecture.md` | Logging, health check, metrics | Observability stack changes |
 | `architecture/18-deployment-architecture.md` | Deployment targets, containers | Deploy changes |
 | `architecture/22-testing-philosophy.md` | Testing priorities, methodology | Testing strategy changes |
-| `architecture/19-engineering-guidelines.md` | Code style, naming, TS rules | Guidelines change |
-| `architecture/20-scalability-roadmap.md` | MVP philosophy, future | Roadmap changes |
-| `architecture/21-anti-patterns.md` | Forbidden patterns | New anti-patterns |
+| `architecture/19-engineering-guidelines.md` | Code style, naming, TS rules, anti-patterns | Guidelines change |
+| `architecture/20-scalability-roadmap.md` | Scalability philosophy, future | Roadmap changes |
 | `architecture/commit-pattern.md` | Commit message convention — type(scope): description | New convention; format changes |
 
 ---

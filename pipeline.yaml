@@ -1,30 +1,33 @@
-pipeline:
-  name: JobFindr Pipeline
-  started_at: "2026-06-04T00:00:00Z"
-  updated_at: "2026-06-05T22:00:00Z"
-  current_step: "completed"
-  steps:
-    product-manager:
-      status: completed
-      notes: "Epics created in .opencode/plan/job-matching-analysis/epics/"
-      updated_at: "2026-06-04T12:00:00Z"
-    tech-lead:
-      status: completed
-      notes: "2 tasks created in .opencode/plan/job-matching-analysis/tasks/ — both backend-only"
-      updated_at: "2026-06-04T14:00:00Z"
-    senior-frontend:
-      status: completed
-      notes: "No frontend work required"
-      updated_at: "2026-06-05T20:00:00Z"
-    senior-backend:
-      status: completed
-      notes: "Both TASK-01 and TASK-02 already implemented. All 290 backend tests pass ✅"
-      updated_at: "2026-06-05T21:58:00Z"
-    qa-frontend:
-      status: completed
-      notes: "No frontend work to review"
-      updated_at: "2026-06-05T21:58:00Z"
-    qa-backend:
-      status: completed
-      notes: "QA Approved ✅ — all backend tests pass, no corrections needed"
-      updated_at: "2026-06-05T21:58:00Z"
+current_step: "qa"
+steps:
+  product-manager:
+    status: "skipped"
+    notes: "Skipped - active context 'seven-changes-analysis' exists with analysis files but no epics"
+    updated_at: "2026-06-06T00:00:00-03:00"
+  tech-lead:
+    status: "completed"
+    notes: "Tasks created in .opencode/plan/seven-changes-analysis/tasks/ — 6 tasks covering all 7 changes: TASK-01 (FiltersPanel UX), TASK-02 (Skill Limit 100), TASK-03 (Filter Seniority), TASK-04 (Seniority Tooltip), TASK-05 (Match Score Job-Centric), TASK-06 (Title Suggestions)"
+    updated_at: "2026-06-06T01:30:00-03:00"
+  frontend:
+    status: "completed"
+    notes: "Frontend implementation for TASK-01, TASK-04, TASK-05, TASK-06 completed (verification skipped per user request)"
+    updated_at: "2026-06-06T05:10:00-03:00"
+  backend:
+    status: "completed"
+    notes: "Implemented TASK-02 (Skill Limit 30→100), TASK-03 (Filter Seniority for Matchmaking), TASK-04 backend (Seniority Match Tooltip types + weighted-match-scoring), TASK-05 backend (Job-Centric Match Score Refactor in similarity-engine + weighted-match-scoring), TASK-06 backend (Job Title Suggestions in suggestions-controller). All backend tests pass (303/303), lint and build clean."
+    updated_at: "2026-06-06T05:02:00-03:00"
+  qa-frontend:
+    status: "completed"
+    notes: "Frontend implementation approved for TASK-01, TASK-04, TASK-05, TASK-06. All acceptance criteria met. 3 failing tests fixed - updated assertions to match new 'job skills matched' terminology from TASK-05. All 214 frontend tests pass, build and lint clean. Verified: FiltersPanel seniority capitalization + conditional label, MatchExplanationModal seniority tooltip, job-centric match score terminology, SearchBar title suggestions with briefcase icon and 'Title' badge."
+    updated_at: "2026-06-06T09:00:00-03:00"
+    problems: []
+  senior-frontend:
+    status: "completed"
+    notes: "Fixed 3 failing frontend tests - updated test assertions from 'skills matched' to 'job skills matched' in explain.test.ts (2 tests) and MatchExplanationModal.test.tsx (1 test). All 38 tests pass, build and lint clean."
+    updated_at: "2026-06-06T08:15:00-03:00"
+    problems: []
+  qa-backend:
+    status: "completed"
+    notes: "Approved - All backend tasks (TASK-02, TASK-03, TASK-04 backend, TASK-05 backend, TASK-06 backend) implemented correctly. Build passes, lint passes, all 303 backend tests pass. No architectural violations found. No unused imports/variables. TypeScript strict mode clean."
+    updated_at: "2026-06-06T05:45:00-03:00"
+    problems: []

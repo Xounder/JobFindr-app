@@ -38,11 +38,11 @@ JobFindr is a B2C **job aggregator**. The visual identity needs to convey:
 | Color | Current Usage | Occurrences |
 |-----|-----------|-------------|
 | `indigo-600` (#4F46E5) | Logo, Search button, active pagination, links, range accent | Layout, SearchBar, Pagination, FiltersPanel, TrustFilters |
-| `indigo-50` (#EEF2FF) | Background de MatchSummary | MatchSummary |
-| `indigo-100` (#E0E7FF) | Background de badge de match | JobCard |
+| `indigo-50` (#EEF2FF) | MatchSummary background | MatchSummary |
+| `indigo-100` (#E0E7FF) | Match badge background | JobCard |
 | `indigo-700` (#4338CA) | Search button hover | SearchBar |
 | `indigo-500` (#6366F1) | Focus ring de inputs | SearchBar |
-| `indigo-800` (#3730A3) | Texto do badge de match | JobCard |
+| `indigo-800` (#3730A3) | Match badge text | JobCard |
 | `gray-50` (#F9FAFB) / `white` | Cards, Header, Footer | General |
 | `gray-100` (#F3F4F6) | Background de skills tags | JobCard |
 | `gray-200` (#E5E7EB) | Bordas de cards, divisores | Layout, FiltersPanel, JobCard, Pagination |
@@ -142,7 +142,7 @@ Indigo is already the dominant color in the project and is the best choice for J
 
 - **Max width**: `max-w-7xl` (1280px)
 - **Card padding**: `p-4`
-- **Gap entre cards**: `space-y-4` ou `gap-4`
+- **Card gap**: `space-y-4` or `gap-4`
 - **Grid**: `grid-cols-1 lg:grid-cols-4` (sidebar 1, results 3)
 - **Header/Footer padding**: `px-4 sm:px-6 lg:px-8`
 
@@ -150,7 +150,7 @@ Indigo is already the dominant color in the project and is the best choice for J
 
 - **Cards**: `shadow-sm` (default), `hover:shadow-md` (interaction)
 - **Modals/Dropdowns** (future): `shadow-lg`
-- **Never** use `shadow-xl`, `shadow-2xl` in MVP — keeps UI clean
+- **Never** use `shadow-xl`, `shadow-2xl` — keeps UI clean
 
 ### Dark Mode (roadmap)
 

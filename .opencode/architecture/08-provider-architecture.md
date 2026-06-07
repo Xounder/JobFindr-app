@@ -30,13 +30,13 @@ export interface JobProvider {
 
 ---
 
-# Supported Providers (MVP)
+# Supported Providers
 
-* Greenhouse (API pública)
-* Ashby (API pública com compensation)
-* Lever (API pública)
+* Greenhouse (public API)
+* Ashby (public API with compensation)
+* Lever (public API)
 * Workday (CXS JSON endpoint)
-* Gupy (API pública BR)
+* Gupy (public BR API)
 
 ---
 

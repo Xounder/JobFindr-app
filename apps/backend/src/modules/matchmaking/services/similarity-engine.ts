@@ -68,24 +68,24 @@ export function calculateSimilarity(
   }
   const keywordScore = userSet.size > 0 ? keywordMatches / userSet.size : 0
 
-  // Matched and missing skills
+  // Matched and missing skills (job-centric: iterate over job skills)
   const matchedSkills: string[] = []
   const missingSkills: string[] = []
 
-  for (const userSkill of userSet) {
+  for (const jobSkill of jobSet) {
     let isMatched = false
-    for (const jobSkill of jobSet) {
+    for (const userSkill of userSet) {
       if (
-        userSkill === jobSkill ||
-        synonymDictionary.areSynonyms(userSkill, jobSkill)
+        jobSkill === userSkill ||
+        synonymDictionary.areSynonyms(jobSkill, userSkill)
       ) {
         isMatched = true
-        matchedSkills.push(userSkill)
+        matchedSkills.push(jobSkill)
         break
       }
     }
     if (!isMatched) {
-      missingSkills.push(userSkill)
+      missingSkills.push(jobSkill)
     }
   }
 

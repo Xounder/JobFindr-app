@@ -32,8 +32,8 @@ export function validateSearchInput(params: Record<string, string | undefined>):
 
   // skills - comma-separated list
   const skills = parseCommaSeparated(params.skills).map((s) => s.toLowerCase())
-  if (skills.length > 30) {
-    errors.push('Maximum 30 skills allowed')
+  if (skills.length > 100) {
+    errors.push('Maximum 100 skills allowed')
   }
 
   // page - 1-indexed
@@ -107,8 +107,8 @@ export function validateSearchInput(params: Record<string, string | undefined>):
 
   // userSkills - comma-separated list
   const userSkills = parseCommaSeparated(params.userSkills).map((s) => s.toLowerCase())
-  if (userSkills.length > 30) {
-    errors.push('Maximum 30 user skills allowed')
+  if (userSkills.length > 100) {
+    errors.push('Maximum 100 user skills allowed')
   }
 
   // userSeniority - single value, validated against allowed levels

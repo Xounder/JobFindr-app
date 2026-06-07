@@ -191,12 +191,22 @@ export async function aggregateSearch(
     ? parseUserSkills(skillsForMatchmaking)
     : null
 
+  // Determine seniority for matchmaking: use filter panel seniority (input.seniority)
+  // instead of userSeniority from modal. Normalize array: single value -> use it;
+  // empty -> undefined; multiple -> use first value.
+  const matchmakingSeniority: string | undefined =
+    input.seniority.length === 1
+      ? input.seniority[0]
+      : input.seniority.length > 1
+        ? input.seniority[0] // use first when multiple selected
+        : undefined
+
   // Apply matchmaking (if user skills provided)
   if (userSkills && userSkills.normalized.length > 0) {
     for (const job of allJobs) {
       const matchResult = calculateWeightedMatchScoreWithBreakdown(
         userSkills.normalized,
-        input.userSeniority,
+        matchmakingSeniority,
         job.skills,
         job.seniority,
       )

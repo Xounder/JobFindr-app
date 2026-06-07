@@ -4,6 +4,8 @@ description: >
   Scans all TypeScript/TSX source files using tree-sitter (with regex fallback)
   to extract structural information — imports, exports, function/class/interface/type
   declarations, React components, and dependency maps.
+permission:
+  question: allow
 ---
 
 # Codebase Analysis Skill — JobFindr

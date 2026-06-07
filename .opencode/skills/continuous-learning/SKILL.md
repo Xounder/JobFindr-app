@@ -2,6 +2,8 @@
 name: continuous-learning
 description: >
   Receives the evaluation from the learning-improvement skill, analyzes which .opencode/ docs can be improved based on learnings, creates a change plan and presents it to the user for approval before applying.
+permission:
+  question: allow
 ---
 
 # Continuous Learning Skill
@@ -25,9 +27,8 @@ Use this skill after `learning-improvement` in the STOP hook. It is the **second
     - `skills/**/SKILL.md` — skills that need adjustment
     - `commands/*.md` — chat commands
     - `architecture/*.md` — architecture docs
-3. **Create change plan** — list files and proposed changes, with justification based on session learnings
-4. **Present plan to the user** — display clearly in chat using the `<changes>` template format:
-   <changes>
+3. **Create change plan** — list files and proposed changes, with justification based on session learnings. **Do NOT edit any files during this step** — planning only.
+4. **Present plan to the user** — display clearly in chat using the template format. **Do NOT edit any files during this step** — presentation only:
    ```
    ## Doc update plan
    
@@ -41,12 +42,13 @@ Use this skill after `learning-improvement` in the STOP hook. It is the **second
    	- Removed line description #(line Y -> remove)
    	+ Added line description #(line Z -> add)
    
-   Would you like to apply these changes? (yes / adjustments)
+   Would you like to apply these changes?
    ```
-   </changes>
 5. **Wait for user response**:
    - If **yes**: apply all changes
-   - If **adjustments**: user informs what to adjust, do a re-plan and send to the user
+   - If **adjustments**: user informs what to adjust
+     - **RE-PLAN PHASE**: Create NEW plan (do NOT edit files), present updated `<changes>` template, wait for "yes"
+     - **NEVER edit files between receiving 'adjustments' and receiving 'yes' on updated plan**
 6. **Chain to `session-save` IMMEDIATELY** — after applying changes (or determining no changes are needed), you MUST load the `session-save` skill without waiting for user input. Never stop after step 5.
 
 ## Rules

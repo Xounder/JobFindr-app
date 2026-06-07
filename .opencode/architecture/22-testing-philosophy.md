@@ -27,4 +27,3 @@ Prefer:
 # Related Documents
 
 - [19-engineering-guidelines.md](./19-engineering-guidelines.md)
-- [21-anti-patterns.md](./21-anti-patterns.md)
