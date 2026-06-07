@@ -1,5 +1,0 @@
-DONE: Identified a process flaw in continuous-learning — doc edits were applied before receiving explicit human approval. Reverted the premature edit and waited for user approval before reapplying.
-WRONG: Repeated the same error twice — applied edits in the same message as presenting the plan, instead of waiting for user response.
-IMPROV: Continuous-learning skill steps 3 and 4 now explicitly say "Do NOT edit any files during this step" to prevent pre-approval edits.
-LEARN: A rule in the Rules section is not enough — each step must explicitly forbid premature editing. The agent needs per-step guards, not just global rules.
-NEXT: Future continuous-learning executions must strictly follow: present → ask → wait → apply (only after approval) → session-save.

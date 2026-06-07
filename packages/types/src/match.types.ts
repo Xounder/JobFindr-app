@@ -17,6 +17,7 @@ export type MatchBreakdown = {
   matchedSkills: string[]
   unmatchedSkills: string[]
   seniorityMatch: 'exact' | 'close' | 'none'
+  workTypeMatch?: 'exact' | 'partial' | 'none'
   weightedScore: number
   skillScoreContribution: number
   seniorityScoreContribution: number

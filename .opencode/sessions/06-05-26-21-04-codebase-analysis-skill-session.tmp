@@ -1,5 +1,0 @@
-DONE: Created codebase-analysis skill with bundled scripts/scan.mjs using tree-sitter + regex fallback; refactored SKILL.md to minimal runner pattern; updated docs-catalog.md and project-structure.md
-WRONG: Initial SKILL.md was too verbose with 5 manual phases instead of delegating to a script
-IMPROV: Skills should bundle scripts from the start; tree-sitter native compilation on Windows needs graceful fallback to regex
-LEARN: .opencode/skills/<name>/scripts/ folder pattern works for bundled executables; ESM .mjs with Node built-ins avoids compilation issues
-NEXT: Test the scan script against the actual codebase; consider adding grammar support for JSX/CSS/JSON

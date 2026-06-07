@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { useSuggestions } from "@/hooks";
 import { AutocompleteInput } from "./AutocompleteInput";
 
@@ -6,11 +7,20 @@ interface CompanyFiltersProps {
   excluded: string[];
   onIncludeChange: (companies: string[]) => void;
   onExcludeChange: (companies: string[]) => void;
+  resultSuggestions?: string[];
 }
 
-export function CompanyFilters({ included, excluded, onIncludeChange, onExcludeChange }: CompanyFiltersProps) {
+export function CompanyFilters({ included, excluded, onIncludeChange, onExcludeChange, resultSuggestions }: CompanyFiltersProps) {
   const { data: suggestions } = useSuggestions();
-  const companySuggestions = suggestions?.companies ?? [];
+  
+  const companySuggestions = useMemo(() => {
+    // Use result-specific suggestions when available
+    if (resultSuggestions && resultSuggestions.length > 0) {
+      return resultSuggestions;
+    }
+    // Fall back to global suggestions
+    return suggestions?.companies ?? [];
+  }, [resultSuggestions, suggestions]);
 
   return (
     <div className="space-y-4">

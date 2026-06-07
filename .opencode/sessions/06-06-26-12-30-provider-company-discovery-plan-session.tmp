@@ -1,9 +1,0 @@
-DONE: Analyzed backend providers - all 5 (Greenhouse, Ashby, Lever, Workday, Gupy) already use real APIs, no mocks in production. Planning Analyst created initial plan structure. Created complete planning document set at .opencode/plan/provider-company-discovery/ with all required files: recommendations.md, risks.md, impact-analysis.md, feasibility.md, index.md, epics/index.md, epics/EPIC-01-discovery-research.md.
-
-WRONG: Planning Analyst did not create all required planning documents initially - missing recommendations.md, risks.md, impact-analysis.md, feasibility.md, and proper index.md with full analysis.
-
-IMPROV: Planning Analyst agent should be instructed to create the full planning document set (5 files + index) per the established convention in other plan folders. Add validation to ensure all required artifacts are generated.
-
-LEARN: Provider architecture is already production-ready for real APIs; the hardcoded company lists are the only "mock-like" element. Dynamic discovery approaches differ per provider (Greenhouse: API endpoint, Ashby/Lever/Workday: curated+admin, Gupy: search-based).
-
-NEXT: Execute EPIC-01 research tasks - test Greenhouse /v1/boards and Lever /v0/postings endpoints immediately, then Gupy search discovery prototype. Begin EPIC-02 registry implementation after gate validation.

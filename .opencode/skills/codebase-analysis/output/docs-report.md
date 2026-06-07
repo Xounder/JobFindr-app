@@ -134,7 +134,6 @@ Generated: 2026-06-06T06:49:27.350Z
   .opencode/skills/jobfindr-pipeline-next/SKILL.md  [10 headings, 0 code blocks]
   .opencode/skills/jobfindr-pipeline/SKILL.md  [15 headings, 0 code blocks]
   .opencode/skills/learning-improvement/SKILL.md  [5 headings, 0 code blocks]
-  .opencode/skills/session-load/SKILL.md  [5 headings, 1 code blocks]
   .opencode/skills/session-save/SKILL.md  [6 headings, 1 code blocks]
 
 ```

@@ -1,9 +1,0 @@
-DONE: Added "never open external files" restriction to all 6 agent files. Fixed Playwright command path in AGENTS.md, pipeline SKILL.md, senior-frontend, and QA reviewer docs. Added YAML validation rule and structured summary requirement to pipeline SKILL.md.
-
-WRONG: Playwright command `pnpm --filter backend exec tsx apps/frontend/playwright-check.ts` broken because `--filter backend exec` sets cwd to `apps/backend/`. Agents returned empty results instead of structured summaries.
-
-IMPROV: All agent docs now have the external files restriction. Playwright command corrected to `../frontend/playwright-check.ts`. Error reporting now requires non-empty structured summaries.
-
-LEARN: `pnpm --filter <pkg> exec` changes the working directory to the package root — relative paths must account for this. Each agent needs its own copy of cross-cutting rules.
-
-NEXT: No further doc changes needed.

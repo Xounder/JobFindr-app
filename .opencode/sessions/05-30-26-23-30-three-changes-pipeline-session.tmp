@@ -1,5 +1,0 @@
-DONE: Full pipeline executed — PM created 2 epics (Trust Model Rework + User Skills), Tech Lead decomposed into 16 tasks, Frontend (47 tests) and Backend (238 tests) implemented in parallel, QA approved after 1 correction loop.
-WRONG: Pipeline agents auto-updated YAML causing version conflicts; QA found 3 test coverage gaps and 1 stacking bug that required a corrections loop.
-IMPROV: Add explicit test requirements in task definitions to catch gaps earlier; validate API param wiring during initial implementation not just QA.
-LEARN: EPIC-01/02 have no file overlap → true parallel development works; backend seniority default change (0.5→0) broke 6 provider test mocks — a common pattern to anticipate.
-NEXT: Run the app to verify everything works end-to-end in the browser.

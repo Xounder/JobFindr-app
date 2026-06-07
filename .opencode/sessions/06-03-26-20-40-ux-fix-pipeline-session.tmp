@@ -1,5 +1,0 @@
-DONE: Full pipeline PM → TL → Frontend → QA → corrections → complete. 8 tasks implemented: Modal, Trust labels, isDirty store, useJobSearch refactor, HomePage draft/commit, SearchBar glow, UserSkillsModal local state, ExpandableDescription modal. 129 tests, lint + build clean.
-WRONG: QA found 4 issues: setPageSize dirty flag, sort commit, auto-search on filter changes, hardcoded tick labels. Duplicate pipeline.yaml entries.
-IMPROV: Pre-QA validation script for common store issues. Pipeline YAML should be read/replaced entirely not patched.
-LEARN: QA corrections loop via re-invoked agents works well. Draft/commit pattern needs precise action classification.
-NEXT: EPIC-05 (Match/Trust modals) follow-up cycle. Verify sort bug fix in UI.

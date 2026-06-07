@@ -5,6 +5,7 @@ import { CompanyFilters } from "./CompanyFilters";
 import { SkillsTagsInput } from "./SkillsTagsInput";
 import { TrustFilters } from "./TrustFilters";
 import { useSearchStore } from "@/store/searchStore";
+import { useSkillsModal } from "@/contexts/SkillsModalContext";
 import type { FiltersState } from "@/types";
 
 const SENIORITY_DISPLAY: Record<string, string> = {
@@ -25,6 +26,7 @@ interface FiltersPanelProps {
   onSkillsChange: (skills: string[]) => void;
   onTrustMinChange: (value: number) => void;
   onReset: () => void;
+  resultCompanies?: string[];
 }
 
 export function FiltersPanel({
@@ -37,8 +39,10 @@ export function FiltersPanel({
   onSkillsChange,
   onTrustMinChange,
   onReset,
+  resultCompanies,
 }: FiltersPanelProps) {
   const { userSeniority } = useSearchStore();
+  const { openSkillsModal } = useSkillsModal();
   const hasActiveFilters =
     filters.seniority !== "" ||
     filters.remoteMode.length > 0 ||
@@ -66,7 +70,18 @@ export function FiltersPanel({
       </div>
 
       {/* Simplified Your Skills indicator (managed in header modal) */}
-      <div className="rounded-lg border border-indigo-100 bg-indigo-50/50 p-3">
+      <div
+        className="rounded-lg border border-indigo-100 bg-indigo-50/50 p-3 cursor-pointer hover:bg-indigo-50 transition-colors"
+        onClick={openSkillsModal}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            openSkillsModal();
+          }
+        }}
+      >
         <div className="flex items-center justify-between">
           <h3 className="text-sm font-semibold text-indigo-900">Your Skills</h3>
         </div>
@@ -98,9 +113,14 @@ export function FiltersPanel({
 
       <SenioritySelector value={filters.seniority} onChange={onSeniorityChange} />
       {userSeniority && userSeniority !== filters.seniority && (
-        <p className="mt-1 text-xs text-gray-500">
-          Your Skill Seniority: {SENIORITY_DISPLAY[userSeniority] ?? userSeniority}
-        </p>
+        <button
+          type="button"
+          onClick={() => onSeniorityChange(userSeniority)}
+          className="mt-1 text-xs text-indigo-600 hover:text-indigo-800 hover:underline focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-1 rounded"
+          title="Click to use your seniority for filtering"
+        >
+          Use your Seniority: {SENIORITY_DISPLAY[userSeniority] ?? userSeniority}
+        </button>
       )}
 
       <RemoteModeFilter value={filters.remoteMode} onChange={onRemoteModeChange} />
@@ -114,6 +134,7 @@ export function FiltersPanel({
         excluded={filters.excludeCompanies}
         onIncludeChange={onIncludeChange}
         onExcludeChange={onExcludeChange}
+        resultSuggestions={resultCompanies}
       />
 
       <TrustFilters value={filters.trustMin} onChange={onTrustMinChange} />

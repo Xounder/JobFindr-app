@@ -89,7 +89,7 @@ jobfindr/
 │   │   │       └── EPIC-02-tasks.md
 │   ├── screenshots/         # Frontend screenshots for reference
 │   ├── sessions/            # Historical session .tmp files
-│   └── skills/              # 9 skills: pipeline, pipeline-next, branding, learning, continuous-learning, session-save, session-load, doc-audit, codebase-analysis
+│   └── skills/              # 9 skills: pipeline, pipeline-next, branding, learning, continuous-learning, session-save, doc-audit, codebase-analysis
 │
 ├── AGENTS.md               # Entry point — package manager, commands, conventions, pipeline
 ├── docker-compose.yml      # Backend container (app + database not mandatory — stateless)

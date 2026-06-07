@@ -1,9 +1,0 @@
-DONE: Full learning-improvement → continuous-learning → session-save chain executed atomically. User provided meta-guidance on PM question format (terminal arrow-key choices + custom option), folder-per-context pattern for epics/tasks, and no external file access. AGENTS.md, agents/01-product-manager.md, agents/02-tech-lead.md, and skills/jobfindr-pipeline/SKILL.md updated.
-
-WRONG: Previous session had no documented convention for folder-per-context — agents created epics/tasks in inconsistent locations.
-
-IMPROV: PM must always include a "Custom answer" option in terminal-choice questions. TL must create tasks/ subfolder inside the same context folder (not a separate top-level folder).
-
-LEARN: Folder-per-context pattern (`.opencode/plan/<context>/epics/` + `<context>/tasks/`) is the canonical format — documented in AGENTS.md for all future sessions.
-
-NEXT: Future pipelines will automatically follow the folder-per-context convention and PM terminal-choice question format.

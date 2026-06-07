@@ -1,9 +1,0 @@
-DONE: Pipeline initialized with pipeline.yaml; PM skipped (active context exists); Tech Lead created 6 tasks; Senior Backend completed all 5 tasks (TASK-02 through TASK-06) — 303/303 tests pass, lint/build clean; Pipeline advanced to QA phase with both frontend and backend QA started
-
-WRONG: Senior Frontend agent created custom Playwright test file (playwright-full-check.ts) instead of using existing playwright-check.ts; Playwright validation failed (3/11 checks: missing search input, missing search button, missing initial state); Both QA agents (frontend and backend) were cancelled before completing review
-
-IMPROV: Add explicit agent instruction to use existing Playwright script; Enforce QA agents must complete validation before returning; Add pipeline.yaml problems tracking per step (already done in previous iteration); Ensure frontend implementation is actually complete before advancing to QA
-
-LEARN: Playwright MCP tools failed on Windows (as documented); Providers return 0 jobs in dev (404/400/422 expected); QA agents can be cancelled if they take too long; Frontend must be functionally verified before QA phase
-
-NEXT: Complete Senior Frontend implementation for TASK-01, TASK-04, TASK-05, TASK-06; Re-run QA review for both frontend and backend; Fix Playwright validation using correct approach; Apply doc updates from continuous-learning

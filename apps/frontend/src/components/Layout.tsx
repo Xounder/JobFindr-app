@@ -1,14 +1,15 @@
-import { useState, useCallback } from "react";
+import { useCallback } from "react";
 import type { ReactNode } from "react";
 import { useSearchStore } from "@/store/searchStore";
 import { UserSkillsModal } from "./UserSkillsModal";
+import { useSkillsModal } from "@/contexts/SkillsModalContext";
 
 interface LayoutProps {
   children: ReactNode;
 }
 
 export function Layout({ children }: LayoutProps) {
-  const [isSkillsModalOpen, setIsSkillsModalOpen] = useState(false);
+  const { isOpen, openSkillsModal, closeSkillsModal } = useSkillsModal();
 
   const {
     userSkills,
@@ -43,7 +44,7 @@ export function Layout({ children }: LayoutProps) {
             </p>
             <button
               type="button"
-              onClick={() => setIsSkillsModalOpen(true)}
+              onClick={openSkillsModal}
               className="relative inline-flex items-center gap-1.5 rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-1"
             >
               <svg className="h-4 w-4 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -76,8 +77,8 @@ export function Layout({ children }: LayoutProps) {
 
       {/* ─── User Skills Modal ─────────────────────────────── */}
       <UserSkillsModal
-        isOpen={isSkillsModalOpen}
-        onClose={() => setIsSkillsModalOpen(false)}
+        isOpen={isOpen}
+        onClose={closeSkillsModal}
         userSkills={userSkills}
         userSeniority={userSeniority}
         onUserSkillsChange={setUserSkills}

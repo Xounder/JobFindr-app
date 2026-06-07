@@ -33,6 +33,28 @@ function seniorityBadgeLabel(seniorityMatch: "exact" | "close" | "none"): string
   }
 }
 
+function workTypeBadgeColor(workTypeMatch: "exact" | "partial" | "none"): string {
+  switch (workTypeMatch) {
+    case "exact":
+      return "bg-green-100 text-green-800";
+    case "partial":
+      return "bg-yellow-100 text-yellow-800";
+    case "none":
+      return "bg-gray-100 text-gray-600";
+  }
+}
+
+function workTypeBadgeLabel(workTypeMatch: "exact" | "partial" | "none"): string {
+  switch (workTypeMatch) {
+    case "exact":
+      return "Exact Match";
+    case "partial":
+      return "Partial Match";
+    case "none":
+      return "No Match";
+  }
+}
+
 export function MatchExplanationModal({
   matchScore,
   matchSummary,
@@ -118,6 +140,18 @@ export function MatchExplanationModal({
               {seniorityBadgeLabel(matchBreakdown.seniorityMatch)}
             </span>
           </div>
+
+          {/* Work Type Match */}
+          {matchBreakdown.workTypeMatch && (
+            <div className="flex items-center justify-between rounded-md bg-gray-50 px-3 py-2">
+              <span className="font-medium text-gray-700">Work Type Match</span>
+              <span
+                className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${workTypeBadgeColor(matchBreakdown.workTypeMatch)}`}
+              >
+                {workTypeBadgeLabel(matchBreakdown.workTypeMatch)}
+              </span>
+            </div>
+          )}
 
           {/* Score breakdown */}
           <div className="rounded-md bg-gray-50 px-3 py-2">

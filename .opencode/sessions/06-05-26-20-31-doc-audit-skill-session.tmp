@@ -1,9 +1,0 @@
-DONE: Created doc-audit skill (.opencode/skills/doc-audit/SKILL.md) and command (.opencode/commands/doc-audit.md) to audit .md files for duplicates and intra-file prompt duplication, excluding /plan folder. Updated continuous-learning/SKILL.md to explicitly exclude .opencode/plan/ from docs-catalog.md updates. Added entries for new skill and command to docs-catalog.md.
-
-WRONG: None.
-
-IMPROV: Updated continuous-learning skill to prevent accidental inclusion of /plan folder in docs-catalog.md; docs-catalog.md now includes doc-audit skill and command entries.
-
-LEARN: Project has strict conventions: skills in .opencode/skills/<name>/SKILL.md with frontmatter, commands in .opencode/commands/<name>.md. The docs-catalog.md is the central registry for all .md files in .opencode/. The continuous-learning skill had ambiguous language that could lead to incorrectly adding /plan folder entries.
-
-NEXT: Test the /doc-audit command to verify it works correctly; monitor docs-catalog.md for any future accidental /plan inclusions.

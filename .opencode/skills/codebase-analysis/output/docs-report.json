@@ -2702,49 +2702,6 @@
         "Enforcement"
       ]
     },
-    ".opencode/skills/session-load/SKILL.md": {
-      "size": 1253,
-      "lines": 37,
-      "type": "markdown",
-      "headings": [
-        {
-          "level": 1,
-          "text": "Session Load Skill"
-        },
-        {
-          "level": 2,
-          "text": "When to use"
-        },
-        {
-          "level": 2,
-          "text": "Workflow"
-        },
-        {
-          "level": 2,
-          "text": "Expected output"
-        },
-        {
-          "level": 2,
-          "text": "Session file format"
-        }
-      ],
-      "totalHeadings": 5,
-      "totalCodeBlocks": 1,
-      "codeBlocks": [
-        {
-          "language": "(none)",
-          "lines": 5
-        }
-      ],
-      "totalListItems": 5,
-      "sections": [
-        "Session Load Skill",
-        "When to use",
-        "Workflow",
-        "Expected output",
-        "Session file format"
-      ]
-    },
     ".opencode/skills/session-save/SKILL.md": {
       "size": 1746,
       "lines": 45,
@@ -2820,7 +2777,6 @@
       ".opencode/skills/continuous-learning/SKILL.md",
       ".opencode/skills/doc-audit/SKILL.md",
       ".opencode/skills/learning-improvement/SKILL.md",
-      ".opencode/skills/session-load/SKILL.md",
       ".opencode/skills/session-save/SKILL.md"
     ],
     "phase 1: understand the request": [
@@ -3603,7 +3559,6 @@
       ".opencode/skills/jobfindr-pipeline/SKILL.md",
       ".opencode/skills/jobfindr-pipeline-next/SKILL.md",
       ".opencode/skills/learning-improvement/SKILL.md",
-      ".opencode/skills/session-load/SKILL.md",
       ".opencode/skills/session-save/SKILL.md"
     ],
     "color analysis": [
@@ -3767,14 +3722,7 @@
     ],
     "expected output": [
       ".opencode/skills/learning-improvement/SKILL.md",
-      ".opencode/skills/session-load/SKILL.md",
       ".opencode/skills/session-save/SKILL.md"
-    ],
-    "session load skill": [
-      ".opencode/skills/session-load/SKILL.md"
-    ],
-    "session file format": [
-      ".opencode/skills/session-load/SKILL.md"
     ],
     "session save skill": [
       ".opencode/skills/session-save/SKILL.md"

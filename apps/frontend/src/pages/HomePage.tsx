@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { SearchBar } from "@/components/SearchBar";
 import { SortToggle } from "@/components/SortToggle";
 import { FiltersPanel } from "@/components/FiltersPanel";
@@ -134,6 +134,12 @@ export default function HomePage() {
   const showEmpty = !isLoading && !isFetching && data && data.jobs.length === 0;
   const showResults = !isLoading && !isFetching && data && data.jobs.length > 0;
 
+  // Compute unique companies from search results
+  const resultCompanies = useMemo(
+    () => [...new Set((data?.jobs ?? []).map((j) => j.company).filter(Boolean))],
+    [data]
+  );
+
   return (
     <div className="space-y-6">
       {/* Search Bar */}
@@ -160,6 +166,7 @@ export default function HomePage() {
             onSkillsChange={(v) => setSkills(v)}
             onTrustMinChange={(v) => setTrustMin(v)}
             onReset={handleReset}
+            resultCompanies={resultCompanies}
           />
         </div>
 

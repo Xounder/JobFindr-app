@@ -1,5 +1,0 @@
-DONE: Planning Analyst invoked to analyze UX filter/modal changes across 5 items (Clean button, company mutual exclusion, Your Skills modal, Show More modal, Trust/Match buttons). Created 6 planning artifacts in .opencode/plan/ux-filter-modal-changes/. Docs-catalog.md updated with new plan entries.
-WRONG: None — planning-only session.
-IMPROV: The Planning Analyst raised 4 clarification questions — these should be answered before implementation starts.
-LEARN: Item 5 (Trust/Match buttons) requires backend changes (trust/match explanation endpoints), significantly expanding scope. Items 1-4 are frontend-only.
-NEXT: Phase implementation: Items 4+1 -> 2 -> 3 -> 5. Resolve clarification questions first.

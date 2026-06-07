@@ -1,9 +1,0 @@
-DONE: Implemented job matching algorithm fixes (TASK-01 seniority weights 0.25→0.35, 0.6→0.5; TASK-02 freshness component 15% in trust score). All 290 backend tests pass. Created epics/tasks for job-matching-analysis. Fixed pipeline.yaml to nested format. Updated continuous-learning constraints and AGENTS.md pipeline ownership.
-
-WRONG: Initial pipeline.yaml had flat structure. Orchestrator updated pipeline.yaml directly instead of PM/Tech Lead. Continuous-learning missing constraints. No commit pattern documentation existed.
-
-IMPROV: Create commit pattern documentation in architecture/. Enhance continuous-learning to check if skills/agents/docs should be created based on session, consulting docs-catalog.md first.
-
-LEARN: Both algorithm improvements were pre-implemented. Pipeline.yaml must follow nested structure owned by PM/Tech Lead. Continuous-learning must enforce: only .md files, use docs-catalog.md, explicit user approval with detailed proposals. Commit convention should be documented in architecture/.
-
-NEXT: Ensure future sessions follow agent delegation rules and continuous-learning constraints strictly. Use commit-pattern.md for all commits.

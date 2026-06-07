@@ -1,5 +1,0 @@
-DONE: Fixed 6 bugs in scan.mjs (--include-tests, tree-sitter field names, param counting, React detection, prototype pollution, dead code); refactored scan.mjs with multi-mode architecture (implementation/docs/all); created doc parser; integrated codebase-analysis as mandatory step in doc-audit Phase 1; added entry in INDEX.md Related Files
-WRONG: None significant this session — iterative corrections were effective
-IMPROV: Security/quality analysis should be requested proactively for new scripts; doc parser should be validated against real .opencode/ files
-LEARN: Multi-mode scan architecture with centralized SCAN_MODES config is extensible for future targets; doc-audit benefits from a structured doc scan before manual analysis
-NEXT: Run node scan.mjs --mode all against the real codebase to validate both modes end-to-end; verify doc parser output against real .opencode/ files

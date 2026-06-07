@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Layout } from "@/components/Layout";
+import { SkillsModalProvider } from "@/contexts/SkillsModalContext";
 import "./index.css";
 
 const HomePage = lazy(() => import("@/pages/HomePage"));
@@ -22,18 +23,20 @@ function App() {
     <StrictMode>
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
-          <Layout>
-            <Routes>
-              <Route
-                path="/"
-                element={
-                  <Suspense fallback={<div className="flex items-center justify-center p-12 text-gray-400">Loading…</div>}>
-                    <HomePage />
-                  </Suspense>
-                }
-              />
-            </Routes>
-          </Layout>
+          <SkillsModalProvider>
+            <Layout>
+              <Routes>
+                <Route
+                  path="/"
+                  element={
+                    <Suspense fallback={<div className="flex items-center justify-center p-12 text-gray-400">Loading…</div>}>
+                      <HomePage />
+                    </Suspense>
+                  }
+                />
+              </Routes>
+            </Layout>
+          </SkillsModalProvider>
         </BrowserRouter>
       </QueryClientProvider>
     </StrictMode>

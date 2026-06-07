@@ -595,4 +595,77 @@ describe('aggregateSearch - breakdown data propagation', () => {
     expect(json.skillScoreContribution).toBeTypeOf('number')
     expect(json.seniorityScoreContribution).toBeTypeOf('number')
   })
+
+  describe('required skills filter', () => {
+    it('keeps jobs that have all required skills', () => {
+      const jobs: NormalizedJob[] = [
+        makeJob({ id: '1', skills: ['react', 'typescript', 'node'] }),
+        makeJob({ id: '2', skills: ['react'] }),
+      ]
+      const input = makeInput({ skills: ['react', 'typescript'] })
+      const filtered = jobs.filter((job) =>
+        input.skills.every((s: string) =>
+          (job.skills ?? []).some((js: string) => js.toLowerCase() === s.toLowerCase())
+        )
+      )
+      expect(filtered).toHaveLength(1)
+      expect(filtered[0]!.id).toBe('1')
+    })
+
+    it('excludes jobs missing any required skill', () => {
+      const jobs: NormalizedJob[] = [
+        makeJob({ id: '1', skills: ['react', 'typescript'] }),
+        makeJob({ id: '2', skills: ['react'] }),
+      ]
+      const input = makeInput({ skills: ['react', 'typescript', 'python'] })
+      const filtered = jobs.filter((job) =>
+        input.skills.every((s: string) =>
+          (job.skills ?? []).some((js: string) => js.toLowerCase() === s.toLowerCase())
+        )
+      )
+      expect(filtered).toHaveLength(0)
+    })
+
+    it('does not filter when skills array is empty', () => {
+      const jobs: NormalizedJob[] = [
+        makeJob({ id: '1', skills: ['react'] }),
+        makeJob({ id: '2', skills: ['python'] }),
+      ]
+      const input = makeInput({ skills: [] })
+      expect(input.skills.length).toBe(0)
+      expect(jobs).toHaveLength(2)
+    })
+
+    it('matches case-insensitively', () => {
+      const jobs: NormalizedJob[] = [
+        makeJob({ id: '1', skills: ['React', 'TypeScript'] }),
+      ]
+      const input = makeInput({ skills: ['react', 'typescript'] })
+      const filtered = jobs.filter((job) =>
+        input.skills.every((s: string) =>
+          (job.skills ?? []).some((js: string) => js.toLowerCase() === s.toLowerCase())
+        )
+      )
+      expect(filtered).toHaveLength(1)
+    })
+
+    it('combines with other filters', () => {
+      const jobs: NormalizedJob[] = [
+        makeJob({ id: '1', skills: ['react', 'typescript'], remoteMode: 'remote' }),
+        makeJob({ id: '2', skills: ['react', 'typescript'], remoteMode: 'on-site' }),
+        makeJob({ id: '3', skills: ['react'], remoteMode: 'remote' }),
+      ]
+      const input = makeInput({ skills: ['react', 'typescript'], remoteMode: ['remote'] })
+      const skillsFiltered = jobs.filter((job) =>
+        input.skills.every((s: string) =>
+          (job.skills ?? []).some((js: string) => js.toLowerCase() === s.toLowerCase())
+        )
+      )
+      const remoteFiltered = skillsFiltered.filter((j) =>
+        j.remoteMode !== undefined && input.remoteMode.includes(j.remoteMode)
+      )
+      expect(remoteFiltered).toHaveLength(1)
+      expect(remoteFiltered[0]!.id).toBe('1')
+    })
+  })
 })

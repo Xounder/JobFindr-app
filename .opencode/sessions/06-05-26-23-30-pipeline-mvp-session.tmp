@@ -1,5 +1,0 @@
-DONE: Created pipeline.yaml, executed Product Manager (4 epics created), Tech Lead decomposed into tasks, Senior Frontend completed EPIC-01 (Seniority UX Polish) with all validation passing
-WRONG: Tech Lead didn't use TASK-NN naming convention for task files; Senior Backend EPIC-03 was cancelled; pipeline.yaml not updated with completed frontend step
-IMPROV: Enforce TASK-NN naming in Tech Lead skill; add PM skip logic when active.txt exists; improve error handling for parallel agent execution
-LEARN: Parallel frontend/backend execution works but needs better process management; Playwright verification requires separate terminal windows on Windows; active.txt tracking is crucial for context propagation
-NEXT: Complete Senior Backend EPIC-03, run QA review for both, then proceed to Phase 2A tasks

@@ -1,5 +1,0 @@
-DONE: Analyzed 7 UX changes for JobFindr; read architecture docs, frontend components, and backend modules; invoked Planning Analyst for structured analysis; created 5 planning documents at .opencode/plan/ux-fix-plan/ covering feasibility, impact, risks, and recommendations; updated docs-catalog.md with new plan folder entries.
-WRONG: Failed to invoke Planning Analyst automatically when user requested planning — user had to remind me per AGENTS.md mandate.
-IMPROV: Always check AGENTS.md for mandatory agent routing before starting exploration; route to Planning Analyst immediately on any planning/impact/risk request.
-LEARN: Changes 1 (sort bug), 3 (Your Skills sync), and 4 (search button) are deeply interdependent — manual search naturally fixes the sort bug; Planning Analyst's question-driven approach surfaces ambiguities faster than manual exploration.
-NEXT: Pass these plans to Tech Lead for task decomposition; suggested MVP: Modal → Search flow → Your Skills sync → Show More modal.

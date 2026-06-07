@@ -185,6 +185,18 @@ export async function aggregateSearch(
     })
   }
 
+  // Apply exclusive required skills filter (input.skills)
+  if (input.skills.length > 0) {
+    const normalizedRequiredSkills = input.skills.map((s) => s.toLowerCase())
+    allJobs = allJobs.filter((job) =>
+      normalizedRequiredSkills.every((requiredSkill) =>
+        (job.skills ?? []).some(
+          (jobSkill: string) => jobSkill.toLowerCase() === requiredSkill
+        )
+      )
+    )
+  }
+
   // Parse user skills for matchmaking (userSkills fallback to skills)
   const skillsForMatchmaking = input.userSkills.length > 0 ? input.userSkills : input.skills
   const userSkills = skillsForMatchmaking.length > 0
@@ -209,6 +221,10 @@ export async function aggregateSearch(
         matchmakingSeniority,
         job.skills,
         job.seniority,
+        {},
+        input.remoteMode,
+        input.countries,
+        job
       )
       job.matchScore = matchResult.score.overall
       job.matchBreakdown = matchResult.breakdown

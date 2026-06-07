@@ -4,19 +4,21 @@
  *
  * Calculates a weighted compatibility score between user skills and job requirements.
  */
-import type { MatchScore, MatchBreakdown } from '@jobfindr/types'
+import type { MatchScore, MatchBreakdown, NormalizedJob } from '@jobfindr/types'
 import { calculateSimilarity, type SimilarityResult } from './similarity-engine.ts'
 
 export type MatchWeights = {
   skillWeight: number
   seniorityWeight: number
   keywordWeight: number
+  workTypeWeight: number
 }
 
 const DEFAULT_WEIGHTS: MatchWeights = {
-  skillWeight: 0.5,
-  seniorityWeight: 0.35,
-  keywordWeight: 0.15,
+  skillWeight: 0.45,
+  seniorityWeight: 0.30,
+  keywordWeight: 0.10,
+  workTypeWeight: 0.15,
 }
 
 /**
@@ -45,6 +47,60 @@ function calculateSeniorityScore(
 }
 
 /**
+ * Calculate work type compatibility score.
+ * Returns 1.0 for exact match, 0.5 for neutral (no filters), 0.0 for mismatch.
+ */
+function calculateWorkTypeScore(
+  remoteMode: string[],
+  countries: string[],
+  job: NormalizedJob
+): { score: number; match: 'exact' | 'partial' | 'none' } {
+  // No filters active -> neutral
+  if (remoteMode.length === 0 && countries.length === 0) {
+    return { score: 0.5, match: 'partial' }
+  }
+
+  const jobRemoteMode = job.remoteMode
+  const jobLocation = job.location?.toLowerCase() ?? ''
+
+  // Check remote mode match
+  let remoteMatch = false
+  if (remoteMode.includes('remote') && jobRemoteMode === 'remote') {
+    remoteMatch = true
+  }
+  if (remoteMode.includes('hybrid') && jobRemoteMode === 'hybrid') {
+    remoteMatch = true
+  }
+  if (remoteMode.includes('on-site') && jobRemoteMode === 'on-site') {
+    remoteMatch = true
+  }
+
+  // Check country match (for hybrid/on-site)
+  let countryMatch = false
+  if (countries.length > 0 && (jobRemoteMode === 'hybrid' || jobRemoteMode === 'on-site')) {
+    countryMatch = countries.some((c) => jobLocation.includes(c.toLowerCase()))
+  }
+
+  // If remote mode filter is active and matches -> exact
+  if (remoteMode.length > 0 && remoteMatch) {
+    return { score: 1.0, match: 'exact' }
+  }
+
+  // If country filter is active and matches -> exact
+  if (countries.length > 0 && countryMatch) {
+    return { score: 1.0, match: 'exact' }
+  }
+
+  // If filters are active but no match -> none
+  if (remoteMode.length > 0 || countries.length > 0) {
+    return { score: 0.0, match: 'none' }
+  }
+
+  // Default neutral
+  return { score: 0.5, match: 'partial' }
+}
+
+/**
  * Internal compute function that returns both MatchScore and MatchBreakdown.
  */
 function computeMatchScoreWithBreakdown(
@@ -52,7 +108,10 @@ function computeMatchScoreWithBreakdown(
   userSeniority: string | undefined,
   jobSkills: string[],
   jobSeniority: string | undefined,
-  weights: Partial<MatchWeights> = {}
+  weights: Partial<MatchWeights> = {},
+  remoteMode: string[] = [],
+  countries: string[] = [],
+  job?: NormalizedJob
 ): { score: MatchScore; breakdown: MatchBreakdown } {
   const w = { ...DEFAULT_WEIGHTS, ...weights }
 
@@ -65,14 +124,30 @@ function computeMatchScoreWithBreakdown(
   // Keyword score from similarity
   const keywordScore = similarity.keywordScore
 
+  // Work type score
+  let workTypeScore = 0.5
+  let workTypeMatch: 'exact' | 'partial' | 'none' = 'partial'
+  if (job) {
+    const wtResult = calculateWorkTypeScore(remoteMode, countries, job)
+    workTypeScore = wtResult.score
+    workTypeMatch = wtResult.match
+  }
+
   // Weighted overall score (0-100 scale)
   const skillComponent = similarity.combinedScore * w.skillWeight * 100
   const seniorityComponent = seniorityScore * w.seniorityWeight * 100
   const keywordComponent = keywordScore * w.keywordWeight * 100
+  const workTypeComponent = workTypeScore * w.workTypeWeight * 100
 
-  const overall = Math.round(
-    Math.min(100, skillComponent + seniorityComponent + keywordComponent)
+  let overall = Math.round(
+    Math.min(100, skillComponent + seniorityComponent + keywordComponent + workTypeComponent)
   )
+
+  // 100% clamp: when skillScore >= 95 AND seniorityScore === 1.0 AND workTypeScore === 1.0
+  const skillScorePercent = Math.round(similarity.combinedScore * 100)
+  if (skillScorePercent >= 95 && seniorityScore === 1.0 && workTypeScore === 1.0) {
+    overall = 100
+  }
 
   // Build explanation (job-centric: matched/unmatched are job skills)
   const matchedSkillsDisplay = similarity.matchedSkills.length > 0
@@ -116,6 +191,7 @@ function computeMatchScoreWithBreakdown(
     matchedSkills: matchedSkillsDisplay,
     unmatchedSkills: missingSkillsDisplay,
     seniorityMatch,
+    workTypeMatch,
     weightedScore: overall,
     skillScoreContribution: Math.round(skillComponent * 100) / 100,
     seniorityScoreContribution: Math.round(seniorityComponent * 100) / 100,
@@ -135,9 +211,12 @@ export function calculateWeightedMatchScore(
   userSeniority: string | undefined,
   jobSkills: string[],
   jobSeniority: string | undefined,
-  weights: Partial<MatchWeights> = {}
+  weights: Partial<MatchWeights> = {},
+  remoteMode: string[] = [],
+  countries: string[] = [],
+  job?: NormalizedJob
 ): MatchScore {
-  return computeMatchScoreWithBreakdown(userSkills, userSeniority, jobSkills, jobSeniority, weights).score
+  return computeMatchScoreWithBreakdown(userSkills, userSeniority, jobSkills, jobSeniority, weights, remoteMode, countries, job).score
 }
 
 /**
@@ -149,9 +228,12 @@ export function calculateWeightedMatchScoreWithBreakdown(
   userSeniority: string | undefined,
   jobSkills: string[],
   jobSeniority: string | undefined,
-  weights: Partial<MatchWeights> = {}
+  weights: Partial<MatchWeights> = {},
+  remoteMode: string[] = [],
+  countries: string[] = [],
+  job?: NormalizedJob
 ): { score: MatchScore; breakdown: MatchBreakdown } {
-  return computeMatchScoreWithBreakdown(userSkills, userSeniority, jobSkills, jobSeniority, weights)
+  return computeMatchScoreWithBreakdown(userSkills, userSeniority, jobSkills, jobSeniority, weights, remoteMode, countries, job)
 }
 
 function buildSummary(

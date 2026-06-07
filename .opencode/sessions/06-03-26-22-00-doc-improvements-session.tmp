@@ -1,9 +1,0 @@
-DONE: Full pipeline executed for ux-filter-modal-changes — all 6 tasks completed and QA-approved (474 tests). Phase 2 improvements documented: auto-continuation rules, Playwright verification, error reporting, app cleanup. Updated AGENTS.md with 6 new agent rules. Updated 03-senior-frontend.md, 04-senior-backend.md, 05-qa-reviewer.md with Playwright, error reporting, and app shutdown workflows. Updated SKILL.md with 4 new orchestrator rules.
-
-WRONG: Phase 2 did not auto-start after Phase 1 — required manual intervention from user. Agents didn't verify with Playwright, didn't report errors, didn't stop apps after use.
-
-IMPROV: Added orchestrator auto-continuation rule (must complete ALL tasks before STOP). Added Playwright verification as mandatory last step for FE/QA-FE. Added mandatory error reporting to orchestrator. Added mandatory app cleanup after validation.
-
-LEARN: Pipeline rules were incomplete — missing auto-continuation, Playwright, error reporting, and cleanup enforcement. Agent prompts needed explicit instructions for these behaviors.
-
-NEXT: All doc updates applied. Pipeline and agent rules now enforce complete task lifecycle, Playwright verification, error reporting, and app cleanup.

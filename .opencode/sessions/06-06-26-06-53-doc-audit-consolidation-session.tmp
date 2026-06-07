@@ -1,9 +1,0 @@
-DONE: Removed Playwright references from .opencode/docs-catalog.md (line 11) and .opencode/project-structure.md (line 15) per user request; Ran doc-audit skill with codebase-analysis scan of 51 markdown files; Identified and consolidated 2 findings: merged 19-engineering-guidelines.md + 21-anti-patterns.md (Option A), clarified INDEX.md vs architecture/architecture.md separation; Updated 5 files: 19-engineering-guidelines.md (expanded), docs-catalog.md, architecture/architecture.md, INDEX.md (trimmed), left 21-anti-patterns.md for manual deletion
-
-WRONG: Could not delete 21-anti-patterns.md due to shell command restrictions (user will clean up manually); Initial grep found 108 Playwright matches but user scoped to only 2 files - other references remain in AGENTS.md, agent definitions, skills, etc.
-
-IMPROV: Add explicit file deletion capability in doc-audit workflow; Create a cleanup step in doc-audit for removing merged files; Consider batch-updating remaining Playwright references in follow-up session
-
-LEARN: Doc-audit skill effectively identifies structural duplicates when combined with codebase-analysis; 400-line limit not an issue post-merge (19-engineering-guidelines.md: 91 lines); INDEX.md and architecture/architecture.md serve distinct audiences (AI agents vs architecture readers)
-
-NEXT: User to delete .opencode/architecture/21-anti-patterns.md; Consider separate session to remove remaining Playwright references from AGENTS.md, opencode.jsonc, agent files, skills if desired; Run learning-improvement -> continuous-learning -> session-save chain

@@ -1,5 +1,0 @@
-DONE: Full pipeline executed PM?Tech Lead?Frontend+Backend?QA Frontend+QA Backend?corrections?complete. Implemented all 8 improvements: TrustSlider fix, RemoteMode/Country filters, localStorage persist, debounce, server-side filters, aggregated cache, dynamic suggestions. 236 tests total (was 187).
-WRONG: Backend suggestions tests duplicated logic locally instead of testing real implementation (caught by QA, fixed by exporting function). Backend had 2 medium convention issues also fixed.
-IMPROV: QA-catching test anti-patterns early saves time. Pipeline parallel execution works well. First useless test in new test files should be avoided.
-LEARN: Task tool subagent types work well for parallel FE/BE execution. Pipeline.yaml tracking enables clear progress visibility. QA loop catches real issues.
-NEXT: Integration tests for filter logic through aggregateSearch with mocked providers. Consider simplifying HomePage double-debounce (400ms query + 300ms useJobSearch = ~700ms on query).

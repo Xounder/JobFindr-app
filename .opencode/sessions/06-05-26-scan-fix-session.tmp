@@ -1,5 +1,0 @@
-DONE: Fixed scan.mjs:10 WORKSPACE_ROOT path bug (4 .. to 3) so --mode docs now works. Refactored saveReports() to use fixed filenames instead of timestamps, rewriting docs-report.json/.md on each run. Cleaned up 6 stale output files.
-WRONG: Inaccurate SKILL.md note from previous session had to be corrected before the real fix was applied.
-IMPROV: When a script bug is identified, fix it directly rather than documenting the workaround — saves a round-trip.
-LEARN: The scan.mjs is now self-cleaning (no timestamped output accumulation). The docs vs implementation mode switching is simple: just --mode docs.
-NEXT: None — all session objectives completed.

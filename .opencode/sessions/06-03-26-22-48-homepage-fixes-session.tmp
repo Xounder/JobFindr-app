@@ -1,5 +1,0 @@
-DONE: Identified staged changes, read commit conventions, provided descriptive commit message for homepage fixes including skill move bug, seniority label, and null filter values
-WRONG: Initial commit message was too brief and lacked sufficient detail about changes
-IMPROV: Provide more specific commit messages that clearly describe what was fixed in each file group
-LEARN: Project requires conventional commit format with clear descriptions; documentation must be in English only
-NEXT: Load continuous-learning skill to propose documentation improvements based on session learnings

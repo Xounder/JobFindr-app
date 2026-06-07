@@ -233,9 +233,9 @@ describe('calculateWeightedMatchScoreWithBreakdown', () => {
       'senior',
     )
     expect(result.breakdown.skillScoreContribution).toBeGreaterThan(0)
-    expect(result.breakdown.skillScoreContribution).toBeLessThanOrEqual(50) // max skill weight 0.5 * 100
+    expect(result.breakdown.skillScoreContribution).toBeLessThanOrEqual(45) // max skill weight 0.45 * 100
     expect(result.breakdown.seniorityScoreContribution).toBeGreaterThan(0)
-    expect(result.breakdown.seniorityScoreContribution).toBeLessThanOrEqual(35) // max seniority weight 0.35 * 100
+    expect(result.breakdown.seniorityScoreContribution).toBeLessThanOrEqual(30) // max seniority weight 0.30 * 100
   })
 
   it('handles empty user skills', () => {
@@ -251,7 +251,7 @@ describe('calculateWeightedMatchScoreWithBreakdown', () => {
     expect(result.breakdown.weightedScore).toBeGreaterThanOrEqual(0)
   })
 
-  // Tests for new seniority weight behavior (0.35)
+  // Tests for new seniority weight behavior (0.30)
   it('rewards exact seniority match with higher score', () => {
     const exactMatch = calculateWeightedMatchScore(
       ['react', 'typescript'],
@@ -290,12 +290,12 @@ describe('calculateWeightedMatchScoreWithBreakdown', () => {
     expect(threeLevelGap.seniorityScore).toBe(10) // diff=3+ → 0.1 * 100
   })
 
-  it('verifies seniority penalty is stronger with new 0.35 weight vs old 0.25', () => {
-    // With skillWeight=0.5 and seniorityWeight=0.35, the seniority component
-    // contributes max 35 points (was 25 with 0.25 weight)
-    // A 1-level gap loses 30% of 35 = 10.5 points (was 7.5 with 0.25)
-    // A 2-level gap loses 70% of 35 = 24.5 points (was 17.5 with 0.25)
-    // A 3+ level gap loses 90% of 35 = 31.5 points (was 22.5 with 0.25)
+  it('verifies seniority penalty is stronger with new 0.30 weight vs old 0.25', () => {
+    // With skillWeight=0.45 and seniorityWeight=0.30, the seniority component
+    // contributes max 30 points (was 25 with 0.25 weight)
+    // A 1-level gap loses 30% of 30 = 9.0 points (was 7.5 with 0.25)
+    // A 2-level gap loses 70% of 30 = 21.0 points (was 17.5 with 0.25)
+    // A 3+ level gap loses 90% of 30 = 27.0 points (was 22.5 with 0.25)
 
     const exactMatch = calculateWeightedMatchScoreWithBreakdown(
       ['react'],
@@ -322,25 +322,25 @@ describe('calculateWeightedMatchScoreWithBreakdown', () => {
       'intern',
     )
 
-    // Exact match gets full seniority contribution (35)
-    expect(exactMatch.breakdown.seniorityScoreContribution).toBe(35)
+    // Exact match gets full seniority contribution (30)
+    expect(exactMatch.breakdown.seniorityScoreContribution).toBe(30)
 
-    // 1-level gap: 0.7 * 35 = 24.5
-    expect(oneLevelGap.breakdown.seniorityScoreContribution).toBeCloseTo(24.5, 1)
+    // 1-level gap: 0.7 * 30 = 21.0
+    expect(oneLevelGap.breakdown.seniorityScoreContribution).toBeCloseTo(21.0, 1)
 
-    // 2-level gap: 0.3 * 35 = 10.5
-    expect(twoLevelGap.breakdown.seniorityScoreContribution).toBeCloseTo(10.5, 1)
+    // 2-level gap: 0.3 * 30 = 9.0
+    expect(twoLevelGap.breakdown.seniorityScoreContribution).toBeCloseTo(9.0, 1)
 
-    // 3+ level gap: 0.1 * 35 = 3.5
-    expect(threeLevelGap.breakdown.seniorityScoreContribution).toBeCloseTo(3.5, 1)
+    // 3+ level gap: 0.1 * 30 = 3.0
+    expect(threeLevelGap.breakdown.seniorityScoreContribution).toBeCloseTo(3.0, 1)
 
-    // The penalty difference between exact and 1-level should be ~10.5 points
+    // The penalty difference between exact and 1-level should be ~9.0 points
     const penalty1Level = exactMatch.breakdown.seniorityScoreContribution - oneLevelGap.breakdown.seniorityScoreContribution
-    expect(penalty1Level).toBeCloseTo(10.5, 1)
+    expect(penalty1Level).toBeCloseTo(9.0, 1)
 
-    // The penalty difference between exact and 2-level should be ~24.5 points
+    // The penalty difference between exact and 2-level should be ~21.0 points
     const penalty2Level = exactMatch.breakdown.seniorityScoreContribution - twoLevelGap.breakdown.seniorityScoreContribution
-    expect(penalty2Level).toBeCloseTo(24.5, 1)
+    expect(penalty2Level).toBeCloseTo(21.0, 1)
   })
 
   it('does not penalize when user seniority is missing', () => {
@@ -357,8 +357,8 @@ describe('calculateWeightedMatchScoreWithBreakdown', () => {
   })
 
   it('verifies weight sum equals 1.0', () => {
-    const weights = { skillWeight: 0.5, seniorityWeight: 0.35, keywordWeight: 0.15 }
-    const sum = weights.skillWeight + weights.seniorityWeight + weights.keywordWeight
+    const weights = { skillWeight: 0.45, seniorityWeight: 0.30, keywordWeight: 0.10, workTypeWeight: 0.15 }
+    const sum = weights.skillWeight + weights.seniorityWeight + weights.keywordWeight + weights.workTypeWeight
     expect(sum).toBe(1.0)
   })
 
@@ -382,5 +382,61 @@ describe('calculateWeightedMatchScoreWithBreakdown', () => {
     )
     expect(result.breakdown.userSeniority).toBeUndefined()
     expect(result.breakdown.jobSeniority).toBeUndefined()
+  })
+
+  describe('work type scoring', () => {
+    it('returns exact match when remote filter matches job', () => {
+      const result = calculateWeightedMatchScoreWithBreakdown(
+        ['react'], 'senior', ['react'], 'senior',
+        {}, ['remote'], [],
+        { id: '1', remoteMode: 'remote', skills: ['react'], seniority: 'senior' } as any,
+      )
+      expect(result.breakdown.workTypeMatch).toBe('exact')
+    })
+
+    it('returns partial when no filters active', () => {
+      const result = calculateWeightedMatchScoreWithBreakdown(
+        ['react'], 'senior', ['react'], 'senior',
+        {}, [], [],
+        { id: '1', remoteMode: 'remote', skills: ['react'], seniority: 'senior' } as any,
+      )
+      expect(result.breakdown.workTypeMatch).toBe('partial')
+    })
+
+    it('returns none when filters active but no match', () => {
+      const result = calculateWeightedMatchScoreWithBreakdown(
+        ['react'], 'senior', ['react'], 'senior',
+        {}, ['remote'], [],
+        { id: '1', remoteMode: 'on-site', skills: ['react'], seniority: 'senior' } as any,
+      )
+      expect(result.breakdown.workTypeMatch).toBe('none')
+    })
+
+    it('returns exact when hybrid filter matches country', () => {
+      const result = calculateWeightedMatchScoreWithBreakdown(
+        ['react'], 'senior', ['react'], 'senior',
+        {}, ['hybrid'], ['US'],
+        { id: '1', remoteMode: 'on-site', location: 'US', skills: ['react'], seniority: 'senior' } as any,
+      )
+      expect(result.breakdown.workTypeMatch).toBe('exact')
+    })
+
+    it('triggers 100% clamp when all conditions perfect', () => {
+      const result = calculateWeightedMatchScoreWithBreakdown(
+        ['react', 'typescript'], 'senior', ['react', 'typescript'], 'senior',
+        {}, ['remote'], [],
+        { id: '1', remoteMode: 'remote', skills: ['react', 'typescript'], seniority: 'senior' } as any,
+      )
+      expect(result.score.overall).toBe(100)
+    })
+
+    it('does not trigger 100% clamp when seniority differs', () => {
+      const result = calculateWeightedMatchScoreWithBreakdown(
+        ['react', 'typescript'], 'mid', ['react', 'typescript'], 'senior',
+        {}, ['remote'], [],
+        { id: '1', remoteMode: 'remote', skills: ['react', 'typescript'], seniority: 'senior' } as any,
+      )
+      expect(result.score.overall).toBeLessThan(100)
+    })
   })
 })

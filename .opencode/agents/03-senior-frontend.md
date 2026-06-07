@@ -5,7 +5,7 @@ description: >
 mode: subagent
 model: opencode/nemotron-3-ultra-free
 temperature: 0.2
-steps: 15
+steps: 30
 color: info
 hidden: false
 permission:

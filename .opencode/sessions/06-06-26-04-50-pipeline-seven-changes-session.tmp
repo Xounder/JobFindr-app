@@ -1,9 +1,0 @@
-DONE: Pipeline initialized with pipeline.yaml; active context 'seven-changes-analysis' found with analysis files but no epics; PM skipped; Tech Lead created 6 tasks covering all 7 changes; Senior Backend implemented all 5 backend tasks (TASK-02 through TASK-06) successfully — 303/303 tests pass; pipeline.yaml updated to development phase
-
-WRONG: Senior Frontend agent got stuck during Playwright validation — created custom playwright-full-check.ts instead of using existing playwright-check.ts; Playwright checks failed (3/11): missing search input, missing search button, missing initial state text; Frontend implementation incomplete
-
-IMPROV: Add 'problems' section to pipeline.yaml for agents to report non-code errors (test failures, Playwright issues, process spawn issues, port conflicts, build problems); Enforce use of existing Playwright standalone script (playwright-check.ts) — no custom test files; Strengthen agent error reporting requirement to include all non-code errors in final return message
-
-LEARN: Playwright MCP browser tools do not work on Windows — must use standalone script with tsx; Page has two visual states (empty/results) — selectors change; Providers return 0 jobs in dev (404/400/422 errors expected); Pipeline.yaml structure should track agent problems per step
-
-NEXT: Complete Senior Frontend implementation for TASK-01, TASK-04, TASK-05, TASK-06; Run QA review for frontend and backend; Fix Playwright validation using correct script; Apply doc updates from continuous-learning

@@ -1,9 +1,0 @@
-DONE: Fixed tsconfig.app.json — removed deprecated baseUrl, added composite/declaration/declarationMap/emitDeclarationOnly. Updated learning-improvement/SKILL.md to enforce mandatory chaining to continuous-learning → session-save.
-
-WRONG: Initially misdiagnosed the error (added composite before knowing the actual TS6 deprecation). First learning-improvement call failed to chain to next skills.
-
-IMPROV: When user says "fix error in file X", ask for exact error message first. Skill chain must be atomic — no stopping after evaluation.
-
-LEARN: baseUrl is deprecated in TS 6.0 (paths resolves relative to tsconfig dir). Frontend tsconfig needed composite for tsc -b project references.
-
-NEXT: No pending tasks.

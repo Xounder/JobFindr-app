@@ -1,5 +1,0 @@
-DONE: Updated opencode.jsonc learning-improvement command template to include mandatory chaining to continuous-learning and session-save. Added continuous-learning and session-save commands. Updated continuous-learning SKILL.md with MUST IMMEDIATELY chain enforcement. Updated session-save SKILL.md with chain position info.
-WRONG: The STOP chain (learning-improvement -> continuous-learning -> session-save) stopped after each step 3 times this session. User had to ask "continue" every time.
-IMPROV: All 3 command templates now enforce atomic chaining. All 3 SKILL.md files have explicit MUST/MUST NOT language about chaining. The chain cannot be interrupted.
-LEARN: Both command templates AND skill docs must enforce chaining. A skill doc saying "MUST" is not enough if the command template only describes the current step.
-NEXT: In future sessions, the chain will execute automatically without requiring user intervention between steps.

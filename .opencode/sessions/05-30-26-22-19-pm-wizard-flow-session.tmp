@@ -1,5 +1,0 @@
-DONE: Updated agents/01-product-manager.md to enforce sequential question wizard pattern using the question tool. Changed "Collect ALL before proceeding" to one-at-a-time with arrow-key navigation.
-WRONG: PM previously dumped all 7 questions in one message, forcing the user to answer everything at once with no navigation between questions.
-IMPROV: PM wizard now specifies one question per tool invocation with options, backwards/forwards navigation via arrow keys, and selection via arrow keys. Matches CLI wizard UX.
-LEARN: The question tool supports sequential interaction naturally. The PM agent must loop through questions one by one rather than listing them all upfront.
-NEXT: Ensure future PM invocations follow the wizard pattern defined in the updated doc.

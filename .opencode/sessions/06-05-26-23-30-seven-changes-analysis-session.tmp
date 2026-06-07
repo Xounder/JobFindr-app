@@ -1,5 +1,0 @@
-DONE: Read entire codebase to analyze 7 change requests. Invoked Planning Analyst who created 5 planning documents in .opencode/plan/seven-changes-analysis/ covering feasibility, risks, impact, and recommendations for all items.
-WRONG: Nothing — clean analysis-only session.
-IMPROV: Could batch-read all relevant files faster before invoking the analyst.
-LEARN: Items 1 (job-centric scoring) and 3 (use filter seniority) affect backend; others are frontend-only. Planning Analyst is the right entry point for multi-item analysis.
-NEXT: PM should create epics from the plans, then Tech Lead → parallel Frontend+Backend implementation, then QA.

@@ -16,6 +16,7 @@ export interface MatchBreakdown {
   seniorityScoreContribution: number;
   userSeniority?: string;
   jobSeniority?: string;
+  workTypeMatch?: "exact" | "partial" | "none";
 }
 
 export interface TrustBreakdown {

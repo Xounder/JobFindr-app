@@ -1,5 +1,0 @@
-DONE: Re-ran full doc-audit on all non-plan .md files. Verified all 7 previous fixes intact. Found and fixed 1 new issue: inaccurate warning in codebase-analysis/SKILL.md that misattributed the scan path bug to working directory instead of the actual hardcoded WORKSPACE_ROOT bug in scan.mjs:10.
-WRONG: Codebase-analysis scan.mjs still broken (WORKSPACE_ROOT resolves 1 level too high). The previous session's SKILL.md note added an incorrect explanation.
-IMPROV: Fix scan.mjs:10 directly — change '..', '..', '..', '..' to '..', '..', '..' — so doc audits can use automated heading inventory instead of manual file reads.
-LEARN: The scan.mjs path bug is persistent across sessions because fixing .mjs files is outside the .md-only scope of continuous-learning. This is a limitation of the current doc-only modification rule.
-NEXT: None — single-finding doc audit, all resolved.

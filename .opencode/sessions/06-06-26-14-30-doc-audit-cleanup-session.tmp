@@ -1,5 +1,0 @@
-DONE: Completed doc-audit of all .opencode/ markdown files (excluding /plan): removed redundant architecture/architecture.md index file, fixed Portuguese->English in skills/06-branding/SKILL.md (4 lines), updated docs-catalog.md and INDEX.md references.
-WRONG: Initial INDEX.md still referenced deleted architecture.md (lines 26, 31) - caught and fixed after removal.
-IMPROV: Run doc-audit more proactively before cleanup to catch cross-references; add pre-delete check for incoming references.
-LEARN: Architecture index file was purely redundant - INDEX.md and docs-catalog.md already serve as complete navigation. Portuguese content persisted in branding skill despite English-only rule.
-NEXT: Verify no other docs reference deleted architecture.md.
