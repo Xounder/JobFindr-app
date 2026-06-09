@@ -7,32 +7,34 @@
  */
 import { sleep } from '@jobfindr/utils'
 import { logger } from '../../../shared/logger/logger.ts'
+import type { BackoffConfig } from './resilience/backoff-config.ts'
 
-export type RetryConfig = {
-  /** Maximum number of retry attempts (default: 2) */
-  maxRetries: number
-  /** Base delay in ms for exponential backoff (default: 1000) */
-  baseDelayMs: number
-  /** Maximum delay in ms (default: 30000) */
-  maxDelayMs: number
-  /** HTTP status codes that are retryable */
+export type RetryConfig = BackoffConfig & {
   retryableStatusCodes: number[]
 }
 
 const defaultConfig: RetryConfig = {
-  maxRetries: 2,
   baseDelayMs: 1000,
   maxDelayMs: 30_000,
+  maxRetries: 2,
+  jitter: false,
+  jitterFactor: 0.3,
+  multiplier: 2,
   retryableStatusCodes: [408, 429, 500, 502, 503, 504],
 }
 
-/**
- * Calculate exponential backoff delay.
- * baseDelay * 2^attempt, capped at maxDelayMs.
- */
 export function calculateBackoff(attempt: number, config: RetryConfig): number {
-  const delay = config.baseDelayMs * Math.pow(2, attempt)
-  return Math.min(delay, config.maxDelayMs)
+  const multiplier = config.multiplier
+  const delay = config.baseDelayMs * Math.pow(multiplier, attempt)
+  const cappedDelay = Math.min(delay, config.maxDelayMs)
+
+  if (config.jitter) {
+    const jitterRange = cappedDelay * config.jitterFactor
+    const jitter = (Math.random() * 2 - 1) * jitterRange
+    return Math.round(Math.max(0, cappedDelay + jitter))
+  }
+
+  return Math.round(cappedDelay)
 }
 
 /**

@@ -11,7 +11,7 @@ import type { ValidatedSearchInput, NormalizedJob } from '@jobfindr/types'
 import { ApiProvider } from '../domain/api-provider.ts'
 import { normalizeJob, inferSeniority } from '../services/normalization-pipeline.ts'
 import { withRetry } from '../services/retry-system.ts'
-import { GREENHOUSE_COMPANIES } from '../config/companies.ts'
+import type { GreenhouseCompany } from '../config/companies.ts'
 import { cleanHtml } from '../../normalization/services/html-cleaner.ts'
 import { extractSkillsFromJob } from '../../normalization/services/skill-extraction.ts'
 
@@ -44,7 +44,9 @@ type GreenhouseApiResponse = {
 }
 
 export class GreenhouseProvider extends ApiProvider {
-  constructor() {
+  private companies: readonly GreenhouseCompany[]
+
+  constructor(companies?: readonly GreenhouseCompany[]) {
     super({
       name: PROVIDER_NAME,
       baseUrl: BASE_URL,
@@ -56,14 +58,16 @@ export class GreenhouseProvider extends ApiProvider {
         maxLimit: 50,
       },
     })
+    this.companies = companies ?? []
   }
 
   search(input: ValidatedSearchInput): Promise<NormalizedJob[]> {
     return this.executeWithInstrumentation(async () => {
+      if (this.companies.length === 0) return []
       const query = input.q.toLowerCase()
 
       const results = await Promise.allSettled(
-        GREENHOUSE_COMPANIES.map(async (company) => {
+        this.companies.map(async (company) => {
           const companyJobs = await this.fetchCompanyJobs(company.boardToken, query, MAX_PAGES)
           this.logInfo(`Fetched ${companyJobs.length} jobs from ${company.name} (${company.boardToken})`)
           return companyJobs
@@ -185,7 +189,7 @@ export class GreenhouseProvider extends ApiProvider {
     const postedAt = raw.created_at ? new Date(raw.created_at).toISOString() : undefined
 
     // Get company name from config
-    const company = GREENHOUSE_COMPANIES.find((c) => c.boardToken === boardToken)
+    const company = this.companies.find((c) => c.boardToken === boardToken)
     const companyName = company?.name ?? boardToken
 
     return normalizeJob(PROVIDER_NAME, externalId, {
@@ -212,9 +216,12 @@ export class GreenhouseProvider extends ApiProvider {
   }
 }
 
+import { GREENHOUSE_COMPANIES } from '../config/companies.ts'
+
 /**
  * Create a Greenhouse provider instance.
  */
-export async function createGreenhouseProvider(): Promise<GreenhouseProvider> {
-  return new GreenhouseProvider()
+export async function createGreenhouseProvider(companies?: GreenhouseCompany[]): Promise<GreenhouseProvider> {
+  const companyList = companies ?? [...GREENHOUSE_COMPANIES]
+  return new GreenhouseProvider(companyList)
 }

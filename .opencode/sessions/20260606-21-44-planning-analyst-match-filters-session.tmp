@@ -1,5 +1,0 @@
-DONE: Invoked Planning Analyst for 5 changes — created full analysis docs at .opencode/plan/match-filters-analysis/ with feasibility, impact, risks. Pre-approved recommended approaches for all changes.
-WRONG: Planning Analyst workflow (Phase 4) halted for user approval — needed re-invocation to proceed since user said "do not ask".
-IMPROV: When user says "SEM PERGUNTAR", initial prompt to Planning Analyst should include "all approaches are pre-approved, skip Phase 4 review".
-LEARN: Implementation order matters — changes 3, 4, 2+5, 1 must be sequenced to avoid merge conflicts in FiltersPanel.tsx.
-NEXT: Implement all 5 changes: 3 (seniority label) → 4 (required skills filter) → 2+5 (skills modal + companies) → 1 (match scoring).

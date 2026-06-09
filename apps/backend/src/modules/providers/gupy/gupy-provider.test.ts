@@ -44,6 +44,32 @@ describe('GupyProvider', () => {
     expect(provider.version).toBe('1.0.0')
   })
 
+  it('returns empty when constructed with empty company list', async () => {
+    const emptyProvider = new GupyProvider([])
+    const result = await emptyProvider.search(mockInput)
+    expect(result).toEqual([])
+  })
+
+  it('filters jobs by careerPageId from injected companies', async () => {
+    const companies = [{ careerPageId: 1, careerPageName: 'CompanyA' }]
+    const filteredProvider = new GupyProvider(companies)
+    mockGet.mockResolvedValue({
+      data: {
+        data: [
+          { id: 1, name: 'Job1', careerPageId: 1, publishedDate: '2024-01-01', url: '/job1' },
+          { id: 2, name: 'Job2', careerPageId: 2, publishedDate: '2024-01-01', url: '/job2' },
+        ],
+        total: 2,
+        limit: 50,
+        offset: 0,
+      },
+      headers: {},
+    })
+    const result = await filteredProvider.search(mockInput)
+    expect(result).toHaveLength(1)
+    expect(result[0]!.title).toBe('Job1')
+  })
+
   it('should return empty array on API failure', async () => {
     mockGet.mockRejectedValue(new Error('Gupy API unavailable'))
 

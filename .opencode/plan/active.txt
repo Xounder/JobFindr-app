@@ -1,4 +1,0 @@
-{
-  "active": ["match-filters-analysis"],
-  "date": "2026-06-06"
-}

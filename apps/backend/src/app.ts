@@ -15,6 +15,9 @@ import { registerSanitizationMiddleware } from './shared/middleware/sanitization
 import { registerAntiSpamMiddleware } from './shared/middleware/anti-spam.ts'
 import { registerSearchRoute } from './modules/search/controllers/search-controller.ts'
 import { ProviderLoader } from './modules/providers/services/provider-loader.ts'
+import { CompanyRegistry } from './modules/providers/config/company-registry.ts'
+import { CompanySync } from './modules/providers/services/company-sync.ts'
+import { registerAdminCompanyRoutes } from './modules/providers/routes/admin-companies.ts'
 
 export async function buildApp() {
   const app = Fastify({
@@ -28,8 +31,8 @@ export async function buildApp() {
   // ─── CORS ───────────────────────────────────────────────
   await app.register(cors, {
     origin: env.CORS_ORIGIN,
-    methods: ['GET'],
-    allowedHeaders: [],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Authorization', 'Content-Type'],
   })
 
   // ─── Security Headers ───────────────────────────────────
@@ -43,11 +46,17 @@ export async function buildApp() {
   registerSanitizationMiddleware(app)
   registerAntiSpamMiddleware(app)
 
+  // ─── Company Registry ───────────────────────────────────
+  const companyRegistry = new CompanyRegistry()
+  await companyRegistry.initialize()
+  const companySync = new CompanySync(companyRegistry)
+  companySync.startAll()
+
   // ─── Load Providers ─────────────────────────────────────
   try {
-    const loader = new ProviderLoader()
+    const loader = new ProviderLoader(companyRegistry)
     await loader.loadAll()
-    logger.info(`Loaded ${loader.constructor.name}`, {
+    logger.info(`Provider loader completed`, {
       module: 'app',
     })
   } catch (error) {
@@ -80,9 +89,12 @@ export async function buildApp() {
   const { registerProviderStatusRoute } = await import('./modules/providers/services/provider-status-route.ts')
   registerProviderStatusRoute(app)
 
+  // Admin company management endpoints
+  registerAdminCompanyRoutes(app, companyRegistry, companySync)
+
   // Job suggestions endpoint
   const { registerSuggestionsRoute } = await import('./modules/suggestions/suggestions-controller.ts')
-  registerSuggestionsRoute(app)
+  registerSuggestionsRoute(app, companyRegistry)
 
   // 404 handler
   app.setNotFoundHandler((_request, reply) => {

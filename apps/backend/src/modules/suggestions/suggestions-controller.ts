@@ -1,5 +1,6 @@
 import type { FastifyInstance } from 'fastify'
 import { aggregatedCache } from '../../cache/aggregated-cache.ts'
+import type { CompanyRegistry, ProviderName } from '../providers/config/company-registry.ts'
 
 const SUGGESTED_SKILLS = [
   'TypeScript', 'JavaScript', 'React', 'Node.js', 'Python',
@@ -28,15 +29,13 @@ const SUGGESTED_TITLES = [
   'Architect', 'Solutions Architect', 'Systems Architect',
 ]
 
+const PROVIDER_NAMES: ProviderName[] = ['greenhouse', 'ashby', 'lever', 'workday', 'gupy']
+
 const FALLBACK_COMPANIES = [
   'Google', 'Microsoft', 'Amazon', 'Meta', 'Apple',
   'Netflix', 'Stripe', 'Shopify', 'Spotify', 'Airbnb',
 ]
 
-/**
- * Extract unique company names from all cached aggregated results.
- * Returns companies in alphabetical order with no duplicates.
- */
 export function getUniqueCompaniesFromCache(): string[] {
   const allCachedJobs = aggregatedCache.getAllJobs()
   if (allCachedJobs.length === 0) {
@@ -57,14 +56,37 @@ export function getUniqueCompaniesFromCache(): string[] {
   return [...companySet].sort((a, b) => a.localeCompare(b))
 }
 
-async function suggestionsHandler() {
-  return {
-    skills: SUGGESTED_SKILLS,
-    companies: getUniqueCompaniesFromCache(),
-    titles: SUGGESTED_TITLES,
+async function getRegistryCompanyNames(registry?: CompanyRegistry): Promise<string[]> {
+  if (!registry) return []
+  const names = new Set<string>()
+  for (const provider of PROVIDER_NAMES) {
+    const configs = await registry.getAll(provider)
+    for (const c of configs) {
+      if (c.enabled && c.name) {
+        names.add(c.name)
+      }
+    }
+  }
+  return [...names].sort((a, b) => a.localeCompare(b))
+}
+
+function suggestionsHandler(registry?: CompanyRegistry) {
+  return async () => {
+    const cacheCompanies = getUniqueCompaniesFromCache()
+    const registryCompanies = await getRegistryCompanyNames(registry)
+
+    const all = new Set<string>()
+    for (const c of cacheCompanies) all.add(c)
+    for (const c of registryCompanies) all.add(c)
+
+    return {
+      skills: SUGGESTED_SKILLS,
+      companies: [...all].sort((a, b) => a.localeCompare(b)),
+      titles: SUGGESTED_TITLES,
+    }
   }
 }
 
-export function registerSuggestionsRoute(app: FastifyInstance): void {
-  app.get('/jobs/suggestions', suggestionsHandler)
+export function registerSuggestionsRoute(app: FastifyInstance, registry?: CompanyRegistry): void {
+  app.get('/jobs/suggestions', suggestionsHandler(registry))
 }

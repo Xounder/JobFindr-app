@@ -24,11 +24,14 @@ jobfindr/
 │           │   ├── metrics/   # error-monitoring, timeout-monitoring, provider-metrics
 │           │   ├── services/  # request-batching, provider-isolation
 │           │   └── streaming/ # partial-streaming
-│           └── modules/      # 7 independent vertical modules
+│                       └── modules/      # 8 independent vertical modules
 │               ├── search/       # Controller, DTO, validation, aggregation-service, pagination, timeout-manager
-│               │   ├── config/       # companies.ts — company→board_token mapping (29 companies)
+│               ├── providers/    # Provider implementations + CompanyRegistry + Admin API + Resilience
+│               │   ├── config/       # companies.ts (deprecated), company-registry.ts (CompanyConfig, upsert, cache)
 │               │   ├── domain/       # JobProvider interface, ProviderRegistry, base-provider, api-provider, json-provider, provider-type
-│               │   ├── services/     # provider-engine, normalization-pipeline, retry-system, provider-health, provider-loader, provider-fallback
+│               │   ├── services/     # provider-engine, normalization-pipeline, retry-system, provider-health, provider-loader, provider-fallback, company-sync, company-discovery
+│               │   ├── services/resilience/  # circuit-breaker, quota-manager, backoff-config
+│               │   ├── routes/       # admin-companies.ts — 6 CRUD endpoints with JWT auth
 │               │   ├── greenhouse/   # GreenhouseProvider (real) — Public API
 │               │   ├── ashby/        # AshbyProvider (real) — Public API with compensation
 │               │   ├── lever/        # LeverProvider (real) — Public API
@@ -38,7 +41,8 @@ jobfindr/
 │               ├── normalization/# Salary parser, skill extraction, seniority parser, HTML cleaner
 │               ├── matchmaking/  # Weighted scoring, similarity engine, synonym dictionary, semantic matching
 │               ├── trust/        # Trust engine, score formula, provider/company reputation, overrides
-│               └── ranking/      # Ranking engine, composite score, recency/salary/company scoring
+│               ├── ranking/      # Ranking engine, composite score, recency/salary/company scoring
+│               └── suggestions/  # Job suggestions controller, route, service
 │
 ├── packages/
 │   ├── types/              # @jobfindr/types — NormalizedJob, TrustScore, MatchScore, DTOs, etc.

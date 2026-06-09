@@ -44,6 +44,20 @@ describe('LeverProvider', () => {
     expect(provider.version).toBe('1.0.0')
   })
 
+  it('returns empty when constructed with empty company list', async () => {
+    const emptyProvider = new LeverProvider([])
+    const result = await emptyProvider.search(mockInput)
+    expect(result).toEqual([])
+  })
+
+  it('uses injected companies list for search', async () => {
+    const companies = [{ name: 'TestCo', slug: 'testco' }]
+    const injectedProvider = new LeverProvider(companies)
+    mockGet.mockResolvedValue({ data: [], headers: {} })
+    await injectedProvider.search(mockInput)
+    expect(mockGet).toHaveBeenCalled()
+  })
+
   it('should return empty array on API failure', async () => {
     mockGet.mockRejectedValue(new Error('Lever API error'))
 

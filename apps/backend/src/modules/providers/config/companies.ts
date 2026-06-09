@@ -1,4 +1,8 @@
 /**
+ * @deprecated Use CompanyRegistry instead. Static company arrays kept as fallback
+ * when dynamic discovery feature flags are disabled. New company configs should
+ * be managed through the Admin API and CompanyRegistry service.
+ *
  * Company Board Mapping Config.
  * TASK-119: Create Company Board Mapping Config
  *
@@ -7,6 +11,7 @@
  */
 
 /**
+ * @deprecated Use CompanyRegistry instead.
  * Greenhouse company board mapping.
  * Each company has a board_token used in the Greenhouse Job Board API.
  * Format: GET https://boards-api.greenhouse.io/v1/boards/{board_token}/jobs

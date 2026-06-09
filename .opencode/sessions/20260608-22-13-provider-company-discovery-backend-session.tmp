@@ -1,0 +1,5 @@
+DONE: Implemented TASK-04 (Admin Company API), TASK-05 (Migrate Providers to Registry), TASK-06 (Resilience Layer). 422 tests passing. All committed.
+WRONG: Senior Backend agent hit max steps twice — left Zod parse errors (TASK-04) and incomplete provider-loader/app.ts integration (TASK-05). Workday factory was missing companies param.
+IMPROV: Fix remaining issues directly after agent maxes out rather than re-invoking. One agent invocation per task for sequential dependencies.
+LEARN: Agent handles isolated provider changes well but misses cross-cutting integration (loader, app.ts wiring). Zod .parse() vs .safeParse() mismatch is a recurring pattern. Gupy factory must accept GupyConfig[] from company-registry types.
+NEXT: Pipeline complete for this context. Consider integration/E2E tests for the full provider pipeline flow.

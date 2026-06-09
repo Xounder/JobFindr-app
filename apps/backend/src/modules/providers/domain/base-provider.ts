@@ -8,11 +8,13 @@ import type { NormalizedJob, ValidatedSearchInput, ProviderType, JobProvider } f
 import { logger } from '../../../shared/logger/logger.ts'
 import { recordProviderSuccess, recordProviderFailure } from '../../../shared/metrics/provider-metrics.ts'
 import { errorMonitor } from '../../../shared/metrics/error-monitoring.ts'
+import type { CircuitBreaker } from '../services/resilience/circuit-breaker.ts'
 
 export type BaseProviderOptions = {
   name: string
   providerType?: ProviderType
   version?: string
+  circuitBreaker?: CircuitBreaker
 }
 
 /**
@@ -23,11 +25,13 @@ export abstract class BaseProvider implements JobProvider {
   readonly name: string
   readonly providerType: ProviderType
   readonly version: string
+  protected circuitBreaker?: CircuitBreaker
 
   constructor(options: BaseProviderOptions) {
     this.name = options.name
     this.providerType = options.providerType ?? 'api'
     this.version = options.version ?? '1.0.0'
+    this.circuitBreaker = options.circuitBreaker
   }
 
   /**
@@ -45,8 +49,21 @@ export abstract class BaseProvider implements JobProvider {
   ): Promise<NormalizedJob[]> {
     const startTime = Date.now()
 
+    if (this.circuitBreaker) {
+      const allowed = await this.circuitBreaker.allowRequest()
+      if (!allowed) {
+        logger.warn(`Provider ${this.name} skipped by circuit breaker`, {
+          module: 'base-provider',
+          data: { query: input.q },
+        })
+        return []
+      }
+    }
+
     try {
       const jobs = await operation()
+
+      this.circuitBreaker?.onSuccess()
 
       const latencyMs = Date.now() - startTime
       recordProviderSuccess(this.name, latencyMs, jobs.length)
@@ -58,6 +75,8 @@ export abstract class BaseProvider implements JobProvider {
 
       return jobs
     } catch (error) {
+      this.circuitBreaker?.onFailure()
+
       const latencyMs = Date.now() - startTime
       const errorMessage = error instanceof Error ? error.message : 'Unknown error'
 

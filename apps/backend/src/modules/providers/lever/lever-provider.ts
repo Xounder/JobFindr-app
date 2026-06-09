@@ -11,7 +11,7 @@ import type { ValidatedSearchInput, NormalizedJob } from '@jobfindr/types'
 import { ApiProvider } from '../domain/api-provider.ts'
 import { normalizeJob, inferSeniority } from '../services/normalization-pipeline.ts'
 import { withRetry } from '../services/retry-system.ts'
-import { LEVER_COMPANIES } from '../config/companies.ts'
+import type { LeverCompany } from '../config/companies.ts'
 import { cleanHtml } from '../../normalization/services/html-cleaner.ts'
 import { extractSkillsFromJob } from '../../normalization/services/skill-extraction.ts'
 
@@ -46,19 +46,23 @@ type LeverJobRaw = {
 type LeverApiResponse = LeverJobRaw[]
 
 export class LeverProvider extends ApiProvider {
-  constructor() {
+  private companies: readonly LeverCompany[]
+
+  constructor(companies?: readonly LeverCompany[]) {
     super({
       name: PROVIDER_NAME,
       baseUrl: BASE_URL,
     })
+    this.companies = companies ?? []
   }
 
   search(input: ValidatedSearchInput): Promise<NormalizedJob[]> {
     return this.executeWithInstrumentation(async () => {
+      if (this.companies.length === 0) return []
       const query = input.q.toLowerCase()
 
       const results = await Promise.allSettled(
-        LEVER_COMPANIES.map(async (company) => {
+        this.companies.map(async (company) => {
           const companyJobs = await this.fetchCompanyJobs(company.slug, query)
           this.logInfo(`Fetched ${companyJobs.length} jobs from ${company.name} (${company.slug})`)
           return companyJobs
@@ -163,7 +167,7 @@ export class LeverProvider extends ApiProvider {
     else if (location.toLowerCase().includes('remote')) remoteMode = 'remote'
 
     // Get company name
-    const company = LEVER_COMPANIES.find((c) => c.slug === slug)
+    const company = this.companies.find((c) => c.slug === slug)
     const companyName = company?.name ?? slug
 
     return normalizeJob(PROVIDER_NAME, externalId, {
@@ -186,9 +190,12 @@ export class LeverProvider extends ApiProvider {
   }
 }
 
+import { LEVER_COMPANIES } from '../config/companies.ts'
+
 /**
  * Create a Lever provider instance.
  */
-export async function createLeverProvider(): Promise<LeverProvider> {
-  return new LeverProvider()
+export async function createLeverProvider(companies?: LeverCompany[]): Promise<LeverProvider> {
+  const companyList = companies ?? [...LEVER_COMPANIES]
+  return new LeverProvider(companyList)
 }

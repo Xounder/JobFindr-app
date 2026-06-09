@@ -233,7 +233,9 @@ export const createPathValidator = (projectDir: string) => {
 
     const resolved = resolve(projectRoot, target)
     const real = safeRealPath(resolved)
-    if (real === null) return false
+    if (real === null) {
+      return resolved.startsWith(projectBoundary) || resolved === projectReal
+    }
     return real.startsWith(projectBoundary) || real === projectReal
   }
 }

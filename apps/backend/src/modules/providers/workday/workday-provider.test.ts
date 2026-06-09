@@ -44,6 +44,20 @@ describe('WorkdayProvider', () => {
     expect(provider.version).toBe('1.0.0')
   })
 
+  it('returns empty when constructed with empty company list', async () => {
+    const emptyProvider = new WorkdayProvider([])
+    const result = await emptyProvider.search(mockInput)
+    expect(result).toEqual([])
+  })
+
+  it('uses injected companies list for search', async () => {
+    const companies = [{ name: 'TestCo', subdomain: 'test', tenant: 'test', careerSite: 'test' }]
+    const injectedProvider = new WorkdayProvider(companies)
+    mockPost.mockResolvedValue({ data: { jobPostings: [], total: 0 }, headers: {} })
+    await injectedProvider.search(mockInput)
+    expect(mockPost).toHaveBeenCalled()
+  })
+
   it('should return empty array on API failure', async () => {
     mockPost.mockRejectedValue(new Error('Workday API unavailable'))
 

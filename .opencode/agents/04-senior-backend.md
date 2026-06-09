@@ -3,7 +3,7 @@ name: Senior Backend
 description: >
   Implements Fastify endpoints, job providers, matchmaking/trust/ranking engines, and aggregation logic following the technical tasks from the Tech Lead. Should be used for tasks involving the backend layer, providers, and search intelligence.
 mode: subagent
-model: opencode/nemotron-3-ultra-free
+model: opencode/deepseek-v4-flash-free
 temperature: 0.2
 steps: 30
 color: warning

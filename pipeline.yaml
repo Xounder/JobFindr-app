@@ -1,46 +1,37 @@
 pipeline:
   name: JobFindr Pipeline
-  started_at: "2026-06-06T12:00:00-03:00"
-  updated_at: "2026-06-06T22:25:00-03:00"
+  started_at: "2026-06-06T00:00:00Z"
+  updated_at: "2026-06-09T00:00:00Z"
   current_step: "completed"
   steps:
     product-manager:
       status: skipped
-      notes: "Skipped — active context 'match-filters-analysis' exists with analysis files"
-      updated_at: "2026-06-06T12:00:00-03:00"
+      notes: "Skipped — existing analysis files found in provider-company-discovery context"
+      updated_at: "2026-06-06T00:00:00Z"
       problems: []
     tech-lead:
       status: completed
-      notes: "Created 6 tasks in .opencode/plan/match-filters-analysis/tasks/ — TASK-01 (Match Score Refinement, backend), TASK-02 (Required Skills Filter, backend), TASK-03 (Skills Modal Context, frontend), TASK-04 (Seniority Label Sync, frontend), TASK-05 (Companies from Results, frontend), TASK-06 (Match Explanation Modal, frontend)"
-      updated_at: "2026-06-06T12:10:00-03:00"
+      notes: "Created 6 tasks in provider-company-discovery/tasks/"
+      updated_at: "2026-06-08T21:00:00Z"
       problems: []
     senior-frontend:
-      status: completed
-      notes: "Implemented TASK-03 (SkillsModalContext), TASK-04 (Seniority Label Sync), TASK-05 (Companies from Results), TASK-06 (MatchExplanationModal work type). Build passes, lint passes, 214 tests pass."
-      updated_at: "2026-06-06T22:15:00-03:00"
+      status: skipped
+      notes: "No frontend tasks — all tasks are backend-only"
+      updated_at: "2026-06-08T21:00:00Z"
       problems: []
     senior-backend:
       status: completed
-      notes: "Fixed 2 failing tests (result.score.overall), updated stale weight comments, added work type scoring and required skills filter tests. 314 tests pass."
-      updated_at: "2026-06-06T22:25:00-03:00"
+      notes: "All 3 tasks implemented: TASK-04 Admin API, TASK-05 Provider Migration, TASK-06 Resilience Layer. 422 tests passing (40 test files)"
+      updated_at: "2026-06-09T00:00:00Z"
       problems: []
+
     qa-frontend:
-      status: completed
-      notes: "Approved — TASK-03 (SkillsModalContext), TASK-04 (Seniority Label Sync), TASK-05 (Companies from Results), TASK-06 (MatchExplanationModal work type) all verified. Lint, build, 214 tests pass."
-      updated_at: "2026-06-06T22:15:00-03:00"
+      status: skipped
+      notes: "No frontend tasks in this pipeline"
+      updated_at: "2026-06-09T00:00:00Z"
       problems: []
     qa-backend:
       status: completed
-      notes: "Approved — TASK-01 (Match Score Refinement) and TASK-02 (Required Skills Filter) verified. All acceptance criteria met. 314 backend tests pass, build clean."
-      updated_at: "2026-06-06T22:25:00-03:00"
-      problems: []
-    qa-frontend:
-      status: pending
-      notes: null
-      updated_at: null
-      problems: []
-    qa-backend:
-      status: pending
-      notes: null
-      updated_at: null
+      notes: "Approved — all 422 tests passing, no architectural violations"
+      updated_at: "2026-06-09T00:00:00Z"
       problems: []

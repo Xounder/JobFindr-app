@@ -11,7 +11,7 @@ import type { ValidatedSearchInput, NormalizedJob } from '@jobfindr/types'
 import { JsonProvider } from '../domain/json-provider.ts'
 import { normalizeJob, inferSeniority } from '../services/normalization-pipeline.ts'
 import { withRetry } from '../services/retry-system.ts'
-import { WORKDAY_COMPANIES } from '../config/companies.ts'
+import type { WorkdayCompany } from '../config/companies.ts'
 import { cleanHtml } from '../../normalization/services/html-cleaner.ts'
 import { extractSkillsFromJob } from '../../normalization/services/skill-extraction.ts'
 
@@ -48,18 +48,22 @@ type WorkdayApiRequest = {
 }
 
 export class WorkdayProvider extends JsonProvider {
-  constructor() {
+  private companies: readonly WorkdayCompany[]
+
+  constructor(companies?: readonly WorkdayCompany[]) {
     super({
       name: PROVIDER_NAME,
     })
+    this.companies = companies ?? []
   }
 
   search(input: ValidatedSearchInput): Promise<NormalizedJob[]> {
     return this.executeWithInstrumentation(async () => {
+      if (this.companies.length === 0) return []
       const query = input.q.toLowerCase()
 
       const results = await Promise.allSettled(
-        WORKDAY_COMPANIES.map(async (company) => {
+        this.companies.map(async (company) => {
           const companyJobs = await this.fetchCompanyJobs(company, query, MAX_PAGES)
           this.logInfo(`Fetched ${companyJobs.length} jobs from ${company.name}`)
           return companyJobs
@@ -85,7 +89,7 @@ export class WorkdayProvider extends JsonProvider {
    * Fetch jobs for a specific Workday company.
    */
   private async fetchCompanyJobs(
-    company: typeof WORKDAY_COMPANIES[number],
+    company: WorkdayCompany,
     query: string,
     maxPages: number
   ): Promise<NormalizedJob[]> {
@@ -209,9 +213,12 @@ export class WorkdayProvider extends JsonProvider {
   }
 }
 
+import { WORKDAY_COMPANIES } from '../config/companies.ts'
+
 /**
  * Create a Workday provider instance.
  */
-export async function createWorkdayProvider(): Promise<WorkdayProvider> {
-  return new WorkdayProvider()
+export async function createWorkdayProvider(companies?: WorkdayCompany[]): Promise<WorkdayProvider> {
+  const companyList = companies ?? [...WORKDAY_COMPANIES]
+  return new WorkdayProvider(companyList)
 }

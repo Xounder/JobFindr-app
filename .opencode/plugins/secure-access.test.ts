@@ -208,7 +208,9 @@ export const createPathValidator = (projectDir: string) => {
 
     const resolved = resolve(projectRoot, target)
     const real = safeRealPath(resolved)
-    if (real === null) return false
+    if (real === null) {
+      return resolved.startsWith(projectBoundary) || resolved === projectReal
+    }
     return real.startsWith(projectBoundary) || real === projectReal
   }
 }
@@ -406,9 +408,9 @@ describe("createPathValidator", () => {
     }
   })
 
-  it("blocks non-existent paths inside project (fail-closed Fase 34)", () => {
-    expect(isInside("./nonexistent-folder/new-file.ts")).toBe(false)
-    expect(isInside("temp-dir/output.log")).toBe(false)
+  it("allows non-existent paths inside project (resolved prefix fallback)", () => {
+    expect(isInside("./nonexistent-folder/new-file.ts")).toBe(true)
+    expect(isInside("temp-dir/output.log")).toBe(true)
   })
 
   // --- Fase 32: UNC paths ---
@@ -529,12 +531,12 @@ describe("node/tsx with flags (Fase 37)", () => {
   ok("node scan.mjs --mode docs")
 })
 
-describe("createPathValidator fail-closed (Fase 34)", () => {
+describe("createPathValidator fallback (Fase 34 non-existent paths)", () => {
   const isInside = createPathValidator(__dirname)
 
-  it("blocks non-existent paths that were previously allowed", () => {
-    expect(isInside("./nonexistent-file.xyz")).toBe(false)
-    expect(isInside("nonexistent-dir/new-file.txt")).toBe(false)
+  it("allows non-existent paths inside project (resolved prefix fallback)", () => {
+    expect(isInside("./nonexistent-file.xyz")).toBe(true)
+    expect(isInside("nonexistent-dir/new-file.txt")).toBe(true)
   })
 
   it("still blocks absolute paths outside project", () => {
@@ -789,5 +791,40 @@ describe("git diff/log/status with arguments", () => {
   })
   it("allows git status --short", () => {
     expect(parseCommand("git status --short")?.type).toBe("git")
+  })
+})
+
+// --- Fase 46-47: Non-existent path fallback (resolved prefix) ---
+describe("createPathValidator non-existent path fallback", () => {
+  const isInside = createPathValidator(__dirname)
+
+  it("allows deeply nested non-existent paths inside project", () => {
+    expect(isInside("a/b/c/d/e/f/g/new-file.ts")).toBe(true)
+    expect(isInside("./deep/nested/nonexistent/dir/")).toBe(true)
+  })
+
+  it("still blocks non-existent paths with .. outside project", () => {
+    expect(isInside("../../../../etc/passwd")).toBe(false)
+    expect(isInside("valid/../../outside/file.txt")).toBe(false)
+  })
+
+  it("still blocks absolute paths outside project", () => {
+    expect(isInside("C:\\Windows\\System32")).toBe(false)
+    expect(isInside("C:\\")).toBe(false)
+  })
+
+  it("still blocks empty, dot-only paths", () => {
+    expect(isInside("")).toBe(false)
+    expect(isInside(".")).toBe(false)
+    expect(isInside("..")).toBe(false)
+  })
+
+  it("still blocks UNC paths", () => {
+    expect(isInside("\\\\server\\share\\file")).toBe(false)
+  })
+
+  it("still allows existing files inside project", () => {
+    expect(isInside(__filename)).toBe(true)
+    expect(isInside(__dirname)).toBe(true)
   })
 })

@@ -12,6 +12,7 @@ import { JsonProvider } from '../domain/json-provider.ts'
 import { normalizeJob, inferSeniority } from '../services/normalization-pipeline.ts'
 import { withRetry } from '../services/retry-system.ts'
 import { extractSkillsFromJob } from '../../normalization/services/skill-extraction.ts'
+import type { GupyConfig } from '../config/company-registry.ts'
 
 const PROVIDER_NAME = 'gupy'
 const BASE_URL = 'https://portal.api.gupy.io/api/v1'
@@ -43,7 +44,9 @@ type GupyApiResponse = {
 }
 
 export class GupyProvider extends JsonProvider {
-  constructor() {
+  private companyCareerPageIds: Set<number>
+
+  constructor(companies?: GupyConfig[]) {
     super({
       name: PROVIDER_NAME,
       baseUrl: BASE_URL,
@@ -51,6 +54,7 @@ export class GupyProvider extends JsonProvider {
         'Accept': 'application/json',
       },
     })
+    this.companyCareerPageIds = new Set(companies?.map(c => c.careerPageId) ?? [])
   }
 
   search(input: ValidatedSearchInput): Promise<NormalizedJob[]> {
@@ -83,6 +87,10 @@ export class GupyProvider extends JsonProvider {
         }
 
         for (const raw of rawJobs) {
+          if (this.companyCareerPageIds.size > 0 && !this.companyCareerPageIds.has(raw.careerPageId)) {
+            continue
+          }
+
           const mapped = this.mapJob(raw)
 
           // Apply optional query filter (additional client-side filter)
@@ -154,6 +162,6 @@ export class GupyProvider extends JsonProvider {
 /**
  * Create a Gupy provider instance.
  */
-export async function createGupyProvider(): Promise<GupyProvider> {
-  return new GupyProvider()
+export async function createGupyProvider(companies?: GupyConfig[]): Promise<GupyProvider> {
+  return new GupyProvider(companies)
 }

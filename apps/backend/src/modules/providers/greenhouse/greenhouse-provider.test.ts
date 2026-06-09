@@ -33,15 +33,32 @@ describe('GreenhouseProvider', () => {
     includeHidden: false,
     sort: 'relevance',
     countries: [],
-  postedAfter: undefined,
-  userSkills: [],
-  userSeniority: undefined,
-}
+    postedAfter: undefined,
+    userSkills: [],
+    userSeniority: undefined,
+  }
 
   it('should have correct provider metadata', () => {
     expect(provider.name).toBe('greenhouse')
     expect(provider.providerType).toBe('api')
     expect(provider.version).toBe('1.0.0')
+  })
+
+  it('returns empty when constructed with empty company list', async () => {
+    const emptyProvider = new GreenhouseProvider([])
+    const result = await emptyProvider.search(mockInput)
+    expect(result).toEqual([])
+  })
+
+  it('uses injected companies list for search', async () => {
+    const companies = [{ name: 'TestCo', boardToken: 'testco' }]
+    const injectedProvider = new GreenhouseProvider(companies)
+    mockGet.mockResolvedValue({
+      data: { jobs: [], meta: { total: 0, page: 1, per_page: 20 } },
+      headers: {},
+    })
+    await injectedProvider.search(mockInput)
+    expect(mockGet).toHaveBeenCalledWith('/testco/jobs', expect.any(Object))
   })
 
   it('should return empty array on API failure', async () => {

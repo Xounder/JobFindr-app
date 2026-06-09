@@ -11,7 +11,7 @@ import type { ValidatedSearchInput, NormalizedJob } from '@jobfindr/types'
 import { ApiProvider } from '../domain/api-provider.ts'
 import { normalizeJob, locationToString, parseCompensation, inferSeniority } from '../services/normalization-pipeline.ts'
 import { withRetry } from '../services/retry-system.ts'
-import { ASHBY_COMPANIES } from '../config/companies.ts'
+import type { AshbyCompany } from '../config/companies.ts'
 import { cleanHtml } from '../../normalization/services/html-cleaner.ts'
 import { extractSkillsFromJob } from '../../normalization/services/skill-extraction.ts'
 
@@ -49,19 +49,23 @@ type AshbyApiResponse = {
 }
 
 export class AshbyProvider extends ApiProvider {
-  constructor() {
+  private companies: readonly AshbyCompany[]
+
+  constructor(companies?: readonly AshbyCompany[]) {
     super({
       name: PROVIDER_NAME,
       baseUrl: BASE_URL,
     })
+    this.companies = companies ?? []
   }
 
   search(input: ValidatedSearchInput): Promise<NormalizedJob[]> {
     return this.executeWithInstrumentation(async () => {
+      if (this.companies.length === 0) return []
       const query = input.q.toLowerCase()
 
       const results = await Promise.allSettled(
-        ASHBY_COMPANIES.map(async (company) => {
+        this.companies.map(async (company) => {
           const companyJobs = await this.fetchCompanyJobs(company.board, query)
           this.logInfo(`Fetched ${companyJobs.length} jobs from ${company.name} (${company.board})`)
           return companyJobs
@@ -159,7 +163,7 @@ export class AshbyProvider extends ApiProvider {
     const postedAt = raw.publishedAt ? new Date(raw.publishedAt).toISOString() : undefined
 
     // Get company name
-    const company = ASHBY_COMPANIES.find((c) => c.board === board)
+    const company = this.companies.find((c) => c.board === board)
     const companyName = company?.name ?? board
 
     // Detect remote from location
@@ -186,9 +190,12 @@ export class AshbyProvider extends ApiProvider {
   }
 }
 
+import { ASHBY_COMPANIES } from '../config/companies.ts'
+
 /**
  * Create an Ashby provider instance.
  */
-export async function createAshbyProvider(): Promise<AshbyProvider> {
-  return new AshbyProvider()
+export async function createAshbyProvider(companies?: AshbyCompany[]): Promise<AshbyProvider> {
+  const companyList = companies ?? [...ASHBY_COMPANIES]
+  return new AshbyProvider(companyList)
 }

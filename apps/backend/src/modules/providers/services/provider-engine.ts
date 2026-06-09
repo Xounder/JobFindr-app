@@ -12,15 +12,13 @@ import { logger } from '../../../shared/logger/logger.ts'
 import { executeIsolatedProvider } from '../../../shared/services/provider-isolation.ts'
 import { getProviderTimeout } from '../../search/services/timeout-manager.ts'
 import { recordProviderSuccess, recordProviderFailure } from '../../../shared/metrics/provider-metrics.ts'
+import type { QuotaManager } from './resilience/quota-manager.ts'
 
 export type EngineOptions = {
-  /** Default timeout per provider in ms (default: 10000) */
   defaultTimeoutMs?: number
+  quotaManager?: QuotaManager
 }
 
-/**
- * Execute all enabled providers in parallel with isolation.
- */
 export async function runAllProviders(
   providers: JobProvider[],
   input: ValidatedSearchInput,
@@ -38,10 +36,26 @@ export async function runAllProviders(
     }
   }
 
-  // Execute all providers in parallel
   const results: ProviderResult[] = await Promise.all(
     providers.map(async (provider) => {
       const timeoutMs = getProviderTimeout(provider.name)
+
+      if (_options.quotaManager) {
+        const hasQuota = await _options.quotaManager.tryAcquire(provider.name)
+        if (!hasQuota) {
+          logger.warn(`Provider ${provider.name} skipped due to quota limit`, {
+            module: 'provider-engine',
+            data: { provider: provider.name },
+          })
+          return {
+            providerName: provider.name,
+            error: 'QUOTA_EXCEEDED',
+            jobs: [],
+            success: false,
+            latencyMs: 0,
+          }
+        }
+      }
 
       const result = await executeIsolatedProvider(
         provider.name,
@@ -50,7 +64,8 @@ export async function runAllProviders(
         timeoutMs
       )
 
-      // Record metrics
+      _options.quotaManager?.release(provider.name)
+
       if (result.success) {
         recordProviderSuccess(provider.name, result.latencyMs, result.jobs.length)
       } else {
@@ -63,7 +78,6 @@ export async function runAllProviders(
 
   const totalDurationMs = Date.now() - startTime
 
-  // Aggregate results
   const successfulResults = results.filter((r) => r.success)
   const failedResults = results.filter((r) => !r.success)
   const allJobs = successfulResults.flatMap((r) => r.jobs)

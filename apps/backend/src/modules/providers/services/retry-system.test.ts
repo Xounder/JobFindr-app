@@ -6,6 +6,9 @@ const testConfig: RetryConfig = {
   maxRetries: 2,
   baseDelayMs: 100,
   maxDelayMs: 1000,
+  jitter: false,
+  jitterFactor: 0.3,
+  multiplier: 2,
   retryableStatusCodes: [408, 429, 500, 502, 503, 504],
 }
 

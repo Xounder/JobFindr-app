@@ -3,7 +3,7 @@ name: Senior Frontend
 description: >
   Implements screens, components, and API integrations in the React frontend following the technical tasks created by the Tech Lead. Should be used for tasks involving presentation layer, state, and API calls.
 mode: subagent
-model: opencode/nemotron-3-ultra-free
+model: opencode/deepseek-v4-flash-free
 temperature: 0.2
 steps: 30
 color: info
