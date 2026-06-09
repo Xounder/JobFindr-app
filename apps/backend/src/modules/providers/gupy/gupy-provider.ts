@@ -69,7 +69,7 @@ export class GupyProvider extends JsonProvider {
           async () => {
             const res = await this.get<GupyApiResponse>('/jobs', {
               params: {
-                name: query || undefined,
+                jobName: query || undefined,
                 limit: 50,
                 offset: 0,
               },

@@ -32,8 +32,8 @@ const SUGGESTED_TITLES = [
 const PROVIDER_NAMES: ProviderName[] = ['greenhouse', 'ashby', 'lever', 'workday', 'gupy']
 
 const FALLBACK_COMPANIES = [
-  'Google', 'Microsoft', 'Amazon', 'Meta', 'Apple',
-  'Netflix', 'Stripe', 'Shopify', 'Spotify', 'Airbnb',
+  'Stripe', 'Airbnb', 'Coinbase', 'Dropbox',
+  'Netflix', 'Notion', 'Linear',
 ]
 
 export function getUniqueCompaniesFromCache(): string[] {

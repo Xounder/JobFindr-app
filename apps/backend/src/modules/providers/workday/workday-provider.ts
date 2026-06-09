@@ -42,6 +42,7 @@ type WorkdayApiResponse = {
 }
 
 type WorkdayApiRequest = {
+  appliedFacets: Record<string, unknown>
   limit: number
   offset: number
   searchText: string
@@ -106,6 +107,7 @@ export class WorkdayProvider extends JsonProvider {
           `fetch-${company.name}-page-${page}`,
           async () => {
             const body: WorkdayApiRequest = {
+              appliedFacets: {},
               limit,
               offset,
               searchText: '',
@@ -118,6 +120,9 @@ export class WorkdayProvider extends JsonProvider {
                 headers: {
                   'Content-Type': 'application/json',
                   'Accept': 'application/json',
+                  'Accept-Language': 'en-US',
+                  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+                  'Referer': `https://${company.subdomain}.wd1.myworkdayjobs.com/en-US/${company.careerSite}/`,
                 },
               }
             )

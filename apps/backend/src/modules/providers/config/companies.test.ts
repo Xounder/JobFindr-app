@@ -22,9 +22,9 @@ describe('companies config', () => {
   })
 
   it('should have Lever companies', () => {
-    expect(LEVER_COMPANIES.length).toBeGreaterThanOrEqual(5)
+    expect(LEVER_COMPANIES.length).toBeGreaterThanOrEqual(2)
     expect(LEVER_COMPANIES.some((c) => c.name === 'Netflix')).toBe(true)
-    expect(LEVER_COMPANIES.some((c) => c.name === 'Uber')).toBe(true)
+    expect(LEVER_COMPANIES.some((c) => c.name === 'AngelList')).toBe(true)
   })
 
   it('should have Workday companies', () => {

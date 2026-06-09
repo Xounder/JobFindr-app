@@ -131,20 +131,7 @@ steps:
 
 ## Commit Message Conventions
 
-Use conventional commit format with clear, descriptive messages:
-- **fix**: for bug fixes
-- **feat**: for new features
-- **docs**: for documentation changes
-- **style**: for formatting changes
-- **refactor**: for code restructuring
-- **test**: for test additions/changes
-- **chore**: for maintenance tasks
-
-Format: `type(scope): description`
-
-Example: `fix: homepage - resolve skill move bug, add seniority label, fix null filter values`
-
-See `.opencode/architecture/commit-pattern.md` for full commit pattern rules, types, scopes, and examples.
+**See `.opencode/architecture/commit-pattern.md` for full commit pattern rules, types, scopes, and examples.**
 
 ## Architecture docs
 

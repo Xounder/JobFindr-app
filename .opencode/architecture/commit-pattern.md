@@ -38,6 +38,5 @@ chore: update pnpm to v11
 
 ## Enforcement
 
-- Referenced in `AGENTS.md` under "Commit Message Conventions"
 - Used by all agents when creating commits
 - CI/CD (when added) should validate format

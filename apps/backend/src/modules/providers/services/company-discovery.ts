@@ -112,7 +112,7 @@ export class CompanyDiscovery {
     async function searchTerm(term: string): Promise<void> {
       try {
         const response = await axios.get<GupyApiResponse>(GUPY_JOBS_URL, {
-          params: { search: term, limit: 50, offset: 0 },
+          params: { jobName: term, limit: 50, offset: 0 },
           timeout: 10000,
         })
 

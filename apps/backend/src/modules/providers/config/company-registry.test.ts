@@ -24,7 +24,7 @@ describe('CompanyRegistry', () => {
 
   it('should count companies per provider', async () => {
     const count = await registry.count('ashby')
-    expect(count).toBe(6)
+    expect(count).toBe(7)
   })
 
   it('should get company by id', async () => {

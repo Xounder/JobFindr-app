@@ -38,8 +38,8 @@ describe('getUniqueCompaniesFromCache', () => {
     const companies = getUniqueCompaniesFromCache()
 
     expect(companies).toEqual([
-      'Google', 'Microsoft', 'Amazon', 'Meta', 'Apple',
-      'Netflix', 'Stripe', 'Shopify', 'Spotify', 'Airbnb',
+      'Stripe', 'Airbnb', 'Coinbase', 'Dropbox',
+      'Netflix', 'Notion', 'Linear',
     ])
   })
 
@@ -77,8 +77,8 @@ describe('getUniqueCompaniesFromCache', () => {
     const companies = getUniqueCompaniesFromCache()
 
     expect(companies).toEqual([
-      'Google', 'Microsoft', 'Amazon', 'Meta', 'Apple',
-      'Netflix', 'Stripe', 'Shopify', 'Spotify', 'Airbnb',
+      'Stripe', 'Airbnb', 'Coinbase', 'Dropbox',
+      'Netflix', 'Notion', 'Linear',
     ])
   })
 

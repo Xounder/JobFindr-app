@@ -26,15 +26,12 @@ export const GREENHOUSE_COMPANIES: readonly GreenhouseCompany[] = [
   { name: 'Airbnb', boardToken: 'airbnb' },
   { name: 'Coinbase', boardToken: 'coinbase' },
   { name: 'Dropbox', boardToken: 'dropbox' },
-  { name: 'Square', boardToken: 'square' },
   { name: 'Twilio', boardToken: 'twilio' },
-  { name: 'Slack', boardToken: 'slack' },
   { name: 'Pinterest', boardToken: 'pinterest' },
   { name: 'Robinhood', boardToken: 'robinhood' },
-  { name: 'Palantir', boardToken: 'palantir' },
-  { name: 'GitHub', boardToken: 'github' },
-  { name: 'Shopify', boardToken: 'shopify' },
-  { name: 'Canva', boardToken: 'canva' },
+  { name: 'GitLab', boardToken: 'gitlab' },
+  { name: 'Reddit', boardToken: 'reddit' },
+  { name: 'Instacart', boardToken: 'instacart' },
 ] as const
 
 /**
@@ -52,8 +49,9 @@ export const ASHBY_COMPANIES: readonly AshbyCompany[] = [
   { name: 'Linear', board: 'linear' },
   { name: 'Loom', board: 'loom' },
   { name: 'Vercel', board: 'vercel' },
-  { name: 'Rippling', board: 'rippling' },
-  { name: 'Figma', board: 'figma' },
+  { name: 'Docker', board: 'docker' },
+  { name: 'Supabase', board: 'supabase' },
+  { name: 'Railway', board: 'railway' },
 ] as const
 
 /**
@@ -68,11 +66,7 @@ export type LeverCompany = {
 
 export const LEVER_COMPANIES: readonly LeverCompany[] = [
   { name: 'Netflix', slug: 'netflix' },
-  { name: 'Uber', slug: 'uber' },
-  { name: 'Asana', slug: 'asana' },
-  { name: 'Buffer', slug: 'buffer' },
-  { name: 'Walmart', slug: 'walmart' },
-  { name: 'TripActions', slug: 'tripactions' },
+  { name: 'AngelList', slug: 'angellist' },
 ] as const
 
 /**
