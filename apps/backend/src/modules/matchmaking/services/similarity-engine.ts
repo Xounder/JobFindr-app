@@ -2,15 +2,13 @@
  * Similarity engine for comparing skills.
  * TASK-043: Create Similarity Engine
  *
- * Implements text similarity scoring using:
- * - Jaccard similarity for direct skill matches
- * - Synonym-aware matching
- * - Keyword relevance scoring
+ * Measures job-skill coverage: what fraction of the job's required skills
+ * the user possesses (exact match, synonym, or keyword).
  */
 import { synonymDictionary } from './synonym-dictionary.ts'
 
 export type SimilarityResult = {
-  jaccardScore: number
+  coverageScore: number
   synonymScore: number
   keywordScore: number
   combinedScore: number
@@ -19,17 +17,8 @@ export type SimilarityResult = {
 }
 
 /**
- * Calculate Jaccard similarity between two sets of strings.
- */
-function jaccardSimilarity(setA: Set<string>, setB: Set<string>): number {
-  if (setA.size === 0 && setB.size === 0) return 0
-  const intersection = new Set([...setA].filter((x) => setB.has(x)))
-  const union = new Set([...setA, ...setB])
-  return intersection.size / union.size
-}
-
-/**
  * Calculate the similarity between user skills and job skills.
+ * All sub-scores are job-centric: they measure coverage of job skills.
  */
 export function calculateSimilarity(
   userSkills: string[],
@@ -38,35 +27,36 @@ export function calculateSimilarity(
   const userSet = new Set(userSkills.map((s) => s.toLowerCase().trim()))
   const jobSet = new Set(jobSkills.map((s) => s.toLowerCase().trim()))
 
-  // Jaccard similarity (direct matches)
-  const jaccardScore = jaccardSimilarity(userSet, jobSet)
+  // Exact-match coverage (fraction of job skills the user has directly)
+  const intersection = new Set([...userSet].filter((x) => jobSet.has(x)))
+  const coverageScore = jobSet.size > 0 ? intersection.size / jobSet.size : 0
 
-  // Synonym-aware matching
+  // Synonym-aware matching (job-centric)
   let synonymMatches = 0
-  for (const userSkill of userSet) {
-    for (const jobSkill of jobSet) {
-      if (synonymDictionary.areSynonyms(userSkill, jobSkill)) {
+  for (const jobSkill of jobSet) {
+    for (const userSkill of userSet) {
+      if (synonymDictionary.areSynonyms(jobSkill, userSkill)) {
         synonymMatches++
         break
       }
     }
   }
-  const synonymScore = userSet.size > 0 ? synonymMatches / userSet.size : 0
+  const synonymScore = jobSet.size > 0 ? synonymMatches / jobSet.size : 0
 
-  // Keyword relevance (partial word matches)
+  // Keyword relevance — partial word matches (job-centric)
   let keywordMatches = 0
-  for (const userSkill of userSet) {
-    const userWords = new Set(userSkill.split(/[\s.-]+/))
-    for (const jobSkill of jobSet) {
-      const jobWords = new Set(jobSkill.split(/[\s.-]+/))
-      const commonWords = [...userWords].filter((w) => jobWords.has(w) && w.length > 2)
+  for (const jobSkill of jobSet) {
+    const jobWords = new Set(jobSkill.split(/[\s.-]+/))
+    for (const userSkill of userSet) {
+      const userWords = new Set(userSkill.split(/[\s.-]+/))
+      const commonWords = [...jobWords].filter((w) => userWords.has(w) && w.length > 2)
       if (commonWords.length > 0) {
         keywordMatches++
         break
       }
     }
   }
-  const keywordScore = userSet.size > 0 ? keywordMatches / userSet.size : 0
+  const keywordScore = jobSet.size > 0 ? keywordMatches / jobSet.size : 0
 
   // Matched and missing skills (job-centric: iterate over job skills)
   const matchedSkills: string[] = []
@@ -91,10 +81,10 @@ export function calculateSimilarity(
 
   // Combined score (weighted average)
   const combinedScore =
-    jaccardScore * 0.5 + synonymScore * 0.3 + keywordScore * 0.2
+    coverageScore * 0.5 + synonymScore * 0.3 + keywordScore * 0.2
 
   return {
-    jaccardScore,
+    coverageScore,
     synonymScore,
     keywordScore,
     combinedScore: Math.round(combinedScore * 100) / 100,
