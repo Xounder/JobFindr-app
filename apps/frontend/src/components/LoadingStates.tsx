@@ -9,7 +9,7 @@ export function LoadingStates({ isLoading, message = "Searching for jobs…" }: 
   return (
     <div className="flex flex-col items-center justify-center py-16 text-gray-400" role="status">
       <svg
-        className="mb-3 h-8 w-8 animate-spin"
+        className="mb-3 h-8 w-8 animate-spin text-indigo-500"
         fill="none"
         viewBox="0 0 24 24"
       >
@@ -20,7 +20,7 @@ export function LoadingStates({ isLoading, message = "Searching for jobs…" }: 
           d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
         />
       </svg>
-      <p className="text-sm">{message}</p>
+      <p className="text-sm text-gray-500">{message}</p>
     </div>
   );
 }

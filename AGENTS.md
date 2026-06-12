@@ -50,6 +50,7 @@ packages/configs/ — skeleton only (empty src/)
 - `composite: true` → project references; must build before consuming
 - `moduleResolution: bundler`, `allowImportingTsExtensions`, `rewriteRelativeImportExtensions`
 - `baseUrl` is **deprecated in TS 6.0** — do not use it; `paths` resolves relative to tsconfig dir
+- `globalThis.KeyboardEvent` for `document.addEventListener` — React's `KeyboardEvent<T>` is incompatible with native DOM event listeners; use the global type for handlers passed to `document.addEventListener`
 
 ## Architecture constraints
 
@@ -127,13 +128,15 @@ steps:
 ## Test & CI status
 
 - **vitest** installed in all 3 packages (`frontend`, `backend`, `@jobfindr/utils`)
-- **474 tests** created and passing (utils: 15, frontend: 179, backend: 280)
+- **509 tests** created and passing (utils: 15, frontend: 214, backend: 280)
 - **No CI/CD** (no GitHub Actions workflows)
 - Tests co-located with the module (`*.test.ts` next to the tested file)
 
 ## Commit Message Conventions
 
 **See `.opencode/architecture/commit-pattern.md` for full commit pattern rules, types, scopes, and examples.**
+
+**Mandatory**: Before every commit, you MUST read `.opencode/architecture/commit-pattern.md` and follow the exact format. Never assume the format based on prior knowledge or other projects.**
 
 ## Architecture docs
 

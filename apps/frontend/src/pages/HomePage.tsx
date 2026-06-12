@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { SearchBar } from "@/components/SearchBar";
 import { SortToggle } from "@/components/SortToggle";
 import { FiltersPanel } from "@/components/FiltersPanel";
@@ -7,6 +7,7 @@ import { Pagination } from "@/components/Pagination";
 import { LoadingSkeleton } from "@/components/LoadingSkeleton";
 import { LoadingStates } from "@/components/LoadingStates";
 import { EmptyState } from "@/components/EmptyState";
+import { BackToTop } from "@/components/BackToTop";
 import { useJobSearch } from "@/hooks";
 import { useSearchStore } from "@/store/searchStore";
 import type { SearchParams } from "@/types";
@@ -39,6 +40,9 @@ export default function HomePage() {
     isDirty,
   } = useSearchStore();
 
+  // Track error dismissal
+  const [dismissedError, setDismissedError] = useState(false);
+
   // committedParams snapshots the store values to trigger actual search
   const [committedParams, setCommittedParams] = useState<SearchParams>(() => {
     return {
@@ -60,6 +64,13 @@ export default function HomePage() {
 
   // Auto-search on mount (committedParams already initialized from store)
   const { data, isLoading, isFetching, isError, error } = useJobSearch(committedParams);
+
+  // Re-show error banner on new errors
+  useEffect(() => {
+    if (isError) {
+      setDismissedError(false);
+    }
+  }, [isError]);
 
   // Commit store values to trigger a search
   const handleCommitSearch = useCallback(() => {
@@ -92,10 +103,12 @@ export default function HomePage() {
     [setQuery, handleCommitSearch],
   );
 
-  // Handle pagination — bypass dirty check, update committedParams directly
+  // Handle pagination — bypass dirty check, update committedParams directly, scroll to top
   const handlePageChange = useCallback((newPage: number) => {
     setPage(newPage);
     setCommittedParams((prev) => ({ ...prev, page: newPage }));
+    // Smooth scroll to top of results
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, [setPage]);
 
   // Handle sort — just update store, let Search button commit
@@ -140,16 +153,36 @@ export default function HomePage() {
     [data]
   );
 
+  // Derive a key for fade-in animation on results change
+  const resultsKey = useMemo(() => {
+    if (!data) return "loading";
+    return `${committedParams.q}-${committedParams.page}-${committedParams.sort}`;
+  }, [committedParams, data]);
+
   return (
     <div className="space-y-6">
       {/* Search Bar */}
       <SearchBar initialQuery={query} onSearch={handleSearch} isDirty={isDirty} />
 
-      {/* Error banner */}
-      {isError && (
+      {/* Error banner (dismissable) */}
+      {isError && !dismissedError && (
         <div className="rounded-lg border border-red-200 bg-red-50 p-4 text-sm text-red-700" role="alert">
-          <p className="font-medium">Search failed</p>
-          <p>{(error as Error)?.message ?? "An unexpected error occurred. Please try again."}</p>
+          <div className="flex items-start justify-between gap-2">
+            <div>
+              <p className="font-medium">Search failed</p>
+              <p>{(error as Error)?.message ?? "An unexpected error occurred. Please try again."}</p>
+            </div>
+            <button
+              type="button"
+              onClick={() => setDismissedError(true)}
+              className="shrink-0 rounded p-1 text-red-500 hover:bg-red-100 hover:text-red-700 transition-colors"
+              aria-label="Dismiss error"
+            >
+              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
         </div>
       )}
 
@@ -191,10 +224,9 @@ export default function HomePage() {
             </div>
           )}
 
-          {/* Results */}
+          {/* Results with fade-in animation */}
           {showResults && (
-            <div className="space-y-4">
-
+            <div key={resultsKey} className="animate-[fadeIn_0.3s_ease-in-out] space-y-4">
               <div className="space-y-4">
                 {data.jobs.map((job) => (
                   <JobCard key={job.id} job={job} />
@@ -211,6 +243,9 @@ export default function HomePage() {
           )}
         </div>
       </div>
+
+      {/* Back to top button */}
+      <BackToTop />
     </div>
   );
 }

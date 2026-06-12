@@ -1,5 +1,0 @@
-DONE: Full doc audit executed — analyzed 48 .md files across .opencode/, identified 5 findings (file duplication, intra-file duplication, triplicate chain descriptions, pipeline mode duplication). All 4 actionable findings implemented: command stubs consolidated into single agent-routing.md, STOP chain deduplicated across 3 skills, duplicate "Providers MUST NOT" merged in 08-provider-architecture.md, Direct Task Mode overview shortened in pipeline SKILL. opencode.jsonc verified — no changes needed.
-WRONG: None significant. Finding 5 (cross-file MUST NOT duplication) was intentional — user agreed.
-IMPROV: Present all findings at once with clear yes/no/modify per item rather than going one-by-one. Saves user time.
-LEARN: Architecture docs are well-structured — actual content duplication is minimal. 3-skills chain dedup pattern (centralize full description in first file, reference from others) is reusable for any multi-file template pattern.
-NEXT: Consider running doc-audit periodically (every 3-4 sessions) to prevent doc drift. Integrate the agent-routing.md reference into any future agent onboarding documentation.

@@ -47,6 +47,10 @@ Components must:
 
 ---
 
+# Tailwind 4 Animations
+
+Custom animations (`animate-[name_...]`) require `@keyframes` registered in `index.css`. Tailwind 4 does not auto-create keyframes from arbitrary values — you must define them explicitly.
+
 # Performance
 
 See:

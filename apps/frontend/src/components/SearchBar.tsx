@@ -143,6 +143,21 @@ export function SearchBar({
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // Global keyboard shortcut: "/" focuses the search input
+  useEffect(() => {
+    function handleGlobalKeyDown(e: globalThis.KeyboardEvent) {
+      if (e.key === "/" && document.activeElement !== inputRef.current) {
+        const tag = document.activeElement?.tagName;
+        if (tag !== "INPUT" && tag !== "TEXTAREA") {
+          e.preventDefault();
+          inputRef.current?.focus();
+        }
+      }
+    }
+    document.addEventListener("keydown", handleGlobalKeyDown);
+    return () => document.removeEventListener("keydown", handleGlobalKeyDown);
+  }, []);
+
   return (
     <form onSubmit={handleSubmit} className="relative flex w-full items-center gap-2">
       <div ref={wrapperRef} className="relative flex-1">
@@ -168,7 +183,7 @@ export function SearchBar({
           onFocus={handleFocus}
           onBlur={handleBlur}
           placeholder={placeholder}
-          className={`w-full rounded-lg border py-2.5 pl-10 pr-10 text-sm shadow-sm transition-colors placeholder:text-gray-400 focus:outline-none focus:ring-1 ${
+          className={`w-full rounded-lg border py-2.5 pl-10 pr-20 text-sm shadow-sm transition-colors placeholder:text-gray-400 focus:outline-none focus:ring-1 ${
             hasValue
               ? "border-indigo-400 ring-1 ring-indigo-400 focus:border-indigo-500 focus:ring-indigo-500"
               : "border-gray-300 focus:border-indigo-500 focus:ring-indigo-500"
@@ -179,6 +194,12 @@ export function SearchBar({
           aria-autocomplete="list"
           aria-controls="search-suggestions"
         />
+        {/* Keyboard shortcut hint */}
+        {!hasValue && (
+          <kbd className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 rounded border border-gray-200 bg-gray-50 px-1.5 py-0.5 text-[10px] font-medium text-gray-400">
+            /
+          </kbd>
+        )}
 
         {/* Clear button */}
         {hasValue && (

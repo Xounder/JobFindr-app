@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { memo, useCallback } from "react";
 
 interface PaginationProps {
   currentPage: number;
@@ -7,7 +7,7 @@ interface PaginationProps {
   onPageChange: (page: number) => void;
 }
 
-export function Pagination({ currentPage, totalPages, total, onPageChange }: PaginationProps) {
+function PaginationComponent({ currentPage, totalPages, total, onPageChange }: PaginationProps) {
   const handlePrev = useCallback(() => {
     if (currentPage > 1) onPageChange(currentPage - 1);
   }, [currentPage, onPageChange]);
@@ -38,7 +38,7 @@ export function Pagination({ currentPage, totalPages, total, onPageChange }: Pag
           type="button"
           onClick={handlePrev}
           disabled={currentPage <= 1}
-          className="rounded-md px-3 py-1.5 text-sm text-gray-600 transition-colors hover:bg-gray-100 disabled:cursor-not-allowed disabled:text-gray-400"
+          className="rounded-lg px-3 py-1.5 text-sm text-gray-600 transition-all hover:bg-gray-100 disabled:cursor-not-allowed disabled:text-gray-400"
         >
           Previous
         </button>
@@ -48,9 +48,9 @@ export function Pagination({ currentPage, totalPages, total, onPageChange }: Pag
             key={page}
             type="button"
             onClick={() => onPageChange(page)}
-            className={`rounded-md px-3 py-1.5 text-sm transition-colors ${
+            className={`rounded-lg px-3 py-1.5 text-sm transition-all ${
               page === currentPage
-                ? "bg-indigo-600 text-white"
+                ? "bg-indigo-600 text-white shadow-sm"
                 : "text-gray-600 hover:bg-gray-100"
             }`}
           >
@@ -62,7 +62,7 @@ export function Pagination({ currentPage, totalPages, total, onPageChange }: Pag
           type="button"
           onClick={handleNext}
           disabled={currentPage >= totalPages}
-          className="rounded-md px-3 py-1.5 text-sm text-gray-600 transition-colors hover:bg-gray-100 disabled:cursor-not-allowed disabled:text-gray-400"
+          className="rounded-lg px-3 py-1.5 text-sm text-gray-600 transition-all hover:bg-gray-100 disabled:cursor-not-allowed disabled:text-gray-400"
         >
           Next
         </button>
@@ -70,3 +70,5 @@ export function Pagination({ currentPage, totalPages, total, onPageChange }: Pag
     </nav>
   );
 }
+
+export const Pagination = memo(PaginationComponent);

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { memo, useState } from "react";
 import { MatchSummary } from "./MatchSummary";
 import { ExpandableDescription } from "./ExpandableDescription";
 import { ApplyCta } from "./ApplyCta";
@@ -12,7 +12,7 @@ interface JobCardProps {
   job: Job;
 }
 
-export function JobCard({ job }: JobCardProps) {
+function JobCardComponent({ job }: JobCardProps) {
   const [showTrustModal, setShowTrustModal] = useState(false);
   const [showMatchModal, setShowMatchModal] = useState(false);
 
@@ -22,18 +22,19 @@ export function JobCard({ job }: JobCardProps) {
     userSkills.some((us) => us.toLowerCase() === skill.toLowerCase());
 
   return (
-    <article className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm transition-shadow hover:shadow-md">
+    <article className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm transition-all hover:border-indigo-200 hover:shadow-md">
       {/* Header */}
-      <div className="mb-2 flex flex-wrap items-start justify-between gap-2">
+      <div className="mb-3 flex flex-wrap items-start justify-between gap-3">
         <div className="min-w-0 flex-1">
-          <h3 className="text-base font-semibold text-gray-900">{job.title}</h3>
-          <p className="text-sm text-gray-600">{job.company}</p>
+          <h3 className="text-base font-semibold text-gray-900 leading-snug">{job.title}</h3>
+          <p className="mt-0.5 text-sm text-gray-600">{job.company}</p>
         </div>
         <div className="flex shrink-0 items-center gap-2">
           {job.trustScore !== null && (
             <button
               type="button"
               onClick={() => setShowTrustModal(true)}
+              title={`Trust score: ${job.trustScore}/10`}
               className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium transition-shadow hover:ring-2 focus:outline-none focus:ring-2 ${
                 job.trustScore >= 9
                   ? "bg-green-100 text-green-800 hover:ring-green-400 focus:ring-green-400"
@@ -56,6 +57,7 @@ export function JobCard({ job }: JobCardProps) {
             <button
               type="button"
               onClick={() => setShowMatchModal(true)}
+              title={`Match score: ${job.matchScore}%`}
               className={`inline-flex items-center rounded-full bg-indigo-100 px-2 py-0.5 text-xs font-medium text-indigo-800 transition-shadow hover:ring-2 hover:ring-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-400 ${hasBreakdown ? "cursor-pointer" : ""}`}
               aria-label={`Match score: ${job.matchScore}%. Click for details.`}
             >
@@ -88,10 +90,10 @@ export function JobCard({ job }: JobCardProps) {
       )}
 
       {/* Meta */}
-      <div className="mb-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-gray-500">
+      <div className="mb-3 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-gray-500">
         {job.location && (
           <span className="inline-flex items-center gap-1">
-            <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <svg className="h-3.5 w-3.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
             </svg>
@@ -99,15 +101,30 @@ export function JobCard({ job }: JobCardProps) {
           </span>
         )}
         {job.seniority && (
-          <span className="capitalize">{job.seniority}</span>
+          <span className="inline-flex items-center gap-1 capitalize">
+            <svg className="h-3.5 w-3.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+            {job.seniority}
+          </span>
         )}
         {job.salary && (
           <span className="font-medium text-gray-700">{formatSalary(job.salary)}</span>
         )}
         {job.postedAt && (
-          <span>{formatDate(job.postedAt)}</span>
+          <span className="inline-flex items-center gap-1">
+            <svg className="h-3.5 w-3.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            {formatDate(job.postedAt)}
+          </span>
         )}
-        <span className="text-gray-400">{job.source}</span>
+        <span className="inline-flex items-center gap-1 text-gray-400">
+          <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          {job.source}
+        </span>
       </div>
 
       {/* Skills */}
@@ -116,7 +133,7 @@ export function JobCard({ job }: JobCardProps) {
           {job.skills.map((skill) => (
             <span
               key={skill}
-              className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs ${
+              className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${
                 isUserSkill(skill)
                   ? "bg-indigo-100 text-indigo-800"
                   : "bg-gray-100 text-gray-700"
@@ -139,3 +156,5 @@ export function JobCard({ job }: JobCardProps) {
     </article>
   );
 }
+
+export const JobCard = memo(JobCardComponent);

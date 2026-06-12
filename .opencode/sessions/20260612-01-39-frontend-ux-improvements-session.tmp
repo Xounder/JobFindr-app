@@ -1,0 +1,5 @@
+DONE: Frontend UX/layout/performance overhaul — gradient header, refined JobCard/tooltips, / keyboard shortcut, fade-in animations, dismissible error banner, BackToTop, mobile filter toggle, scroll-to-top, React.memo on 5 components, refined skeletons/empty/pagination. Lint/build OK, 214/214 tests pass, QA approved.
+WRONG: Senior Frontend hit max steps — left 2 bugs (duplicate useEffect, undefined ref) + 1 TS error (KeyboardEvent type). Caught and fixed before validation.
+IMPROV: Verify agent output before running validation. Tailwind 4 needs explicit @keyframes for animations. Use globalThis.KeyboardEvent for document.addEventListener to avoid React type conflicts.
+LEARN: animate-[fadeIn_...] in Tailwind 4 doesn't auto-create keyframes. React KeyboardEvent<T> and native DOM KeyboardEvent are incompatible types. Agent max-step bugs best fixed by orchestrator before validation.
+NEXT: Consider dark mode, visual regression tests, or more BR-specific job providers.

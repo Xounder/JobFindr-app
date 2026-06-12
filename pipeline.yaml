@@ -1,37 +1,36 @@
 pipeline:
   name: JobFindr Pipeline
-  started_at: "2026-06-12T00:37:00Z"
-  updated_at: "2026-06-12T03:52:00Z"
+  started_at: "2026-06-12T12:00:00Z"
+  updated_at: "2026-06-12T12:40:00Z"
   current_step: "completed"
   steps:
     product-manager:
-      status: completed
-      notes: "Created 3 epics for Adzuna + TheirStack implementation in br-providers context"
-      updated_at: "2026-06-12T00:37:00Z"
+      status: skipped
+      notes: "Direct Task Mode — frontend-only UX/layout/performance improvements"
+      updated_at: "2026-06-12T12:00:00Z"
       problems: []
     tech-lead:
-      status: completed
-      notes: "Created 3 tasks in br-providers/tasks/ — TASK-01 (Adzuna), TASK-02 (TheirStack), TASK-03 (Registration)"
-      updated_at: "2026-06-12T00:45:00Z"
+      status: skipped
+      notes: "Direct Task Mode"
+      updated_at: "2026-06-12T12:00:00Z"
       problems: []
     senior-frontend:
-      status: skipped
-      notes: "No frontend tasks — all tasks are backend-only"
-      updated_at: "2026-06-12T00:45:00Z"
+      status: completed
+      notes: "Implemented layout/UX improvements: gradient header, card enhancements, fade-in animations, dismissible error banner, BackToTop button, mobile filter toggle, keyboard shortcut '/', global focus listener, scroll-to-top on page change, React.memo optimizations, refined skeletons/empty state/pagination. Validation: lint OK, build OK, 214/214 tests pass."
+      updated_at: "2026-06-12T12:28:00Z"
       problems: []
     senior-backend:
-      status: completed
-      notes: "Adzuna and TheirStack providers implemented, tested (459/459 tests passing), and registered. 7 total providers."
-      updated_at: "2026-06-12T03:52:00Z"
-      problems: []
-
-    qa-frontend:
       status: skipped
-      notes: "No frontend changes in this pipeline"
-      updated_at: "2026-06-12T03:52:00Z"
+      notes: "Frontend-only task"
+      updated_at: "2026-06-12T12:00:00Z"
+      problems: []
+    qa-frontend:
+      status: completed
+      notes: "APPROVED. Code reviewed: no bugs, no architectural violations, branding compliant (indigo palette, design tokens), no unused imports/vars, React.memo correct. Lint/build/test all pass (214/214). Backend confirmed running."
+      updated_at: "2026-06-12T12:40:00Z"
       problems: []
     qa-backend:
-      status: completed
-      notes: "Approved. 459/459 tests passed, lint/build clean. Adzuna (16 tests) and TheirStack (21 tests) implemented correctly."
-      updated_at: "2026-06-12T03:55:00Z"
+      status: skipped
+      notes: "Frontend-only task"
+      updated_at: "2026-06-12T12:00:00Z"
       problems: []

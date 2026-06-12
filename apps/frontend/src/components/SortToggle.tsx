@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { memo, useCallback } from "react";
 
 interface SortToggleProps {
   value: "trust" | "match";
@@ -18,7 +18,7 @@ const OPTIONS = [
   },
 ] as const;
 
-export function SortToggle({ value, onChange }: SortToggleProps) {
+function SortToggleComponent({ value, onChange }: SortToggleProps) {
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent<HTMLDivElement>) => {
       const currentIndex = OPTIONS.findIndex((opt) => opt.value === value);
@@ -55,7 +55,7 @@ export function SortToggle({ value, onChange }: SortToggleProps) {
               title={option.tooltip}
               type="button"
               onClick={() => onChange(option.value)}
-              className={`rounded-md px-3 py-1.5 text-xs font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-1 ${
+              className={`rounded-md px-3 py-1.5 text-xs font-medium transition-all focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-1 ${
                 isActive
                   ? "bg-indigo-600 text-white shadow-sm"
                   : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
@@ -69,3 +69,5 @@ export function SortToggle({ value, onChange }: SortToggleProps) {
     </div>
   );
 }
+
+export const SortToggle = memo(SortToggleComponent);
