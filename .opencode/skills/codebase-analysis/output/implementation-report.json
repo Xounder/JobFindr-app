@@ -1,0 +1,7024 @@
+{
+  "generatedAt": "2026-06-12T03:16:15.976Z",
+  "mode": "implementation",
+  "parser": "regex",
+  "summary": {
+    "totalFiles": 139,
+    "totalTsFiles": 111,
+    "totalTsxFiles": 28,
+    "totalImports": 321,
+    "totalExports": 290,
+    "totalFunctions": 201,
+    "totalClasses": 31,
+    "totalInterfaces": 38,
+    "totalTypes": 113,
+    "totalArrowFunctions": 4,
+    "totalReactComponents": 4,
+    "totalHookOrUtilities": 0
+  },
+  "files": {
+    "apps/frontend/src/App.tsx": {
+      "imports": [],
+      "exports": [],
+      "declarations": []
+    },
+    "apps/frontend/src/components/ApplyCta.tsx": {
+      "imports": [],
+      "exports": [
+        {
+          "type": "named",
+          "name": "ApplyCta"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "ApplyCta",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "interface",
+          "name": "ApplyCtaProps",
+          "exported": false
+        }
+      ]
+    },
+    "apps/frontend/src/components/AutocompleteInput.tsx": {
+      "imports": [
+        {
+          "source": "react",
+          "default": false,
+          "named": [
+            "useState",
+            "useCallback",
+            "useRef",
+            "useEffect",
+            "type ChangeEvent",
+            "type KeyboardEvent"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "AutocompleteInput"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "AutocompleteInput",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "handleClickOutside",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "interface",
+          "name": "AutocompleteInputProps",
+          "exported": false
+        }
+      ]
+    },
+    "apps/frontend/src/components/CompanyFilters.tsx": {
+      "imports": [
+        {
+          "source": "react",
+          "default": false,
+          "named": [
+            "useMemo"
+          ]
+        },
+        {
+          "source": "@/hooks",
+          "default": false,
+          "named": [
+            "useSuggestions"
+          ]
+        },
+        {
+          "source": "./AutocompleteInput",
+          "default": false,
+          "named": [
+            "AutocompleteInput"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "CompanyFilters"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "CompanyFilters",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "interface",
+          "name": "CompanyFiltersProps",
+          "exported": false
+        }
+      ]
+    },
+    "apps/frontend/src/components/CountryFilter.tsx": {
+      "imports": [
+        {
+          "source": "react",
+          "default": false,
+          "named": [
+            "useState",
+            "useCallback",
+            "useMemo"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "CountryFilter"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "CountryFilter",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "interface",
+          "name": "CountryFilterProps",
+          "exported": false
+        }
+      ]
+    },
+    "apps/frontend/src/components/EmptyState.tsx": {
+      "imports": [],
+      "exports": [
+        {
+          "type": "named",
+          "name": "EmptyState"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "EmptyState",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "interface",
+          "name": "EmptyStateProps",
+          "exported": false
+        }
+      ]
+    },
+    "apps/frontend/src/components/ExpandableDescription.tsx": {
+      "imports": [
+        {
+          "source": "react",
+          "default": false,
+          "named": [
+            "useState",
+            "useCallback"
+          ]
+        },
+        {
+          "source": "./Modal",
+          "default": false,
+          "named": [
+            "Modal"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "ExpandableDescription"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "ExpandableDescription",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "interface",
+          "name": "ExpandableDescriptionProps",
+          "exported": false
+        }
+      ]
+    },
+    "apps/frontend/src/components/FiltersPanel.tsx": {
+      "imports": [
+        {
+          "source": "./SenioritySelector",
+          "default": false,
+          "named": [
+            "SenioritySelector"
+          ]
+        },
+        {
+          "source": "./RemoteModeFilter",
+          "default": false,
+          "named": [
+            "RemoteModeFilter"
+          ]
+        },
+        {
+          "source": "./CountryFilter",
+          "default": false,
+          "named": [
+            "CountryFilter"
+          ]
+        },
+        {
+          "source": "./CompanyFilters",
+          "default": false,
+          "named": [
+            "CompanyFilters"
+          ]
+        },
+        {
+          "source": "./SkillsTagsInput",
+          "default": false,
+          "named": [
+            "SkillsTagsInput"
+          ]
+        },
+        {
+          "source": "./TrustFilters",
+          "default": false,
+          "named": [
+            "TrustFilters"
+          ]
+        },
+        {
+          "source": "@/store/searchStore",
+          "default": false,
+          "named": [
+            "useSearchStore"
+          ]
+        },
+        {
+          "source": "@/contexts/SkillsModalContext",
+          "default": false,
+          "named": [
+            "useSkillsModal"
+          ]
+        },
+        {
+          "source": "@/types",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "FiltersState"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "FiltersPanel"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "FiltersPanel",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "interface",
+          "name": "FiltersPanelProps",
+          "exported": false
+        }
+      ]
+    },
+    "apps/frontend/src/components/JobCard.tsx": {
+      "imports": [
+        {
+          "source": "react",
+          "default": false,
+          "named": [
+            "useState"
+          ]
+        },
+        {
+          "source": "./MatchSummary",
+          "default": false,
+          "named": [
+            "MatchSummary"
+          ]
+        },
+        {
+          "source": "./ExpandableDescription",
+          "default": false,
+          "named": [
+            "ExpandableDescription"
+          ]
+        },
+        {
+          "source": "./ApplyCta",
+          "default": false,
+          "named": [
+            "ApplyCta"
+          ]
+        },
+        {
+          "source": "./TrustExplanationModal",
+          "default": false,
+          "named": [
+            "TrustExplanationModal"
+          ]
+        },
+        {
+          "source": "./MatchExplanationModal",
+          "default": false,
+          "named": [
+            "MatchExplanationModal"
+          ]
+        },
+        {
+          "source": "@/store/searchStore",
+          "default": false,
+          "named": [
+            "useSearchStore"
+          ]
+        },
+        {
+          "source": "@/utils",
+          "default": false,
+          "named": [
+            "formatDate",
+            "formatSalary",
+            "trustLabel"
+          ]
+        },
+        {
+          "source": "@/types",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "Job"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "JobCard"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "JobCard",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "arrow-function",
+          "name": "isUserSkill",
+          "exported": false,
+          "async": false,
+          "reactComponent": true
+        },
+        {
+          "kind": "interface",
+          "name": "JobCardProps",
+          "exported": false
+        }
+      ]
+    },
+    "apps/frontend/src/components/Layout.tsx": {
+      "imports": [
+        {
+          "source": "react",
+          "default": false,
+          "named": [
+            "useCallback"
+          ]
+        },
+        {
+          "source": "react",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "ReactNode"
+          ]
+        },
+        {
+          "source": "@/store/searchStore",
+          "default": false,
+          "named": [
+            "useSearchStore"
+          ]
+        },
+        {
+          "source": "./UserSkillsModal",
+          "default": false,
+          "named": [
+            "UserSkillsModal"
+          ]
+        },
+        {
+          "source": "@/contexts/SkillsModalContext",
+          "default": false,
+          "named": [
+            "useSkillsModal"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "Layout"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "Layout",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "interface",
+          "name": "LayoutProps",
+          "exported": false
+        }
+      ]
+    },
+    "apps/frontend/src/components/LoadingSkeleton.tsx": {
+      "imports": [],
+      "exports": [
+        {
+          "type": "named",
+          "name": "LoadingSkeleton"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "SkeletonCard",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "LoadingSkeleton",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "interface",
+          "name": "LoadingSkeletonProps",
+          "exported": false
+        }
+      ]
+    },
+    "apps/frontend/src/components/LoadingStates.tsx": {
+      "imports": [],
+      "exports": [
+        {
+          "type": "named",
+          "name": "LoadingStates"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "LoadingStates",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "interface",
+          "name": "LoadingStatesProps",
+          "exported": false
+        }
+      ]
+    },
+    "apps/frontend/src/components/MatchExplanationModal.tsx": {
+      "imports": [
+        {
+          "source": "react",
+          "default": false,
+          "named": [
+            "useMemo"
+          ]
+        },
+        {
+          "source": "./Modal",
+          "default": false,
+          "named": [
+            "Modal"
+          ]
+        },
+        {
+          "source": "@/utils/explain",
+          "default": false,
+          "named": [
+            "buildMatchExplanation"
+          ]
+        },
+        {
+          "source": "@/types",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "MatchBreakdown"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "MatchExplanationModal"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "seniorityBadgeColor",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "seniorityBadgeLabel",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "workTypeBadgeColor",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "workTypeBadgeLabel",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "MatchExplanationModal",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "interface",
+          "name": "MatchExplanationModalProps",
+          "exported": false
+        }
+      ]
+    },
+    "apps/frontend/src/components/MatchSummary.tsx": {
+      "imports": [],
+      "exports": [
+        {
+          "type": "named",
+          "name": "MatchSummary"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "MatchSummary",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "interface",
+          "name": "MatchSummaryProps",
+          "exported": false
+        }
+      ]
+    },
+    "apps/frontend/src/components/Modal.tsx": {
+      "imports": [
+        {
+          "source": "react",
+          "default": false,
+          "named": [
+            "useCallback",
+            "useEffect",
+            "useRef",
+            "type ReactNode"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "Modal"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "Modal",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "handleEscape",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "handleTab",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "interface",
+          "name": "ModalProps",
+          "exported": false
+        }
+      ]
+    },
+    "apps/frontend/src/components/Pagination.tsx": {
+      "imports": [
+        {
+          "source": "react",
+          "default": false,
+          "named": [
+            "useCallback"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "Pagination"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "Pagination",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "interface",
+          "name": "PaginationProps",
+          "exported": false
+        }
+      ]
+    },
+    "apps/frontend/src/components/RemoteModeFilter.tsx": {
+      "imports": [
+        {
+          "source": "react",
+          "default": false,
+          "named": [
+            "useCallback"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "RemoteModeFilter"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "RemoteModeFilter",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "interface",
+          "name": "RemoteModeFilterProps",
+          "exported": false
+        }
+      ]
+    },
+    "apps/frontend/src/components/SearchBar.tsx": {
+      "imports": [
+        {
+          "source": "react",
+          "default": false,
+          "named": [
+            "useState",
+            "useCallback",
+            "useRef",
+            "useEffect",
+            "useMemo",
+            "type ChangeEvent",
+            "type FormEvent",
+            "type KeyboardEvent"
+          ]
+        },
+        {
+          "source": "@/hooks",
+          "default": false,
+          "named": [
+            "useSuggestions"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "SearchBar"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "SearchBar",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "handleClickOutside",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "interface",
+          "name": "SearchBarProps",
+          "exported": false
+        }
+      ]
+    },
+    "apps/frontend/src/components/SenioritySelector.tsx": {
+      "imports": [
+        {
+          "source": "react",
+          "default": false,
+          "named": [
+            "useCallback"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "SenioritySelector"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "SenioritySelector",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "interface",
+          "name": "SenioritySelectorProps",
+          "exported": false
+        }
+      ]
+    },
+    "apps/frontend/src/components/SkillsTagsInput.tsx": {
+      "imports": [
+        {
+          "source": "@/hooks",
+          "default": false,
+          "named": [
+            "useSuggestions"
+          ]
+        },
+        {
+          "source": "./AutocompleteInput",
+          "default": false,
+          "named": [
+            "AutocompleteInput"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "SkillsTagsInput"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "SkillsTagsInput",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "interface",
+          "name": "SkillsTagsInputProps",
+          "exported": false
+        }
+      ]
+    },
+    "apps/frontend/src/components/SortToggle.tsx": {
+      "imports": [
+        {
+          "source": "react",
+          "default": false,
+          "named": [
+            "useCallback"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "SortToggle"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "SortToggle",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "interface",
+          "name": "SortToggleProps",
+          "exported": false
+        }
+      ]
+    },
+    "apps/frontend/src/components/TrustExplanationModal.tsx": {
+      "imports": [
+        {
+          "source": "react",
+          "default": false,
+          "named": [
+            "useMemo"
+          ]
+        },
+        {
+          "source": "./Modal",
+          "default": false,
+          "named": [
+            "Modal"
+          ]
+        },
+        {
+          "source": "@/utils/explain",
+          "default": false,
+          "named": [
+            "buildTrustExplanation"
+          ]
+        },
+        {
+          "source": "@/types",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "TrustBreakdown"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "TrustExplanationModal"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "trustScoreColor",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "trustScoreBg",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "TrustExplanationModal",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "interface",
+          "name": "TrustExplanationModalProps",
+          "exported": false
+        }
+      ]
+    },
+    "apps/frontend/src/components/TrustFilters.tsx": {
+      "imports": [
+        {
+          "source": "react",
+          "default": false,
+          "named": [
+            "useCallback"
+          ]
+        },
+        {
+          "source": "@/utils",
+          "default": false,
+          "named": [
+            "trustLabel"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "TrustFilters"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "TrustFilters",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "interface",
+          "name": "TrustFiltersProps",
+          "exported": false
+        }
+      ]
+    },
+    "apps/frontend/src/components/UserSkillsInput.tsx": {
+      "imports": [
+        {
+          "source": "react",
+          "default": false,
+          "named": [
+            "useCallback"
+          ]
+        },
+        {
+          "source": "./AutocompleteInput",
+          "default": false,
+          "named": [
+            "AutocompleteInput"
+          ]
+        },
+        {
+          "source": "@/hooks",
+          "default": false,
+          "named": [
+            "useSuggestions"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "UserSkillsInput"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "UserSkillsInput",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "interface",
+          "name": "UserSkillsInputProps",
+          "exported": false
+        }
+      ]
+    },
+    "apps/frontend/src/components/UserSkillsModal.tsx": {
+      "imports": [
+        {
+          "source": "react",
+          "default": false,
+          "named": [
+            "useCallback",
+            "useEffect",
+            "useRef",
+            "useState",
+            "type ChangeEvent"
+          ]
+        },
+        {
+          "source": "./AutocompleteInput",
+          "default": false,
+          "named": [
+            "AutocompleteInput"
+          ]
+        },
+        {
+          "source": "@/hooks",
+          "default": false,
+          "named": [
+            "useSuggestions"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "UserSkillsModal"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "UserSkillsModal",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "handleEscape",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "interface",
+          "name": "UserSkillsModalProps",
+          "exported": false
+        }
+      ]
+    },
+    "apps/frontend/src/contexts/SkillsModalContext.tsx": {
+      "imports": [
+        {
+          "source": "react",
+          "default": false,
+          "named": [
+            "createContext",
+            "useContext",
+            "useState",
+            "type ReactNode"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "SkillsModalProvider"
+        },
+        {
+          "type": "named",
+          "name": "useSkillsModal"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "SkillsModalProvider",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "useSkillsModal",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "arrow-function",
+          "name": "openSkillsModal",
+          "exported": false,
+          "async": false,
+          "reactComponent": true
+        },
+        {
+          "kind": "arrow-function",
+          "name": "closeSkillsModal",
+          "exported": false,
+          "async": false,
+          "reactComponent": true
+        },
+        {
+          "kind": "interface",
+          "name": "SkillsModalContextValue",
+          "exported": false
+        }
+      ]
+    },
+    "apps/frontend/src/hooks/index.ts": {
+      "imports": [],
+      "exports": [
+        {
+          "type": "named",
+          "name": "useDebounce"
+        },
+        {
+          "type": "named",
+          "name": "useJobSearch"
+        },
+        {
+          "type": "named",
+          "name": "useSuggestions"
+        }
+      ],
+      "declarations": []
+    },
+    "apps/frontend/src/hooks/useDebounce.ts": {
+      "imports": [
+        {
+          "source": "react",
+          "default": false,
+          "named": [
+            "useEffect",
+            "useState"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "useDebounce"
+        }
+      ],
+      "declarations": []
+    },
+    "apps/frontend/src/hooks/useJobSearch.ts": {
+      "imports": [
+        {
+          "source": "@tanstack/react-query",
+          "default": false,
+          "named": [
+            "useQuery"
+          ]
+        },
+        {
+          "source": "@/services/api",
+          "default": false,
+          "named": [
+            "searchJobs"
+          ]
+        },
+        {
+          "source": "@/types",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "SearchParams",
+            "SearchResponse"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "useJobSearch"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "useJobSearch",
+          "exported": false,
+          "async": false
+        }
+      ]
+    },
+    "apps/frontend/src/hooks/useSuggestions.ts": {
+      "imports": [
+        {
+          "source": "@tanstack/react-query",
+          "default": false,
+          "named": [
+            "useQuery"
+          ]
+        },
+        {
+          "source": "@/services/api",
+          "default": false,
+          "named": [
+            "fetchSuggestions"
+          ]
+        },
+        {
+          "source": "@/services/api",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "SuggestionsResponse"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "useSuggestions"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "useSuggestions",
+          "exported": false,
+          "async": false
+        }
+      ]
+    },
+    "apps/frontend/src/main.tsx": {
+      "imports": [
+        {
+          "source": "react",
+          "default": false,
+          "named": [
+            "StrictMode",
+            "lazy",
+            "Suspense"
+          ]
+        },
+        {
+          "source": "react-dom/client",
+          "default": false,
+          "named": [
+            "createRoot"
+          ]
+        },
+        {
+          "source": "react-router-dom",
+          "default": false,
+          "named": [
+            "BrowserRouter",
+            "Routes",
+            "Route"
+          ]
+        },
+        {
+          "source": "@tanstack/react-query",
+          "default": false,
+          "named": [
+            "QueryClient",
+            "QueryClientProvider"
+          ]
+        },
+        {
+          "source": "@/components/Layout",
+          "default": false,
+          "named": [
+            "Layout"
+          ]
+        },
+        {
+          "source": "@/contexts/SkillsModalContext",
+          "default": false,
+          "named": [
+            "SkillsModalProvider"
+          ]
+        },
+        {
+          "source": "./index.css",
+          "default": false,
+          "named": []
+        }
+      ],
+      "exports": [],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "App",
+          "exported": false,
+          "async": false
+        }
+      ]
+    },
+    "apps/frontend/src/pages/HomePage.tsx": {
+      "imports": [
+        {
+          "source": "react",
+          "default": false,
+          "named": [
+            "useCallback",
+            "useMemo",
+            "useState"
+          ]
+        },
+        {
+          "source": "@/components/SearchBar",
+          "default": false,
+          "named": [
+            "SearchBar"
+          ]
+        },
+        {
+          "source": "@/components/SortToggle",
+          "default": false,
+          "named": [
+            "SortToggle"
+          ]
+        },
+        {
+          "source": "@/components/FiltersPanel",
+          "default": false,
+          "named": [
+            "FiltersPanel"
+          ]
+        },
+        {
+          "source": "@/components/JobCard",
+          "default": false,
+          "named": [
+            "JobCard"
+          ]
+        },
+        {
+          "source": "@/components/Pagination",
+          "default": false,
+          "named": [
+            "Pagination"
+          ]
+        },
+        {
+          "source": "@/components/LoadingSkeleton",
+          "default": false,
+          "named": [
+            "LoadingSkeleton"
+          ]
+        },
+        {
+          "source": "@/components/LoadingStates",
+          "default": false,
+          "named": [
+            "LoadingStates"
+          ]
+        },
+        {
+          "source": "@/components/EmptyState",
+          "default": false,
+          "named": [
+            "EmptyState"
+          ]
+        },
+        {
+          "source": "@/hooks",
+          "default": false,
+          "named": [
+            "useJobSearch"
+          ]
+        },
+        {
+          "source": "@/store/searchStore",
+          "default": false,
+          "named": [
+            "useSearchStore"
+          ]
+        },
+        {
+          "source": "@/types",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "SearchParams"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "default",
+          "name": "HomePage"
+        }
+      ],
+      "declarations": []
+    },
+    "apps/frontend/src/services/api.ts": {
+      "imports": [
+        {
+          "source": "@/types",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "SearchParams",
+            "SearchResponse"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "searchJobs"
+        },
+        {
+          "type": "named",
+          "name": "SuggestionsResponse"
+        },
+        {
+          "type": "named",
+          "name": "fetchSuggestions"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "searchJobs",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "fetchSuggestions",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "interface",
+          "name": "SuggestionsResponse",
+          "exported": false
+        }
+      ]
+    },
+    "apps/frontend/src/store/searchStore.ts": {
+      "imports": [
+        {
+          "source": "zustand",
+          "default": false,
+          "named": [
+            "create"
+          ]
+        },
+        {
+          "source": "zustand/middleware",
+          "default": false,
+          "named": [
+            "persist"
+          ]
+        },
+        {
+          "source": "@/types",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "FiltersState"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "useSearchStore"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "interface",
+          "name": "SearchStore",
+          "exported": false,
+          "extends": [
+            "FiltersState"
+          ]
+        }
+      ]
+    },
+    "apps/frontend/src/test-setup.ts": {
+      "imports": [
+        {
+          "source": "@testing-library/jest-dom/vitest",
+          "default": false,
+          "named": []
+        }
+      ],
+      "exports": [],
+      "declarations": []
+    },
+    "apps/frontend/src/types/index.ts": {
+      "imports": [],
+      "exports": [
+        {
+          "type": "named",
+          "name": "SalaryInfo"
+        },
+        {
+          "type": "named",
+          "name": "MatchBreakdown"
+        },
+        {
+          "type": "named",
+          "name": "TrustBreakdown"
+        },
+        {
+          "type": "named",
+          "name": "Job"
+        },
+        {
+          "type": "named",
+          "name": "SearchParams"
+        },
+        {
+          "type": "named",
+          "name": "SearchResponse"
+        },
+        {
+          "type": "named",
+          "name": "ApiError"
+        },
+        {
+          "type": "named",
+          "name": "FiltersState"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "interface",
+          "name": "MatchBreakdown",
+          "exported": false
+        },
+        {
+          "kind": "interface",
+          "name": "TrustBreakdown",
+          "exported": false
+        },
+        {
+          "kind": "interface",
+          "name": "Job",
+          "exported": false
+        },
+        {
+          "kind": "interface",
+          "name": "SearchParams",
+          "exported": false
+        },
+        {
+          "kind": "interface",
+          "name": "SearchResponse",
+          "exported": false
+        },
+        {
+          "kind": "interface",
+          "name": "ApiError",
+          "exported": false
+        },
+        {
+          "kind": "interface",
+          "name": "FiltersState",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "SalaryInfo",
+          "exported": false
+        }
+      ]
+    },
+    "apps/frontend/src/utils/explain.ts": {
+      "imports": [
+        {
+          "source": "@/utils",
+          "default": false,
+          "named": [
+            "trustLabel"
+          ]
+        },
+        {
+          "source": "@/types",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "MatchBreakdown",
+            "TrustBreakdown"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "buildTrustExplanation"
+        },
+        {
+          "type": "named",
+          "name": "buildMatchExplanation"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "buildTrustExplanation",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "matchThresholdLabel",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "buildMatchExplanation",
+          "exported": false,
+          "async": false
+        }
+      ]
+    },
+    "apps/frontend/src/utils/index.ts": {
+      "imports": [
+        {
+          "source": "@/types",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "SalaryInfo"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "formatDate"
+        },
+        {
+          "type": "named",
+          "name": "truncate"
+        },
+        {
+          "type": "named",
+          "name": "trustLabel"
+        },
+        {
+          "type": "named",
+          "name": "formatSalary"
+        },
+        {
+          "type": "named",
+          "name": "buildQueryString"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "formatDate",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "truncate",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "trustLabel",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "formatSalary",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "buildQueryString",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "arrow-function",
+          "name": "fmt",
+          "exported": false,
+          "async": false,
+          "reactComponent": true
+        }
+      ]
+    },
+    "apps/backend/src/app.ts": {
+      "imports": [
+        {
+          "source": "fastify",
+          "default": true,
+          "defaultName": "Fastify",
+          "named": []
+        },
+        {
+          "source": "@fastify/cors",
+          "default": true,
+          "defaultName": "cors",
+          "named": []
+        },
+        {
+          "source": "./config/env.ts",
+          "default": false,
+          "named": [
+            "env"
+          ]
+        },
+        {
+          "source": "./shared/logger/logger.ts",
+          "default": false,
+          "named": [
+            "logger"
+          ]
+        },
+        {
+          "source": "./shared/metrics/error-monitoring.ts",
+          "default": false,
+          "named": [
+            "errorMonitor"
+          ]
+        },
+        {
+          "source": "./shared/middleware/error-handler.ts",
+          "default": false,
+          "named": [
+            "createGlobalErrorHandler"
+          ]
+        },
+        {
+          "source": "./shared/middleware/secure-headers.ts",
+          "default": false,
+          "named": [
+            "registerSecureHeaders"
+          ]
+        },
+        {
+          "source": "./shared/middleware/rate-limiter.ts",
+          "default": false,
+          "named": [
+            "registerRateLimiter"
+          ]
+        },
+        {
+          "source": "./shared/middleware/validation.ts",
+          "default": false,
+          "named": [
+            "registerValidationMiddleware"
+          ]
+        },
+        {
+          "source": "./shared/middleware/sanitization.ts",
+          "default": false,
+          "named": [
+            "registerSanitizationMiddleware"
+          ]
+        },
+        {
+          "source": "./shared/middleware/anti-spam.ts",
+          "default": false,
+          "named": [
+            "registerAntiSpamMiddleware"
+          ]
+        },
+        {
+          "source": "./modules/search/controllers/search-controller.ts",
+          "default": false,
+          "named": [
+            "registerSearchRoute"
+          ]
+        },
+        {
+          "source": "./modules/providers/services/provider-loader.ts",
+          "default": false,
+          "named": [
+            "ProviderLoader"
+          ]
+        },
+        {
+          "source": "./modules/providers/config/company-registry.ts",
+          "default": false,
+          "named": [
+            "CompanyRegistry"
+          ]
+        },
+        {
+          "source": "./modules/providers/services/company-sync.ts",
+          "default": false,
+          "named": [
+            "CompanySync"
+          ]
+        },
+        {
+          "source": "./modules/providers/routes/admin-companies.ts",
+          "default": false,
+          "named": [
+            "registerAdminCompanyRoutes"
+          ]
+        }
+      ],
+      "exports": [],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "buildApp",
+          "exported": false,
+          "async": true
+        },
+        {
+          "kind": "function",
+          "name": "startServer",
+          "exported": false,
+          "async": true
+        }
+      ]
+    },
+    "apps/backend/src/cache/aggregated-cache.ts": {
+      "imports": [
+        {
+          "source": "./in-memory-cache.ts",
+          "default": false,
+          "named": [
+            "InMemoryCache"
+          ]
+        },
+        {
+          "source": "@jobfindr/types",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "NormalizedJob"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "CacheableAggregatedParams"
+        },
+        {
+          "type": "named",
+          "name": "AggregatedCache"
+        },
+        {
+          "type": "named",
+          "name": "aggregatedCache"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "AggregatedCache",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "CacheableAggregatedParams",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/cache/in-memory-cache.ts": {
+      "imports": [],
+      "exports": [
+        {
+          "type": "named",
+          "name": "InMemoryCache"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "InMemoryCache",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/cache/provider-cache-layer.ts": {
+      "imports": [
+        {
+          "source": "./in-memory-cache.ts",
+          "default": false,
+          "named": [
+            "InMemoryCache"
+          ]
+        },
+        {
+          "source": "../config/env.ts",
+          "default": false,
+          "named": [
+            "env"
+          ]
+        },
+        {
+          "source": "@jobfindr/types",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "NormalizedJob"
+          ]
+        },
+        {
+          "source": "../shared/metrics/provider-metrics.ts",
+          "default": false,
+          "named": [
+            "recordProviderCacheHit",
+            "recordProviderCacheMiss"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "ProviderCacheLayer"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "buildCacheKey",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "buildQueryKey",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "class",
+          "name": "ProviderCacheLayer",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "CacheKey",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/config/env.ts": {
+      "imports": [
+        {
+          "source": "dotenv/config",
+          "default": false,
+          "named": []
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "env"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "getEnv",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "getEnvInt",
+          "exported": false,
+          "async": false
+        }
+      ]
+    },
+    "apps/backend/src/index.ts": {
+      "imports": [
+        {
+          "source": "./app.ts",
+          "default": false,
+          "named": [
+            "startServer"
+          ]
+        }
+      ],
+      "exports": [],
+      "declarations": []
+    },
+    "apps/backend/src/modules/matchmaking/domain/match-types.ts": {
+      "imports": [
+        {
+          "source": "@jobfindr/types",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "MatchScore",
+            "MatchExplanation"
+          ]
+        }
+      ],
+      "exports": [],
+      "declarations": []
+    },
+    "apps/backend/src/modules/matchmaking/services/match-explanation.ts": {
+      "imports": [
+        {
+          "source": "@jobfindr/types",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "MatchScore",
+            "MatchExplanation"
+          ]
+        },
+        {
+          "source": "@jobfindr/types",
+          "default": false,
+          "named": [
+            "getMatchThresholdLabel"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "generateMatchExplanation"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "generateMatchExplanation",
+          "exported": false,
+          "async": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/matchmaking/services/match-thresholds.ts": {
+      "imports": [
+        {
+          "source": "@jobfindr/types",
+          "default": false,
+          "named": [
+            "getMatchThresholdLabel",
+            "MATCH_THRESHOLDS"
+          ]
+        },
+        {
+          "source": "@jobfindr/types",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "MatchThresholdLabel"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "ThresholdConfig"
+        },
+        {
+          "type": "named",
+          "name": "THRESHOLD_CONFIGS"
+        },
+        {
+          "type": "named",
+          "name": "getThresholdForScore"
+        },
+        {
+          "type": "named",
+          "name": "getMatchScoreColor"
+        },
+        {
+          "type": "named",
+          "name": "getMatchThresholdLabel"
+        },
+        {
+          "type": "named",
+          "name": "MATCH_THRESHOLDS"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "getThresholdForScore",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "getMatchScoreColor",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "type",
+          "name": "ThresholdConfig",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/matchmaking/services/semantic-matching.ts": {
+      "imports": [],
+      "exports": [
+        {
+          "type": "named",
+          "name": "SemanticMatchResult"
+        },
+        {
+          "type": "named",
+          "name": "calculateSemanticSimilarity"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "calculateSemanticSimilarity",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "type",
+          "name": "SemanticMatchResult",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/matchmaking/services/similarity-engine.ts": {
+      "imports": [
+        {
+          "source": "./synonym-dictionary.ts",
+          "default": false,
+          "named": [
+            "synonymDictionary"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "SimilarityResult"
+        },
+        {
+          "type": "named",
+          "name": "calculateSimilarity"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "calculateSimilarity",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "type",
+          "name": "SimilarityResult",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/matchmaking/services/synonym-dictionary.ts": {
+      "imports": [],
+      "exports": [
+        {
+          "type": "named",
+          "name": "SynonymGroup"
+        },
+        {
+          "type": "named",
+          "name": "synonymDictionary"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "SynonymDictionary",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "SynonymGroup",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/matchmaking/services/user-skill-parser.ts": {
+      "imports": [
+        {
+          "source": "../../normalization/services/skill-normalizer.ts",
+          "default": false,
+          "named": [
+            "skillNormalizer"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "ParsedUserSkills"
+        },
+        {
+          "type": "named",
+          "name": "parseUserSkills"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "parseUserSkills",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "type",
+          "name": "ParsedUserSkills",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/matchmaking/services/weighted-match-scoring.ts": {
+      "imports": [
+        {
+          "source": "@jobfindr/types",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "MatchScore",
+            "MatchBreakdown",
+            "NormalizedJob"
+          ]
+        },
+        {
+          "source": "./similarity-engine.ts",
+          "default": false,
+          "named": [
+            "calculateSimilarity",
+            "type SimilarityResult"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "MatchWeights"
+        },
+        {
+          "type": "named",
+          "name": "calculateWeightedMatchScore"
+        },
+        {
+          "type": "named",
+          "name": "calculateWeightedMatchScoreWithBreakdown"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "calculateSeniorityScore",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "calculateWorkTypeScore",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "computeMatchScoreWithBreakdown",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "calculateWeightedMatchScore",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "calculateWeightedMatchScoreWithBreakdown",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "buildSummary",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "type",
+          "name": "MatchWeights",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/normalization/services/benefits-parser.ts": {
+      "imports": [],
+      "exports": [
+        {
+          "type": "named",
+          "name": "parseBenefits"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "parseBenefits",
+          "exported": false,
+          "async": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/normalization/services/html-cleaner.ts": {
+      "imports": [],
+      "exports": [
+        {
+          "type": "named",
+          "name": "cleanHtml"
+        },
+        {
+          "type": "named",
+          "name": "stripHtml"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "cleanHtml",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "stripHtml",
+          "exported": false,
+          "async": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/normalization/services/remote-detection.ts": {
+      "imports": [
+        {
+          "source": "@jobfindr/types",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "RemoteMode"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "detectRemoteMode"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "detectRemoteMode",
+          "exported": false,
+          "async": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/normalization/services/salary-parser.ts": {
+      "imports": [
+        {
+          "source": "@jobfindr/types",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "SalaryInfo",
+            "SalaryPeriod"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "parseSalary"
+        },
+        {
+          "type": "named",
+          "name": "salaryToYearly"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "parseSalaryValue",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "normalizePeriod",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "parseSalary",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "salaryToYearly",
+          "exported": false,
+          "async": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/normalization/services/seniority-parser.ts": {
+      "imports": [
+        {
+          "source": "@jobfindr/types",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "SeniorityLevel"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "detectSeniority"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "detectSeniority",
+          "exported": false,
+          "async": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/normalization/services/skill-extraction.ts": {
+      "imports": [
+        {
+          "source": "./skill-normalizer.ts",
+          "default": false,
+          "named": [
+            "skillNormalizer"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "extractSkills"
+        },
+        {
+          "type": "named",
+          "name": "extractSkillsFromJob"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "extractSkills",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "extractSkillsFromJob",
+          "exported": false,
+          "async": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/normalization/services/skill-normalizer.ts": {
+      "imports": [],
+      "exports": [
+        {
+          "type": "named",
+          "name": "SkillNormalizer"
+        },
+        {
+          "type": "named",
+          "name": "skillNormalizer"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "SkillNormalizer",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/providers/ashby/ashby-provider.ts": {
+      "imports": [
+        {
+          "source": "@jobfindr/types",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "ValidatedSearchInput",
+            "NormalizedJob"
+          ]
+        },
+        {
+          "source": "../domain/api-provider.ts",
+          "default": false,
+          "named": [
+            "ApiProvider"
+          ]
+        },
+        {
+          "source": "../services/normalization-pipeline.ts",
+          "default": false,
+          "named": [
+            "normalizeJob",
+            "locationToString",
+            "parseCompensation",
+            "inferSeniority"
+          ]
+        },
+        {
+          "source": "../services/retry-system.ts",
+          "default": false,
+          "named": [
+            "withRetry"
+          ]
+        },
+        {
+          "source": "../config/companies.ts",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "AshbyCompany"
+          ]
+        },
+        {
+          "source": "../../normalization/services/html-cleaner.ts",
+          "default": false,
+          "named": [
+            "cleanHtml"
+          ]
+        },
+        {
+          "source": "../../normalization/services/skill-extraction.ts",
+          "default": false,
+          "named": [
+            "extractSkillsFromJob"
+          ]
+        },
+        {
+          "source": "../config/companies.ts",
+          "default": false,
+          "named": [
+            "ASHBY_COMPANIES"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "AshbyProvider"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createAshbyProvider",
+          "exported": false,
+          "async": true
+        },
+        {
+          "kind": "class",
+          "name": "AshbyProvider",
+          "exported": false,
+          "extends": "ApiProvider"
+        },
+        {
+          "kind": "type",
+          "name": "AshbyJobRaw",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "AshbyApiResponse",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/providers/config/companies.ts": {
+      "imports": [],
+      "exports": [
+        {
+          "type": "named",
+          "name": "GreenhouseCompany"
+        },
+        {
+          "type": "named",
+          "name": "GREENHOUSE_COMPANIES"
+        },
+        {
+          "type": "named",
+          "name": "AshbyCompany"
+        },
+        {
+          "type": "named",
+          "name": "ASHBY_COMPANIES"
+        },
+        {
+          "type": "named",
+          "name": "LeverCompany"
+        },
+        {
+          "type": "named",
+          "name": "LEVER_COMPANIES"
+        },
+        {
+          "type": "named",
+          "name": "WorkdayCompany"
+        },
+        {
+          "type": "named",
+          "name": "WORKDAY_COMPANIES"
+        },
+        {
+          "type": "named",
+          "name": "getGreenhouseCompanyByToken"
+        },
+        {
+          "type": "named",
+          "name": "getCompanyDisplayName"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "getGreenhouseCompanyByToken",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "getCompanyDisplayName",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "type",
+          "name": "GreenhouseCompany",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "AshbyCompany",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "LeverCompany",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "WorkdayCompany",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/providers/config/company-registry.ts": {
+      "imports": [
+        {
+          "source": "./companies.ts",
+          "default": false,
+          "named": [
+            "GREENHOUSE_COMPANIES",
+            "ASHBY_COMPANIES",
+            "LEVER_COMPANIES",
+            "WORKDAY_COMPANIES"
+          ]
+        },
+        {
+          "source": "../../../config/env.ts",
+          "default": false,
+          "named": [
+            "env"
+          ]
+        },
+        {
+          "source": "../../../shared/logger/logger.ts",
+          "default": false,
+          "named": [
+            "logger"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "ProviderName"
+        },
+        {
+          "type": "named",
+          "name": "CompanySource"
+        },
+        {
+          "type": "named",
+          "name": "GreenhouseConfig"
+        },
+        {
+          "type": "named",
+          "name": "AshbyConfig"
+        },
+        {
+          "type": "named",
+          "name": "LeverConfig"
+        },
+        {
+          "type": "named",
+          "name": "WorkdayConfig"
+        },
+        {
+          "type": "named",
+          "name": "GupyConfig"
+        },
+        {
+          "type": "named",
+          "name": "ProviderSpecificConfig"
+        },
+        {
+          "type": "named",
+          "name": "CompanyConfig"
+        },
+        {
+          "type": "named",
+          "name": "CompanyRegistryOptions"
+        },
+        {
+          "type": "named",
+          "name": "CompanyRegistry"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "generateId",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "isDynamicProvider",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "class",
+          "name": "CompanyRegistry",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "ProviderName",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "CompanySource",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "GreenhouseConfig",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "AshbyConfig",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "LeverConfig",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "WorkdayConfig",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "GupyConfig",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "ProviderSpecificConfig",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "CompanyConfig",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "CompanyRegistryOptions",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/providers/domain/api-provider.ts": {
+      "imports": [
+        {
+          "source": "./base-provider.ts",
+          "default": false,
+          "named": [
+            "BaseProvider",
+            "type BaseProviderOptions"
+          ]
+        },
+        {
+          "source": "../../scraping/http/axios-client.ts",
+          "default": false,
+          "named": [
+            "createHttpClient"
+          ]
+        },
+        {
+          "source": "axios",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "AxiosInstance",
+            "AxiosRequestConfig",
+            "AxiosResponse"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "PaginationStrategy"
+        },
+        {
+          "type": "named",
+          "name": "ApiPaginationConfig"
+        },
+        {
+          "type": "named",
+          "name": "ApiProviderOptions"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "ApiProvider",
+          "exported": false,
+          "extends": "BaseProvider"
+        },
+        {
+          "kind": "type",
+          "name": "PaginationStrategy",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "ApiPaginationConfig",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "ApiProviderOptions",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/providers/domain/base-provider.ts": {
+      "imports": [
+        {
+          "source": "@jobfindr/types",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "NormalizedJob",
+            "ValidatedSearchInput",
+            "ProviderType",
+            "JobProvider"
+          ]
+        },
+        {
+          "source": "../../../shared/logger/logger.ts",
+          "default": false,
+          "named": [
+            "logger"
+          ]
+        },
+        {
+          "source": "../../../shared/metrics/provider-metrics.ts",
+          "default": false,
+          "named": [
+            "recordProviderSuccess",
+            "recordProviderFailure"
+          ]
+        },
+        {
+          "source": "../../../shared/metrics/error-monitoring.ts",
+          "default": false,
+          "named": [
+            "errorMonitor"
+          ]
+        },
+        {
+          "source": "../services/resilience/circuit-breaker.ts",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "CircuitBreaker"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "BaseProviderOptions"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "BaseProvider",
+          "exported": false,
+          "implements": [
+            "JobProvider "
+          ]
+        },
+        {
+          "kind": "type",
+          "name": "BaseProviderOptions",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/providers/domain/job-provider.interface.ts": {
+      "imports": [
+        {
+          "source": "@jobfindr/types",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "JobProvider"
+          ]
+        }
+      ],
+      "exports": [],
+      "declarations": []
+    },
+    "apps/backend/src/modules/providers/domain/json-provider.ts": {
+      "imports": [
+        {
+          "source": "./base-provider.ts",
+          "default": false,
+          "named": [
+            "BaseProvider",
+            "type BaseProviderOptions"
+          ]
+        },
+        {
+          "source": "../../scraping/http/axios-client.ts",
+          "default": false,
+          "named": [
+            "createHttpClient"
+          ]
+        },
+        {
+          "source": "axios",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "AxiosInstance",
+            "AxiosRequestConfig",
+            "AxiosResponse"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "JsonProviderOptions"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "JsonProvider",
+          "exported": false,
+          "extends": "BaseProvider"
+        },
+        {
+          "kind": "type",
+          "name": "JsonProviderOptions",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/providers/domain/provider-registry.ts": {
+      "imports": [
+        {
+          "source": "@jobfindr/types",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "JobProvider",
+            "ProviderMetadata"
+          ]
+        },
+        {
+          "source": "../../../shared/logger/logger.ts",
+          "default": false,
+          "named": [
+            "logger"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "ProviderRegistry"
+        },
+        {
+          "type": "named",
+          "name": "providerRegistry"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "ProviderRegistry",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "RegisteredProvider",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/providers/domain/provider-type.ts": {
+      "imports": [
+        {
+          "source": "@jobfindr/types",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "ProviderType"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "isHttpBased"
+        },
+        {
+          "type": "named",
+          "name": "getProviderTypeLabel"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "isHttpBased",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "getProviderTypeLabel",
+          "exported": false,
+          "async": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/providers/greenhouse/greenhouse-provider.ts": {
+      "imports": [
+        {
+          "source": "@jobfindr/types",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "ValidatedSearchInput",
+            "NormalizedJob"
+          ]
+        },
+        {
+          "source": "../domain/api-provider.ts",
+          "default": false,
+          "named": [
+            "ApiProvider"
+          ]
+        },
+        {
+          "source": "../services/normalization-pipeline.ts",
+          "default": false,
+          "named": [
+            "normalizeJob",
+            "inferSeniority"
+          ]
+        },
+        {
+          "source": "../services/retry-system.ts",
+          "default": false,
+          "named": [
+            "withRetry"
+          ]
+        },
+        {
+          "source": "../config/companies.ts",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "GreenhouseCompany"
+          ]
+        },
+        {
+          "source": "../../normalization/services/html-cleaner.ts",
+          "default": false,
+          "named": [
+            "cleanHtml"
+          ]
+        },
+        {
+          "source": "../../normalization/services/skill-extraction.ts",
+          "default": false,
+          "named": [
+            "extractSkillsFromJob"
+          ]
+        },
+        {
+          "source": "../config/companies.ts",
+          "default": false,
+          "named": [
+            "GREENHOUSE_COMPANIES"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "GreenhouseProvider"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createGreenhouseProvider",
+          "exported": false,
+          "async": true
+        },
+        {
+          "kind": "class",
+          "name": "GreenhouseProvider",
+          "exported": false,
+          "extends": "ApiProvider"
+        },
+        {
+          "kind": "type",
+          "name": "GreenhouseJobRaw",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "GreenhouseApiResponse",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/providers/gupy/gupy-provider.ts": {
+      "imports": [
+        {
+          "source": "@jobfindr/types",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "ValidatedSearchInput",
+            "NormalizedJob"
+          ]
+        },
+        {
+          "source": "../domain/json-provider.ts",
+          "default": false,
+          "named": [
+            "JsonProvider"
+          ]
+        },
+        {
+          "source": "../services/normalization-pipeline.ts",
+          "default": false,
+          "named": [
+            "normalizeJob",
+            "inferSeniority"
+          ]
+        },
+        {
+          "source": "../services/retry-system.ts",
+          "default": false,
+          "named": [
+            "withRetry"
+          ]
+        },
+        {
+          "source": "../../normalization/services/skill-extraction.ts",
+          "default": false,
+          "named": [
+            "extractSkillsFromJob"
+          ]
+        },
+        {
+          "source": "../config/company-registry.ts",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "GupyConfig"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "GupyProvider"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createGupyProvider",
+          "exported": false,
+          "async": true
+        },
+        {
+          "kind": "class",
+          "name": "GupyProvider",
+          "exported": false,
+          "extends": "JsonProvider"
+        },
+        {
+          "kind": "type",
+          "name": "GupyJobRaw",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "GupyApiResponse",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/providers/lever/lever-provider.ts": {
+      "imports": [
+        {
+          "source": "@jobfindr/types",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "ValidatedSearchInput",
+            "NormalizedJob"
+          ]
+        },
+        {
+          "source": "../domain/api-provider.ts",
+          "default": false,
+          "named": [
+            "ApiProvider"
+          ]
+        },
+        {
+          "source": "../services/normalization-pipeline.ts",
+          "default": false,
+          "named": [
+            "normalizeJob",
+            "inferSeniority"
+          ]
+        },
+        {
+          "source": "../services/retry-system.ts",
+          "default": false,
+          "named": [
+            "withRetry"
+          ]
+        },
+        {
+          "source": "../config/companies.ts",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "LeverCompany"
+          ]
+        },
+        {
+          "source": "../../normalization/services/html-cleaner.ts",
+          "default": false,
+          "named": [
+            "cleanHtml"
+          ]
+        },
+        {
+          "source": "../../normalization/services/skill-extraction.ts",
+          "default": false,
+          "named": [
+            "extractSkillsFromJob"
+          ]
+        },
+        {
+          "source": "../config/companies.ts",
+          "default": false,
+          "named": [
+            "LEVER_COMPANIES"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "LeverProvider"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createLeverProvider",
+          "exported": false,
+          "async": true
+        },
+        {
+          "kind": "class",
+          "name": "LeverProvider",
+          "exported": false,
+          "extends": "ApiProvider"
+        },
+        {
+          "kind": "type",
+          "name": "LeverJobRaw",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "LeverApiResponse",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/providers/routes/admin-companies.ts": {
+      "imports": [
+        {
+          "source": "fastify",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "FastifyInstance",
+            "FastifyRequest",
+            "FastifyReply"
+          ]
+        },
+        {
+          "source": "node:crypto",
+          "default": true,
+          "defaultName": "crypto",
+          "named": []
+        },
+        {
+          "source": "zod",
+          "default": false,
+          "named": [
+            "z"
+          ]
+        },
+        {
+          "source": "../config/company-registry.ts",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "CompanyRegistry",
+            "CompanyConfig",
+            "ProviderName",
+            "ProviderSpecificConfig"
+          ]
+        },
+        {
+          "source": "../services/company-sync.ts",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "CompanySync"
+          ]
+        },
+        {
+          "source": "../../../config/env.ts",
+          "default": false,
+          "named": [
+            "env"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "registerAdminCompanyRoutes"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "verifyAdminToken",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "requireAdminScope",
+          "exported": false,
+          "async": true
+        },
+        {
+          "kind": "function",
+          "name": "getConfigSchema",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "testWorkdayConnection",
+          "exported": false,
+          "async": true
+        },
+        {
+          "kind": "function",
+          "name": "sendValidationError",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "listCompaniesHandler",
+          "exported": false,
+          "async": true
+        },
+        {
+          "kind": "function",
+          "name": "createCompanyHandler",
+          "exported": false,
+          "async": true
+        },
+        {
+          "kind": "function",
+          "name": "updateCompanyHandler",
+          "exported": false,
+          "async": true
+        },
+        {
+          "kind": "function",
+          "name": "deleteCompanyHandler",
+          "exported": false,
+          "async": true
+        },
+        {
+          "kind": "function",
+          "name": "syncCompanyHandler",
+          "exported": false,
+          "async": true
+        },
+        {
+          "kind": "function",
+          "name": "statusHandler",
+          "exported": false,
+          "async": true
+        },
+        {
+          "kind": "function",
+          "name": "registerAdminCompanyRoutes",
+          "exported": false,
+          "async": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/providers/services/company-discovery.ts": {
+      "imports": [
+        {
+          "source": "axios",
+          "default": true,
+          "defaultName": "axios",
+          "named": []
+        },
+        {
+          "source": "../config/company-registry.ts",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "CompanyConfig"
+          ]
+        },
+        {
+          "source": "../../../shared/logger/logger.ts",
+          "default": false,
+          "named": [
+            "logger"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "CompanyDiscovery"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "searchTerm",
+          "exported": false,
+          "async": true
+        },
+        {
+          "kind": "function",
+          "name": "runBatched",
+          "exported": false,
+          "async": true
+        },
+        {
+          "kind": "class",
+          "name": "CompanyDiscovery",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "GreenhouseBoard",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "GreenhouseBoardsResponse",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "GupyJobRaw",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "GupyApiResponse",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/providers/services/company-sync.ts": {
+      "imports": [
+        {
+          "source": "node-cron",
+          "default": true,
+          "defaultName": "cron",
+          "named": []
+        },
+        {
+          "source": "../config/company-registry.ts",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "CompanyConfig",
+            "CompanyRegistry",
+            "ProviderName"
+          ]
+        },
+        {
+          "source": "./company-discovery.ts",
+          "default": false,
+          "named": [
+            "CompanyDiscovery"
+          ]
+        },
+        {
+          "source": "../../../config/env.ts",
+          "default": false,
+          "named": [
+            "env"
+          ]
+        },
+        {
+          "source": "../../../shared/logger/logger.ts",
+          "default": false,
+          "named": [
+            "logger"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "SyncResult"
+        },
+        {
+          "type": "named",
+          "name": "SyncStatus"
+        },
+        {
+          "type": "named",
+          "name": "CompanySync"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "CompanySync",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "SyncResult",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "SyncStatus",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/providers/services/normalization-pipeline.ts": {
+      "imports": [
+        {
+          "source": "@jobfindr/types",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "NormalizedJob",
+            "Normalizer",
+            "SalaryInfo",
+            "SeniorityLevel",
+            "RemoteMode"
+          ]
+        },
+        {
+          "source": "@jobfindr/utils",
+          "default": false,
+          "named": [
+            "createJobId"
+          ]
+        },
+        {
+          "source": "../../normalization/services/html-cleaner.ts",
+          "default": false,
+          "named": [
+            "cleanHtml"
+          ]
+        },
+        {
+          "source": "../../normalization/services/skill-extraction.ts",
+          "default": false,
+          "named": [
+            "extractSkillsFromJob"
+          ]
+        },
+        {
+          "source": "../../normalization/services/seniority-parser.ts",
+          "default": false,
+          "named": [
+            "detectSeniority"
+          ]
+        },
+        {
+          "source": "../../normalization/services/salary-parser.ts",
+          "default": false,
+          "named": [
+            "parseSalary"
+          ]
+        },
+        {
+          "source": "../../../shared/logger/logger.ts",
+          "default": false,
+          "named": [
+            "logger"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "normalizeJob"
+        },
+        {
+          "type": "named",
+          "name": "JobFieldMapping"
+        },
+        {
+          "type": "named",
+          "name": "locationToString"
+        },
+        {
+          "type": "named",
+          "name": "parseDescription"
+        },
+        {
+          "type": "named",
+          "name": "parseCompensation"
+        },
+        {
+          "type": "named",
+          "name": "inferSeniority"
+        },
+        {
+          "type": "named",
+          "name": "createNormalizer"
+        },
+        {
+          "type": "named",
+          "name": "validateNormalizedJob"
+        },
+        {
+          "type": "named",
+          "name": "normalizeAndValidate"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "normalizeJob",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "locationToString",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "parseDescription",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "parseCompensation",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "mapPeriod",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "inferSeniority",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "validateNormalizedJob",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "normalizeAndValidate",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "type",
+          "name": "JobFieldMapping",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/providers/services/provider-engine.ts": {
+      "imports": [
+        {
+          "source": "@jobfindr/types",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "JobProvider",
+            "ValidatedSearchInput",
+            "ProviderResult",
+            "AggregatedProviderResult"
+          ]
+        },
+        {
+          "source": "../../../shared/logger/logger.ts",
+          "default": false,
+          "named": [
+            "logger"
+          ]
+        },
+        {
+          "source": "../../../shared/services/provider-isolation.ts",
+          "default": false,
+          "named": [
+            "executeIsolatedProvider"
+          ]
+        },
+        {
+          "source": "../../search/services/timeout-manager.ts",
+          "default": false,
+          "named": [
+            "getProviderTimeout"
+          ]
+        },
+        {
+          "source": "../../../shared/metrics/provider-metrics.ts",
+          "default": false,
+          "named": [
+            "recordProviderSuccess",
+            "recordProviderFailure"
+          ]
+        },
+        {
+          "source": "./resilience/quota-manager.ts",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "QuotaManager"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "EngineOptions"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "runAllProviders",
+          "exported": false,
+          "async": true
+        },
+        {
+          "kind": "function",
+          "name": "runSingleProvider",
+          "exported": false,
+          "async": true
+        },
+        {
+          "kind": "type",
+          "name": "EngineOptions",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/providers/services/provider-fallback.ts": {
+      "imports": [
+        {
+          "source": "@jobfindr/types",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "JobProvider",
+            "NormalizedJob",
+            "ValidatedSearchInput"
+          ]
+        },
+        {
+          "source": "../../../shared/logger/logger.ts",
+          "default": false,
+          "named": [
+            "logger"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "FallbackStrategy"
+        },
+        {
+          "type": "named",
+          "name": "FallbackConfig"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "withProviderFallback",
+          "exported": false,
+          "async": true
+        },
+        {
+          "kind": "type",
+          "name": "FallbackStrategy",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "FallbackConfig",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/providers/services/provider-health.ts": {
+      "imports": [
+        {
+          "source": "@jobfindr/types",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "ProviderHealthStatus",
+            "ProviderType"
+          ]
+        },
+        {
+          "source": "../domain/provider-registry.ts",
+          "default": false,
+          "named": [
+            "providerRegistry"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "providerHealthStore"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "ProviderHealthStore",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "HealthRecord",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/providers/services/provider-loader.ts": {
+      "imports": [
+        {
+          "source": "@jobfindr/types",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "JobProvider",
+            "ProviderMetadata"
+          ]
+        },
+        {
+          "source": "../domain/provider-registry.ts",
+          "default": false,
+          "named": [
+            "providerRegistry"
+          ]
+        },
+        {
+          "source": "../config/company-registry.ts",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "CompanyRegistry"
+          ]
+        },
+        {
+          "source": "../../../shared/logger/logger.ts",
+          "default": false,
+          "named": [
+            "logger"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "ProviderLoader"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "ProviderLoader",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/providers/services/provider-status-route.ts": {
+      "imports": [
+        {
+          "source": "fastify",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "FastifyInstance"
+          ]
+        },
+        {
+          "source": "./provider-health.ts",
+          "default": false,
+          "named": [
+            "providerHealthStore"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "registerProviderStatusRoute"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "registerProviderStatusRoute",
+          "exported": false,
+          "async": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/providers/services/resilience/backoff-config.ts": {
+      "imports": [],
+      "exports": [
+        {
+          "type": "named",
+          "name": "BackoffConfig"
+        },
+        {
+          "type": "named",
+          "name": "defaultBackoffConfig"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "type",
+          "name": "BackoffConfig",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/providers/services/resilience/circuit-breaker.ts": {
+      "imports": [
+        {
+          "source": "../../../../shared/logger/logger.ts",
+          "default": false,
+          "named": [
+            "logger"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "CircuitState"
+        },
+        {
+          "type": "named",
+          "name": "CircuitBreakerConfig"
+        },
+        {
+          "type": "named",
+          "name": "CircuitBreakerStats"
+        },
+        {
+          "type": "named",
+          "name": "CircuitBreaker"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "CircuitBreaker",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "CircuitState",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "CircuitBreakerConfig",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "CircuitBreakerStats",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/providers/services/resilience/quota-manager.ts": {
+      "imports": [],
+      "exports": [
+        {
+          "type": "named",
+          "name": "QuotaConfig"
+        },
+        {
+          "type": "named",
+          "name": "QuotaState"
+        },
+        {
+          "type": "named",
+          "name": "QuotaManager"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "QuotaManager",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "QuotaConfig",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "QuotaState",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/providers/services/retry-system.ts": {
+      "imports": [
+        {
+          "source": "@jobfindr/utils",
+          "default": false,
+          "named": [
+            "sleep"
+          ]
+        },
+        {
+          "source": "../../../shared/logger/logger.ts",
+          "default": false,
+          "named": [
+            "logger"
+          ]
+        },
+        {
+          "source": "./resilience/backoff-config.ts",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "BackoffConfig"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "RetryConfig"
+        },
+        {
+          "type": "named",
+          "name": "calculateBackoff"
+        },
+        {
+          "type": "named",
+          "name": "isTransientError"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "calculateBackoff",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "isTransientError",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "type",
+          "name": "RetryConfig",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/providers/workday/workday-provider.ts": {
+      "imports": [
+        {
+          "source": "@jobfindr/types",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "ValidatedSearchInput",
+            "NormalizedJob"
+          ]
+        },
+        {
+          "source": "../domain/json-provider.ts",
+          "default": false,
+          "named": [
+            "JsonProvider"
+          ]
+        },
+        {
+          "source": "../services/normalization-pipeline.ts",
+          "default": false,
+          "named": [
+            "normalizeJob",
+            "inferSeniority"
+          ]
+        },
+        {
+          "source": "../services/retry-system.ts",
+          "default": false,
+          "named": [
+            "withRetry"
+          ]
+        },
+        {
+          "source": "../config/companies.ts",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "WorkdayCompany"
+          ]
+        },
+        {
+          "source": "../../normalization/services/html-cleaner.ts",
+          "default": false,
+          "named": [
+            "cleanHtml"
+          ]
+        },
+        {
+          "source": "../../normalization/services/skill-extraction.ts",
+          "default": false,
+          "named": [
+            "extractSkillsFromJob"
+          ]
+        },
+        {
+          "source": "../config/companies.ts",
+          "default": false,
+          "named": [
+            "WORKDAY_COMPANIES"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "WorkdayProvider"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createWorkdayProvider",
+          "exported": false,
+          "async": true
+        },
+        {
+          "kind": "class",
+          "name": "WorkdayProvider",
+          "exported": false,
+          "extends": "JsonProvider"
+        },
+        {
+          "kind": "type",
+          "name": "WorkdayJobPosting",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "WorkdayApiResponse",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "WorkdayApiRequest",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/ranking/domain/ranking-types.ts": {
+      "imports": [],
+      "exports": [
+        {
+          "type": "named",
+          "name": "DEFAULT_RANKING_WEIGHTS"
+        }
+      ],
+      "declarations": []
+    },
+    "apps/backend/src/modules/ranking/services/composite-score.ts": {
+      "imports": [
+        {
+          "source": "@jobfindr/types",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "RankingBreakdown"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "computeFinalScore"
+        },
+        {
+          "type": "named",
+          "name": "explainScore"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "computeFinalScore",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "explainScore",
+          "exported": false,
+          "async": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/ranking/services/large-company-priority.ts": {
+      "imports": [
+        {
+          "source": "@jobfindr/types",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "NormalizedJob",
+            "RankingWeights"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "computeCompanyPriorityScore"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "computeCompanyPriorityScore",
+          "exported": false,
+          "async": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/ranking/services/match-score-weight.ts": {
+      "imports": [
+        {
+          "source": "@jobfindr/types",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "NormalizedJob",
+            "RankingWeights"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "computeMatchScoreWeight"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "computeMatchScoreWeight",
+          "exported": false,
+          "async": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/ranking/services/ranking-engine.ts": {
+      "imports": [
+        {
+          "source": "@jobfindr/types",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "NormalizedJob",
+            "RankingWeights",
+            "RankingResult",
+            "RankingBreakdown"
+          ]
+        },
+        {
+          "source": "@jobfindr/types",
+          "default": false,
+          "named": [
+            "DEFAULT_RANKING_WEIGHTS"
+          ]
+        },
+        {
+          "source": "./match-score-weight.ts",
+          "default": false,
+          "named": [
+            "computeMatchScoreWeight"
+          ]
+        },
+        {
+          "source": "./trust-score-weight.ts",
+          "default": false,
+          "named": [
+            "computeTrustScoreWeight"
+          ]
+        },
+        {
+          "source": "./large-company-priority.ts",
+          "default": false,
+          "named": [
+            "computeCompanyPriorityScore"
+          ]
+        },
+        {
+          "source": "./salary-ranking.ts",
+          "default": false,
+          "named": [
+            "computeSalaryScore"
+          ]
+        },
+        {
+          "source": "./recency-ranking.ts",
+          "default": false,
+          "named": [
+            "computeRecencyScore"
+          ]
+        },
+        {
+          "source": "./composite-score.ts",
+          "default": false,
+          "named": [
+            "computeFinalScore"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "RankingOptions"
+        },
+        {
+          "type": "named",
+          "name": "rankJobs"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "rankJobs",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "createSortComparator",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "type",
+          "name": "RankingOptions",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/ranking/services/recency-ranking.ts": {
+      "imports": [
+        {
+          "source": "@jobfindr/types",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "NormalizedJob",
+            "RankingWeights"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "computeRecencyScore"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "computeRecencyScore",
+          "exported": false,
+          "async": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/ranking/services/salary-ranking.ts": {
+      "imports": [
+        {
+          "source": "@jobfindr/types",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "NormalizedJob",
+            "RankingWeights"
+          ]
+        },
+        {
+          "source": "../../normalization/services/salary-parser.ts",
+          "default": false,
+          "named": [
+            "salaryToYearly"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "computeSalaryScore"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "computeSalaryScore",
+          "exported": false,
+          "async": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/ranking/services/trust-score-weight.ts": {
+      "imports": [
+        {
+          "source": "@jobfindr/types",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "NormalizedJob",
+            "RankingWeights"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "computeTrustScoreWeight"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "computeTrustScoreWeight",
+          "exported": false,
+          "async": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/scraping/http/axios-client.ts": {
+      "imports": [
+        {
+          "source": "axios",
+          "default": true,
+          "defaultName": "axios",
+          "named": [
+            "type AxiosInstance",
+            "type AxiosRequestConfig"
+          ]
+        },
+        {
+          "source": "../../../config/env.ts",
+          "default": false,
+          "named": [
+            "env"
+          ]
+        },
+        {
+          "source": "../services/user-agent-rotation.ts",
+          "default": false,
+          "named": [
+            "userAgentRotation"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "createHttpClient"
+        },
+        {
+          "type": "named",
+          "name": "getDefaultHttpClient"
+        },
+        {
+          "type": "named",
+          "name": "resetDefaultHttpClient"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createHttpClient",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "getDefaultHttpClient",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "resetDefaultHttpClient",
+          "exported": false,
+          "async": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/scraping/parsing/html-parser.ts": {
+      "imports": [
+        {
+          "source": "cheerio",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "CheerioAPI"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "ParsedDocument"
+        },
+        {
+          "type": "named",
+          "name": "parseHtml"
+        },
+        {
+          "type": "named",
+          "name": "extractJsonLd"
+        },
+        {
+          "type": "named",
+          "name": "extractMicrodata"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "parseHtml",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "extractJsonLd",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "extractMicrodata",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "type",
+          "name": "ParsedDocument",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/scraping/playwright/playwright-setup.ts": {
+      "imports": [],
+      "exports": [
+        {
+          "type": "named",
+          "name": "PlaywrightConfig"
+        },
+        {
+          "type": "named",
+          "name": "PlaywrightBrowser"
+        },
+        {
+          "type": "named",
+          "name": "defaultConfig"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "getPlaywrightBrowser",
+          "exported": false,
+          "async": true
+        },
+        {
+          "kind": "interface",
+          "name": "PlaywrightBrowser",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "PlaywrightConfig",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/scraping/services/anti-blocking-layer.ts": {
+      "imports": [
+        {
+          "source": "./user-agent-rotation.ts",
+          "default": false,
+          "named": [
+            "userAgentRotation"
+          ]
+        },
+        {
+          "source": "./rate-limiter.ts",
+          "default": false,
+          "named": [
+            "providerRateLimiters"
+          ]
+        },
+        {
+          "source": "./request-queue.ts",
+          "default": false,
+          "named": [
+            "providerQueues"
+          ]
+        },
+        {
+          "source": "@jobfindr/utils",
+          "default": false,
+          "named": [
+            "sleep"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "AntiBlockingConfig"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "randomDelay",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "type",
+          "name": "AntiBlockingConfig",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/scraping/services/rate-limiter.ts": {
+      "imports": [],
+      "exports": [
+        {
+          "type": "named",
+          "name": "RateLimiter"
+        },
+        {
+          "type": "named",
+          "name": "providerRateLimiters"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "RateLimiter",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "RateLimitEntry",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/scraping/services/request-queue.ts": {
+      "imports": [],
+      "exports": [
+        {
+          "type": "named",
+          "name": "RequestQueue"
+        },
+        {
+          "type": "named",
+          "name": "providerQueues"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "RequestQueue",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/scraping/services/retry-manager.ts": {
+      "imports": [
+        {
+          "source": "@jobfindr/utils",
+          "default": false,
+          "named": [
+            "sleep"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "RetryConfig"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "isRetryableError",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "calculateDelay",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "type",
+          "name": "RetryConfig",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/scraping/services/timeout-wrapper.ts": {
+      "imports": [
+        {
+          "source": "../../../shared/metrics/timeout-monitoring.ts",
+          "default": false,
+          "named": [
+            "timeoutMonitor"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "withTimeout"
+        }
+      ],
+      "declarations": []
+    },
+    "apps/backend/src/modules/scraping/services/user-agent-rotation.ts": {
+      "imports": [],
+      "exports": [
+        {
+          "type": "named",
+          "name": "userAgentRotation"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "UserAgentRotation",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/search/controllers/search-controller.ts": {
+      "imports": [
+        {
+          "source": "fastify",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "FastifyRequest",
+            "FastifyReply",
+            "FastifyInstance"
+          ]
+        },
+        {
+          "source": "../validation/search-validation.ts",
+          "default": false,
+          "named": [
+            "validateSearchInput"
+          ]
+        },
+        {
+          "source": "../services/aggregation-service.ts",
+          "default": false,
+          "named": [
+            "aggregateSearch"
+          ]
+        },
+        {
+          "source": "../dto/search-dto.ts",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "SearchRequestQuery"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "registerSearchRoute"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "searchJobsHandler",
+          "exported": false,
+          "async": true
+        },
+        {
+          "kind": "function",
+          "name": "registerSearchRoute",
+          "exported": false,
+          "async": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/search/dto/search-dto.ts": {
+      "imports": [
+        {
+          "source": "@jobfindr/types",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "NormalizedJob",
+            "PaginationMeta",
+            "PartialResponseMeta"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "SearchRequestQuery"
+        },
+        {
+          "type": "named",
+          "name": "SearchSuccessResponse"
+        },
+        {
+          "type": "named",
+          "name": "SearchErrorResponse"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "type",
+          "name": "SearchRequestQuery",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "SearchSuccessResponse",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "SearchErrorResponse",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/search/services/aggregation-service.ts": {
+      "imports": [
+        {
+          "source": "@jobfindr/types",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "NormalizedJob",
+            "ValidatedSearchInput",
+            "ProviderResult",
+            "PaginationMeta",
+            "PartialResponseMeta",
+            "TrustBreakdown"
+          ]
+        },
+        {
+          "source": "../../../shared/logger/logger.ts",
+          "default": false,
+          "named": [
+            "logger"
+          ]
+        },
+        {
+          "source": "../../providers/domain/provider-registry.ts",
+          "default": false,
+          "named": [
+            "providerRegistry"
+          ]
+        },
+        {
+          "source": "../../../shared/services/provider-isolation.ts",
+          "default": false,
+          "named": [
+            "executeIsolatedProvider"
+          ]
+        },
+        {
+          "source": "./timeout-manager.ts",
+          "default": false,
+          "named": [
+            "getProviderTimeout"
+          ]
+        },
+        {
+          "source": "./pagination.ts",
+          "default": false,
+          "named": [
+            "paginateJobs"
+          ]
+        },
+        {
+          "source": "../../../shared/metrics/provider-metrics.ts",
+          "default": false,
+          "named": [
+            "recordProviderSuccess",
+            "recordProviderFailure"
+          ]
+        },
+        {
+          "source": "../../../cache/provider-cache-layer.ts",
+          "default": false,
+          "named": [
+            "ProviderCacheLayer"
+          ]
+        },
+        {
+          "source": "../../../cache/aggregated-cache.ts",
+          "default": false,
+          "named": [
+            "aggregatedCache"
+          ]
+        },
+        {
+          "source": "../../trust/services/trust-engine.ts",
+          "default": false,
+          "named": [
+            "evaluateJobsTrustWithBreakdown",
+            "filterByTrust"
+          ]
+        },
+        {
+          "source": "../../ranking/services/ranking-engine.ts",
+          "default": false,
+          "named": [
+            "rankJobs"
+          ]
+        },
+        {
+          "source": "../../matchmaking/services/weighted-match-scoring.ts",
+          "default": false,
+          "named": [
+            "calculateWeightedMatchScoreWithBreakdown"
+          ]
+        },
+        {
+          "source": "../../matchmaking/services/user-skill-parser.ts",
+          "default": false,
+          "named": [
+            "parseUserSkills"
+          ]
+        },
+        {
+          "source": "../../../shared/streaming/partial-streaming.ts",
+          "default": false,
+          "named": [
+            "aggregatePartialResults"
+          ]
+        },
+        {
+          "source": "../../../shared/services/request-batching.ts",
+          "default": false,
+          "named": [
+            "RequestBatcher"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "AggregatedSearchResult"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "aggregateSearch",
+          "exported": false,
+          "async": true
+        },
+        {
+          "kind": "type",
+          "name": "AggregatedSearchResult",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/search/services/pagination.ts": {
+      "imports": [
+        {
+          "source": "@jobfindr/types",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "NormalizedJob",
+            "PaginationMeta"
+          ]
+        },
+        {
+          "source": "../../../config/env.ts",
+          "default": false,
+          "named": [
+            "env"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "PaginatedResult"
+        },
+        {
+          "type": "named",
+          "name": "paginateJobs"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "paginateJobs",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "type",
+          "name": "PaginatedResult",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/search/services/timeout-manager.ts": {
+      "imports": [
+        {
+          "source": "../../../config/env.ts",
+          "default": false,
+          "named": [
+            "env"
+          ]
+        },
+        {
+          "source": "../../../shared/metrics/timeout-monitoring.ts",
+          "default": false,
+          "named": [
+            "timeoutMonitor"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "getProviderTimeout"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "getProviderTimeout",
+          "exported": false,
+          "async": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/search/validation/search-validation.ts": {
+      "imports": [
+        {
+          "source": "@jobfindr/types",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "ValidatedSearchInput",
+            "SearchSortOption",
+            "SeniorityLevel",
+            "RemoteMode"
+          ]
+        },
+        {
+          "source": "../../../shared/middleware/error-handler.ts",
+          "default": false,
+          "named": [
+            "AppError"
+          ]
+        },
+        {
+          "source": "../../../config/env.ts",
+          "default": false,
+          "named": [
+            "env"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "validateSearchInput"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "validateSearchInput",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "parseCommaSeparated",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "parsePositiveInt",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "parseFloatParam",
+          "exported": false,
+          "async": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/suggestions/suggestions-controller.ts": {
+      "imports": [
+        {
+          "source": "fastify",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "FastifyInstance"
+          ]
+        },
+        {
+          "source": "../../cache/aggregated-cache.ts",
+          "default": false,
+          "named": [
+            "aggregatedCache"
+          ]
+        },
+        {
+          "source": "../providers/config/company-registry.ts",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "CompanyRegistry",
+            "ProviderName"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "getUniqueCompaniesFromCache"
+        },
+        {
+          "type": "named",
+          "name": "registerSuggestionsRoute"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "getUniqueCompaniesFromCache",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "getRegistryCompanyNames",
+          "exported": false,
+          "async": true
+        },
+        {
+          "kind": "function",
+          "name": "suggestionsHandler",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "registerSuggestionsRoute",
+          "exported": false,
+          "async": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/trust/cache/trust-cache.ts": {
+      "imports": [
+        {
+          "source": "../../../cache/in-memory-cache.ts",
+          "default": false,
+          "named": [
+            "InMemoryCache"
+          ]
+        },
+        {
+          "source": "@jobfindr/types",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "TrustScore"
+          ]
+        },
+        {
+          "source": "../../../config/env.ts",
+          "default": false,
+          "named": [
+            "env"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "TrustCacheLayer"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "TrustCacheLayer",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/trust/services/company-reputation.ts": {
+      "imports": [
+        {
+          "source": "@jobfindr/types",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "TrustSignals",
+            "CompanySizeCategory"
+          ]
+        },
+        {
+          "source": "./trust-score-formula.ts",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "CompanyReputationInput"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "buildCompanySignals"
+        },
+        {
+          "type": "named",
+          "name": "evaluateCompanyReputation"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "estimateCompanySize",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "buildCompanySignals",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "evaluateCompanyReputation",
+          "exported": false,
+          "async": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/trust/services/hidden-companies-config.ts": {
+      "imports": [],
+      "exports": [
+        {
+          "type": "named",
+          "name": "HiddenCompaniesConfig"
+        },
+        {
+          "type": "named",
+          "name": "hiddenCompaniesConfig"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "HiddenCompaniesConfig",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/trust/services/manual-override.ts": {
+      "imports": [
+        {
+          "source": "@jobfindr/types",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "NormalizedJob"
+          ]
+        },
+        {
+          "source": "./hidden-companies-config.ts",
+          "default": false,
+          "named": [
+            "hiddenCompaniesConfig"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "ManualOverrideConfig"
+        },
+        {
+          "type": "named",
+          "name": "applyManualOverrides"
+        },
+        {
+          "type": "named",
+          "name": "buildOverrideConfig"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "applyManualOverrides",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "buildOverrideConfig",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "type",
+          "name": "ManualOverrideConfig",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/trust/services/provider-reputation.ts": {
+      "imports": [
+        {
+          "source": "./trust-score-formula.ts",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "ProviderReputationInput"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "recordProviderRequest"
+        },
+        {
+          "type": "named",
+          "name": "getProviderReputation"
+        },
+        {
+          "type": "named",
+          "name": "resetProviderStats"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "recordProviderRequest",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "getProviderReputation",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "resetProviderStats",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "interface",
+          "name": "ProviderReputationData",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/trust/services/trust-engine.ts": {
+      "imports": [
+        {
+          "source": "@jobfindr/types",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "TrustScore",
+            "NormalizedJob",
+            "TrustBreakdown",
+            "CompanySizeCategory"
+          ]
+        },
+        {
+          "source": "@jobfindr/types",
+          "default": false,
+          "named": [
+            "getTrustVisibility"
+          ]
+        },
+        {
+          "source": "@jobfindr/types",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "TrustVisibility"
+          ]
+        },
+        {
+          "source": "./trust-score-formula.ts",
+          "default": false,
+          "named": [
+            "calculateTrustScore"
+          ]
+        },
+        {
+          "source": "./company-reputation.ts",
+          "default": false,
+          "named": [
+            "evaluateCompanyReputation"
+          ]
+        },
+        {
+          "source": "./provider-reputation.ts",
+          "default": false,
+          "named": [
+            "getProviderReputation"
+          ]
+        },
+        {
+          "source": "../cache/trust-cache.ts",
+          "default": false,
+          "named": [
+            "TrustCacheLayer"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "TrustEvaluationResult"
+        },
+        {
+          "type": "named",
+          "name": "TrustEvaluationWithBreakdown"
+        },
+        {
+          "type": "named",
+          "name": "filterByTrust"
+        },
+        {
+          "type": "named",
+          "name": "getTrustVisibility"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "companySizeToBonus",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "daysSincePosted",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "computeFreshnessScore",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "buildTrustBreakdown",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "evaluateJobTrust",
+          "exported": false,
+          "async": true
+        },
+        {
+          "kind": "function",
+          "name": "evaluateJobTrustWithBreakdown",
+          "exported": false,
+          "async": true
+        },
+        {
+          "kind": "function",
+          "name": "evaluateJobsTrust",
+          "exported": false,
+          "async": true
+        },
+        {
+          "kind": "function",
+          "name": "evaluateJobsTrustWithBreakdown",
+          "exported": false,
+          "async": true
+        },
+        {
+          "kind": "function",
+          "name": "filterByTrust",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "type",
+          "name": "TrustEvaluationResult",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "TrustEvaluationWithBreakdown",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/modules/trust/services/trust-score-formula.ts": {
+      "imports": [
+        {
+          "source": "@jobfindr/types",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "TrustScore",
+            "TrustSignals",
+            "CompanySizeCategory"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "ProviderReputationInput"
+        },
+        {
+          "type": "named",
+          "name": "CompanyReputationInput"
+        },
+        {
+          "type": "named",
+          "name": "calculateTrustScore"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "scoreCompanySize",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "calculateTransparencyScore",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "calculateTrustScore",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "type",
+          "name": "ProviderReputationInput",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "CompanyReputationInput",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/shared/logger/logger.ts": {
+      "imports": [],
+      "exports": [
+        {
+          "type": "named",
+          "name": "LogLevel"
+        },
+        {
+          "type": "named",
+          "name": "LogEntry"
+        },
+        {
+          "type": "named",
+          "name": "logger"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "formatLogEntry",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "sanitizeData",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "createEntry",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "type",
+          "name": "LogLevel",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "LogEntry",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/shared/metrics/error-monitoring.ts": {
+      "imports": [
+        {
+          "source": "../logger/logger.ts",
+          "default": false,
+          "named": [
+            "logger"
+          ]
+        },
+        {
+          "source": "./metrics.ts",
+          "default": false,
+          "named": [
+            "metrics"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "errorMonitor"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "ErrorMonitor",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "ErrorEvent",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/shared/metrics/metrics.ts": {
+      "imports": [],
+      "exports": [
+        {
+          "type": "named",
+          "name": "MetricType"
+        },
+        {
+          "type": "named",
+          "name": "MetricEntry"
+        },
+        {
+          "type": "named",
+          "name": "metrics"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "MetricsCollector",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "MetricType",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "MetricEntry",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/shared/metrics/provider-metrics.ts": {
+      "imports": [
+        {
+          "source": "./metrics.ts",
+          "default": false,
+          "named": [
+            "metrics"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "recordProviderSuccess"
+        },
+        {
+          "type": "named",
+          "name": "recordProviderFailure"
+        },
+        {
+          "type": "named",
+          "name": "recordProviderTimeout"
+        },
+        {
+          "type": "named",
+          "name": "recordProviderCacheHit"
+        },
+        {
+          "type": "named",
+          "name": "recordProviderCacheMiss"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "recordProviderSuccess",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "recordProviderFailure",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "recordProviderTimeout",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "recordProviderCacheHit",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "recordProviderCacheMiss",
+          "exported": false,
+          "async": false
+        }
+      ]
+    },
+    "apps/backend/src/shared/metrics/timeout-monitoring.ts": {
+      "imports": [
+        {
+          "source": "../logger/logger.ts",
+          "default": false,
+          "named": [
+            "logger"
+          ]
+        },
+        {
+          "source": "./metrics.ts",
+          "default": false,
+          "named": [
+            "metrics"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "timeoutMonitor"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "TimeoutMonitor",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "TimeoutEvent",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/shared/middleware/anti-spam.ts": {
+      "imports": [
+        {
+          "source": "fastify",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "FastifyInstance"
+          ]
+        },
+        {
+          "source": "./error-handler.ts",
+          "default": false,
+          "named": [
+            "AppError"
+          ]
+        },
+        {
+          "source": "../metrics/metrics.ts",
+          "default": false,
+          "named": [
+            "metrics"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "registerAntiSpamMiddleware"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "containsSuspiciousPatterns",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "containsSuspiciousKeywords",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "registerAntiSpamMiddleware",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "interface",
+          "name": "AntiSpamConfig",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/shared/middleware/error-handler.ts": {
+      "imports": [
+        {
+          "source": "fastify",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "FastifyError",
+            "FastifyReply",
+            "FastifyRequest"
+          ]
+        },
+        {
+          "source": "../logger/logger.ts",
+          "default": false,
+          "named": [
+            "logger"
+          ]
+        },
+        {
+          "source": "../metrics/error-monitoring.ts",
+          "default": false,
+          "named": [
+            "errorMonitor"
+          ]
+        },
+        {
+          "source": "../../config/env.ts",
+          "default": false,
+          "named": [
+            "env"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "AppErrorCode"
+        },
+        {
+          "type": "named",
+          "name": "AppError"
+        },
+        {
+          "type": "named",
+          "name": "createGlobalErrorHandler"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createGlobalErrorHandler",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "class",
+          "name": "AppError",
+          "exported": false,
+          "extends": "Error"
+        },
+        {
+          "kind": "type",
+          "name": "AppErrorCode",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/shared/middleware/rate-limiter.ts": {
+      "imports": [
+        {
+          "source": "fastify",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "FastifyInstance"
+          ]
+        },
+        {
+          "source": "../../config/env.ts",
+          "default": false,
+          "named": [
+            "env"
+          ]
+        }
+      ],
+      "exports": [],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "registerRateLimiter",
+          "exported": false,
+          "async": true
+        }
+      ]
+    },
+    "apps/backend/src/shared/middleware/sanitization.ts": {
+      "imports": [
+        {
+          "source": "fastify",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "FastifyInstance"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "sanitizeString"
+        },
+        {
+          "type": "named",
+          "name": "sanitizeQueryParams"
+        },
+        {
+          "type": "named",
+          "name": "registerSanitizationMiddleware"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "sanitizeString",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "sanitizeQueryParams",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "registerSanitizationMiddleware",
+          "exported": false,
+          "async": false
+        }
+      ]
+    },
+    "apps/backend/src/shared/middleware/secure-headers.ts": {
+      "imports": [
+        {
+          "source": "fastify",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "FastifyInstance"
+          ]
+        }
+      ],
+      "exports": [],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "registerSecureHeaders",
+          "exported": false,
+          "async": true
+        }
+      ]
+    },
+    "apps/backend/src/shared/middleware/validation.ts": {
+      "imports": [
+        {
+          "source": "fastify",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "FastifyInstance"
+          ]
+        },
+        {
+          "source": "./error-handler.ts",
+          "default": false,
+          "named": [
+            "AppError"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "registerValidationMiddleware"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "registerValidationMiddleware",
+          "exported": false,
+          "async": false
+        }
+      ]
+    },
+    "apps/backend/src/shared/services/provider-isolation.ts": {
+      "imports": [
+        {
+          "source": "@jobfindr/types",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "ValidatedSearchInput",
+            "NormalizedJob",
+            "ProviderResult"
+          ]
+        },
+        {
+          "source": "../logger/logger.ts",
+          "default": false,
+          "named": [
+            "logger"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "IsolatedProviderCall"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "executeIsolatedProvider",
+          "exported": false,
+          "async": true
+        },
+        {
+          "kind": "type",
+          "name": "IsolatedProviderCall",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/shared/services/request-batching.ts": {
+      "imports": [],
+      "exports": [
+        {
+          "type": "named",
+          "name": "RequestBatcher"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "class",
+          "name": "RequestBatcher",
+          "exported": false
+        }
+      ]
+    },
+    "apps/backend/src/shared/streaming/partial-streaming.ts": {
+      "imports": [
+        {
+          "source": "@jobfindr/types",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "ProviderResult",
+            "NormalizedJob",
+            "PartialResponseMeta"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "aggregatePartialResults"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "aggregatePartialResults",
+          "exported": false,
+          "async": false
+        }
+      ]
+    },
+    "packages/types/src/api.types.ts": {
+      "imports": [],
+      "exports": [
+        {
+          "type": "named",
+          "name": "ApiResponse"
+        },
+        {
+          "type": "named",
+          "name": "ApiErrorResponse"
+        },
+        {
+          "type": "named",
+          "name": "PaginationMeta"
+        },
+        {
+          "type": "named",
+          "name": "PartialResponseMeta"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "type",
+          "name": "ApiErrorResponse",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "PaginationMeta",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "PartialResponseMeta",
+          "exported": false
+        }
+      ]
+    },
+    "packages/types/src/index.ts": {
+      "imports": [],
+      "exports": [
+        {
+          "type": "named",
+          "name": "MATCH_THRESHOLDS"
+        },
+        {
+          "type": "named",
+          "name": "getMatchThresholdLabel"
+        },
+        {
+          "type": "named",
+          "name": "TRUST_THRESHOLDS"
+        },
+        {
+          "type": "named",
+          "name": "getTrustVisibility"
+        },
+        {
+          "type": "named",
+          "name": "getTrustClassification"
+        },
+        {
+          "type": "named",
+          "name": "DEFAULT_RANKING_WEIGHTS"
+        }
+      ],
+      "declarations": []
+    },
+    "packages/types/src/match.types.ts": {
+      "imports": [],
+      "exports": [
+        {
+          "type": "named",
+          "name": "MatchScore"
+        },
+        {
+          "type": "named",
+          "name": "MatchBreakdown"
+        },
+        {
+          "type": "named",
+          "name": "MatchExplanation"
+        },
+        {
+          "type": "named",
+          "name": "MATCH_THRESHOLDS"
+        },
+        {
+          "type": "named",
+          "name": "MatchThresholdLabel"
+        },
+        {
+          "type": "named",
+          "name": "getMatchThresholdLabel"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "getMatchThresholdLabel",
+          "exported": true,
+          "async": false
+        },
+        {
+          "kind": "type",
+          "name": "MatchScore",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "MatchBreakdown",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "MatchExplanation",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "MatchThresholdLabel",
+          "exported": false
+        }
+      ]
+    },
+    "packages/types/src/normalized-job.ts": {
+      "imports": [
+        {
+          "source": "./match.types.ts",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "MatchBreakdown"
+          ]
+        },
+        {
+          "source": "./trust.types.ts",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "TrustBreakdown"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "NormalizedJob"
+        },
+        {
+          "type": "named",
+          "name": "SalaryInfo"
+        },
+        {
+          "type": "named",
+          "name": "SalaryPeriod"
+        },
+        {
+          "type": "named",
+          "name": "SeniorityLevel"
+        },
+        {
+          "type": "named",
+          "name": "RemoteMode"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "type",
+          "name": "NormalizedJob",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "SalaryInfo",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "SalaryPeriod",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "SeniorityLevel",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "RemoteMode",
+          "exported": false
+        }
+      ]
+    },
+    "packages/types/src/provider.types.ts": {
+      "imports": [
+        {
+          "source": "./normalized-job.ts",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "NormalizedJob"
+          ]
+        },
+        {
+          "source": "./search-dto.ts",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "ValidatedSearchInput"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "ProviderType"
+        },
+        {
+          "type": "named",
+          "name": "JobProvider"
+        },
+        {
+          "type": "named",
+          "name": "ProviderMetadata"
+        },
+        {
+          "type": "named",
+          "name": "RateLimitInfo"
+        },
+        {
+          "type": "named",
+          "name": "ProviderReputation"
+        },
+        {
+          "type": "named",
+          "name": "ProviderResult"
+        },
+        {
+          "type": "named",
+          "name": "AggregatedProviderResult"
+        },
+        {
+          "type": "named",
+          "name": "ProviderHealthStatus"
+        },
+        {
+          "type": "named",
+          "name": "Normalizer"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "interface",
+          "name": "JobProvider",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "ProviderType",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "ProviderMetadata",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "RateLimitInfo",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "ProviderReputation",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "ProviderResult",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "AggregatedProviderResult",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "ProviderHealthStatus",
+          "exported": false
+        }
+      ]
+    },
+    "packages/types/src/ranking.types.ts": {
+      "imports": [],
+      "exports": [
+        {
+          "type": "named",
+          "name": "RankingWeights"
+        },
+        {
+          "type": "named",
+          "name": "DEFAULT_RANKING_WEIGHTS"
+        },
+        {
+          "type": "named",
+          "name": "RankingResult"
+        },
+        {
+          "type": "named",
+          "name": "RankingBreakdown"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "type",
+          "name": "RankingWeights",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "RankingResult",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "RankingBreakdown",
+          "exported": false
+        }
+      ]
+    },
+    "packages/types/src/search-dto.ts": {
+      "imports": [
+        {
+          "source": "./normalized-job.ts",
+          "default": true,
+          "defaultName": "type",
+          "named": [
+            "SeniorityLevel",
+            "RemoteMode"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "type": "named",
+          "name": "SearchJobsInput"
+        },
+        {
+          "type": "named",
+          "name": "SearchSortOption"
+        },
+        {
+          "type": "named",
+          "name": "ValidatedSearchInput"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "type",
+          "name": "SearchJobsInput",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "SearchSortOption",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "ValidatedSearchInput",
+          "exported": false
+        }
+      ]
+    },
+    "packages/types/src/trust.types.ts": {
+      "imports": [],
+      "exports": [
+        {
+          "type": "named",
+          "name": "TrustScore"
+        },
+        {
+          "type": "named",
+          "name": "TrustSignals"
+        },
+        {
+          "type": "named",
+          "name": "CompanySizeCategory"
+        },
+        {
+          "type": "named",
+          "name": "TrustBreakdown"
+        },
+        {
+          "type": "named",
+          "name": "TRUST_THRESHOLDS"
+        },
+        {
+          "type": "named",
+          "name": "TrustVisibility"
+        },
+        {
+          "type": "named",
+          "name": "getTrustVisibility"
+        },
+        {
+          "type": "named",
+          "name": "TrustClassification"
+        },
+        {
+          "type": "named",
+          "name": "getTrustClassification"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "getTrustVisibility",
+          "exported": true,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "getTrustClassification",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "type",
+          "name": "TrustScore",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "TrustSignals",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "CompanySizeCategory",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "TrustBreakdown",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "TrustVisibility",
+          "exported": false
+        },
+        {
+          "kind": "type",
+          "name": "TrustClassification",
+          "exported": false
+        }
+      ]
+    },
+    "packages/utils/src/index.ts": {
+      "imports": [],
+      "exports": [
+        {
+          "type": "named",
+          "name": "createJobId"
+        },
+        {
+          "type": "named",
+          "name": "safeJsonParse"
+        },
+        {
+          "type": "named",
+          "name": "clamp"
+        },
+        {
+          "type": "named",
+          "name": "sleep"
+        },
+        {
+          "type": "named",
+          "name": "hashString"
+        },
+        {
+          "type": "named",
+          "name": "truncate"
+        },
+        {
+          "type": "named",
+          "name": "unique"
+        },
+        {
+          "type": "named",
+          "name": "parseCommaList"
+        },
+        {
+          "type": "named",
+          "name": "nowISO"
+        }
+      ],
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createJobId",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "clamp",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "sleep",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "hashString",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "truncate",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "parseCommaList",
+          "exported": false,
+          "async": false
+        },
+        {
+          "kind": "function",
+          "name": "nowISO",
+          "exported": false,
+          "async": false
+        }
+      ]
+    }
+  },
+  "errors": [],
+  "dependencyCount": {
+    "react": 22,
+    "@/hooks": 6,
+    "./AutocompleteInput": 4,
+    "./Modal": 3,
+    "./SenioritySelector": 1,
+    "./RemoteModeFilter": 1,
+    "./CountryFilter": 1,
+    "./CompanyFilters": 1,
+    "./SkillsTagsInput": 1,
+    "./TrustFilters": 1,
+    "@/store/searchStore": 4,
+    "@/contexts/SkillsModalContext": 3,
+    "@/types": 10,
+    "./MatchSummary": 1,
+    "./ExpandableDescription": 1,
+    "./ApplyCta": 1,
+    "./TrustExplanationModal": 1,
+    "./MatchExplanationModal": 1,
+    "@/utils": 3,
+    "./UserSkillsModal": 1,
+    "@/utils/explain": 2,
+    "@tanstack/react-query": 3,
+    "@/services/api": 3,
+    "react-dom/client": 1,
+    "react-router-dom": 1,
+    "@/components/Layout": 1,
+    "./index.css": 1,
+    "@/components/SearchBar": 1,
+    "@/components/SortToggle": 1,
+    "@/components/FiltersPanel": 1,
+    "@/components/JobCard": 1,
+    "@/components/Pagination": 1,
+    "@/components/LoadingSkeleton": 1,
+    "@/components/LoadingStates": 1,
+    "@/components/EmptyState": 1,
+    "zustand": 1,
+    "zustand/middleware": 1,
+    "@testing-library/jest-dom/vitest": 1,
+    "fastify": 11,
+    "@fastify/cors": 1,
+    "./config/env.ts": 1,
+    "./shared/logger/logger.ts": 1,
+    "./shared/metrics/error-monitoring.ts": 1,
+    "./shared/middleware/error-handler.ts": 1,
+    "./shared/middleware/secure-headers.ts": 1,
+    "./shared/middleware/rate-limiter.ts": 1,
+    "./shared/middleware/validation.ts": 1,
+    "./shared/middleware/sanitization.ts": 1,
+    "./shared/middleware/anti-spam.ts": 1,
+    "./modules/search/controllers/search-controller.ts": 1,
+    "./modules/providers/services/provider-loader.ts": 1,
+    "./modules/providers/config/company-registry.ts": 1,
+    "./modules/providers/services/company-sync.ts": 1,
+    "./modules/providers/routes/admin-companies.ts": 1,
+    "./in-memory-cache.ts": 2,
+    "@jobfindr/types": 46,
+    "../config/env.ts": 1,
+    "../shared/metrics/provider-metrics.ts": 1,
+    "dotenv/config": 1,
+    "./app.ts": 1,
+    "./synonym-dictionary.ts": 1,
+    "../../normalization/services/skill-normalizer.ts": 1,
+    "./similarity-engine.ts": 1,
+    "./skill-normalizer.ts": 1,
+    "../domain/api-provider.ts": 3,
+    "../services/normalization-pipeline.ts": 5,
+    "../services/retry-system.ts": 5,
+    "../config/companies.ts": 8,
+    "../../normalization/services/html-cleaner.ts": 5,
+    "../../normalization/services/skill-extraction.ts": 6,
+    "./companies.ts": 1,
+    "../../../config/env.ts": 8,
+    "../../../shared/logger/logger.ts": 11,
+    "./base-provider.ts": 2,
+    "../../scraping/http/axios-client.ts": 2,
+    "axios": 4,
+    "../../../shared/metrics/provider-metrics.ts": 3,
+    "../../../shared/metrics/error-monitoring.ts": 1,
+    "../services/resilience/circuit-breaker.ts": 1,
+    "../domain/json-provider.ts": 2,
+    "../config/company-registry.ts": 5,
+    "node:crypto": 1,
+    "zod": 1,
+    "../services/company-sync.ts": 1,
+    "node-cron": 1,
+    "./company-discovery.ts": 1,
+    "@jobfindr/utils": 4,
+    "../../normalization/services/seniority-parser.ts": 1,
+    "../../normalization/services/salary-parser.ts": 2,
+    "../../../shared/services/provider-isolation.ts": 2,
+    "../../search/services/timeout-manager.ts": 1,
+    "./resilience/quota-manager.ts": 1,
+    "../domain/provider-registry.ts": 2,
+    "./provider-health.ts": 1,
+    "../../../../shared/logger/logger.ts": 1,
+    "./resilience/backoff-config.ts": 1,
+    "./match-score-weight.ts": 1,
+    "./trust-score-weight.ts": 1,
+    "./large-company-priority.ts": 1,
+    "./salary-ranking.ts": 1,
+    "./recency-ranking.ts": 1,
+    "./composite-score.ts": 1,
+    "../services/user-agent-rotation.ts": 1,
+    "cheerio": 1,
+    "./user-agent-rotation.ts": 1,
+    "./rate-limiter.ts": 1,
+    "./request-queue.ts": 1,
+    "../../../shared/metrics/timeout-monitoring.ts": 2,
+    "../validation/search-validation.ts": 1,
+    "../services/aggregation-service.ts": 1,
+    "../dto/search-dto.ts": 1,
+    "../../providers/domain/provider-registry.ts": 1,
+    "./timeout-manager.ts": 1,
+    "./pagination.ts": 1,
+    "../../../cache/provider-cache-layer.ts": 1,
+    "../../../cache/aggregated-cache.ts": 1,
+    "../../trust/services/trust-engine.ts": 1,
+    "../../ranking/services/ranking-engine.ts": 1,
+    "../../matchmaking/services/weighted-match-scoring.ts": 1,
+    "../../matchmaking/services/user-skill-parser.ts": 1,
+    "../../../shared/streaming/partial-streaming.ts": 1,
+    "../../../shared/services/request-batching.ts": 1,
+    "../../../shared/middleware/error-handler.ts": 1,
+    "../../cache/aggregated-cache.ts": 1,
+    "../providers/config/company-registry.ts": 1,
+    "../../../cache/in-memory-cache.ts": 1,
+    "./trust-score-formula.ts": 3,
+    "./hidden-companies-config.ts": 1,
+    "./company-reputation.ts": 1,
+    "./provider-reputation.ts": 1,
+    "../cache/trust-cache.ts": 1,
+    "../logger/logger.ts": 4,
+    "./metrics.ts": 3,
+    "./error-handler.ts": 2,
+    "../metrics/metrics.ts": 1,
+    "../metrics/error-monitoring.ts": 1,
+    "../../config/env.ts": 2,
+    "./match.types.ts": 1,
+    "./trust.types.ts": 1,
+    "./normalized-job.ts": 2,
+    "./search-dto.ts": 1
+  },
+  "perPackage": {
+    "frontend": {
+      "files": 38,
+      "imports": 90,
+      "exports": 52,
+      "declarations": 90
+    },
+    "backend": {
+      "files": 92,
+      "imports": 226,
+      "exports": 183,
+      "declarations": 255
+    },
+    "packages/types": {
+      "files": 8,
+      "imports": 5,
+      "exports": 46,
+      "declarations": 35
+    },
+    "packages/utils": {
+      "files": 1,
+      "imports": 0,
+      "exports": 9,
+      "declarations": 7
+    }
+  }
+}

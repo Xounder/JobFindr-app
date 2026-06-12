@@ -45,8 +45,7 @@ Uses the tasks created by the Tech Lead to implement and maintain the applicatio
 
 ## Before you start
 
-Update `pipeline.yaml`:
-- `steps.senior-frontend.status: "in_progress"`
+Report your status to the orchestrator when starting.
 
 ## Workflow
 
@@ -56,7 +55,7 @@ Update `pipeline.yaml`:
   4. Implement the solution in the frontend (`apps/frontend/`)
   5. **Start the app** — start the server (`pnpm --filter backend dev`) and test if its working
   6. **Stop the server** — after validation, stop the server
-  7. Update `pipeline.yaml`: `steps.senior-frontend.status: "completed"` (do NOT change `current_step` — the orchestrator owns phase transitions)
+   7. Return your status to the orchestrator
   8. **Return structured summary** — report back to the orchestrator a non-empty summary of what was implemented, validation results, and any errors encountered (port conflicts, process spawn issues, build tool problems, etc.)
 
 ## Implementation rules
@@ -67,6 +66,13 @@ Update `pipeline.yaml`:
 - Local state → Zustand → TanStack Query (in this order of preference)
 - Keep components small and with single responsibility
 - **Never request or open files outside the project directory** — all operations must stay within the project root
+
+## Retry Limit (failure escalation)
+
+If the same action fails 3 consecutive times, you MUST NOT retry. Instead, return to the orchestrator/agent that created you, reporting:
+1. Which action failed
+2. The error reason observed
+3. That you cannot proceed further
 
 ## Branding
 

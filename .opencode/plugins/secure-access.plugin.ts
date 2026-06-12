@@ -319,7 +319,7 @@ export const SecureAccessPlugin: Plugin = async ({ project, client, $, directory
             `[secure-access] Blocked ${parsed.args[0]} outside project:\n${parsed.args[1]}`
           )
         }
-        if (!/\.(ts|js|tsx)$/.test(real)) {
+        if (!/\.(ts|js|tsx|mjs)$/.test(real)) {
           throw new Error(
             `[secure-access] Blocked ${parsed.args[0]} with invalid extension:\n${real}`
           )

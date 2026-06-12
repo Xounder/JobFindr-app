@@ -1,218 +1,31 @@
 {
-  "generatedAt": "2026-06-06T06:49:27.350Z",
+  "generatedAt": "2026-06-12T04:04:55.007Z",
   "mode": "docs",
   "summary": {
-    "totalFiles": 56,
-    "totalMdFiles": 51,
-    "totalJsonFiles": 4,
+    "totalFiles": 53,
+    "totalMdFiles": 46,
+    "totalJsonFiles": 6,
     "totalYamlFiles": 1,
     "totalTxtFiles": 0,
-    "totalHeadings": 388,
-    "totalCodeBlocks": 30,
-    "totalListItems": 908
+    "totalHeadings": 336,
+    "totalCodeBlocks": 34,
+    "totalListItems": 880
   },
   "files": {
     ".opencode/agents/00-planning-agent.md": {
-      "size": 9790,
-      "lines": 268,
+      "size": 9641,
+      "lines": 295,
       "type": "markdown",
-      "headings": [
-        {
-          "level": 1,
-          "text": "Planning Analyst Agent"
-        },
-        {
-          "level": 2,
-          "text": "Role"
-        },
-        {
-          "level": 2,
-          "text": "When to invoke"
-        },
-        {
-          "level": 2,
-          "text": "Workflow"
-        },
-        {
-          "level": 3,
-          "text": "Phase 1: Understand the request"
-        },
-        {
-          "level": 3,
-          "text": "Phase 2: Explore the codebase"
-        },
-        {
-          "level": 3,
-          "text": "Phase 3: Analyze"
-        },
-        {
-          "level": 3,
-          "text": "Phase 4: Discuss approaches with user (MANDATORY before feasibility.md)"
-        },
-        {
-          "level": 3,
-          "text": "Phase 4b: Present plan structure before creating files"
-        },
-        {
-          "level": 3,
-          "text": "Phase 5: Generate planning documents — ALWAYS write files"
-        },
-        {
-          "level": 4,
-          "text": "index.md format"
-        },
-        {
-          "level": 1,
-          "text": "<Plan Title>"
-        },
-        {
-          "level": 2,
-          "text": "Objective"
-        },
-        {
-          "level": 2,
-          "text": "Scope"
-        },
-        {
-          "level": 2,
-          "text": "Summary of Findings"
-        },
-        {
-          "level": 2,
-          "text": "Documents"
-        },
-        {
-          "level": 4,
-          "text": "feasibility.md format"
-        },
-        {
-          "level": 1,
-          "text": "Feasibility — <Topic>"
-        },
-        {
-          "level": 2,
-          "text": "Approaches"
-        },
-        {
-          "level": 3,
-          "text": "Approach A: <name>"
-        },
-        {
-          "level": 3,
-          "text": "Approach B: <name>"
-        },
-        {
-          "level": 2,
-          "text": "Recommendation"
-        },
-        {
-          "level": 4,
-          "text": "impact-analysis.md format"
-        },
-        {
-          "level": 1,
-          "text": "Impact Analysis — <Topic>"
-        },
-        {
-          "level": 2,
-          "text": "Layer Impact Matrix"
-        },
-        {
-          "level": 2,
-          "text": "Breaking Changes"
-        },
-        {
-          "level": 2,
-          "text": "Performance Impact"
-        },
-        {
-          "level": 4,
-          "text": "risks.md format"
-        },
-        {
-          "level": 1,
-          "text": "Risks — <Topic>"
-        },
-        {
-          "level": 2,
-          "text": "Regression Points"
-        },
-        {
-          "level": 4,
-          "text": "recommendations.md format"
-        },
-        {
-          "level": 1,
-          "text": "Recommendations — <Topic>"
-        },
-        {
-          "level": 2,
-          "text": "For Product Manager"
-        },
-        {
-          "level": 2,
-          "text": "Suggested Epic Breakdown"
-        },
-        {
-          "level": 2,
-          "text": "Output cleanup"
-        },
-        {
-          "level": 2,
-          "text": "Constraints"
-        },
-        {
-          "level": 2,
-          "text": "Related Documents"
-        }
-      ],
-      "totalHeadings": 37,
+      "headings": [],
+      "totalHeadings": 0,
       "totalCodeBlocks": 0,
       "codeBlocks": [],
-      "totalListItems": 46,
-      "sections": [
-        "Planning Analyst Agent",
-        "Role",
-        "When to invoke",
-        "Workflow",
-        "Phase 1: Understand the request",
-        "Phase 2: Explore the codebase",
-        "Phase 3: Analyze",
-        "Phase 4: Discuss approaches with user (MANDATORY before feasibility.md)",
-        "Phase 4b: Present plan structure before creating files",
-        "Phase 5: Generate planning documents — ALWAYS write files",
-        "index.md format",
-        "<Plan Title>",
-        "Objective",
-        "Scope",
-        "Summary of Findings",
-        "Documents",
-        "feasibility.md format",
-        "Feasibility — <Topic>",
-        "Approaches",
-        "Approach A: <name>",
-        "Approach B: <name>",
-        "Recommendation",
-        "impact-analysis.md format",
-        "Impact Analysis — <Topic>",
-        "Layer Impact Matrix",
-        "Breaking Changes",
-        "Performance Impact",
-        "risks.md format",
-        "Risks — <Topic>",
-        "Regression Points",
-        "recommendations.md format",
-        "Recommendations — <Topic>",
-        "For Product Manager",
-        "Suggested Epic Breakdown",
-        "Output cleanup",
-        "Constraints",
-        "Related Documents"
-      ]
+      "totalListItems": 60,
+      "sections": []
     },
     ".opencode/agents/01-product-manager.md": {
-      "size": 6256,
-      "lines": 168,
+      "size": 6079,
+      "lines": 163,
       "type": "markdown",
       "headings": [
         {
@@ -271,7 +84,7 @@
       "totalHeadings": 13,
       "totalCodeBlocks": 0,
       "codeBlocks": [],
-      "totalListItems": 42,
+      "totalListItems": 37,
       "sections": [
         "Product Manager Agent",
         "Role",
@@ -289,8 +102,8 @@
       ]
     },
     ".opencode/agents/02-tech-lead.md": {
-      "size": 4979,
-      "lines": 137,
+      "size": 5166,
+      "lines": 145,
       "type": "markdown",
       "headings": [
         {
@@ -311,10 +124,6 @@
         },
         {
           "level": 2,
-          "text": "Output structure example"
-        },
-        {
-          "level": 2,
           "text": "When finished"
         },
         {
@@ -327,11 +136,19 @@
         },
         {
           "level": 2,
+          "text": "Retry Limit (failure escalation)"
+        },
+        {
+          "level": 2,
           "text": "Task Creation Example"
         },
         {
           "level": 1,
-          "text": "Task: [Descriptive task name]"
+          "text": "Task-NN-<context>: [Descriptive task name]"
+        },
+        {
+          "level": 2,
+          "text": "Depends on"
         },
         {
           "level": 2,
@@ -351,34 +168,40 @@
         },
         {
           "level": 2,
+          "text": "References"
+        },
+        {
+          "level": 2,
           "text": "Related Documents"
         }
       ],
-      "totalHeadings": 15,
+      "totalHeadings": 17,
       "totalCodeBlocks": 0,
       "codeBlocks": [],
-      "totalListItems": 35,
+      "totalListItems": 48,
       "sections": [
         "Tech Lead Agent",
         "Role",
         "Before you start",
         "Workflow",
-        "Output structure example",
         "When finished",
         "Output",
         "Constraints",
+        "Retry Limit (failure escalation)",
         "Task Creation Example",
-        "Task: [Descriptive task name]",
+        "Task-NN-<context>: [Descriptive task name]",
+        "Depends on",
         "Description",
         "Technical Details",
         "Implementation Approach",
         "Testing",
+        "References",
         "Related Documents"
       ]
     },
     ".opencode/agents/03-senior-frontend.md": {
-      "size": 3538,
-      "lines": 87,
+      "size": 3687,
+      "lines": 93,
       "type": "markdown",
       "headings": [
         {
@@ -407,6 +230,10 @@
         },
         {
           "level": 2,
+          "text": "Retry Limit (failure escalation)"
+        },
+        {
+          "level": 2,
           "text": "Branding"
         },
         {
@@ -418,10 +245,10 @@
           "text": "Related Documents"
         }
       ],
-      "totalHeadings": 9,
+      "totalHeadings": 10,
       "totalCodeBlocks": 0,
       "codeBlocks": [],
-      "totalListItems": 27,
+      "totalListItems": 29,
       "sections": [
         "Senior Frontend Agent",
         "Role",
@@ -429,14 +256,15 @@
         "Before you start",
         "Workflow",
         "Implementation rules",
+        "Retry Limit (failure escalation)",
         "Branding",
         "Corrections Cycle (QA)",
         "Related Documents"
       ]
     },
     ".opencode/agents/04-senior-backend.md": {
-      "size": 3711,
-      "lines": 84,
+      "size": 3862,
+      "lines": 90,
       "type": "markdown",
       "headings": [
         {
@@ -461,6 +289,10 @@
         },
         {
           "level": 2,
+          "text": "Retry Limit (failure escalation)"
+        },
+        {
+          "level": 2,
           "text": "Implementation rules"
         },
         {
@@ -468,23 +300,24 @@
           "text": "Related Documents"
         }
       ],
-      "totalHeadings": 7,
+      "totalHeadings": 8,
       "totalCodeBlocks": 0,
       "codeBlocks": [],
-      "totalListItems": 31,
+      "totalListItems": 33,
       "sections": [
         "Senior Backend Agent",
         "Role",
         "Responsibilities",
         "Before you start",
         "Workflow",
+        "Retry Limit (failure escalation)",
         "Implementation rules",
         "Related Documents"
       ]
     },
     ".opencode/agents/05-qa-reviewer.md": {
-      "size": 4948,
-      "lines": 120,
+      "size": 4777,
+      "lines": 118,
       "type": "markdown",
       "headings": [
         {
@@ -516,12 +349,8 @@
           "text": "When finished"
         },
         {
-          "level": 3,
-          "text": "If approved"
-        },
-        {
-          "level": 3,
-          "text": "If corrections needed"
+          "level": 2,
+          "text": "Retry Limit (failure escalation)"
         },
         {
           "level": 2,
@@ -536,10 +365,10 @@
           "text": "Related Documents"
         }
       ],
-      "totalHeadings": 12,
+      "totalHeadings": 11,
       "totalCodeBlocks": 0,
       "codeBlocks": [],
-      "totalListItems": 50,
+      "totalListItems": 47,
       "sections": [
         "QA Reviewer Agent",
         "Role",
@@ -548,15 +377,14 @@
         "For frontend",
         "For backend",
         "When finished",
-        "If approved",
-        "If corrections needed",
+        "Retry Limit (failure escalation)",
         "Rules",
         "Check List",
         "Related Documents"
       ]
     },
     ".opencode/architecture/01-system-overview.md": {
-      "size": 974,
+      "size": 982,
       "lines": 51,
       "type": "markdown",
       "headings": [
@@ -604,7 +432,7 @@
       ]
     },
     ".opencode/architecture/02-architecture-principles.md": {
-      "size": 1306,
+      "size": 1312,
       "lines": 91,
       "type": "markdown",
       "headings": [
@@ -773,7 +601,7 @@
       ]
     },
     ".opencode/architecture/05-frontend-guidelines.md": {
-      "size": 512,
+      "size": 528,
       "lines": 53,
       "type": "markdown",
       "headings": [
@@ -898,7 +726,7 @@
       ]
     },
     ".opencode/architecture/07-api-architecture.md": {
-      "size": 753,
+      "size": 745,
       "lines": 70,
       "type": "markdown",
       "headings": [
@@ -969,8 +797,8 @@
       ]
     },
     ".opencode/architecture/08-provider-architecture.md": {
-      "size": 2018,
-      "lines": 108,
+      "size": 2044,
+      "lines": 105,
       "type": "markdown",
       "headings": [
         {
@@ -991,7 +819,7 @@
         },
         {
           "level": 1,
-          "text": "Supported Providers (MVP)"
+          "text": "Supported Providers"
         },
         {
           "level": 1,
@@ -1026,13 +854,13 @@
           "lines": 11
         }
       ],
-      "totalListItems": 27,
+      "totalListItems": 26,
       "sections": [
         "08-provider-architecture.md",
         "Provider Architecture",
         "Responsibilities",
         "Interface",
-        "Supported Providers (MVP)",
+        "Supported Providers",
         "Provider Strategy",
         "Provider Isolation",
         "Multi-Company Provider Pattern",
@@ -1132,7 +960,7 @@
       ]
     },
     ".opencode/architecture/11-matchmaking-engine.md": {
-      "size": 724,
+      "size": 717,
       "lines": 62,
       "type": "markdown",
       "headings": [
@@ -1276,7 +1104,7 @@
       ]
     },
     ".opencode/architecture/14-caching-architecture.md": {
-      "size": 324,
+      "size": 320,
       "lines": 29,
       "type": "markdown",
       "headings": [
@@ -1290,7 +1118,7 @@
         },
         {
           "level": 1,
-          "text": "MVP Cache Strategy"
+          "text": "Cache Strategy"
         },
         {
           "level": 1,
@@ -1308,7 +1136,7 @@
       "sections": [
         "14-caching-architecture.md",
         "Caching Architecture",
-        "MVP Cache Strategy",
+        "Cache Strategy",
         "Cache Targets",
         "Related Documents"
       ]
@@ -1486,8 +1314,8 @@
       ]
     },
     ".opencode/architecture/19-engineering-guidelines.md": {
-      "size": 1182,
-      "lines": 78,
+      "size": 1429,
+      "lines": 91,
       "type": "markdown",
       "headings": [
         {
@@ -1512,7 +1340,11 @@
         },
         {
           "level": 1,
-          "text": "Rules"
+          "text": "Anti-Patterns / Forbidden Patterns"
+        },
+        {
+          "level": 1,
+          "text": "Why These Patterns Are Forbidden"
         },
         {
           "level": 1,
@@ -1523,23 +1355,33 @@
           "text": "Related Documents"
         }
       ],
-      "totalHeadings": 8,
-      "totalCodeBlocks": 0,
-      "codeBlocks": [],
-      "totalListItems": 23,
+      "totalHeadings": 9,
+      "totalCodeBlocks": 2,
+      "codeBlocks": [
+        {
+          "language": "txt",
+          "lines": 3
+        },
+        {
+          "language": "txt",
+          "lines": 3
+        }
+      ],
+      "totalListItems": 30,
       "sections": [
         "19-engineering-guidelines.md",
         "Engineering Guidelines",
         "Code Style",
         "Naming Conventions",
         "TypeScript Rules",
-        "Rules",
+        "Anti-Patterns / Forbidden Patterns",
+        "Why These Patterns Are Forbidden",
         "AI Contribution Workflow",
         "Related Documents"
       ]
     },
     ".opencode/architecture/20-scalability-roadmap.md": {
-      "size": 711,
+      "size": 776,
       "lines": 48,
       "type": "markdown",
       "headings": [
@@ -1553,7 +1395,7 @@
         },
         {
           "level": 1,
-          "text": "MVP Philosophy"
+          "text": "Scalability Philosophy"
         },
         {
           "level": 1,
@@ -1575,53 +1417,15 @@
       "sections": [
         "20-scalability-roadmap.md",
         "Scalability Roadmap",
-        "MVP Philosophy",
+        "Scalability Philosophy",
         "Future Additions",
         "Goal",
         "Related Documents"
       ]
     },
-    ".opencode/architecture/21-anti-patterns.md": {
-      "size": 563,
-      "lines": 31,
-      "type": "markdown",
-      "headings": [
-        {
-          "level": 1,
-          "text": "21-anti-patterns.md"
-        },
-        {
-          "level": 1,
-          "text": "Anti-Patterns"
-        },
-        {
-          "level": 1,
-          "text": "Forbidden Patterns"
-        },
-        {
-          "level": 1,
-          "text": "Why"
-        },
-        {
-          "level": 1,
-          "text": "Related Documents"
-        }
-      ],
-      "totalHeadings": 5,
-      "totalCodeBlocks": 0,
-      "codeBlocks": [],
-      "totalListItems": 12,
-      "sections": [
-        "21-anti-patterns.md",
-        "Anti-Patterns",
-        "Forbidden Patterns",
-        "Why",
-        "Related Documents"
-      ]
-    },
     ".opencode/architecture/22-testing-philosophy.md": {
-      "size": 453,
-      "lines": 31,
+      "size": 405,
+      "lines": 30,
       "type": "markdown",
       "headings": [
         {
@@ -1648,7 +1452,7 @@
       "totalHeadings": 5,
       "totalCodeBlocks": 0,
       "codeBlocks": [],
-      "totalListItems": 10,
+      "totalListItems": 9,
       "sections": [
         "22-testing-philosophy.md",
         "Testing Philosophy",
@@ -1657,62 +1461,9 @@
         "Related Documents"
       ]
     },
-    ".opencode/architecture/architecture.md": {
-      "size": 1702,
-      "lines": 57,
-      "type": "markdown",
-      "headings": [
-        {
-          "level": 1,
-          "text": "Job Search Aggregator — Architecture Documentation"
-        },
-        {
-          "level": 1,
-          "text": "Documentation Index"
-        },
-        {
-          "level": 2,
-          "text": "Core Architecture"
-        },
-        {
-          "level": 2,
-          "text": "Frontend Architecture"
-        },
-        {
-          "level": 2,
-          "text": "Backend Architecture"
-        },
-        {
-          "level": 2,
-          "text": "Search & Intelligence"
-        },
-        {
-          "level": 2,
-          "text": "Infrastructure"
-        },
-        {
-          "level": 2,
-          "text": "Engineering & Governance"
-        }
-      ],
-      "totalHeadings": 8,
-      "totalCodeBlocks": 0,
-      "codeBlocks": [],
-      "totalListItems": 22,
-      "sections": [
-        "Job Search Aggregator — Architecture Documentation",
-        "Documentation Index",
-        "Core Architecture",
-        "Frontend Architecture",
-        "Backend Architecture",
-        "Search & Intelligence",
-        "Infrastructure",
-        "Engineering & Governance"
-      ]
-    },
     ".opencode/architecture/commit-pattern.md": {
-      "size": 1040,
-      "lines": 43,
+      "size": 977,
+      "lines": 42,
       "type": "markdown",
       "headings": [
         {
@@ -1752,7 +1503,7 @@
           "lines": 6
         }
       ],
-      "totalListItems": 7,
+      "totalListItems": 6,
       "sections": [
         "Commit Message Convention",
         "Format",
@@ -1760,6 +1511,24 @@
         "Rules",
         "Examples",
         "Enforcement"
+      ]
+    },
+    ".opencode/commands/agent-routing.md": {
+      "size": 757,
+      "lines": 18,
+      "type": "markdown",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Agent Routing"
+        }
+      ],
+      "totalHeadings": 1,
+      "totalCodeBlocks": 0,
+      "codeBlocks": [],
+      "totalListItems": 0,
+      "sections": [
+        "Agent Routing"
       ]
     },
     ".opencode/commands/doc-audit.md": {
@@ -1801,8 +1570,8 @@
       ]
     },
     ".opencode/commands/jobfindr-pipeline.md": {
-      "size": 548,
-      "lines": 10,
+      "size": 708,
+      "lines": 12,
       "type": "markdown",
       "headings": [],
       "totalHeadings": 0,
@@ -1811,64 +1580,9 @@
       "totalListItems": 2,
       "sections": []
     },
-    ".opencode/commands/product-manager.md": {
-      "size": 338,
-      "lines": 5,
-      "type": "markdown",
-      "headings": [],
-      "totalHeadings": 0,
-      "totalCodeBlocks": 0,
-      "codeBlocks": [],
-      "totalListItems": 0,
-      "sections": []
-    },
-    ".opencode/commands/qa-reviewer.md": {
-      "size": 295,
-      "lines": 5,
-      "type": "markdown",
-      "headings": [],
-      "totalHeadings": 0,
-      "totalCodeBlocks": 0,
-      "codeBlocks": [],
-      "totalListItems": 0,
-      "sections": []
-    },
-    ".opencode/commands/senior-backend.md": {
-      "size": 244,
-      "lines": 5,
-      "type": "markdown",
-      "headings": [],
-      "totalHeadings": 0,
-      "totalCodeBlocks": 0,
-      "codeBlocks": [],
-      "totalListItems": 0,
-      "sections": []
-    },
-    ".opencode/commands/senior-frontend.md": {
-      "size": 249,
-      "lines": 5,
-      "type": "markdown",
-      "headings": [],
-      "totalHeadings": 0,
-      "totalCodeBlocks": 0,
-      "codeBlocks": [],
-      "totalListItems": 0,
-      "sections": []
-    },
-    ".opencode/commands/tech-lead.md": {
-      "size": 288,
-      "lines": 5,
-      "type": "markdown",
-      "headings": [],
-      "totalHeadings": 0,
-      "totalCodeBlocks": 0,
-      "codeBlocks": [],
-      "totalListItems": 0,
-      "sections": []
-    },
     ".opencode/docs-catalog.md": {
-      "size": 6182,
-      "lines": 96,
+      "size": 5910,
+      "lines": 91,
       "type": "markdown",
       "headings": [
         {
@@ -1915,8 +1629,8 @@
       ]
     },
     ".opencode/INDEX.md": {
-      "size": 6307,
-      "lines": 129,
+      "size": 3196,
+      "lines": 74,
       "type": "markdown",
       "headings": [
         {
@@ -1930,30 +1644,6 @@
         {
           "level": 1,
           "text": "Documentation Flow"
-        },
-        {
-          "level": 2,
-          "text": "Frontend Tasks"
-        },
-        {
-          "level": 2,
-          "text": "Backend Tasks"
-        },
-        {
-          "level": 2,
-          "text": "Provider Tasks"
-        },
-        {
-          "level": 2,
-          "text": "Search & Intelligence Tasks"
-        },
-        {
-          "level": 2,
-          "text": "Infrastructure Tasks"
-        },
-        {
-          "level": 2,
-          "text": "Engineering & Governance"
         },
         {
           "level": 1,
@@ -1972,20 +1662,14 @@
           "text": "Related Files"
         }
       ],
-      "totalHeadings": 13,
+      "totalHeadings": 7,
       "totalCodeBlocks": 0,
       "codeBlocks": [],
-      "totalListItems": 30,
+      "totalListItems": 29,
       "sections": [
         "INDEX.md",
         "Job Search Aggregator — AI Engineering Guide",
         "Documentation Flow",
-        "Frontend Tasks",
-        "Backend Tasks",
-        "Provider Tasks",
-        "Search & Intelligence Tasks",
-        "Infrastructure Tasks",
-        "Engineering & Governance",
         "Key Constraints",
         "Project Overview",
         "Pipeline Modes",
@@ -2183,8 +1867,8 @@
       ]
     },
     ".opencode/project-structure.md": {
-      "size": 6705,
-      "lines": 101,
+      "size": 7130,
+      "lines": 105,
       "type": "markdown",
       "headings": [
         {
@@ -2201,7 +1885,7 @@
       ]
     },
     ".opencode/skills/06-branding/SKILL.md": {
-      "size": 6905,
+      "size": 6875,
       "lines": 164,
       "type": "markdown",
       "headings": [
@@ -2286,9 +1970,48 @@
         "Dark Mode (roadmap)"
       ]
     },
+    ".opencode/skills/codebase-analysis/output/combined-report.json": {
+      "size": 261143,
+      "lines": 10377,
+      "type": "json",
+      "topKeys": [
+        "generatedAt",
+        "mode",
+        "implementation",
+        "documentation"
+      ]
+    },
+    ".opencode/skills/codebase-analysis/output/combined-report.md": {
+      "size": 17056,
+      "lines": 347,
+      "type": "markdown",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Codebase Analysis — Combined"
+        },
+        {
+          "level": 1,
+          "text": "Combined Report"
+        }
+      ],
+      "totalHeadings": 2,
+      "totalCodeBlocks": 1,
+      "codeBlocks": [
+        {
+          "language": "(none)",
+          "lines": 340
+        }
+      ],
+      "totalListItems": 0,
+      "sections": [
+        "Codebase Analysis — Combined",
+        "Combined Report"
+      ]
+    },
     ".opencode/skills/codebase-analysis/output/docs-report.json": {
-      "size": 87922,
-      "lines": 3643,
+      "size": 81280,
+      "lines": 3349,
       "type": "json",
       "topKeys": [
         "generatedAt",
@@ -2301,8 +2024,8 @@
       ]
     },
     ".opencode/skills/codebase-analysis/output/docs-report.md": {
-      "size": 7915,
-      "lines": 141,
+      "size": 7672,
+      "lines": 138,
       "type": "markdown",
       "headings": [
         {
@@ -2315,12 +2038,50 @@
       "codeBlocks": [
         {
           "language": "(none)",
-          "lines": 134
+          "lines": 131
         }
       ],
       "totalListItems": 0,
       "sections": [
         "Codebase Analysis — Documentation"
+      ]
+    },
+    ".opencode/skills/codebase-analysis/output/implementation-report.json": {
+      "size": 159014,
+      "lines": 7024,
+      "type": "json",
+      "topKeys": [
+        "generatedAt",
+        "mode",
+        "parser",
+        "summary",
+        "files",
+        "errors",
+        "dependencyCount",
+        "perPackage"
+      ]
+    },
+    ".opencode/skills/codebase-analysis/output/implementation-report.md": {
+      "size": 9421,
+      "lines": 211,
+      "type": "markdown",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Codebase Analysis — Implementation"
+        }
+      ],
+      "totalHeadings": 1,
+      "totalCodeBlocks": 1,
+      "codeBlocks": [
+        {
+          "language": "(none)",
+          "lines": 204
+        }
+      ],
+      "totalListItems": 0,
+      "sections": [
+        "Codebase Analysis — Implementation"
       ]
     },
     ".opencode/skills/codebase-analysis/scripts/package.json": {
@@ -2335,8 +2096,8 @@
       ]
     },
     ".opencode/skills/codebase-analysis/SKILL.md": {
-      "size": 3527,
-      "lines": 102,
+      "size": 3559,
+      "lines": 104,
       "type": "markdown",
       "headings": [
         {
@@ -2413,8 +2174,8 @@
       ]
     },
     ".opencode/skills/continuous-learning/SKILL.md": {
-      "size": 4043,
-      "lines": 67,
+      "size": 3908,
+      "lines": 63,
       "type": "markdown",
       "headings": [
         {
@@ -2437,7 +2198,7 @@
       "totalHeadings": 4,
       "totalCodeBlocks": 0,
       "codeBlocks": [],
-      "totalListItems": 33,
+      "totalListItems": 30,
       "sections": [
         "Continuous Learning Skill",
         "When to use",
@@ -2514,8 +2275,8 @@
       ]
     },
     ".opencode/skills/jobfindr-pipeline/SKILL.md": {
-      "size": 12649,
-      "lines": 200,
+      "size": 12245,
+      "lines": 191,
       "type": "markdown",
       "headings": [
         {
@@ -2582,7 +2343,7 @@
       "totalHeadings": 15,
       "totalCodeBlocks": 0,
       "codeBlocks": [],
-      "totalListItems": 89,
+      "totalListItems": 81,
       "sections": [
         "JobFindr Pipeline Skill (Orchestrator)",
         "When to use",
@@ -2602,7 +2363,7 @@
       ]
     },
     ".opencode/skills/jobfindr-pipeline-next/SKILL.md": {
-      "size": 3629,
+      "size": 3767,
       "lines": 70,
       "type": "markdown",
       "headings": [
@@ -2703,8 +2464,8 @@
       ]
     },
     ".opencode/skills/session-save/SKILL.md": {
-      "size": 1746,
-      "lines": 45,
+      "size": 2161,
+      "lines": 56,
       "type": "markdown",
       "headings": [
         {
@@ -2730,45 +2491,68 @@
         {
           "level": 2,
           "text": "Chain position"
+        },
+        {
+          "level": 2,
+          "text": "Tool Reference"
         }
       ],
-      "totalHeadings": 6,
-      "totalCodeBlocks": 1,
+      "totalHeadings": 7,
+      "totalCodeBlocks": 2,
       "codeBlocks": [
         {
-          "language": "(none)",
-          "lines": 1
+          "language": "json",
+          "lines": 4
+        },
+        {
+          "language": "json",
+          "lines": 4
         }
       ],
-      "totalListItems": 16,
+      "totalListItems": 12,
       "sections": [
         "Session Save Skill",
         "When to use",
         "Workflow",
         "Expected output",
         "Rules",
-        "Chain position"
+        "Chain position",
+        "Tool Reference"
       ]
     }
   },
   "errors": [],
   "headingIndex": {
-    "planning analyst agent": [
-      ".opencode/agents/00-planning-agent.md"
+    "product manager agent": [
+      ".opencode/agents/01-product-manager.md"
     ],
     "role": [
-      ".opencode/agents/00-planning-agent.md",
       ".opencode/agents/01-product-manager.md",
       ".opencode/agents/02-tech-lead.md",
       ".opencode/agents/03-senior-frontend.md",
       ".opencode/agents/04-senior-backend.md",
       ".opencode/agents/05-qa-reviewer.md"
     ],
-    "when to invoke": [
-      ".opencode/agents/00-planning-agent.md"
+    "before you start": [
+      ".opencode/agents/01-product-manager.md",
+      ".opencode/agents/02-tech-lead.md",
+      ".opencode/agents/03-senior-frontend.md",
+      ".opencode/agents/04-senior-backend.md",
+      ".opencode/agents/05-qa-reviewer.md"
+    ],
+    "requirement: collect information first (terminal-choice wizard)": [
+      ".opencode/agents/01-product-manager.md"
+    ],
+    "wizard rules": [
+      ".opencode/agents/01-product-manager.md"
+    ],
+    "when receiving an existing plan/document": [
+      ".opencode/agents/01-product-manager.md"
+    ],
+    "handling skipped questions": [
+      ".opencode/agents/01-product-manager.md"
     ],
     "workflow": [
-      ".opencode/agents/00-planning-agent.md",
       ".opencode/agents/01-product-manager.md",
       ".opencode/agents/02-tech-lead.md",
       ".opencode/agents/03-senior-frontend.md",
@@ -2779,106 +2563,24 @@
       ".opencode/skills/learning-improvement/SKILL.md",
       ".opencode/skills/session-save/SKILL.md"
     ],
-    "phase 1: understand the request": [
-      ".opencode/agents/00-planning-agent.md"
+    "output structure example": [
+      ".opencode/agents/01-product-manager.md"
     ],
-    "phase 2: explore the codebase": [
-      ".opencode/agents/00-planning-agent.md"
+    "when finished": [
+      ".opencode/agents/01-product-manager.md",
+      ".opencode/agents/02-tech-lead.md",
+      ".opencode/agents/05-qa-reviewer.md"
     ],
-    "phase 3: analyze": [
-      ".opencode/agents/00-planning-agent.md"
-    ],
-    "phase 4: discuss approaches with user (mandatory before feasibility.md)": [
-      ".opencode/agents/00-planning-agent.md"
-    ],
-    "phase 4b: present plan structure before creating files": [
-      ".opencode/agents/00-planning-agent.md"
-    ],
-    "phase 5: generate planning documents — always write files": [
-      ".opencode/agents/00-planning-agent.md"
-    ],
-    "index.md format": [
-      ".opencode/agents/00-planning-agent.md"
-    ],
-    "<plan title>": [
-      ".opencode/agents/00-planning-agent.md"
-    ],
-    "objective": [
-      ".opencode/agents/00-planning-agent.md"
-    ],
-    "scope": [
-      ".opencode/agents/00-planning-agent.md"
-    ],
-    "summary of findings": [
-      ".opencode/agents/00-planning-agent.md"
-    ],
-    "documents": [
-      ".opencode/agents/00-planning-agent.md"
-    ],
-    "feasibility.md format": [
-      ".opencode/agents/00-planning-agent.md"
-    ],
-    "feasibility — <topic>": [
-      ".opencode/agents/00-planning-agent.md"
-    ],
-    "approaches": [
-      ".opencode/agents/00-planning-agent.md"
-    ],
-    "approach a: <name>": [
-      ".opencode/agents/00-planning-agent.md"
-    ],
-    "approach b: <name>": [
-      ".opencode/agents/00-planning-agent.md"
-    ],
-    "recommendation": [
-      ".opencode/agents/00-planning-agent.md"
-    ],
-    "impact-analysis.md format": [
-      ".opencode/agents/00-planning-agent.md"
-    ],
-    "impact analysis — <topic>": [
-      ".opencode/agents/00-planning-agent.md"
-    ],
-    "layer impact matrix": [
-      ".opencode/agents/00-planning-agent.md"
-    ],
-    "breaking changes": [
-      ".opencode/agents/00-planning-agent.md"
-    ],
-    "performance impact": [
-      ".opencode/agents/00-planning-agent.md"
-    ],
-    "risks.md format": [
-      ".opencode/agents/00-planning-agent.md"
-    ],
-    "risks — <topic>": [
-      ".opencode/agents/00-planning-agent.md"
-    ],
-    "regression points": [
-      ".opencode/agents/00-planning-agent.md"
-    ],
-    "recommendations.md format": [
-      ".opencode/agents/00-planning-agent.md"
-    ],
-    "recommendations — <topic>": [
-      ".opencode/agents/00-planning-agent.md"
-    ],
-    "for product manager": [
-      ".opencode/agents/00-planning-agent.md"
-    ],
-    "suggested epic breakdown": [
-      ".opencode/agents/00-planning-agent.md"
-    ],
-    "output cleanup": [
-      ".opencode/agents/00-planning-agent.md"
+    "output": [
+      ".opencode/agents/01-product-manager.md",
+      ".opencode/agents/02-tech-lead.md",
+      ".opencode/skills/codebase-analysis/SKILL.md"
     ],
     "constraints": [
-      ".opencode/agents/00-planning-agent.md",
       ".opencode/agents/01-product-manager.md",
       ".opencode/agents/02-tech-lead.md"
     ],
     "related documents": [
-      ".opencode/agents/00-planning-agent.md",
       ".opencode/agents/01-product-manager.md",
       ".opencode/agents/02-tech-lead.md",
       ".opencode/agents/03-senior-frontend.md",
@@ -2901,52 +2603,24 @@
       ".opencode/architecture/18-deployment-architecture.md",
       ".opencode/architecture/19-engineering-guidelines.md",
       ".opencode/architecture/20-scalability-roadmap.md",
-      ".opencode/architecture/21-anti-patterns.md",
       ".opencode/architecture/22-testing-philosophy.md"
     ],
-    "product manager agent": [
-      ".opencode/agents/01-product-manager.md"
+    "tech lead agent": [
+      ".opencode/agents/02-tech-lead.md"
     ],
-    "before you start": [
-      ".opencode/agents/01-product-manager.md",
+    "retry limit (failure escalation)": [
       ".opencode/agents/02-tech-lead.md",
       ".opencode/agents/03-senior-frontend.md",
       ".opencode/agents/04-senior-backend.md",
       ".opencode/agents/05-qa-reviewer.md"
     ],
-    "requirement: collect information first (terminal-choice wizard)": [
-      ".opencode/agents/01-product-manager.md"
-    ],
-    "wizard rules": [
-      ".opencode/agents/01-product-manager.md"
-    ],
-    "when receiving an existing plan/document": [
-      ".opencode/agents/01-product-manager.md"
-    ],
-    "handling skipped questions": [
-      ".opencode/agents/01-product-manager.md"
-    ],
-    "output structure example": [
-      ".opencode/agents/01-product-manager.md",
-      ".opencode/agents/02-tech-lead.md"
-    ],
-    "when finished": [
-      ".opencode/agents/01-product-manager.md",
-      ".opencode/agents/02-tech-lead.md",
-      ".opencode/agents/05-qa-reviewer.md"
-    ],
-    "output": [
-      ".opencode/agents/01-product-manager.md",
-      ".opencode/agents/02-tech-lead.md",
-      ".opencode/skills/codebase-analysis/SKILL.md"
-    ],
-    "tech lead agent": [
-      ".opencode/agents/02-tech-lead.md"
-    ],
     "task creation example": [
       ".opencode/agents/02-tech-lead.md"
     ],
-    "task: [descriptive task name]": [
+    "task-nn-<context>: [descriptive task name]": [
+      ".opencode/agents/02-tech-lead.md"
+    ],
+    "depends on": [
       ".opencode/agents/02-tech-lead.md"
     ],
     "description": [
@@ -2959,6 +2633,9 @@
       ".opencode/agents/02-tech-lead.md"
     ],
     "testing": [
+      ".opencode/agents/02-tech-lead.md"
+    ],
+    "references": [
       ".opencode/agents/02-tech-lead.md"
     ],
     "senior frontend agent": [
@@ -2995,15 +2672,8 @@
     "for backend": [
       ".opencode/agents/05-qa-reviewer.md"
     ],
-    "if approved": [
-      ".opencode/agents/05-qa-reviewer.md"
-    ],
-    "if corrections needed": [
-      ".opencode/agents/05-qa-reviewer.md"
-    ],
     "rules": [
       ".opencode/agents/05-qa-reviewer.md",
-      ".opencode/architecture/19-engineering-guidelines.md",
       ".opencode/architecture/commit-pattern.md",
       ".opencode/skills/codebase-analysis/SKILL.md",
       ".opencode/skills/continuous-learning/SKILL.md",
@@ -3093,8 +2763,7 @@
       ".opencode/architecture/04-frontend-architecture.md"
     ],
     "frontend architecture": [
-      ".opencode/architecture/04-frontend-architecture.md",
-      ".opencode/architecture/architecture.md"
+      ".opencode/architecture/04-frontend-architecture.md"
     ],
     "stack": [
       ".opencode/architecture/04-frontend-architecture.md",
@@ -3138,8 +2807,7 @@
       ".opencode/architecture/06-backend-architecture.md"
     ],
     "backend architecture": [
-      ".opencode/architecture/06-backend-architecture.md",
-      ".opencode/architecture/architecture.md"
+      ".opencode/architecture/06-backend-architecture.md"
     ],
     "module pattern": [
       ".opencode/architecture/06-backend-architecture.md"
@@ -3183,7 +2851,7 @@
     "interface": [
       ".opencode/architecture/08-provider-architecture.md"
     ],
-    "supported providers (mvp)": [
+    "supported providers": [
       ".opencode/architecture/08-provider-architecture.md"
     ],
     "provider strategy": [
@@ -3267,7 +2935,7 @@
     "caching architecture": [
       ".opencode/architecture/14-caching-architecture.md"
     ],
-    "mvp cache strategy": [
+    "cache strategy": [
       ".opencode/architecture/14-caching-architecture.md"
     ],
     "cache targets": [
@@ -3339,6 +3007,12 @@
     "typescript rules": [
       ".opencode/architecture/19-engineering-guidelines.md"
     ],
+    "anti-patterns / forbidden patterns": [
+      ".opencode/architecture/19-engineering-guidelines.md"
+    ],
+    "why these patterns are forbidden": [
+      ".opencode/architecture/19-engineering-guidelines.md"
+    ],
     "ai contribution workflow": [
       ".opencode/architecture/19-engineering-guidelines.md"
     ],
@@ -3348,7 +3022,7 @@
     "scalability roadmap": [
       ".opencode/architecture/20-scalability-roadmap.md"
     ],
-    "mvp philosophy": [
+    "scalability philosophy": [
       ".opencode/architecture/20-scalability-roadmap.md"
     ],
     "future additions": [
@@ -3356,18 +3030,6 @@
     ],
     "goal": [
       ".opencode/architecture/20-scalability-roadmap.md"
-    ],
-    "21-anti-patterns.md": [
-      ".opencode/architecture/21-anti-patterns.md"
-    ],
-    "anti-patterns": [
-      ".opencode/architecture/21-anti-patterns.md"
-    ],
-    "forbidden patterns": [
-      ".opencode/architecture/21-anti-patterns.md"
-    ],
-    "why": [
-      ".opencode/architecture/21-anti-patterns.md"
     ],
     "22-testing-philosophy.md": [
       ".opencode/architecture/22-testing-philosophy.md"
@@ -3377,25 +3039,6 @@
     ],
     "methodology": [
       ".opencode/architecture/22-testing-philosophy.md"
-    ],
-    "job search aggregator — architecture documentation": [
-      ".opencode/architecture/architecture.md"
-    ],
-    "documentation index": [
-      ".opencode/architecture/architecture.md"
-    ],
-    "core architecture": [
-      ".opencode/architecture/architecture.md"
-    ],
-    "search & intelligence": [
-      ".opencode/architecture/architecture.md"
-    ],
-    "infrastructure": [
-      ".opencode/architecture/architecture.md"
-    ],
-    "engineering & governance": [
-      ".opencode/architecture/architecture.md",
-      ".opencode/INDEX.md"
     ],
     "commit message convention": [
       ".opencode/architecture/commit-pattern.md"
@@ -3409,6 +3052,9 @@
     "enforcement": [
       ".opencode/architecture/commit-pattern.md",
       ".opencode/skills/learning-improvement/SKILL.md"
+    ],
+    "agent routing": [
+      ".opencode/commands/agent-routing.md"
     ],
     "doc audit command": [
       ".opencode/commands/doc-audit.md"
@@ -3454,21 +3100,6 @@
       ".opencode/INDEX.md"
     ],
     "documentation flow": [
-      ".opencode/INDEX.md"
-    ],
-    "frontend tasks": [
-      ".opencode/INDEX.md"
-    ],
-    "backend tasks": [
-      ".opencode/INDEX.md"
-    ],
-    "provider tasks": [
-      ".opencode/INDEX.md"
-    ],
-    "search & intelligence tasks": [
-      ".opencode/INDEX.md"
-    ],
-    "infrastructure tasks": [
       ".opencode/INDEX.md"
     ],
     "key constraints": [
@@ -3591,8 +3222,17 @@
     "dark mode (roadmap)": [
       ".opencode/skills/06-branding/SKILL.md"
     ],
+    "codebase analysis — combined": [
+      ".opencode/skills/codebase-analysis/output/combined-report.md"
+    ],
+    "combined report": [
+      ".opencode/skills/codebase-analysis/output/combined-report.md"
+    ],
     "codebase analysis — documentation": [
       ".opencode/skills/codebase-analysis/output/docs-report.md"
+    ],
+    "codebase analysis — implementation": [
+      ".opencode/skills/codebase-analysis/output/implementation-report.md"
     ],
     "codebase analysis skill — jobfindr": [
       ".opencode/skills/codebase-analysis/SKILL.md"
@@ -3729,12 +3369,15 @@
     ],
     "chain position": [
       ".opencode/skills/session-save/SKILL.md"
+    ],
+    "tool reference": [
+      ".opencode/skills/session-save/SKILL.md"
     ]
   },
   "codeBlockLanguages": {
-    "txt": 6,
+    "txt": 8,
     "http": 2,
-    "json": 1,
+    "json": 3,
     "ts": 12,
     "(none)": 6,
     "css": 3

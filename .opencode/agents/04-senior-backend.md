@@ -46,8 +46,7 @@ Uses the tasks created by the Tech Lead to implement and maintain the applicatio
 
 ## Before you start
 
-Update `pipeline.yaml`:
-- `steps.senior-backend.status: "in_progress"`
+Report your status to the orchestrator when starting.
 
 ## Workflow
 
@@ -59,8 +58,15 @@ Update `pipeline.yaml`:
   6. **Validate endpoints** — start the server (`pnpm --filter backend dev`) and test the created/modified endpoints with HTTP calls (curl, fetch, or similar tool)
   7. **Stop the server** — after validation, stop the server
   8. **Create or update tests** following the policy defined in `AGENTS.md`
-  9. Update `pipeline.yaml`: `steps.senior-backend.status: "completed"` (do NOT change `current_step` — the orchestrator owns phase transitions)
+   9. Return your status to the orchestrator
   10. **Return all errors** — report back to the orchestrator any non-implementation errors encountered (server startup failures, port conflicts, HTTP test failures, build tool issues, etc.)
+
+## Retry Limit (failure escalation)
+
+If the same action fails 3 consecutive times, you MUST NOT retry. Instead, return to the orchestrator/agent that created you, reporting:
+1. Which action failed
+2. The error reason observed
+3. That you cannot proceed further
 
 ## Implementation rules
 

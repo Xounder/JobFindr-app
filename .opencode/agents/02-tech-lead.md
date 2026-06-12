@@ -44,8 +44,7 @@ The agent only consumes artifacts stored in the filesystem and does not depend o
 
 ## Before you start
 
-Update `pipeline.yaml`:
-- `steps.tech-lead.status: "in_progress"`
+Report your status to the orchestrator when starting.
 
 ## Workflow
 
@@ -66,11 +65,7 @@ Update `pipeline.yaml`:
 
 ## When finished
 
-Update `pipeline.yaml`:
-- `steps.tech-lead.status: "completed"`
-- `steps.tech-lead.notes: "Tasks created in .opencode/plan/<context>/tasks/"`
-- `current_step: "development"`
-- `updated_at: "<current-date-time>"`
+Return a structured summary to the orchestrator with your status and notes.
 
 ## Output
 
@@ -86,6 +81,12 @@ Update `pipeline.yaml`:
 - Tasks must be self-contained and focused on implementation clarity derived from plan artifacts only.
 - **Never request, read, or modify files outside the project directory**. All operations must remain within the project root.
 
+## Retry Limit (failure escalation)
+
+If the same action fails 3 consecutive times, the subagent MUST NOT retry. Instead, it must return to the orchestrator/agent that created it, reporting:
+1. Which action failed
+2. The error reason observed
+3. That it cannot proceed further
 
 ## Task Creation Example
 
@@ -140,4 +141,4 @@ This prevents fragmentation of work that could be completed together by the same
 ## Related Documents
 
 - [.opencode/INDEX.md](../INDEX.md)
-- [.opencode/architecture/architecture.md](../architecture/architecture.md)
+- [.opencode/architecture/01-system-overview.md](../architecture/01-system-overview.md)

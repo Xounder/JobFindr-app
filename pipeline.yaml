@@ -1,37 +1,37 @@
 pipeline:
   name: JobFindr Pipeline
-  started_at: "2026-06-06T00:00:00Z"
-  updated_at: "2026-06-09T00:00:00Z"
+  started_at: "2026-06-12T00:37:00Z"
+  updated_at: "2026-06-12T03:52:00Z"
   current_step: "completed"
   steps:
     product-manager:
-      status: skipped
-      notes: "Skipped — existing analysis files found in provider-company-discovery context"
-      updated_at: "2026-06-06T00:00:00Z"
+      status: completed
+      notes: "Created 3 epics for Adzuna + TheirStack implementation in br-providers context"
+      updated_at: "2026-06-12T00:37:00Z"
       problems: []
     tech-lead:
       status: completed
-      notes: "Created 6 tasks in provider-company-discovery/tasks/"
-      updated_at: "2026-06-08T21:00:00Z"
+      notes: "Created 3 tasks in br-providers/tasks/ — TASK-01 (Adzuna), TASK-02 (TheirStack), TASK-03 (Registration)"
+      updated_at: "2026-06-12T00:45:00Z"
       problems: []
     senior-frontend:
       status: skipped
       notes: "No frontend tasks — all tasks are backend-only"
-      updated_at: "2026-06-08T21:00:00Z"
+      updated_at: "2026-06-12T00:45:00Z"
       problems: []
     senior-backend:
       status: completed
-      notes: "All 3 tasks implemented: TASK-04 Admin API, TASK-05 Provider Migration, TASK-06 Resilience Layer. 422 tests passing (40 test files)"
-      updated_at: "2026-06-09T00:00:00Z"
+      notes: "Adzuna and TheirStack providers implemented, tested (459/459 tests passing), and registered. 7 total providers."
+      updated_at: "2026-06-12T03:52:00Z"
       problems: []
 
     qa-frontend:
       status: skipped
-      notes: "No frontend tasks in this pipeline"
-      updated_at: "2026-06-09T00:00:00Z"
+      notes: "No frontend changes in this pipeline"
+      updated_at: "2026-06-12T03:52:00Z"
       problems: []
     qa-backend:
       status: completed
-      notes: "Approved — all 422 tests passing, no architectural violations"
-      updated_at: "2026-06-09T00:00:00Z"
+      notes: "Approved. 459/459 tests passed, lint/build clean. Adzuna (16 tests) and TheirStack (21 tests) implemented correctly."
+      updated_at: "2026-06-12T03:55:00Z"
       problems: []

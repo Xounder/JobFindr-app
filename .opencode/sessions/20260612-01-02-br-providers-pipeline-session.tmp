@@ -1,0 +1,5 @@
+DONE: Full pipeline executed — researched Brazilian job APIs, created planning context (3 epics, 3 tasks), implemented Adzuna + TheirStack providers (backend only, 37 new tests), QA approved, committed. Pipeline SKILL rules updated to enforce orchestrator-only pipeline.yaml ownership across all 5 agent files. Provider architecture doc and AGENTS.md updated with new providers and env vars.
+WRONG: Multi-line commit message blocked by shell restrictions — had to use one-liner.
+IMPROV: For API research, check developer docs directly via webfetch next time instead of web search for more accurate API specs.
+LEARN: Adzuna and TheirStack have free API key tiers covering Brazil. The existing ApiProvider base class makes adding REST API providers straightforward. Agent docs needed pipeline.yaml ownership clarified — all 5 agents had outdated instructions.
+NEXT: Consider adding more BR-specific companies that use custom career portals (not Gupy/Greenhouse) via lightweight scraping providers.

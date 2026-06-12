@@ -44,7 +44,7 @@ Then read the `pipeline.yaml` file at the project root and identify the first st
 1. Update `pipeline.yaml`: pending steps as `in_progress`
 2. Trigger **Senior Frontend Agent** via Task tool (`subagent_type: "Senior Frontend"`) and/or **Senior Backend Agent** via Task tool (`subagent_type: "Senior Backend"`) (according to unimplemented tasks)
 3. Execute in parallel
-4. Update `pipeline.yaml` when each concludes
+4. Collect return summaries from agents and update `pipeline.yaml` when each concludes
 5. Proceed to QA (Phase 4)
 
 ### If resuming from QA / Corrections loop
@@ -63,7 +63,7 @@ Then read the `pipeline.yaml` file at the project root and identify the first st
 - **Never** redo Product Manager questions
 - **Never** recreate artifacts that already exist
 - **Always** read `pipeline.yaml` to decide the starting point
-- **Always** update `pipeline.yaml` after each step
+- **Only the orchestrator updates `pipeline.yaml`**: Agents MUST NOT write to `pipeline.yaml` — they return structured summaries to the orchestrator
 - Respect parallelism between frontend and backend
 - If `pipeline.yaml` does not exist, assume **Direct Task Mode** (see `jobfindr-pipeline` skill)
 - **Active context propagation**: The orchestrator MUST read `.opencode/plan/active.txt` at startup and pass the `active` folder path to ALL subagents via the Task tool prompt. Subagents (Tech Lead, Senior Frontend, Senior Backend, QA Reviewer) MUST read their working context from `.opencode/plan/<active-folder>/` — do NOT hardcode or guess the folder name.

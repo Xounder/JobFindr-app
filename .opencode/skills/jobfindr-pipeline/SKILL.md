@@ -20,16 +20,7 @@ Triggered by the `/start` command or when the user says "start the pipeline", "b
 Full flow: PM → Tech Lead → Frontend + Backend (parallel) → QA Frontend + QA Backend (parallel) → loop → conclusion
 
 ### Direct Task Mode
-Triggered when the user makes a **specific and direct** request like "create tests", "add an endpoint", "fix bug in component X", etc. In this mode:
-
-1. **Analyze scope** — determine if the task affects frontend, backend or both
-2. **Skip PM and Tech Lead** — the task is already defined by the user
-3. **Direct routing** — use Task tool to trigger implementation agent(s):
-   - Backend-only task → `Senior Backend` → `QA Backend` → STOP
-   - Frontend-only task → `Senior Frontend` → `QA Frontend` → STOP
-   - Both tasks → `Senior Frontend` + `Senior Backend` (parallel) → `QA Frontend` + `QA Backend` (parallel) → STOP
-4. **QA is MANDATORY** in any mode — never skip
-5. **No formal conclusion phase** — just report to the user that it passed QA
+Triggered when the user makes a **specific and direct** request like "create tests", "add an endpoint", "fix bug in component X", etc. In this mode, skip PM and Tech Lead and route directly to implementation agents. See the [Direct flow](#direct-flow-direct-task-mode) section below for the full routing specification.
 
 ## Pipeline initialization (Full Pipeline Mode)
 
@@ -190,10 +181,10 @@ Execute this flow when the user gives a direct and specific task:
 - **Validate** the YAML after each edit to avoid duplicate keys — prefer replacing entire blocks instead of appending new ones
 - In Direct Task Mode: **QA is mandatory** for non-trivial tasks
 - **Corrections loop rule**: When QA finds issues, the orchestrator MUST re-invoke the implementation agent via Task tool — NEVER fix code directly. The orchestrator's role is to route work, not to implement.
-- **Orchestrator owns `current_step`**: Agents (PM, TL, Senior, QA) must only update their own `status` and `notes` in `pipeline.yaml`. Only the orchestrator sets `current_step` to advance phases. Agents MUST NOT change `current_step`.
+- **Only the orchestrator updates `pipeline.yaml`**: Agents (PM, TL, Senior, QA) MUST NOT update `pipeline.yaml` directly. They return structured summaries to the orchestrator, who is the sole owner of `pipeline.yaml`. The orchestrator sets all status fields, notes, problems, and `current_step`.
 - **All tasks must be completed**: The orchestrator MUST auto-continue phases until ALL tasks in the plan are implemented, validated, and QA-approved. For example, after Phase 1 (TASK-001, TASK-004, TASK-005) passes QA, the orchestrator must immediately proceed to Phase 2 (TASK-002, TASK-003, TASK-006) without waiting for user input. Only run the STOP hook after ALL tasks are done.
 - **App cleanup**: After agents finish validation (HTTP tests, etc.), they MUST terminate any running processes started during their execution. Do not leave the app running.
-- **Error reporting**: All agents MUST return a structured summary (non-empty) of what was implemented, validation results, and any errors encountered. This includes tool failures, process spawn issues, port conflicts, build problems, and empty/missing agent results. Errors must be reported back to the orchestrator in the final return message AND added to the step's `problems` array in `pipeline.yaml`.
-- **Problems tracking**: Agents MUST populate the `problems` array in `pipeline.yaml` for their step with any non-code errors (test failures, process spawn issues, port conflicts, build problems).
-- **YAML validation**: After any agent updates `pipeline.yaml`, the orchestrator MUST validate the YAML has correct indentation (no misaligned keys).
+- **Error reporting**: All agents MUST return a structured summary (non-empty) of what was implemented, validation results, and any errors encountered. This includes tool failures, process spawn issues, port conflicts, build problems, and empty/missing agent results. Errors must be reported back to the orchestrator in the final return message.
+- **Problems tracking**: Agents MUST include any non-code errors (test failures, process spawn issues, port conflicts, build problems) in their return summary. The orchestrator will populate the `problems` array in `pipeline.yaml`.
+- **YAML validation**: The orchestrator MUST validate the YAML has correct indentation (no misaligned keys) after each update to `pipeline.yaml`.
 - **Active context propagation**: The orchestrator MUST read `.opencode/plan/active.txt` at startup (both Full Pipeline and Direct Task Mode) and pass the `active` folder path to ALL subagents via the Task tool prompt. Subagents (Tech Lead, Senior Frontend, Senior Backend, QA Reviewer) MUST read their working context from `.opencode/plan/<active-folder>/` — do NOT hardcode or guess the folder name.

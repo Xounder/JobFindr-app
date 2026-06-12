@@ -12,7 +12,6 @@ permission:
   read: allow
   edit: 
     "*": deny
-    "pipeline.yaml": allow
   glob: allow
   grep: allow
   list: allow
@@ -43,9 +42,7 @@ Code reviewer created by Senior Frontend and Senior Backend. Must be instantiate
 
 ## Before you start
 
-Identify which layer is being reviewed and update `pipeline.yaml`:
-- If frontend: `steps.qa-frontend.status: "in_progress"`
-- If backend: `steps.qa-backend.status: "in_progress"`
+Identify which layer is being reviewed and report your status to the orchestrator.
 
 ## Workflow
 
@@ -80,16 +77,14 @@ Identify which layer is being reviewed and update `pipeline.yaml`:
 
 ## When finished
 
-### If approved
-Update `pipeline.yaml`:
-- If frontend: `steps.qa-frontend.status: "completed"`, `steps.qa-frontend.notes: "Approved"`
-- If backend: `steps.qa-backend.status: "completed"`, `steps.qa-backend.notes: "Approved"`
+Return a structured summary to the orchestrator with your verdict (approved or corrections needed), notes, and any errors.
 
-### If corrections needed
-Update `pipeline.yaml`:
-- If frontend: `steps.senior-frontend.status: "in_progress"`, `steps.qa-frontend.status: "pending"`
-- If backend: `steps.senior-backend.status: "in_progress"`, `steps.qa-backend.status: "pending"`
-- Add `notes` with the list of corrections needed
+## Retry Limit (failure escalation)
+
+If the same action fails 3 consecutive times, you MUST NOT retry. Instead, return to the orchestrator/agent that created you, reporting:
+1. Which action failed
+2. The error reason observed
+3. That you cannot proceed further
 
 ## Rules
 
@@ -117,6 +112,6 @@ Update `pipeline.yaml`:
 ## Related Documents
 
 - [.opencode/INDEX.md](../INDEX.md)
-- [.opencode/architecture/architecture.md](../architecture/architecture.md)
+- [.opencode/architecture/01-system-overview.md](../architecture/01-system-overview.md)
 - [.opencode/architecture/19-engineering-guidelines.md](../architecture/19-engineering-guidelines.md)
 - [.opencode/plan/](../plan/) — tasks in `plan/<context>/tasks/`

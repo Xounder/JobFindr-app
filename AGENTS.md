@@ -83,6 +83,8 @@ GET /jobs/search
 | `LEVER_TIMEOUT_MS`      | 20000   | Lever      |
 | `WORKDAY_TIMEOUT_MS`    | 15000   | Workday    |
 | `GUPY_TIMEOUT_MS`       | 10000   | Gupy       |
+| `ADZUNA_TIMEOUT_MS`     | 10000   | Adzuna     |
+| `THEIRSTACK_TIMEOUT_MS` | 10000   | TheirStack |
 
 ## Frontend architecture
 
@@ -190,6 +192,17 @@ Never open, read, write, or request files outside this project directory. All op
 - **Never check if a process is running** (no Get-Process, ps, etc.)
 - **Never kill/taskkill processes yourself** — just run `pnpm` commands as-is
 - If a port is already in use, report the error to the orchestrator — do not resolve it
+
+### Tool preference for file operations
+Prefer the **dedicated tools** (`grep`, `glob`, `read`, `edit`, `write`) for file searching and content operations over `bash`/PowerShell. Use `bash` only as a last resort when the dedicated tools cannot accomplish the task.
+
+### Bash command restrictions
+The shell environment rejects the following patterns:
+- **Chained commands**: `&&`, `||`, `;`, `|`, backticks (`\``), `$()`, `${}`, literal newlines — each command must be a single statement
+- **Unrecognized commands**: only the commands documented in this file (pnpm, git, docker, curl, ls, cat, etc.) and a few utility commands are accepted
+- **Node/tsx execution**: scripts must be inside the project directory with `.ts`, `.js`, or `.tsx` extension; the script path is resolved from the project root (not from any `workdir` override); flags like `-e`, `--eval`, `--require` are blocked
+- **File operations**: all file paths must resolve inside the project root
+- **Curl**: only allowed to `localhost` URLs
 
 ### All tasks must be completed
 The orchestrator MUST auto-continue phases until ALL tasks in the plan are implemented, validated, and QA-approved. Never stop after a partial phase. Only run the STOP hook after ALL tasks are done.

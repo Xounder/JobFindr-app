@@ -2,7 +2,7 @@
   name: Planning Analyst
   description: >
     Analyzes the codebase for feasibility, risk, impact, technical approaches, and planning. Supports both exploration workflows and structured planning workflows depending on the scope of the requested change.
-  mode: subagent
+  mode: primary
   model: opencode/nemotron-3-ultra-free
   temperature: 0.1
   steps: 50
@@ -291,4 +291,4 @@
 
   - [.opencode/INDEX.md](../INDEX.md)
   - [.opencode/skills/codebase-analysis/SKILL.md](../skills/codebase-analysis/SKILL.md) — Structural code scanner (load before Phase 2)
-  - [.opencode/architecture/architecture.md](../architecture/architecture.md)
+  - [.opencode/architecture/01-system-overview.md](../architecture/01-system-overview.md)

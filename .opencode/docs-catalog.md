@@ -18,11 +18,11 @@ Catalog of all `.md` files in `.opencode/` with content description and when to 
 | File | Content | When to modify |
 |---|---|---|
 | `agents/00-planning-agent.md` | Planning Analyst — feasibility, risk, impact analysis, on-demand planning docs for PM | New analysis types; planning output format changes |
-| `agents/01-product-manager.md` | PM instructions — mandatory questions, folder-per-epic output, plan .md → epics, pipeline.yaml | PM flow changes; new artifact types |
-| `agents/02-tech-lead.md` | TL instructions — decomposition, folder-per-task output, one .md per task, pipeline.yaml | Task format changes; allocation changes |
+| `agents/01-product-manager.md` | PM instructions — mandatory questions, folder-per-epic output, plan .md → epics | PM flow changes; new artifact types |
+| `agents/02-tech-lead.md` | TL instructions — decomposition, folder-per-task output, one .md per task | Task format changes; allocation changes |
 | `agents/03-senior-frontend.md` | Frontend agent instructions | Frontend conventions change |
 | `agents/04-senior-backend.md` | Backend agent instructions | Backend conventions change |
-| `agents/05-qa-reviewer.md` | QA agent instructions — pipeline.yaml, frontend/backend verification, checklist | QA checklist changes; new patterns |
+| `agents/05-qa-reviewer.md` | QA agent instructions — frontend/backend verification, checklist | QA checklist changes; new patterns |
 
 ---
 
@@ -77,12 +77,8 @@ Catalog of all `.md` files in `.opencode/` with content description and when to 
 | File | Content | When to modify |
 |---|---|---|
 | `commands/jobfindr-pipeline.md` | `/start` pipeline command | Pipeline flow changes |
-| `commands/product-manager.md` | PM command | PM process changes |
-| `commands/tech-lead.md` | TL command | TL process changes |
-| `commands/senior-frontend.md` | Frontend agent command | Frontend tasks change |
-| `commands/senior-backend.md` | Backend agent command | Backend tasks change |
-| `commands/qa-reviewer.md` | QA Reviewer command | QA process changes |
-| `commands/doc-audit.md` | `/doc-audit` command to run doc audit skill | Audit flow changes; new detection rules |
+| `commands/agent-routing.md` | Agent routing reference — maps each agent to subagent_type and purpose | New agent types added; routing changes |
+| `commands/doc-audit.md` | `/doc-audit` command — redirect to `skills/doc-audit/SKILL.md` | Skill path changes; redirect target changes |
 
 ---
 

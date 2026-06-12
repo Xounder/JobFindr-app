@@ -95,6 +95,26 @@ export class ProviderLoader {
       })
     }
 
+    try {
+      const { createAdzunaProvider } = await import('../adzuna/adzuna-provider.ts')
+      loaders.push({ name: 'adzuna', load: () => createAdzunaProvider() })
+    } catch (error) {
+      logger.warn('Failed to load Adzuna provider', {
+        module: 'provider-loader',
+        error: error instanceof Error ? error.message : 'Unknown',
+      })
+    }
+
+    try {
+      const { createTheirStackProvider } = await import('../theirstack/theirstack-provider.ts')
+      loaders.push({ name: 'theirstack', load: () => createTheirStackProvider() })
+    } catch (error) {
+      logger.warn('Failed to load TheirStack provider', {
+        module: 'provider-loader',
+        error: error instanceof Error ? error.message : 'Unknown',
+      })
+    }
+
     for (const { name, load } of loaders) {
       try {
         const provider = await load()
@@ -169,6 +189,14 @@ export class ProviderLoader {
             }))
           : undefined
         return m.createWorkdayProvider(companies)
+      },
+      adzuna: async () => {
+        const m = await import('../adzuna/adzuna-provider.ts')
+        return m.createAdzunaProvider()
+      },
+      theirstack: async () => {
+        const m = await import('../theirstack/theirstack-provider.ts')
+        return m.createTheirStackProvider()
       },
     }
 

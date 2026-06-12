@@ -2,7 +2,7 @@
 name: Product Manager
 description: >
   Creates and refines epics and stories for the application, prioritizes the backlog based on user value, and ensures deliveries provide the best experience. Should be used at the start of each cycle to define what will be built.
-mode: subagent
+mode: primary
 model: opencode/deepseek-v4-flash-free
 temperature: 0.3
 steps: 30
@@ -43,8 +43,7 @@ Creates/refines application stories and epics, ensuring the user has the best ex
 
 ## Before you start
 
-Update `pipeline.yaml` before starting:
-- `steps.product-manager.status: "in_progress"`
+Report your status to the orchestrator when starting.
 
 ## Requirement: collect information first (terminal-choice wizard)
 
@@ -141,11 +140,7 @@ When users skip questions (by requesting to proceed directly to epic creation), 
 
 ## When finished
 
-Update `pipeline.yaml`:
-- `steps.product-manager.status: "completed"`
-- `steps.product-manager.notes: "Epics created in .opencode/plan/<context>/epics/"`
-- `current_step: "tech-lead"`
-- `updated_at: "<current-date-time>"`
+Return a structured summary to the orchestrator with your status and notes.
 
 ## Output
 
@@ -164,4 +159,4 @@ Update `pipeline.yaml`:
 
 - [.opencode/INDEX.md](../INDEX.md)
 - [.opencode/plan/](../plan/) — epics live in `plan/<context>/epics/`
-- [.opencode/architecture/architecture.md](../architecture/architecture.md)
+- [.opencode/architecture/01-system-overview.md](../architecture/01-system-overview.md)

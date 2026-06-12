@@ -11,11 +11,6 @@ Providers:
 - parse provider responses;
 - normalize data.
 
-Providers MUST NOT:
-- rank jobs;
-- perform matchmaking;
-- contain business logic.
-
 ---
 
 # Interface
@@ -37,6 +32,8 @@ export interface JobProvider {
 * Lever (public API)
 * Workday (CXS JSON endpoint)
 * Gupy (public BR API)
+* Adzuna (REST API with app_id/app_key, covers Brazil)
+* TheirStack (REST API with Bearer token, covers 195 countries)
 
 ---
 
@@ -94,10 +91,10 @@ Providers MUST:
 - implement timeouts.
 
 Providers MUST NOT:
-- know about UI;
 - rank jobs;
 - perform matchmaking;
-- contain unrelated logic.
+- contain business logic;
+- know about UI.
 
 ---
 

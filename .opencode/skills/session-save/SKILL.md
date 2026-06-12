@@ -8,11 +8,7 @@ description: >
 
 ## When to use
 
-Use this skill at the end of the STOP hook, after `learning-improvement` and `continuous-learning`. It is the **third and last** of 3 skills called in sequence:
-
-1. **learning-improvement** — evaluates the session
-2. **continuous-learning** — proposes and applies doc updates (with user approval)
-3. **session-save** — persists the session file (this skill)
+Use this skill at the end of the STOP hook, after `learning-improvement` and `continuous-learning`. It is the **third and last** of 3 skills in the chain. See `learning-improvement/SKILL.md` for the full chain description.
 
 ## Workflow
 
