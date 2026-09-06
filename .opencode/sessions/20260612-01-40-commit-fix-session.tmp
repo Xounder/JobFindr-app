@@ -1,5 +1,0 @@
-DONE: Committed frontend UX improvements (17 files, +353/-163). Amended commit to remove scope parentheses per user preference.
-WRONG: Initial commit used feat(scope): format — user prefers type: description without parentheses. Had to --amend.
-IMPROV: Read commit-pattern.md before writing commit messages. Follow existing convention rather than guessing.
-LEARN: commit-pattern.md already specifies type: description without parentheses. Should have checked before writing the commit.
-NEXT: None — docs are correct.

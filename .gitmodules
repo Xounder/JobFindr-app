@@ -1,0 +1,3 @@
+[submodule "delivery-pipeline"]
+	path = delivery-pipeline
+	url = https://github.com/Xounder/delivery-pipeline
