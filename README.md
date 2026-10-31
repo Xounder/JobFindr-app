@@ -23,6 +23,12 @@
 | **Shared** | `@jobfindr/types`, `@jobfindr/utils` |
 | **Infra** | Docker, Railway / Render |
 
+## Delivery Pipeline (.opencode submodule)
+
+JobFindr uses the Delivery Pipeline harness through the `.opencode` Git submodule. It provides the development workflow, agents, skills, and documentation entry points.
+
+For instructions on initializing the submodule, selecting this project's branch, configuring remote tracking, and pulling updates, see the [submodule setup guide](https://github.com/Xounder/delivery-pipeline/blob/master/.docs/07-submodule-install.md#cloning-a-codebase-that-contains-the-submodule). The guide also links to the required OpenCode plugin-dependency installation steps.
+
 ## Architecture
 
 ```
