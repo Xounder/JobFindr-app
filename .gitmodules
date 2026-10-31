@@ -1,3 +1,4 @@
 [submodule "delivery-pipeline"]
 	path = .opencode
 	url = https://github.com/Xounder/delivery-pipeline
+	branch = dlvr-ppln/JobFindr
